@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:laser_tech_app/application/auth_controller/auth_controller.dart';
 import 'package:laser_tech_app/domain/responsive/dimensions.dart';
+import 'package:laser_tech_app/presentation/03_Screen_home/screen_home.dart';
 import 'package:laser_tech_app/presentation/theme/color.dart';
 import 'package:laser_tech_app/presentation/theme/theme.dart';
+import 'package:laser_tech_app/presentation/widgets/snackbar.dart';
 
 import '../../classes/language.dart';
 import '../../classes/language_constants.dart';
@@ -202,8 +204,17 @@ class _ScreenLoginState extends State<ScreenLogin> {
                                               fontStyle: FontStyle.italic),
                                         ),
                                         onPressed: () {
-                                          Get.find<AuthController>()
-                                              .login(userName!, password!);
+                                          // Get.find<AuthController>()
+                                          //     .login(userName!, password!);
+                                          if (userName == 'admin@admin.com' &&
+                                              password == 'admin') {
+                                            Navigator.pushNamed(
+                                                context, ScreenHome.routeName);
+                                          } else {
+                                            showSnackBar1(
+                                                message:
+                                                    'Unable to login(wrong user Name or password)');
+                                          }
                                         },
                                         child: Padding(
                                           padding: const EdgeInsets.all(10.0),
@@ -217,42 +228,42 @@ class _ScreenLoginState extends State<ScreenLogin> {
                                           ),
                                         ),
                                       ),
-                                      customVerticalGap(25),
-                                      Text(
-                                        'OR',
-                                        style: TextStyle(
-                                            color: Colors.grey.shade600,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      customVerticalGap(10),
-                                      SizedBox(
-                                        width: customWidth(75),
-                                        child: TextButton(
-                                            onPressed: () {},
-                                            style: TextButton.styleFrom(
-                                              backgroundColor: Color.fromARGB(
-                                                  255, 94, 48, 163),
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  'Scan your QR for login',
-                                                  style: TextStyle(
-                                                      fontSize:
-                                                          customFontSize(5),
-                                                      color: Colors.white),
-                                                ),
-                                                customHorizontalGap(5),
-                                                Icon(
-                                                  Icons.qr_code_2_outlined,
-                                                  size: customHeight(20),
-                                                  color: Colors.white,
-                                                )
-                                              ],
-                                            )),
-                                      )
+                                      // customVerticalGap(25),
+                                      // Text(
+                                      //   'OR',
+                                      //   style: TextStyle(
+                                      //       color: Colors.grey.shade600,
+                                      //       fontWeight: FontWeight.bold),
+                                      // ),
+                                      // customVerticalGap(10),
+                                      // SizedBox(
+                                      //   width: customWidth(75),
+                                      //   child: TextButton(
+                                      //       onPressed: () {},
+                                      //       style: TextButton.styleFrom(
+                                      //         backgroundColor: Color.fromARGB(
+                                      //             255, 94, 48, 163),
+                                      //       ),
+                                      //       child: Row(
+                                      //         mainAxisAlignment:
+                                      //             MainAxisAlignment.center,
+                                      //         children: [
+                                      //           Text(
+                                      //             'Scan your QR for login',
+                                      //             style: TextStyle(
+                                      //                 fontSize:
+                                      //                     customFontSize(5),
+                                      //                 color: Colors.white),
+                                      //           ),
+                                      //           customHorizontalGap(5),
+                                      //           Icon(
+                                      //             Icons.qr_code_2_outlined,
+                                      //             size: customHeight(20),
+                                      //             color: Colors.white,
+                                      //           )
+                                      //         ],
+                                      //       )),
+                                      // )
                                     ],
                                   ),
                                 )),
