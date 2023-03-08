@@ -6,6 +6,7 @@ import 'package:laser_tech_app/domain/responsive/dimensions.dart';
 import 'package:laser_tech_app/presentation/03_Screen_home/widgets/categories.dart';
 import 'package:laser_tech_app/presentation/03_Screen_home/widgets/dashboard.dart';
 import 'package:laser_tech_app/presentation/03_Screen_home/widgets/employees.dart';
+import 'package:laser_tech_app/presentation/03_Screen_home/widgets/qualitycontrol_questions.dart';
 import 'package:laser_tech_app/presentation/03_Screen_home/widgets/qualitymannual.dart';
 import 'package:laser_tech_app/presentation/04_Screen_quality_control_properties/quality_control_properties_addingform.dart';
 
@@ -14,6 +15,7 @@ import 'package:laser_tech_app/presentation/widgets/custom_appbar.dart';
 import '../../application/home_screen_controller/controller.dart';
 import '../05_Employee_details/employee_details_add.dart';
 import '../06_tools/screen_tools.dart';
+import '../07_Screen_quality_questions/quality_questions_addingform.dart';
 import '../widgets/responsive.dart';
 import '../widgets/side_menu.dart';
 import 'widgets/tools.dart';
@@ -41,7 +43,8 @@ class _ScreenHomeState extends State<ScreenHome> {
           builder: (controller) {
             if (controller.screen == 'Products' ||
                 controller.screen == 'Employees' ||
-                controller.screen == 'Tools')
+                controller.screen == 'Tools' ||
+                controller.screen == 'Qualityquestions')
               return FloatingActionButton(
                 onPressed: () {
                   if (controller.screen == 'Products') {
@@ -51,6 +54,8 @@ class _ScreenHomeState extends State<ScreenHome> {
                     Navigator.pushNamed(context, EmployeeDetailsAdd.routeName);
                   } else if (controller.screen == 'Tools') {
                     Navigator.pushNamed(context, ScreenToolsADD.routeName);
+                  } else if (controller.screen == 'Qualityquestions') {
+                    Navigator.pushNamed(context, Qualityquestionform.routeName);
                   }
                 },
                 child: Icon(Icons.add),
@@ -89,6 +94,8 @@ class _ScreenHomeState extends State<ScreenHome> {
                               return WorkingTools();
                             else if (controller.screen == 'Employees')
                               return Employees();
+                            else if (controller.screen == 'Qualityquestions')
+                              return Qualityquestions();
                             else
                               return QulityMannual();
                           }),

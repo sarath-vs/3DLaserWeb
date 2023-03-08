@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 import '../../../application/home_screen_controller/controller.dart';
 import '../../../domain/responsive/dimensions.dart';
 import '../../widgets/custom_appbar.dart';
 
-class Categories extends StatelessWidget {
-  const Categories({Key? key}) : super(key: key);
+class Qualityquestions extends StatelessWidget {
+  const Qualityquestions({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class Categories extends StatelessWidget {
           // if (controller.screen == 'DashBoard')
           return Column(
             children: [
-              CustomAppBar(context, false, controller.screen),
+              CustomAppBar(context, true, controller.screen),
               Container(
                 // color: Colors.yellow,
                 height: customHeight(630),
@@ -32,23 +33,16 @@ class Categories extends StatelessWidget {
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
                             return ListTile(
-                              onTap: () {
-                                Get.find<HomeScreenController>()
-                                    .setHomeScreen('Qualityquestions');
-                              },
+                              onTap: () {},
                               tileColor: Colors.green.shade100,
                               leading: Text('${index + 1}'),
                               title: Row(
                                 children: [
                                   Text(
-                                    'Product Name ',
+                                    'question ${index + 1} ',
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold),
                                   ),
-                                  Text(
-                                    '(${index + 5} Questions)',
-                                    style: TextStyle(color: Colors.grey[600]),
-                                  )
                                 ],
                               ),
                               trailing: Icon(Icons.more_vert),
@@ -57,7 +51,7 @@ class Categories extends StatelessWidget {
                           separatorBuilder: (context, index) {
                             return customVerticalGap(10);
                           },
-                          itemCount: 40),
+                          itemCount: 10),
                     ),
                   ),
                 ),
