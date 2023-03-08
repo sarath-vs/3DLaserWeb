@@ -12,9 +12,11 @@ import 'package:laser_tech_app/presentation/04_Screen_quality_control_properties
 import 'package:laser_tech_app/presentation/theme/theme.dart';
 import 'package:laser_tech_app/presentation/widgets/custom_appbar.dart';
 import '../../application/home_screen_controller/controller.dart';
+import '../05_Employee_details/employee_details_add.dart';
+import '../06_tools/screen_tools.dart';
 import '../widgets/responsive.dart';
 import '../widgets/side_menu.dart';
-import 'widgets/controlPanel.dart';
+import 'widgets/tools.dart';
 
 class ScreenHome extends StatefulWidget {
   static const routeName = 'ScreenHome';
@@ -37,11 +39,19 @@ class _ScreenHomeState extends State<ScreenHome> {
       floatingActionButton: GetBuilder<HomeScreenController>(
           id: Get.find<HomeScreenController>().screenHomeWidget,
           builder: (controller) {
-            if (controller.screen == 'Products')
+            if (controller.screen == 'Products' ||
+                controller.screen == 'Employees' ||
+                controller.screen == 'Tools')
               return FloatingActionButton(
                 onPressed: () {
-                  Navigator.pushNamed(
-                      context, Qualitycontrolproperties.routeName);
+                  if (controller.screen == 'Products') {
+                    Navigator.pushNamed(
+                        context, Qualitycontrolproperties.routeName);
+                  } else if (controller.screen == 'Employees') {
+                    Navigator.pushNamed(context, EmployeeDetailsAdd.routeName);
+                  } else if (controller.screen == 'Tools') {
+                    Navigator.pushNamed(context, ScreenToolsADD.routeName);
+                  }
                 },
                 child: Icon(Icons.add),
               );
@@ -75,8 +85,8 @@ class _ScreenHomeState extends State<ScreenHome> {
                               return Categories();
                             else if (controller.screen == 'DashBoard')
                               return DashBoard();
-                            else if (controller.screen == 'Control Panel')
-                              return ControlPanel();
+                            else if (controller.screen == 'Tools')
+                              return WorkingTools();
                             else if (controller.screen == 'Employees')
                               return Employees();
                             else

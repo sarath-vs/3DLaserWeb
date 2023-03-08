@@ -32,9 +32,22 @@ class Categories extends StatelessWidget {
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
                             return ListTile(
+                              onTap: () {},
                               tileColor: Colors.green.shade100,
                               leading: Text('${index + 1}'),
-                              title: Text('Product Name'),
+                              title: Row(
+                                children: [
+                                  Text(
+                                    'Product Name ',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    '(${index + 5} Questions)',
+                                    style: TextStyle(color: Colors.grey[600]),
+                                  )
+                                ],
+                              ),
                               trailing: Icon(Icons.more_vert),
                             );
                           },

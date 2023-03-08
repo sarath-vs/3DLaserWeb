@@ -33,16 +33,16 @@ class SideMenu extends StatelessWidget {
               Get.find<HomeScreenController>().setHomeScreen('DashBoard');
             },
           ),
-          DrawerListTile(
-            title: "Control Panel",
-            icon: Icon(
-              Icons.control_camera,
-              color: Colors.grey,
-            ),
-            press: () {
-              Get.find<HomeScreenController>().setHomeScreen('Control Panel');
-            },
-          ),
+          // DrawerListTile(
+          //   title: "Control Panel",
+          //   icon: Icon(
+          //     Icons.control_camera,
+          //     color: Colors.grey,
+          //   ),
+          //   press: () {
+          //     Get.find<HomeScreenController>().setHomeScreen('Control Panel');
+          //   },
+          // ),
           DrawerListTile(
             title: "Employees",
             icon: Icon(
@@ -71,6 +71,16 @@ class SideMenu extends StatelessWidget {
             ),
             press: () {
               Get.find<HomeScreenController>().setHomeScreen('Quality Mannual');
+            },
+          ),
+          DrawerListTile(
+            title: "Tools",
+            icon: Icon(
+              Icons.settings,
+              color: Colors.grey,
+            ),
+            press: () {
+              Get.find<HomeScreenController>().setHomeScreen('Tools');
             },
           ),
         ],

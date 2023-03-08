@@ -4,10 +4,11 @@ import 'package:get/get.dart';
 import '../../../application/home_screen_controller/controller.dart';
 import '../../../domain/responsive/dimensions.dart';
 import '../../05_Employee_details/employee_work_details.dart';
+import '../../06_tools/screen_tools.dart';
 import '../../widgets/custom_appbar.dart';
 
-class Employees extends StatelessWidget {
-  const Employees({Key? key}) : super(key: key);
+class WorkingTools extends StatelessWidget {
+  const WorkingTools({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,48 +36,45 @@ class Employees extends StatelessWidget {
                             return ListTile(
                               onTap: () {
                                 Navigator.pushNamed(
-                                    context, EmployeeWorkDetails.routeName);
+                                    context, ScreenToolsADD.routeName);
                               },
-                              tileColor: Colors.orange.withOpacity(.3),
+                              tileColor: Colors.blue.withOpacity(.3),
                               leading: Text('${index + 1}'),
-                              title: Column(
+                              title: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
+                                  SizedBox(
+                                      width: customWidth(40),
+                                      height: customHeight(100),
+                                      child: Image.asset(
+                                        'assets/icons/settings.jpg',
+                                        fit: BoxFit.cover,
+                                      )),
+                                  customHorizontalGap(10),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
+                                      customVerticalGap(10),
                                       Text(
-                                        'Name : ',
+                                        'Tool Name',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        'Employee Name',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
+                                          'Tool Discription will be displayed here'),
                                     ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text('ID : '),
-                                      Text('XXXXXXXXXXXX'),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text('Designation : '),
-                                      Text('Employee Designation'),
-                                    ],
-                                  ),
+                                  )
                                 ],
                               ),
-                              trailing: Icon(Icons.more_vert),
+                              // trailing: Icon(Icons.more_vert),
                             );
                           },
                           separatorBuilder: (context, index) {
                             return customVerticalGap(10);
                           },
-                          itemCount: 40),
+                          itemCount: 4),
                     ),
                   ),
                 ),

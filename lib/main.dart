@@ -8,6 +8,9 @@ import 'package:get/get.dart';
 import 'package:laser_tech_app/domain/injection/injection.dart';
 import 'package:laser_tech_app/presentation/03_Screen_home/screen_home.dart';
 import 'package:laser_tech_app/presentation/04_Screen_quality_control_properties/quality_control_properties_addingform.dart';
+import 'package:laser_tech_app/presentation/05_Employee_details/employee_details_add.dart';
+import 'package:laser_tech_app/presentation/05_Employee_details/employee_work_details.dart';
+import 'package:laser_tech_app/presentation/06_tools/screen_tools.dart';
 import 'package:laser_tech_app/presentation/theme/theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'application/auth_controller/auth_controller.dart';
@@ -82,8 +85,12 @@ class _MyAppState extends State<MyApp> {
           ScreenSplash.routeName: (context) => const ScreenSplash(),
           ScreenLogin.routeName: (context) => const ScreenLogin(),
           ScreenHome.routeName: (context) => const ScreenHome(),
+          EmployeeWorkDetails.routeName: (context) =>
+              const EmployeeWorkDetails(),
+          EmployeeDetailsAdd.routeName: (context) => const EmployeeDetailsAdd(),
           Qualitycontrolproperties.routeName: (context) =>
               const Qualitycontrolproperties(),
+          ScreenToolsADD.routeName: (context) => const ScreenToolsADD(),
         },
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,

@@ -13,7 +13,7 @@ import '../theme/color.dart';
 
 Widget CustomAppBar(BuildContext context, bool showArrow, String screenName) {
   return Container(
-    color: LightColor.primaryColor,
+    color: LightColor.black,
     height: customHeight(50),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -33,13 +33,16 @@ Widget CustomAppBar(BuildContext context, bool showArrow, String screenName) {
         screenName != ''
             ? Expanded(
                 flex: 3,
-                child: Text(
-                  screenName.toUpperCase(),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: customFontSize(4),
-                      fontWeight: FontWeight.bold),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: Text(
+                    screenName.toUpperCase(),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: customFontSize(4),
+                        letterSpacing: 3,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
               )
             : SizedBox(),
