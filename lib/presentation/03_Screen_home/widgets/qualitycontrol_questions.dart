@@ -63,38 +63,35 @@ class Qualityquestions extends StatelessWidget {
                 width: customWidth(300),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Expanded(
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: ListView.separated(
-                          //scrollDirection: Axis.vertical,
-                          //physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return ListTile(
-                              onTap: () {
-                                Navigator.pushNamed(
-                                    context, Qualityquestionform.routeName);
-                              },
-                              tileColor: Colors.green.shade300,
-                              leading: Text('${index + 1}'),
-                              title: Row(
-                                children: [
-                                  Text(
-                                    'question ${index + 1} ',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                              trailing: Icon(Icons.more_vert),
-                            );
-                          },
-                          separatorBuilder: (context, index) {
-                            return customVerticalGap(10);
-                          },
-                          itemCount: 10),
-                    ),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: ListView.separated(
+                        //scrollDirection: Axis.vertical,
+                        //physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, Qualityquestionform.routeName);
+                            },
+                            tileColor: Colors.green.shade300,
+                            leading: Text('${index + 1}'),
+                            title: Row(
+                              children: [
+                                Text(
+                                  'question ${index + 1} ',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                            trailing: Icon(Icons.more_vert),
+                          );
+                        },
+                        separatorBuilder: (context, index) {
+                          return customVerticalGap(10);
+                        },
+                        itemCount: 10),
                   ),
                 ),
               )

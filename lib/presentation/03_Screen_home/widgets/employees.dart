@@ -24,60 +24,58 @@ class Employees extends StatelessWidget {
                 width: customWidth(300),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Expanded(
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: ListView.separated(
-                          //scrollDirection: Axis.vertical,
-                          //physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return ListTile(
-                              onTap: () {
-                                Navigator.pushNamed(
-                                    context, EmployeeWorkDetails.routeName);
-                              },
-                              tileColor: Colors.orange.withOpacity(.3),
-                              leading: Text('${index + 1}'),
-                              title: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        'Name : ',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        'Employee Name',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text('ID : '),
-                                      Text('XXXXXXXXXXXX'),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text('Designation : '),
-                                      Text('Employee Designation'),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              trailing: Icon(Icons.more_vert),
-                            );
-                          },
-                          separatorBuilder: (context, index) {
-                            return customVerticalGap(10);
-                          },
-                          itemCount: 40),
-                    ),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: ListView.separated(
+                        //scrollDirection: Axis.vertical,
+                        //physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, EmployeeWorkDetails.routeName);
+                            },
+                            tileColor: Colors.orange.withOpacity(.3),
+                            leading: Text('${index + 1}'),
+                            title: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Name : ',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      'Employee Name',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text('ID : '),
+                                    Text('XXXXXXXXXXXX'),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text('Designation : '),
+                                    Text('Employee Designation'),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            trailing: Icon(Icons.more_vert),
+                          );
+                        },
+                        separatorBuilder: (context, index) {
+                          return customVerticalGap(10);
+                        },
+                        itemCount: 40),
                   ),
                 ),
               )
