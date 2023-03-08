@@ -11,11 +11,19 @@ class HomeScreenController extends GetxController {
 
   String get screenHomeWidget => 'screenHomeWidget';
   String screen = 'DashBoard';
+  String appBar = '';
 
   Future<void> setHomeScreen(
     String screenS,
   ) async {
     screen = screenS;
+    update([screenHomeWidget]);
+  }
+
+  Future<void> appBarName(
+    String appBarS,
+  ) async {
+    appBar = appBarS;
     update([screenHomeWidget]);
   }
 

@@ -19,7 +19,7 @@ import 'application/home_screen_controller/controller.dart';
 import 'classes/language_constants.dart';
 import 'presentation/01_Screen_splash/screen_splash.dart';
 import 'presentation/02_Screen_login/screen_login.dart';
-import 'presentation/07_Screen_quality_questions/quality_questions_addingform.dart';
+import 'presentation/07_Screen_quality_questions_modify/quality_questions_addingform.dart';
 
 Future<void> main() async {
   HttpOverrides.global = MyHttpOverrides();

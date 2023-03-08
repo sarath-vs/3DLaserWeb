@@ -34,6 +34,8 @@ class Categories extends StatelessWidget {
                             return ListTile(
                               onTap: () {
                                 Get.find<HomeScreenController>()
+                                    .appBarName('Product Name  ${index + 1}');
+                                Get.find<HomeScreenController>()
                                     .setHomeScreen('Qualityquestions');
                               },
                               tileColor: Colors.green.shade100,

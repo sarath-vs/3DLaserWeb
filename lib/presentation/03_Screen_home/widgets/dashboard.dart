@@ -131,7 +131,13 @@ class _DashBoardState extends State<DashBoard> {
                                       ),
                                     )
                                   ],
-                                )
+                                ),
+                                SizedBox(
+                                    width: double.infinity,
+                                    child: Image.asset(
+                                      'assets/images/dashTest.png',
+                                      fit: BoxFit.cover,
+                                    ))
                               ],
                             )
                           ],

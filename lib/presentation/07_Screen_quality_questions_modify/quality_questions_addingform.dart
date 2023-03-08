@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../application/home_screen_controller/controller.dart';
 import '../../domain/responsive/dimensions.dart';
 import '../04_Screen_quality_control_properties/widget/image_uploading_widget.dart';
 import '../theme/color.dart';
@@ -49,9 +50,19 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Question Details",
-                      style: AppTheme.h8Style,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Question Details",
+                          style: AppTheme.h8Style,
+                        ),
+                        Icon(
+                          Icons.delete,
+                          color: Colors.red,
+                          size: customHeight(20),
+                        )
+                      ],
                     ),
                     // customVerticalGap(20),
                     Text(
@@ -263,7 +274,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                   width: 1, color: LightColor.primaryColor),
                             ),
                             child: Text(
-                              "Cancel",
+                              "Cancels",
                               style: AppTheme.h3Style,
                             ),
                           ),
