@@ -221,6 +221,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                             onChanged: (bool? value) {
                               setState(() {
                                 yesno = !yesno;
+                                yesnoManditory = false;
                               });
                             },
                           ),
@@ -263,6 +264,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                             onChanged: (bool? value) {
                               setState(() {
                                 yesnoNone = !yesnoNone;
+                                yesnoNoneManditory = false;
                               });
                             },
                           ),
@@ -307,6 +309,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                             onChanged: (bool? value) {
                               setState(() {
                                 range = !range;
+                                rangeManditory = false;
                               });
                             },
                           ),
@@ -399,6 +402,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                             onChanged: (bool? value) {
                               setState(() {
                                 inputText = !inputText;
+                                inputTextManditory = false;
                               });
                             },
                           ),
@@ -440,6 +444,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                             onChanged: (bool? value) {
                               setState(() {
                                 number = !number;
+                                numberManditory = false;
                               });
                             },
                           ),
@@ -482,6 +487,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                             onChanged: (bool? value) {
                               setState(() {
                                 dropdown = !dropdown;
+                                dropDownManditory = false;
                               });
                             },
                           ),
@@ -545,6 +551,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                             onChanged: (bool? value) {
                               setState(() {
                                 image = !image;
+                                imageManditory = false;
                               });
                             },
                           ),
