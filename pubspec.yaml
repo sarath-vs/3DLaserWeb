@@ -27,13 +27,13 @@ dependencies:
   flutter_localization:
   dartz: ^0.10.1
   http: ^0.13.5
-  # qr_code_scanner: ^1.0.1
-  # video_player: ^2.5.1
-  # flick_video_player: ^0.5.0
-  # visibility_detector: ^0.3.3
-  # chewie: ^1.4.0
+  qr_code_scanner: ^1.0.1
+  video_player: ^2.5.1
+  flick_video_player: ^0.5.0
+  visibility_detector: ^0.3.3
+  chewie: ^1.4.0
   dio: ^4.0.6
-  # qr_flutter: ^4.0.0
+  qr_flutter: ^4.0.0
   image_picker: ^0.8.6+1
   carousel_slider: ^4.2.1
   flutter_svg: ^0.22.0

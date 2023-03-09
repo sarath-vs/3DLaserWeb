@@ -200,9 +200,15 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                         )
                       ],
                     ),
-                    // Numerictype(),
-                    // predefinedtype(),
-                    yesornotype(),
+                    Visibility(
+                        visible: (answertype == 'NUMERIC'),
+                        child: Numerictype()),
+                    Visibility(
+                        visible: (answertype == "predifined"),
+                        child: predefinedtype()),
+                    Visibility(
+                        visible: (answertype == "YES or NO"),
+                        child: yesornotype()),
 
                     Text(
                       "Question Discripiton",
@@ -309,7 +315,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
   _onChangedpredifined(value) {
     setState(() {
       predefinedvalue = value;
-      answertype = "gpay";
+      answertype = "predifined";
       if (predefinedvalue == true) {
         numericvalue = !value;
         yesornovalue = !value;
