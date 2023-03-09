@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:laser_tech_app/presentation/07_Screen_quality_questions_modify/widget/qualityqp_image_uploading_widget.dart';
 
 import '../../application/home_screen_controller/controller.dart';
 import '../../domain/responsive/dimensions.dart';
@@ -16,9 +17,21 @@ class Qualityquestionform extends StatefulWidget {
 }
 
 class _QualityquestionformState extends State<Qualityquestionform> {
-  bool isDefault = false;
-  bool isnone = false;
-  bool isimagedefined = false;
+  bool yesno = false;
+  bool yesnoManditory = false;
+  bool yesnoNone = false;
+  bool yesnoNoneManditory = false;
+  bool dropdown = false;
+  bool dropDownManditory = false;
+  bool inputText = false;
+  bool inputTextManditory = false;
+  bool image = false;
+  bool imageManditory = false;
+  bool range = false;
+  bool rangeManditory = false;
+  bool number = false;
+  bool numberManditory = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +51,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 45),
             child: Container(
-              height: customHeight(530),
+              height: customHeight(600),
               width: customWidth(250),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -64,11 +77,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                         )
                       ],
                     ),
-                    // customVerticalGap(20),
-                    Text(
-                      "Question*",
-                      style: AppTheme.h6Style,
-                    ),
+
                     SizedBox(
                       width: customWidth(400),
                       child: TextFormField(
@@ -90,149 +99,486 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                       ),
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Sort",
-                              style: AppTheme.h6Style,
+                        customHorizontalGap(50),
+                        InkWell(
+                          onTap: () {},
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: customWidth(35),
+                            height: customHeight(30),
+                            decoration: BoxDecoration(
+                              color: LightColor.orange,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5)),
+                              border: Border.all(
+                                  width: 1, color: LightColor.primaryColor),
                             ),
-                            SizedBox(
-                              width: customWidth(25),
-                              child: TextFormField(
-                                validator: (val) {
-                                  return null;
-                                },
-                                onChanged: (value) {
-                                  // password = value;
-                                },
-                                decoration: InputDecoration(
-                                  hintText: "Sort",
-                                  // border: OutlineInputBorder(
-                                  //     borderRadius: BorderRadius.circular(20)),
-                                  fillColor: Colors.grey.shade200,
-                                  filled: true,
-                                  floatingLabelStyle: AppTheme.h2Style,
-                                ),
-                              ),
+                            child: Text(
+                              "Upload Images",
+                              style: TextStyle(
+                                  fontSize: customFontSize(3),
+                                  color: Colors.white),
                             ),
-                          ],
+                          ),
                         ),
-                        Row(
-                          children: [
-                            Column(
-                              children: [
-                                Text(
-                                  "Answer type *",
-                                  style: AppTheme.h6Style,
-                                ),
-                                answertypeoption()
-                              ],
+                        customHorizontalGap(20),
+                        InkWell(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: customWidth(35),
+                            height: customHeight(30),
+                            decoration: BoxDecoration(
+                              color: LightColor.orange,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5)),
+                              border: Border.all(
+                                  width: 1, color: LightColor.primaryColor),
                             ),
-                            Text(
-                              "Tools Requied  *",
-                              style: AppTheme.h6Style,
+                            child: Text(
+                              "Select Tools",
+                              style: TextStyle(
+                                  fontSize: customFontSize(3),
+                                  color: Colors.white),
                             ),
-                            SizedBox(
-                              width: customWidth(75),
-                              child: MultiSelectDropdown(
-                                  hintText: "tools requied",
-                                  items: [
-                                    "screw driver",
-                                    "hammer",
-                                    "l key bolt",
-                                  ],
-                                  onSelectionChanged: onSelectionChanged),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 12),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Discripiton field",
-                                        style: AppTheme.h6Style,
-                                      ),
-                                      Checkbox(
-                                        value: isDefault,
-                                        checkColor:
-                                            Colors.white, // color of tick Mark
-                                        activeColor: LightColor.primaryColor,
-                                        onChanged: (bool? value) {
-                                          setState(() {
-                                            isDefault = !isDefault;
-                                          });
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "image uploading field",
-                                        style: AppTheme.h6Style,
-                                      ),
-                                      Checkbox(
-                                        value: isimagedefined,
-                                        checkColor:
-                                            Colors.white, // color of tick Mark
-                                        activeColor: LightColor.primaryColor,
-                                        onChanged: (bool? value) {
-                                          setState(() {
-                                            isimagedefined = !isimagedefined;
-                                          });
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        )
+                          ),
+                        ),
                       ],
                     ),
-                    // Numerictype(),
-                    // predefinedtype(),
-                    yesornotype(),
-
                     Text(
-                      "Question Discripiton",
-                      style: AppTheme.h6Style,
+                      'Select Answer Type ',
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(
-                      // width: customWidth(150),
-                      child: TextFormField(
-                        keyboardType: TextInputType.multiline,
-                        minLines: 1,
-                        maxLines: 7,
-                        validator: (val) {
-                          return null;
-                        },
-                        onChanged: (value) {
-                          // password = value;
-                        },
-                        decoration: InputDecoration(
-                          hintText: "Question Discripiton",
-                          fillColor: Colors.grey.shade200,
-                          filled: true,
-                          floatingLabelStyle: AppTheme.h2Style,
+                    ////////
+                    ///////
+                    //////
+                    ///Answer Head
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Expanded(
+                            flex: 1,
+                            child: Text(
+                              'Select',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: customFontSize(
+                                  4,
+                                ),
+                              ),
+                            )),
+                        Expanded(
+                            flex: 3,
+                            child: Text(
+                              'Answer Type',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: customFontSize(4),
+                              ),
+                            )),
+                        Expanded(
+                            flex: 3,
+                            child: Text(
+                              'Value/Range Accepted',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: customFontSize(4),
+                              ),
+                            )),
+                        Expanded(
+                            flex: 1,
+                            child: Text(
+                              'Manditory',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: customFontSize(
+                                  4,
+                                ),
+                              ),
+                            )),
+                      ],
+                    ),
+                    ////////
+                    ///////
+                    //////
+                    ///Answer Yes/No
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Checkbox(
+                            value: yesno,
+                            checkColor: Colors.white, // color of tick Mark
+                            activeColor: LightColor.primaryColor,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                yesno = !yesno;
+                              });
+                            },
+                          ),
                         ),
-                      ),
+                        Expanded(
+                          flex: 3,
+                          child: Text('Yes/No'),
+                        ),
+                        Expanded(flex: 3, child: Text('Yes or No')),
+                        Expanded(
+                          flex: 1,
+                          child: Checkbox(
+                            value: yesnoManditory,
+                            checkColor: Colors.white, // color of tick Mark
+                            activeColor: LightColor.primaryColor,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                if (yesno) {
+                                  yesnoManditory = !yesnoManditory;
+                                }
+                              });
+                            },
+                          ),
+                        ),
+                      ],
                     ),
-                    Center(
-                      child: SizedBox(
-                          width: customWidth(150),
-                          child: const ImageUploadEidget()),
+                    ////////
+                    ///////
+                    //////
+                    ///Answer Yes/No/None
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Checkbox(
+                            value: yesnoNone,
+                            checkColor: Colors.white, // color of tick Mark
+                            activeColor: LightColor.primaryColor,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                yesnoNone = !yesnoNone;
+                              });
+                            },
+                          ),
+                        ),
+                        Expanded(
+                          flex: 3,
+                          child: Text('Yes/No/None'),
+                        ),
+                        Expanded(
+                            flex: 3,
+                            child: Text('Yes, No or None can be used')),
+                        Expanded(
+                          flex: 1,
+                          child: Checkbox(
+                            value: yesnoNoneManditory,
+                            checkColor: Colors.white, // color of tick Mark
+                            activeColor: LightColor.primaryColor,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                if (yesnoNone) {
+                                  yesnoNoneManditory = !yesnoNoneManditory;
+                                }
+                              });
+                            },
+                          ),
+                        ),
+                      ],
                     ),
+                    ////////
+                    ///////
+                    //////
+                    ///Answer Range
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Checkbox(
+                            value: range,
+                            checkColor: Colors.white, // color of tick Mark
+                            activeColor: LightColor.primaryColor,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                range = !range;
+                              });
+                            },
+                          ),
+                        ),
+                        Expanded(
+                          flex: 3,
+                          child: Text('Range'),
+                        ),
+                        Expanded(
+                          flex: 3,
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: customWidth(30),
+                                height: customHeight(30),
+                                child: TextFormField(
+                                  validator: (val) {
+                                    return null;
+                                  },
+                                  onChanged: (value) {
+                                    // password = value;
+                                  },
+                                  decoration: InputDecoration(
+                                    hintText: "From",
+                                    // border: OutlineInputBorder(
+                                    //     borderRadius: BorderRadius.circular(20)),
+                                    fillColor: Colors.grey.shade200,
+                                    filled: true,
+                                    floatingLabelStyle: AppTheme.h2Style,
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                "TO ",
+                                style: AppTheme.h6Style,
+                              ),
+                              SizedBox(
+                                width: customWidth(30),
+                                height: customHeight(30),
+                                child: TextFormField(
+                                  validator: (val) {
+                                    return null;
+                                  },
+                                  onChanged: (value) {
+                                    // password = value;
+                                  },
+                                  decoration: InputDecoration(
+                                    hintText: "To",
+                                    // border: OutlineInputBorder(
+                                    //     borderRadius: BorderRadius.circular(20)),
+                                    fillColor: Colors.grey.shade200,
+                                    filled: true,
+                                    floatingLabelStyle: AppTheme.h2Style,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Checkbox(
+                            value: rangeManditory,
+                            checkColor: Colors.white, // color of tick Mark
+                            activeColor: LightColor.primaryColor,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                if (range) {
+                                  rangeManditory = !rangeManditory;
+                                }
+                              });
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    ////////
+                    ///////
+                    //////
+                    ///Answer TextField
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Checkbox(
+                            value: inputText,
+                            checkColor: Colors.white, // color of tick Mark
+                            activeColor: LightColor.primaryColor,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                inputText = !inputText;
+                              });
+                            },
+                          ),
+                        ),
+                        Expanded(
+                          flex: 3,
+                          child: Text('Input Field'),
+                        ),
+                        Expanded(flex: 3, child: Text('Accept Text or Number')),
+                        Expanded(
+                          flex: 1,
+                          child: Checkbox(
+                            value: inputTextManditory,
+                            checkColor: Colors.white, // color of tick Mark
+                            activeColor: LightColor.primaryColor,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                if (inputText) {
+                                  inputTextManditory = !inputTextManditory;
+                                }
+                              });
+                            },
+                          ),
+                        ),
+                      ],
+                    ), ////////
+                    ///////
+                    //////
+                    ///Answer Number
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Checkbox(
+                            value: number,
+                            checkColor: Colors.white, // color of tick Mark
+                            activeColor: LightColor.primaryColor,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                number = !number;
+                              });
+                            },
+                          ),
+                        ),
+                        Expanded(
+                          flex: 3,
+                          child: Text('Number Field'),
+                        ),
+                        Expanded(flex: 3, child: Text('Accept Only Numbers')),
+                        Expanded(
+                          flex: 1,
+                          child: Checkbox(
+                            value: numberManditory,
+                            checkColor: Colors.white, // color of tick Mark
+                            activeColor: LightColor.primaryColor,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                if (number) {
+                                  numberManditory = !numberManditory;
+                                }
+                              });
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    ////////
+                    ///////
+                    //////
+                    ///Answer DropDown
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Checkbox(
+                            value: dropdown,
+                            checkColor: Colors.white, // color of tick Mark
+                            activeColor: LightColor.primaryColor,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                dropdown = !dropdown;
+                              });
+                            },
+                          ),
+                        ),
+                        Expanded(
+                          flex: 3,
+                          child: Text('DropDown'),
+                        ),
+                        Expanded(
+                          flex: 3,
+                          child: TextFormField(
+                            keyboardType: TextInputType.multiline,
+                            minLines: 1,
+                            maxLines: 7,
+                            validator: (val) {
+                              return null;
+                            },
+                            onChanged: (value) {
+                              // password = value;
+                            },
+                            decoration: InputDecoration(
+                              hintText:
+                                  "Add Drop Down Values seperate by ||.(eg:one||Two||Three)",
+                              hintStyle: TextStyle(fontSize: customFontSize(4)),
+                              fillColor: Colors.grey.shade200,
+                              filled: true,
+                              floatingLabelStyle: AppTheme.h2Style,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Checkbox(
+                            value: dropDownManditory,
+                            checkColor: Colors.white, // color of tick Mark
+                            activeColor: LightColor.primaryColor,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                if (dropdown) {
+                                  dropDownManditory = !dropDownManditory;
+                                }
+                              });
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    ////////
+                    ///////
+                    //////
+                    ///Answer Image
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Checkbox(
+                            value: image,
+                            checkColor: Colors.white, // color of tick Mark
+                            activeColor: LightColor.primaryColor,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                image = !image;
+                              });
+                            },
+                          ),
+                        ),
+                        Expanded(
+                          flex: 3,
+                          child: Text('Image'),
+                        ),
+                        Expanded(
+                            flex: 3, child: Text('Image file can be uploaded')),
+                        Expanded(
+                          flex: 1,
+                          child: Checkbox(
+                            value: imageManditory,
+                            checkColor: Colors.white, // color of tick Mark
+                            activeColor: LightColor.primaryColor,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                if (image) {
+                                  imageManditory = !imageManditory;
+                                }
+                              });
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    // // Numerictype(),
+                    // // predefinedtype(),
+                    // yesornotype(),
+                    //   ImagePickerWidget(),
+                    customVerticalGap(20),
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -280,7 +626,8 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                           ),
                         ),
                       ],
-                    )
+                    ),
+                    customVerticalGap(20),
                   ],
                 ),
               ),
@@ -288,377 +635,6 @@ class _QualityquestionformState extends State<Qualityquestionform> {
           )
         ],
       )),
-    );
-  }
-
-  bool numericvalue = false;
-  bool predefinedvalue = false;
-  bool yesornovalue = false;
-  String answertype = "";
-  _onChangednumeric(value) {
-    setState(() {
-      numericvalue = value;
-      answertype = "NUMERIC";
-      if (numericvalue == true) {
-        predefinedvalue = !value;
-        yesornovalue = !value;
-      }
-    });
-  }
-
-  _onChangedpredifined(value) {
-    setState(() {
-      predefinedvalue = value;
-      answertype = "gpay";
-      if (predefinedvalue == true) {
-        numericvalue = !value;
-        yesornovalue = !value;
-      }
-    });
-  }
-
-  _onChangedyesorno(value) {
-    setState(() {
-      yesornovalue = value;
-      answertype = "YES or NO";
-      if (yesornovalue == true) {
-        numericvalue = !value;
-        predefinedvalue = !value;
-      }
-    });
-  }
-
-  Widget answertypeoption() {
-    return Container(
-        child: Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Text(
-              "NUMERIC",
-              style: AppTheme.h6Style,
-            ),
-            Switch(
-                activeColor: LightColor.primaryColor,
-                value: numericvalue,
-                onChanged: (bool numericvalue) {
-                  _onChangednumeric(numericvalue);
-                })
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Text(
-              "Predifiened",
-              style: AppTheme.h6Style,
-            ),
-            Switch(
-                activeColor: LightColor.primaryColor,
-                value: predefinedvalue,
-                onChanged: (bool predefinedvalue) {
-                  _onChangedpredifined(predefinedvalue);
-                })
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Text(
-              "YES or NO",
-              style: AppTheme.h6Style,
-            ),
-            Switch(
-                activeColor: LightColor.primaryColor,
-                value: yesornovalue,
-                onChanged: (bool yesornovalue) {
-                  _onChangedyesorno(yesornovalue);
-                })
-          ],
-        ),
-      ],
-    ));
-  }
-
-  String dropdownvalue = 'yes';
-  var yesornoanswer = ['yes', 'no'];
-
-  Widget yesornotype() {
-    return Row(
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Answer",
-              style: AppTheme.h6Style,
-            ),
-            Container(
-                decoration: BoxDecoration(
-                  border: Border.all(),
-                  color: Colors.grey.shade200,
-                  // borderRadius: BorderRadius.circular(20)
-                ),
-                width: customWidth(75),
-                child: ButtonTheme(
-                  alignedDropdown: true,
-                  child: DropdownButton(
-                    underline: SizedBox(),
-                    hint: Text(
-                      'Select  yes or no',
-                      style: TextStyle(fontSize: customFontSize(6)),
-                    ),
-                    value: dropdownvalue,
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        dropdownvalue = newValue!;
-                      });
-                    },
-                    items: yesornoanswer.map((String items) {
-                      return DropdownMenuItem(
-                        value: items,
-                        child: Text(items),
-                      );
-                    }).toList(),
-                  ),
-                )),
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 8),
-          child: Text(
-            "None field",
-            style: AppTheme.h6Style,
-          ),
-        ),
-        Checkbox(
-          value: isnone,
-          checkColor: Colors.white, // color of tick Mark
-          activeColor: LightColor.primaryColor,
-          onChanged: (bool? value) {
-            setState(() {
-              isnone = !isnone;
-            });
-          },
-        ),
-      ],
-    );
-  }
-
-  Widget predefinedtype() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "Answer",
-          style: AppTheme.h6Style,
-        ),
-        Row(
-          children: [
-            Text(
-              "1.",
-              style: AppTheme.h6Style,
-            ),
-            SizedBox(
-              width: customWidth(150),
-              child: TextFormField(
-                validator: (val) {
-                  return null;
-                },
-                onChanged: (value) {
-                  // password = value;
-                },
-                decoration: InputDecoration(
-                  hintText: "answer",
-                  // border: OutlineInputBorder(
-                  //     borderRadius: BorderRadius.circular(20)),
-                  fillColor: Colors.grey.shade200,
-                  filled: true,
-                  floatingLabelStyle: AppTheme.h2Style,
-                ),
-              ),
-            ),
-            InkWell(
-              child: const Icon(Icons.delete_outline_sharp),
-              onTap: () {},
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Text(
-              "add next answer",
-              style: AppTheme.h6Style,
-            ),
-            Container(
-                alignment: Alignment.center,
-                color: LightColor.primaryColor,
-                child: IconButton(onPressed: () {}, icon: Icon(Icons.add)))
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget Numerictype() {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Column(
-          children: [
-            Text(
-              "Answer",
-              style: AppTheme.h6Style,
-            ),
-            SizedBox(
-              width: customWidth(25),
-              child: TextFormField(
-                validator: (val) {
-                  return null;
-                },
-                onChanged: (value) {
-                  // password = value;
-                },
-                decoration: InputDecoration(
-                  hintText: "answer",
-                  // border: OutlineInputBorder(
-                  //     borderRadius: BorderRadius.circular(20)),
-                  fillColor: Colors.grey.shade200,
-                  filled: true,
-                  floatingLabelStyle: AppTheme.h2Style,
-                ),
-              ),
-            ),
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 15),
-          child: Column(
-            children: [
-              Text(
-                "Range start from to end ",
-                style: AppTheme.h6Style,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: customWidth(15),
-                    child: TextFormField(
-                      validator: (val) {
-                        return null;
-                      },
-                      onChanged: (value) {
-                        // password = value;
-                      },
-                      decoration: InputDecoration(
-                        hintText: "starting range",
-                        // border: OutlineInputBorder(
-                        //     borderRadius: BorderRadius.circular(20)),
-                        fillColor: Colors.grey.shade200,
-                        filled: true,
-                        floatingLabelStyle: AppTheme.h2Style,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    "TO ",
-                    style: AppTheme.h6Style,
-                  ),
-                  SizedBox(
-                    width: customWidth(15),
-                    child: TextFormField(
-                      validator: (val) {
-                        return null;
-                      },
-                      onChanged: (value) {
-                        // password = value;
-                      },
-                      decoration: InputDecoration(
-                        hintText: "ending range",
-                        // border: OutlineInputBorder(
-                        //     borderRadius: BorderRadius.circular(20)),
-                        fillColor: Colors.grey.shade200,
-                        filled: true,
-                        floatingLabelStyle: AppTheme.h2Style,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  void onSelectionChanged(Set<String> selectedItems) {
-    print('Selected items: $selectedItems');
-  }
-}
-
-class MultiSelectDropdown extends StatefulWidget {
-  final List<String> items;
-  final String hintText;
-  final Function(Set<String>) onSelectionChanged;
-
-  MultiSelectDropdown({
-    required this.items,
-    required this.hintText,
-    required this.onSelectionChanged,
-  });
-
-  @override
-  _MultiSelectDropdownState createState() => _MultiSelectDropdownState();
-}
-
-class _MultiSelectDropdownState extends State<MultiSelectDropdown> {
-  Set<String> _selectedValues = Set();
-
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButtonFormField<String>(
-      isDense: true,
-      isExpanded: true,
-      value: _selectedValues.isNotEmpty ? _selectedValues.toList()[0] : null,
-      hint: Text(widget.hintText),
-      onChanged: (newValue) {
-        setState(() {
-          if (_selectedValues.contains(newValue!)) {
-            _selectedValues.remove(newValue);
-          } else {
-            _selectedValues.add(newValue);
-          }
-          widget.onSelectionChanged(_selectedValues);
-        });
-      },
-      items: widget.items.map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Row(
-            children: [
-              Checkbox(
-                value: _selectedValues.contains(value),
-                onChanged: (_) {
-                  setState(() {
-                    if (_selectedValues.contains(value)) {
-                      _selectedValues.remove(value);
-                    } else {
-                      _selectedValues.add(value);
-                    }
-                    widget.onSelectionChanged(_selectedValues);
-                  });
-                },
-              ),
-              SizedBox(width: 10),
-              Text(value),
-            ],
-          ),
-        );
-      }).toList(),
     );
   }
 }
