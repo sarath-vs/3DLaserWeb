@@ -55,11 +55,15 @@ class Postman {
   }
 
   static Future<http.Response> sendDeleteRequest(
-      String url, Map<String, dynamic> body) async {
-    customLog('URL DEL-> $url\nBODY -> $body');
+    String url,
+    String access,
+  ) async {
+    customLog('URL DEL-> $url');
     return http.delete(
       Uri.parse(url),
-      headers: await getCustomheader(),
+      headers: {
+        'Authorization': '$access',
+      },
     );
   }
 

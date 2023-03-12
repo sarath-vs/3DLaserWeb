@@ -29,4 +29,6 @@ class URLPool {
       'http://65.1.86.132/admin-dashboard/category/';
   String get saveQualityProducts =>
       'http://65.1.86.132/admin-dashboard/category/';
+  String get deleteQualityProducts =>
+      'http://65.1.86.132/admin-dashboard/category';
 }

@@ -62,7 +62,51 @@ class Categories extends StatelessWidget {
                                           // )
                                         ],
                                       ),
-                                      trailing: Icon(Icons.more_vert),
+                                      trailing: GestureDetector(
+                                        onTap: () {
+                                          int id = controller
+                                              .qualityProductList[index].id!;
+                                          showDialog(
+                                            context: context,
+                                            barrierDismissible: false,
+                                            builder: (context) {
+                                              return AlertDialog(
+                                                title: Text('Alert'),
+                                                content: Text(
+                                                    'Are you sure you want to delete'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () {
+                                                      Get.back();
+                                                    },
+                                                    child: const Text('No'),
+                                                  ),
+                                                  TextButton(
+                                                    onPressed: () {
+                                                      controller
+                                                          .deleteQualityQuestions(
+                                                              id: id)
+                                                          .then((value) =>
+                                                              controller
+                                                                  .getQualityProducts());
+                                                      Get.back();
+                                                    },
+                                                    child: const Text('Yes'),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Icon(
+                                            Icons.delete,
+                                            color: Colors.red,
+                                            size: customHeight(25),
+                                          ),
+                                        ),
+                                      ),
                                     );
                                   },
                                   separatorBuilder: (context, index) {
