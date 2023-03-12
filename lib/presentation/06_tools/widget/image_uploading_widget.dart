@@ -1,8 +1,10 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:laser_tech_app/domain/responsive/dimensions.dart';
+import 'package:file_picker/file_picker.dart';
 
 class ImageUploadEidget extends StatefulWidget {
   const ImageUploadEidget({super.key});
@@ -12,7 +14,11 @@ class ImageUploadEidget extends StatefulWidget {
 }
 
 class _ImageUploadEidgetState extends State<ImageUploadEidget> {
+  String selctFile = '';
   XFile? image;
+  Uint8List? selectedImageInBytes;
+  List<Uint8List> pickedImagesInBytes = [];
+  List<String> imageUrls = [];
 
   final ImagePicker picker = ImagePicker();
   // final List<XFile>? images = [];
@@ -27,6 +33,24 @@ class _ImageUploadEidgetState extends State<ImageUploadEidget> {
     });
   }
 
+  _selectFile(bool imageFrom) async {
+    FilePickerResult? fileResult = await FilePicker.platform.pickFiles();
+
+    if (fileResult != null) {
+      selctFile = fileResult.files.first.name;
+
+      setState(() {
+        // pickedImagesInBytes.add(element.bytes);
+        selectedImageInBytes = fileResult.files.first.bytes;
+        // imageCounts += 1;
+      });
+    }
+    print("*******");
+    print(selctFile);
+    print("********");
+    print(selectedImageInBytes);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -36,7 +60,9 @@ class _ImageUploadEidgetState extends State<ImageUploadEidget> {
           height: customHeight(50),
           child: ElevatedButton(
             onPressed: () {
-              getImage(ImageSource.camera);
+              print("pressed");
+              // getImage(ImageSource.camera);
+              _selectFile(true);
             },
             child: Icon(Icons.image_outlined),
           ),
@@ -44,19 +70,20 @@ class _ImageUploadEidgetState extends State<ImageUploadEidget> {
 
         //if image not null show the image
         //if image null show text
-        image != null
+        selctFile != ''
             ? SizedBox(
                 height: customHeight(50),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.file(
-                    //to show image, you type like this.
-                    File(image!.path),
-                    fit: BoxFit.cover,
-                    // cacheHeight: 100,
-                    // cacheWidth: 100,
-                  ),
-                ),
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.memory(selectedImageInBytes!)
+                    //  Image.file(
+                    //   //to show image, you type like this.
+                    //   File(image!.path),
+                    //   fit: BoxFit.cover,
+                    //   // cacheHeight: 100,
+                    //   // cacheWidth: 100,
+                    // ),
+                    ),
               )
             : Text(
                 "ADD Image",

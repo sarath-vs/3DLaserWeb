@@ -40,4 +40,51 @@ class ToolsListImpl implements ToolsFacade {
       return left(getExceptionFromStatusCode(result.statusCode));
     }
   }
+
+  @override
+  Future<Either<NetworkExceptions, String>> saveToolsDetail(
+      {required String name,
+      required String image,
+      required String description}) async {
+    String? access = await _employeeDataManager.getRefresh();
+    final _body = {
+      "name": name,
+      "image": image,
+      "description": description,
+    };
+
+    final result = await Postman.sendPostRequest(_url.saveTools, _body, access);
+    if (result.statusCode == 201) {
+      // final data =
+      //     ToolsModel.fromJson(jsonDecode(result.body) as Map<String, dynamic>);
+
+      customLog('--->>>');
+      customLog(result.statusCode);
+
+      return right(result.statusCode.toString());
+    } else {
+      print('${result.statusCode}');
+      return left(getExceptionFromStatusCode(result.statusCode));
+    }
+  }
+
+  @override
+  Future<Either<NetworkExceptions, String>> deleteTool(
+      {required int id}) async {
+    String? access = await _employeeDataManager.getRefresh();
+
+    final result =
+        await Postman.sendDeleteRequest(_url.deleteTools + '/$id/', access!);
+    if (result.statusCode == 204) {
+      // final data = SaveQualtyProductModel.fromJson(
+      //     jsonDecode(result.body) as Map<String, dynamic>);
+      customLog('--->>>');
+      customLog(result.statusCode);
+
+      return right(result.statusCode.toString());
+    } else {
+      print('${result.statusCode}');
+      return left(getExceptionFromStatusCode(result.statusCode));
+    }
+  }
 }
