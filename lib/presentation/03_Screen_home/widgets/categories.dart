@@ -10,6 +10,9 @@ class Categories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //     WidgetsBinding.instance.addPostFrameCallback((duration) {
+    //   Get.find<ControlPlanController>().getControlPlanList();
+    // });
     return GetBuilder<HomeScreenController>(
         id: Get.find<HomeScreenController>().screenHomeWidget,
         builder: (controller) {

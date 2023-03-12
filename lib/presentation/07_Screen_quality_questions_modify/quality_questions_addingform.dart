@@ -453,6 +453,49 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                           flex: 3,
                           child: Text('Number Field'),
                         ),
+                        Row(
+                          // crossAxisAlignment: CrossAxisAlignment.start,
+                          // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            SizedBox(
+                              width: customWidth(10),
+                              height: customHeight(30),
+                              child: TextFormField(
+                                validator: (val) {
+                                  return null;
+                                },
+                                onChanged: (value) {
+                                  // password = value;
+                                },
+                                decoration: InputDecoration(
+                                  hintText: "answer",
+                                  // border: OutlineInputBorder(
+                                  //     borderRadius: BorderRadius.circular(20)),
+                                  fillColor: Colors.grey.shade200,
+                                  filled: true,
+                                  floatingLabelStyle: AppTheme.h2Style,
+                                ),
+                              ),
+                            ),
+                            Text('OR'),
+                            Text('Any'),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 50),
+                              child: Checkbox(
+                                value: numberManditory,
+                                checkColor: Colors.white, // color of tick Mark
+                                activeColor: LightColor.primaryColor,
+                                onChanged: (bool? value) {
+                                  setState(() {
+                                    if (number) {
+                                      numberManditory = !numberManditory;
+                                    }
+                                  });
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
                         Expanded(flex: 3, child: Text('Accept Only Numbers')),
                         Expanded(
                           flex: 1,
