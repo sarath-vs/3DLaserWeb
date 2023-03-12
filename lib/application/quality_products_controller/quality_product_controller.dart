@@ -72,4 +72,28 @@ class QualityProductController extends GetxController {
       update([qualityProductID]);
     });
   }
+
+  Future<void> deleteQualityQuestions({
+    required int id,
+  }) async {
+    showCircularProgressDialog(msg: 'Signing in');
+    final result = await _qualityProductFacade.deleteQualityProduct(id: id);
+    Navigator.of(navigatorKey.currentContext!).pop();
+    result.fold((NetworkExceptions exp) {
+      return showSingleButtonAlertDialog(
+        Get.context!,
+        'Warning',
+        getMessageFromException(exp),
+        () {
+          Navigator.of(Get.context!).pop();
+        },
+      );
+    }, (String resp) async {
+      //qualityProductList.clear();
+      // qualityProductList.addAll(resp);
+      name = resp;
+      customLog(resp);
+      update([qualityProductID]);
+    });
+  }
 }

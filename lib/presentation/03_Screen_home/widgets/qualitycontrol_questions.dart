@@ -85,7 +85,28 @@ class Qualityquestions extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            trailing: Icon(Icons.more_vert),
+                            trailing: GestureDetector(
+                              onTap: () {
+                                showMenu(
+                                  context: context,
+                                  position: RelativeRect.fromLTRB(
+                                      0.0, 600.0, 300.0, 0.0),
+                                  items: [
+                                    PopupMenuItem<String>(
+                                        child: const Text('Doge'),
+                                        value: 'Doge'),
+                                    PopupMenuItem<String>(
+                                        child: const Text('Lion'),
+                                        value: 'Lion'),
+                                  ],
+                                  elevation: 8.0,
+                                );
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Icon(Icons.more_vert),
+                              ),
+                            ),
                           );
                         },
                         separatorBuilder: (context, index) {

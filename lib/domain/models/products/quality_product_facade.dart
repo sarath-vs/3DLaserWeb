@@ -7,4 +7,6 @@ abstract class QualityProductFacade {
   Future<Either<NetworkExceptions, QualtyProductListModel>> getQualityProduct();
   Future<Either<NetworkExceptions, String>> saveQualityProduct(
       {required String name, required String description});
+  Future<Either<NetworkExceptions, String>> deleteQualityProduct(
+      {required int id});
 }
