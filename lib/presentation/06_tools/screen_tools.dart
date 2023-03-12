@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:laser_tech_app/application/tools_controller/tools_controller.dart';
 import '../../domain/responsive/dimensions.dart';
 import '../theme/color.dart';
 import '../theme/theme.dart';
-import '../widgets/custom_appbar.dart';
-import '../widgets/side_menu.dart';
 import 'widget/image_uploading_widget.dart';
 
 class ScreenToolsADD extends StatefulWidget {
@@ -19,6 +17,9 @@ class ScreenToolsADD extends StatefulWidget {
 class _ScreenToolsADDState extends State<ScreenToolsADD> {
   @override
   Widget build(BuildContext context) {
+    // WidgetsBinding.instance.addPostFrameCallback((duration) {
+    //   Get.find<ToolsController>().getTools();
+    // });
     return Scaffold(
       appBar: AppBar(
         leading: Text(''),

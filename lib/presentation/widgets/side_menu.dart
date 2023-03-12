@@ -70,7 +70,7 @@ class SideMenu extends StatelessWidget {
               color: Colors.grey,
             ),
             press: () {
-              Get.find<HomeScreenController>().setHomeScreen('Products');
+              Get.find<HomeScreenController>().setHomeScreen('Quality Mannual');
             },
           ),
           DrawerListTile(

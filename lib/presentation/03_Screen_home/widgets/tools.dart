@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../application/home_screen_controller/controller.dart';
+import '../../../application/tools_controller/tools_controller.dart';
 import '../../../domain/responsive/dimensions.dart';
 import '../../05_Employee_details/employee_work_details.dart';
 import '../../06_tools/screen_tools.dart';
@@ -15,7 +16,9 @@ class WorkingTools extends StatelessWidget {
     return GetBuilder<HomeScreenController>(
         id: Get.find<HomeScreenController>().screenHomeWidget,
         builder: (controller) {
-          // if (controller.screen == 'DashBoard')
+          WidgetsBinding.instance.addPostFrameCallback((duration) {
+            Get.find<ToolsController>().getTools();
+          });
           return Column(
             children: [
               CustomAppBar(context, false, controller.screen),
@@ -27,52 +30,59 @@ class WorkingTools extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: SingleChildScrollView(
                     scrollDirection: Axis.vertical,
-                    child: ListView.separated(
-                        //scrollDirection: Axis.vertical,
-                        //physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            onTap: () {
-                              Navigator.pushNamed(
-                                  context, ScreenToolsADD.routeName);
-                            },
-                            tileColor: Colors.blue.withOpacity(.3),
-                            leading: Text('${index + 1}'),
-                            title: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                    width: customWidth(40),
-                                    height: customHeight(100),
-                                    child: Image.asset(
-                                      'assets/icons/settings.jpg',
-                                      fit: BoxFit.cover,
-                                    )),
-                                customHorizontalGap(10),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    customVerticalGap(10),
-                                    Text(
-                                      'Tool Name',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                        'Tool Discription will be displayed here'),
-                                  ],
-                                )
-                              ],
-                            ),
-                            // trailing: Icon(Icons.more_vert),
-                          );
-                        },
-                        separatorBuilder: (context, index) {
-                          return customVerticalGap(10);
-                        },
-                        itemCount: 4),
+                    child: GetBuilder<ToolsController>(
+                        id: Get.find<ToolsController>().toolListWidgetID,
+                        builder: (controller) {
+                          return ListView.separated(
+                              //scrollDirection: Axis.vertical,
+                              //physics: NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                return ListTile(
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                        context, ScreenToolsADD.routeName);
+                                  },
+                                  tileColor: Colors.blue.withOpacity(.3),
+                                  leading: Text('${index + 1}'),
+                                  title: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                          width: customWidth(40),
+                                          height: customHeight(100),
+                                          child: Image.network(
+                                            '${controller.toolsList[index].image}',
+                                            fit: BoxFit.cover,
+                                          )),
+                                      customHorizontalGap(10),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          customVerticalGap(10),
+                                          Text(
+                                            '${controller.toolsList[index].name}',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Text(
+                                              '${controller.toolsList[index].description}'),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  // trailing: Icon(Icons.more_vert),
+                                );
+                              },
+                              separatorBuilder: (context, index) {
+                                return customVerticalGap(10);
+                              },
+                              itemCount: controller.toolsList.length);
+                        }),
                   ),
                 ),
               )

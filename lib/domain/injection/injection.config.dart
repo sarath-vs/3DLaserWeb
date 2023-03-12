@@ -9,28 +9,31 @@ import 'package:connectivity_plus/connectivity_plus.dart' as _i3;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:laser_tech_app/application/auth_controller/auth_controller.dart'
-    as _i15;
+    as _i17;
 import 'package:laser_tech_app/application/home_screen_controller/controller.dart'
     as _i8;
+import 'package:laser_tech_app/application/quality_products_controller/quality_product_controller.dart'
+    as _i15;
+import 'package:laser_tech_app/application/tools_controller/tools_controller.dart'
+    as _i16;
 import 'package:laser_tech_app/domain/employee_data/employee_data_manager.dart'
     as _i7;
-import 'package:laser_tech_app/domain/models/digital_mammual/facade.dart'
-    as _i13;
-import 'package:laser_tech_app/domain/models/init_quality_check/int_quality_check_facade.dart'
+import 'package:laser_tech_app/domain/models/login/login_facade.dart' as _i13;
+import 'package:laser_tech_app/domain/models/products/quality_product_facade.dart'
     as _i9;
-import 'package:laser_tech_app/domain/models/login/login_facade.dart' as _i11;
+import 'package:laser_tech_app/domain/models/tools_model/tools_facade.dart'
+    as _i11;
 import 'package:laser_tech_app/domain/remote/connectivity/internet_connectivity.dart'
     as _i4;
 import 'package:laser_tech_app/domain/remote/url/url_pool.dart' as _i6;
-import 'package:laser_tech_app/implementation/auth/auth_impl.dart' as _i12;
-import 'package:laser_tech_app/implementation/digital_mannual/digital_mannual_impl.dart'
-    as _i14;
-import 'package:laser_tech_app/implementation/init_quality_check_impl/init_quality_impl.dart'
+import 'package:laser_tech_app/implementation/auth/auth_impl.dart' as _i14;
+import 'package:laser_tech_app/implementation/quality_product_impl/quality_product_impl.dart'
     as _i10;
+import 'package:laser_tech_app/implementation/tools/tools_impl.dart' as _i12;
 import 'package:shared_preferences/shared_preferences.dart' as _i5;
 
-import '../modules/modules.dart' as _i16;
-import '../remote/connectivity/internet_connectivity.dart' as _i17;
+import '../modules/modules.dart' as _i18;
+import '../remote/connectivity/internet_connectivity.dart' as _i19;
 
 const String _prod = 'prod';
 const String _dev = 'dev';
@@ -68,29 +71,37 @@ extension GetItInjectableX on _i1.GetIt {
         _i7.EmployeeDataManager(gh<_i5.SharedPreferences>()));
     gh.factory<_i8.HomeScreenController>(
         () => _i8.HomeScreenController(gh<_i7.EmployeeDataManager>()));
-    gh.lazySingleton<_i9.InitialQualityCheckFacade>(() => _i10.InitQualityImpl(
+    gh.lazySingleton<_i9.QualityProductFacade>(() => _i10.QualityProductImpl(
+          gh<_i7.EmployeeDataManager>(),
+          gh<_i6.URLPool>(),
+        ));
+    gh.lazySingleton<_i11.ToolsFacade>(() => _i12.ToolsListImpl(
           gh<_i7.EmployeeDataManager>(),
           gh<_i6.URLPool>(),
           gh<_i4.InternetConnectivity>(),
         ));
-    gh.lazySingleton<_i11.AuthFacade>(() => _i12.AuthImpl(
+    gh.lazySingleton<_i13.AuthFacade>(() => _i14.AuthImpl(
           gh<_i7.EmployeeDataManager>(),
           gh<_i6.URLPool>(),
           gh<_i4.InternetConnectivity>(),
         ));
-    gh.lazySingleton<_i13.DigitalMannualFacade>(() => _i14.DigitalMannualmpl(
+    gh.factory<_i15.QualityProductController>(
+        () => _i15.QualityProductController(
+              gh<_i9.QualityProductFacade>(),
+              gh<_i7.EmployeeDataManager>(),
+            ));
+    gh.factory<_i16.ToolsController>(() => _i16.ToolsController(
+          gh<_i11.ToolsFacade>(),
           gh<_i7.EmployeeDataManager>(),
-          gh<_i6.URLPool>(),
-          gh<_i4.InternetConnectivity>(),
         ));
-    gh.factory<_i15.AuthController>(() => _i15.AuthController(
-          gh<_i11.AuthFacade>(),
+    gh.factory<_i17.AuthController>(() => _i17.AuthController(
+          gh<_i13.AuthFacade>(),
           gh<_i7.EmployeeDataManager>(),
         ));
     return this;
   }
 }
 
-class _$Modules extends _i16.Modules {}
+class _$Modules extends _i18.Modules {}
 
-class _$ConnectivityModule extends _i17.ConnectivityModule {}
+class _$ConnectivityModule extends _i19.ConnectivityModule {}

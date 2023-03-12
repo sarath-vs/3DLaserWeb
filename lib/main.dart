@@ -16,6 +16,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'application/auth_controller/auth_controller.dart';
 
 import 'application/home_screen_controller/controller.dart';
+import 'application/quality_products_controller/quality_product_controller.dart';
+import 'application/tools_controller/tools_controller.dart';
 import 'classes/language_constants.dart';
 import 'presentation/01_Screen_splash/screen_splash.dart';
 import 'presentation/02_Screen_login/screen_login.dart';
@@ -114,6 +116,9 @@ class GetxBindings extends Bindings {
 initializeGetxController() {
   Get.put<AuthController>(getIt<AuthController>(), permanent: false);
   Get.put<HomeScreenController>(getIt<HomeScreenController>(),
+      permanent: false);
+  Get.put<ToolsController>(getIt<ToolsController>(), permanent: false);
+  Get.put<QualityProductController>(getIt<QualityProductController>(),
       permanent: false);
 }
 

@@ -116,70 +116,68 @@ Widget CustomAppBar(BuildContext context, bool showArrow, String screenName) {
               GestureDetector(
                 onTap: () {
                   showDialog(
-                      context: context,
-                      builder: (_) => AlertDialog(
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20.0))),
-                            content: Builder(
-                              builder: (context) {
-                                // Get available height and width of the build area of this widget. Make a choice depending on the size.
-                                var height = MediaQuery.of(context).size.height;
-                                var width = MediaQuery.of(context).size.width;
+                    context: context,
+                    builder: (_) => AlertDialog(
+                      shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20.0))),
+                      content: Builder(
+                        builder: (context) {
+                          // Get available height and width of the build area of this widget. Make a choice depending on the size.
+                          var height = MediaQuery.of(context).size.height;
+                          var width = MediaQuery.of(context).size.width;
 
-                                return SizedBox(
-                                  height: height - 700,
-                                  width: width - 900,
-                                  child: Center(
-                                      child: Text(
-                                    'Logout ?',
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: customFontSize(6)),
-                                  )),
-                                );
-                              },
-                            ),
-                            actions: [
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 50),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.of(context)
-                                            .pushNamedAndRemoveUntil(
-                                                ScreenHome.routeName,
-                                                (route) => false);
-                                      },
-                                      child: Text(
-                                        'No',
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: customFontSize(6)),
-                                      ),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {
-                                        Get.find<AuthController>().logOut();
-                                      },
-                                      child: Text(
-                                        'Yes',
-                                        style: TextStyle(
-                                            color: Colors.red,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: customFontSize(6)),
-                                      ),
-                                    ),
-                                  ],
+                          return SizedBox(
+                            height: height - 700,
+                            width: width - 900,
+                            child: Center(
+                                child: Text(
+                              'Logout ?',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: customFontSize(6)),
+                            )),
+                          );
+                        },
+                      ),
+                      actions: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 50),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pushNamedAndRemoveUntil(
+                                      ScreenHome.routeName, (route) => false);
+                                },
+                                child: Text(
+                                  'No',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: customFontSize(6)),
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Get.find<AuthController>().logOut();
+                                },
+                                child: Text(
+                                  'Yes',
+                                  style: TextStyle(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: customFontSize(6)),
                                 ),
                               ),
                             ],
-                          ));
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
                 },
                 child: Icon(
                   Icons.power_settings_new,
