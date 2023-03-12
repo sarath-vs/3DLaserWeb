@@ -204,17 +204,17 @@ class _ScreenLoginState extends State<ScreenLogin> {
                                               fontStyle: FontStyle.italic),
                                         ),
                                         onPressed: () {
-                                          // Get.find<AuthController>()
-                                          //     .login(userName!, password!);
-                                          if (userName == 'admin@admin.com' &&
-                                              password == 'admin') {
-                                            Navigator.pushNamed(
-                                                context, ScreenHome.routeName);
-                                          } else {
-                                            showSnackBar1(
-                                                message:
-                                                    'Unable to login(wrong user Name or password)');
-                                          }
+                                          Get.find<AuthController>()
+                                              .login(userName!, password!);
+                                          // if (userName == 'admin@admin.com' &&
+                                          //     password == 'admin') {
+                                          //   Navigator.pushNamed(
+                                          //       context, ScreenHome.routeName);
+                                          // } else {
+                                          //   showSnackBar1(
+                                          //       message:
+                                          //           'Unable to login(wrong user Name or password)');
+                                          // }
                                         },
                                         child: Padding(
                                           padding: const EdgeInsets.all(10.0),
