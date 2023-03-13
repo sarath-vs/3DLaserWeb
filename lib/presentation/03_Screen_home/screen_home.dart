@@ -2,16 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:laser_tech_app/domain/responsive/dimensions.dart';
 import 'package:laser_tech_app/presentation/03_Screen_home/widgets/categories.dart';
 import 'package:laser_tech_app/presentation/03_Screen_home/widgets/dashboard.dart';
 import 'package:laser_tech_app/presentation/03_Screen_home/widgets/employees.dart';
 import 'package:laser_tech_app/presentation/03_Screen_home/widgets/qualitycontrol_questions.dart';
 import 'package:laser_tech_app/presentation/03_Screen_home/widgets/qualitymannual.dart';
 import 'package:laser_tech_app/presentation/04_Screen_quality_control_properties/quality_control_properties_addingform.dart';
-
-import 'package:laser_tech_app/presentation/theme/theme.dart';
-import 'package:laser_tech_app/presentation/widgets/custom_appbar.dart';
 import '../../application/home_screen_controller/controller.dart';
 import '../05_Employee_details/employee_details_add.dart';
 import '../06_tools/screen_tools.dart';
