@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
@@ -24,6 +27,7 @@ class ToolsController extends GetxController {
   String get toolListWidgetID => 'toolListWidgetID';
 
   List<ToolsResult> toolsList = [];
+  FilePickerResult? filepath;
 
   Future<void> getTools() async {
     showCircularProgressDialog(msg: 'Signing in');
@@ -48,7 +52,7 @@ class ToolsController extends GetxController {
 
   Future<void> saveToolsQuality(
       {required String name,
-      required String image,
+      required FilePickerResult image,
       required String discription}) async {
     showCircularProgressDialog(msg: 'Signing in');
     final result = await _toolsFacade.saveToolsDetail(
