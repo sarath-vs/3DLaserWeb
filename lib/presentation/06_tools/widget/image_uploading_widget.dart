@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -20,7 +21,7 @@ class _ImageUploadEidgetState extends State<ImageUploadEidget> {
   String selctFile = '';
   XFile? image;
   Uint8List? selectedImageInBytes;
-  List<Uint8List> pickedImagesInBytes = [];
+  List<Uint64List> pickedImagesInBytes = [];
   List<String> imageUrls = [];
   var filePath = '';
   String? selectfilepath;
@@ -50,13 +51,18 @@ class _ImageUploadEidgetState extends State<ImageUploadEidget> {
         // imageCounts += 1;
       });
     }
+    String base64String = base64.encode(selectedImageInBytes!);
+    List<int> bytes = utf8.encode(base64String);
+    String byteString = base64.encode(bytes);
     // File imgFile = File(selctFile);
     Get.find<ToolsController>().filepath = fileResult;
     print("*******");
     print(selctFile);
     print("********");
-    // print(imgFile);
+    // // print(imgFile);
     // print(selectedImageInBytes);
+    print("************/////////////////");
+    print(byteString.toString());
   }
 
   @override

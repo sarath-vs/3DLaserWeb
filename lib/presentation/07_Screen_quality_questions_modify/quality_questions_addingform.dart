@@ -45,6 +45,8 @@ class _QualityquestionformState extends State<Qualityquestionform> {
   String discriptionGerman = '';
   List<bool> _checkedItems = [];
   List<int> indexList = [];
+  final TextEditingController controller1 = TextEditingController();
+  final TextEditingController controller2 = TextEditingController();
 
   PlatformFile? objFile;
 
@@ -694,22 +696,44 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                         width: customWidth(30),
                                         height: customHeight(30),
                                         child: TextFormField(
-                                          validator: (val) {
-                                            return null;
-                                          },
-                                          onChanged: (value) {
-                                            rangeTo = value;
-                                          },
-                                          decoration: InputDecoration(
-                                            hintText: "To",
-                                            // border: OutlineInputBorder(
-                                            //     borderRadius: BorderRadius.circular(20)),
-                                            fillColor: Colors.grey.shade200,
-                                            filled: true,
-                                            floatingLabelStyle:
-                                                AppTheme.h2Style,
-                                          ),
-                                        ),
+                                            validator: (val) {},
+                                            onChanged: (value) {
+                                              rangeTo = value;
+                                              double torange =
+                                                  double.parse(value);
+                                              double startrange =
+                                                  double.parse(rangeFrom);
+                                              if (startrange > torange) {
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (context) =>
+                                                      AlertDialog(
+                                                    title: Text('Error'),
+                                                    content: Text(
+                                                        'Starting range must lower than ending range'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Text('OK'),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              }
+                                              decoration:
+                                              InputDecoration(
+                                                hintText: "To",
+                                                // border: OutlineInputBorder(
+                                                //     borderRadius: BorderRadius.circular(20)),
+                                                fillColor: Colors.grey.shade200,
+                                                filled: true,
+                                                floatingLabelStyle:
+                                                    AppTheme.h2Style,
+                                              );
+                                            }),
                                       ),
                                     ],
                                   ),
