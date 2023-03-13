@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:laser_tech_app/application/quality_products_controller/quality_product_controller.dart';
 import 'package:laser_tech_app/presentation/03_Screen_home/widgets/categories.dart';
 import 'package:laser_tech_app/presentation/03_Screen_home/widgets/dashboard.dart';
 import 'package:laser_tech_app/presentation/03_Screen_home/widgets/employees.dart';

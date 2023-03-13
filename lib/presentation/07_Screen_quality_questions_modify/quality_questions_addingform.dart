@@ -1,12 +1,10 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:laser_tech_app/presentation/07_Screen_quality_questions_modify/widget/qualityqp_image_uploading_widget.dart';
-
-import '../../application/home_screen_controller/controller.dart';
+import 'package:laser_tech_app/presentation/widgets/snackbar.dart';
 import '../../application/quality_products_controller/quality_product_controller.dart';
 import '../../application/tools_controller/tools_controller.dart';
 import '../../domain/responsive/dimensions.dart';
-import '../04_Screen_quality_control_properties/widget/image_uploading_widget.dart';
 import '../theme/color.dart';
 import '../theme/theme.dart';
 
@@ -35,9 +33,20 @@ class _QualityquestionformState extends State<Qualityquestionform> {
   bool numberManditory = false;
   bool vdo = false;
   bool vdoManditory = false;
+  String rangeFrom = '';
+  String rangeTo = '';
+  String dropDownData = '';
+  List<int> selectedID = [];
+  String questionEnglish = '';
+  String questionCzech = '';
+  String questionGerman = '';
+  String discriptionEnglish = '';
+  String discriptionCzech = '';
+  String discriptionGerman = '';
   List<bool> _checkedItems = [];
   List<int> indexList = [];
-  List<int> selectedID = [];
+
+  PlatformFile? objFile;
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +79,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                     padding: const EdgeInsets.symmetric(
                         vertical: 20, horizontal: 45),
                     child: Container(
-                      height: customHeight(600),
+                      height: customHeight(900),
                       width: customWidth(250),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -83,17 +92,17 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
                                   "Question Details",
                                   style: AppTheme.h8Style,
                                 ),
-                                Icon(
-                                  Icons.delete,
-                                  color: Colors.red,
-                                  size: customHeight(20),
-                                )
+                                // Icon(
+                                //   Icons.delete,
+                                //   color: Colors.red,
+                                //   size: customHeight(20),
+                                // )
                               ],
                             ),
 
@@ -103,7 +112,9 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                 validator: (val) {
                                   return null;
                                 },
-                                onChanged: (value) {},
+                                onChanged: (value) {
+                                  questionEnglish = value;
+                                },
                                 decoration: InputDecoration(
                                   hintText: "Questions English*",
 
@@ -122,7 +133,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                   return null;
                                 },
                                 onChanged: (value) {
-                                  // password = value;
+                                  questionCzech = value;
                                 },
                                 decoration: InputDecoration(
                                   hintText: "Questions Czech*",
@@ -142,10 +153,75 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                   return null;
                                 },
                                 onChanged: (value) {
-                                  // password = value;
+                                  questionGerman = value;
                                 },
                                 decoration: InputDecoration(
                                   hintText: "Questions German*",
+
+                                  // border: OutlineInputBorder(
+                                  //     borderRadius: BorderRadius.circular(20)),
+                                  fillColor: Colors.grey.shade200,
+                                  filled: true,
+                                  floatingLabelStyle: AppTheme.h2Style,
+                                ),
+                              ),
+                            ),
+                            Text(
+                              "Question Discription Details",
+                              style: AppTheme.h8Style,
+                            ),
+                            SizedBox(
+                              width: customWidth(400),
+                              child: TextFormField(
+                                validator: (val) {
+                                  return null;
+                                },
+                                onChanged: (value) {
+                                  discriptionEnglish = value;
+                                },
+                                decoration: InputDecoration(
+                                  hintText: "Questions Discription English*",
+
+                                  // border: OutlineInputBorder(
+                                  //     borderRadius: BorderRadius.circular(20)),
+                                  fillColor: Colors.grey.shade200,
+                                  filled: true,
+                                  floatingLabelStyle: AppTheme.h2Style,
+                                ),
+                              ),
+                            ),
+
+                            SizedBox(
+                              width: customWidth(400),
+                              child: TextFormField(
+                                validator: (val) {
+                                  return null;
+                                },
+                                onChanged: (value) {
+                                  discriptionCzech = value;
+                                },
+                                decoration: InputDecoration(
+                                  hintText: "Questions Discription Czech*",
+
+                                  // border: OutlineInputBorder(
+                                  //     borderRadius: BorderRadius.circular(20)),
+                                  fillColor: Colors.grey.shade200,
+                                  filled: true,
+                                  floatingLabelStyle: AppTheme.h2Style,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: customWidth(400),
+                              child: TextFormField(
+                                validator: (val) {
+                                  return null;
+                                },
+                                onChanged: (value) {
+                                  discriptionGerman = value;
+                                },
+                                decoration: InputDecoration(
+                                  hintText: "Questions Discription german*",
 
                                   // border: OutlineInputBorder(
                                   //     borderRadius: BorderRadius.circular(20)),
@@ -161,7 +237,17 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                               children: [
                                 customHorizontalGap(50),
                                 InkWell(
-                                  onTap: () {},
+                                  onTap: () async {
+                                    // var picked =
+                                    //     await FilePicker.platform.pickFiles(
+                                    //   withReadStream: true,
+                                    // );
+                                    // if (picked != null) {
+                                    //   setState(() {
+                                    //     objFile = picked.files.single;
+                                    //   });
+                                    // }
+                                  },
                                   child: Container(
                                     alignment: Alignment.center,
                                     width: customWidth(35),
@@ -234,7 +320,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                                                         .start,
                                                                 children: [
                                                                   Expanded(
-                                                                    flex: 4,
+                                                                    flex: 3,
                                                                     child: SizedBox(
                                                                         width: customWidth(40),
                                                                         height: customHeight(100),
@@ -285,8 +371,9 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                                                               LightColor.primaryColor,
                                                                           onChanged:
                                                                               (bool? value) {
-                                                                            print(_checkedItems);
-                                                                            print(selectedID);
+                                                                            // print(_checkedItems);
+                                                                            // print(selectedID);
+
                                                                             setState(() {
                                                                               _checkedItems[index] = !_checkedItems[index];
                                                                               print(_checkedItems);
@@ -338,29 +425,28 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                                 ),
                                                 TextButton(
                                                   onPressed: () {
-                                                    // Get.find<AuthController>().logOut();
+                                                    // selectedID.clear();
+
                                                     for (int i = 0;
                                                         i <
                                                             _checkedItems
                                                                 .length;
                                                         i++) {
                                                       if (_checkedItems[i]) {
-                                                        indexList.add(i);
-                                                        indexList.toList();
+                                                        int k = Get.find<
+                                                                ToolsController>()
+                                                            .toolsList[i]
+                                                            .id!;
+                                                        selectedID.add(k);
                                                       }
                                                     }
-                                                    for (int i = 0;
-                                                        i < indexList.length;
-                                                        i++) {
-                                                      int k = Get.find<
-                                                              ToolsController>()
-                                                          .toolsList[i]
-                                                          .id!;
-                                                      selectedID.add(k);
-                                                      selectedID.toList();
-                                                    }
+
                                                     print(selectedID);
-                                                    print(indexList);
+                                                    selectedID.length == 0
+                                                        ? showSnackBar(
+                                                            message:
+                                                                'select some items')
+                                                        : Get.back();
                                                   },
                                                   child: Text(
                                                     'Confirm',
@@ -587,7 +673,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                             return null;
                                           },
                                           onChanged: (value) {
-                                            // password = value;
+                                            rangeFrom = value;
                                           },
                                           decoration: InputDecoration(
                                             hintText: "From",
@@ -612,7 +698,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                             return null;
                                           },
                                           onChanged: (value) {
-                                            // password = value;
+                                            rangeTo = value;
                                           },
                                           decoration: InputDecoration(
                                             hintText: "To",
@@ -815,7 +901,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                       return null;
                                     },
                                     onChanged: (value) {
-                                      // password = value;
+                                      dropDownData = value;
                                     },
                                     decoration: InputDecoration(
                                       hintText:
@@ -907,6 +993,28 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                               children: [
                                 InkWell(
                                   onTap: () {
+                                    Get.back();
+                                  },
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    width: customWidth(50),
+                                    height: customHeight(40),
+                                    decoration: BoxDecoration(
+                                      // color: LightColor.primaryColor,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(50)),
+                                      border: Border.all(
+                                          width: 1,
+                                          color: LightColor.primaryColor),
+                                    ),
+                                    child: Text(
+                                      "Cancels",
+                                      style: AppTheme.h3Style,
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
                                     final answerField = {
                                       "yn": yesno,
                                       "ynMN": yesnoManditory,
@@ -921,8 +1029,77 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                       "img": image,
                                       "imgMN": imageManditory,
                                       "vdo": vdo,
-                                      "vdoMN": vdoManditory
+                                      "vdoMN": vdoManditory,
+                                      "rangeFrom": rangeFrom,
+                                      "rangeTo": rangeTo
                                     };
+                                    final dataToSend = {
+                                      "description_english": discriptionEnglish,
+                                      "description_czech": discriptionCzech,
+                                      "description_german": discriptionGerman,
+                                      "question_english": questionEnglish,
+                                      "question_czech": questionCzech,
+                                      "question_german": questionGerman,
+                                      // "image": " ",
+                                      // "video": " ",
+                                      "tools_used": selectedID,
+                                      "field_info_object": answerField,
+                                      "category": controller.productId,
+                                      "added_by": null
+                                    };
+                                    if (questionEnglish != '' ||
+                                        questionCzech != '' ||
+                                        questionGerman != '' ||
+                                        discriptionCzech != '' ||
+                                        discriptionEnglish != '' ||
+                                        discriptionGerman != '') {
+                                      if (range == true) {
+                                        if (rangeFrom == '' || rangeTo == '') {
+                                          showSnackBar(
+                                              message:
+                                                  'Please Provide Range Data');
+                                        } else {
+                                          ////
+                                          controller
+                                              .postQualityQuestions(
+                                                  dataToSend: dataToSend)
+                                              .then((value) {
+                                            controller
+                                                .getQualityQuestions(
+                                                    id: controller.productId)
+                                                .then((value) {
+                                              Get.back();
+                                            });
+                                          });
+                                        }
+                                      } else if (dropdown == true) {
+                                        if (dropDownData == '') {
+                                          showSnackBar(
+                                              message:
+                                                  'Please Provide DropDown Data');
+                                        } else {
+                                          ///
+                                          controller
+                                              .postQualityQuestions(
+                                                  dataToSend: dataToSend)
+                                              .then((value) {
+                                            controller
+                                                .getQualityQuestions(
+                                                    id: controller.productId)
+                                                .then((value) {
+                                              Get.back();
+                                            });
+                                          });
+
+////
+                                        }
+                                      }
+                                    } else {
+                                      showSnackBar(
+                                          message:
+                                              'Please Provid Required Fields');
+                                    }
+                                    print(dataToSend);
                                   },
                                   child: Container(
                                     alignment: Alignment.center,
@@ -941,28 +1118,6 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                       style: TextStyle(
                                           fontSize: customFontSize(5),
                                           color: Colors.white),
-                                    ),
-                                  ),
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    Get.back();
-                                  },
-                                  child: Container(
-                                    alignment: Alignment.center,
-                                    width: customWidth(50),
-                                    height: customHeight(40),
-                                    decoration: BoxDecoration(
-                                      // color: LightColor.primaryColor,
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(50)),
-                                      border: Border.all(
-                                          width: 1,
-                                          color: LightColor.primaryColor),
-                                    ),
-                                    child: Text(
-                                      "Cancels",
-                                      style: AppTheme.h3Style,
                                     ),
                                   ),
                                 ),

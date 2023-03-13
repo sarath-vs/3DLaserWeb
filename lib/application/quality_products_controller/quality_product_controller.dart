@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
 import 'package:laser_tech_app/domain/log/custom_log.dart';
+import 'package:laser_tech_app/domain/models/products/questionModel.dart';
 import 'package:laser_tech_app/domain/models/products/save_quality_product_model.dart';
+import 'package:laser_tech_app/presentation/03_Screen_home/widgets/qualitycontrol_questions.dart';
 
 import '../../domain/employee_data/employee_data_manager.dart';
 
@@ -23,11 +25,13 @@ class QualityProductController extends GetxController {
       this._qualityProductFacade, this._employeeDataManager);
 
   String get qualityProductID => 'qualityProductID';
+  String get qualityQuestionID => 'qualityQuestionID';
 
   List<QualityProductResult> qualityProductList = [];
+  List<QuestionResult> qualityQuestionList = [];
 
   String name = '';
-
+  int productId = 0;
   Future<void> getQualityProducts() async {
     showCircularProgressDialog(msg: 'Signing in');
     final result = await _qualityProductFacade.getQualityProduct();
@@ -73,7 +77,7 @@ class QualityProductController extends GetxController {
     });
   }
 
-  Future<void> deleteQualityQuestions({
+  Future<void> deleteQualityProduct({
     required int id,
   }) async {
     showCircularProgressDialog(msg: 'Signing in');
@@ -94,6 +98,71 @@ class QualityProductController extends GetxController {
       name = resp;
       customLog(resp);
       update([qualityProductID]);
+    });
+  }
+
+  Future<void> getQualityQuestions({required int id}) async {
+    showCircularProgressDialog(msg: 'Signing in');
+    final result = await _qualityProductFacade.getQualityQuestions(id: id);
+    Navigator.of(navigatorKey.currentContext!).pop();
+    result.fold((NetworkExceptions exp) {
+      return showSingleButtonAlertDialog(
+        Get.context!,
+        'Warning',
+        getMessageFromException(exp),
+        () {
+          Navigator.of(Get.context!).pop();
+        },
+      );
+    }, (QualityProductQuestionModel resp) async {
+      qualityQuestionList.clear();
+      qualityQuestionList.addAll(resp.data!);
+      customLog(qualityProductList);
+      update([qualityQuestionID]);
+    });
+  }
+
+  Future<void> deleteQualityQuestions({required int id}) async {
+    showCircularProgressDialog(msg: 'Signing in');
+    final result = await _qualityProductFacade.deleteQualityQuestions(id: id);
+    Navigator.of(navigatorKey.currentContext!).pop();
+    result.fold((NetworkExceptions exp) {
+      return showSingleButtonAlertDialog(
+        Get.context!,
+        'Warning',
+        getMessageFromException(exp),
+        () {
+          Navigator.of(Get.context!).pop();
+        },
+      );
+    }, (String resp) async {
+      // qualityQuestionList.clear();
+      // qualityQuestionList.addAll(resp.data!);
+      customLog(resp);
+      update([qualityQuestionID]);
+    });
+  }
+
+  Future<void> postQualityQuestions(
+      {required Map<String, Object?> dataToSend}) async {
+    showCircularProgressDialog(msg: 'Signing in');
+    final result = await _qualityProductFacade.postQualityQuestions(
+        dataToSend: dataToSend);
+    Navigator.of(navigatorKey.currentContext!).pop();
+    result.fold((NetworkExceptions exp) {
+      return showSingleButtonAlertDialog(
+        Get.context!,
+        'Warning',
+        getMessageFromException(exp),
+        () {
+          Navigator.of(Get.context!).pop();
+        },
+      );
+    }, (String resp) async {
+      // qualityQuestionList.clear();
+      // qualityQuestionList.addAll(resp.data!);
+      customLog(resp);
+      update([qualityQuestionID]);
     });
   }
 }

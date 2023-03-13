@@ -41,6 +41,16 @@ class Categories extends StatelessWidget {
                                   itemBuilder: (context, index) {
                                     return ListTile(
                                       onTap: () {
+                                        Get.find<QualityProductController>()
+                                            .getQualityQuestions(
+                                                id: controller
+                                                    .qualityProductList[index]
+                                                    .id!);
+                                        Get.find<QualityProductController>()
+                                                .productId =
+                                            controller
+                                                .qualityProductList[index].id!;
+
                                         Get.find<HomeScreenController>().appBarName(
                                             '${controller.qualityProductList[index].name}   ');
                                         Get.find<HomeScreenController>()
@@ -84,7 +94,7 @@ class Categories extends StatelessWidget {
                                                   TextButton(
                                                     onPressed: () {
                                                       controller
-                                                          .deleteQualityQuestions(
+                                                          .deleteQualityProduct(
                                                               id: id)
                                                           .then((value) =>
                                                               controller
