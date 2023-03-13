@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:get/get.dart';
 import 'package:laser_tech_app/application/tools_controller/tools_controller.dart';
+import 'package:path_provider/path_provider.dart';
 import '../../domain/responsive/dimensions.dart';
 import '../theme/color.dart';
 import '../theme/theme.dart';
@@ -20,6 +24,17 @@ String disc = '';
 String img = '@door_9HyPlSJ_LAZx187.webp;type=image/webp';
 
 class _ScreenToolsADDState extends State<ScreenToolsADD> {
+  Future<File> getImageFileFromAssets(String path) async {
+    final byteData = await rootBundle.load('assets/$path');
+
+    final file = File('${(await getTemporaryDirectory()).path}/$path');
+    await file.writeAsBytes(byteData.buffer
+        .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+
+    return file;
+  }
+
+  String img = '@door_9HyPlSJ_LAZx187.webp;type=image/webp';
   @override
   Widget build(BuildContext context) {
     // WidgetsBinding.instance.addPostFrameCallback((duration) {
@@ -151,12 +166,17 @@ class _ScreenToolsADDState extends State<ScreenToolsADD> {
                         ),
                         InkWell(
                           onTap: () {
+                            var imageuploading =
+                                Get.find<ToolsController>().filepath;
+
                             if (name == '' || disc == '' || img == '') {
                               showSnackBar(message: 'Fill input fields');
                             } else {
                               Get.find<ToolsController>()
                                   .saveToolsQuality(
-                                      name: name, image: img, discription: disc)
+                                      name: name,
+                                      image: imageuploading!,
+                                      discription: disc)
                                   .then((value) {
                                 Get.find<ToolsController>().getTools();
                                 Get.back();

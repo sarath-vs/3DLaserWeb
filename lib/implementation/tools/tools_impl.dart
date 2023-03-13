@@ -1,7 +1,11 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
 import 'dart:convert';
+import 'dart:io';
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:laser_tech_app/domain/models/tools_model/tools_model.dart';
 import '../../domain/employee_data/employee_data_manager.dart';
@@ -44,16 +48,18 @@ class ToolsListImpl implements ToolsFacade {
   @override
   Future<Either<NetworkExceptions, String>> saveToolsDetail(
       {required String name,
-      required String image,
+      required FilePickerResult image,
       required String description}) async {
     String? access = await _employeeDataManager.getRefresh();
     final _body = {
       "name": name,
-      "image": image,
+      "image": MultipartFile.fromBytes(image.files.first.bytes as List<int>,
+          filename: image.files.first.name),
       "description": description,
     };
 
     final result = await Postman.sendPostRequest(_url.saveTools, _body, access);
+
     if (result.statusCode == 201) {
       // final data =
       //     ToolsModel.fromJson(jsonDecode(result.body) as Map<String, dynamic>);
