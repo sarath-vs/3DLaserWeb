@@ -1093,6 +1093,18 @@ class _QualityquestionformState extends State<Qualityquestionform> {
 
 ////
                                         }
+                                      } else {
+                                        controller
+                                            .postQualityQuestions(
+                                                dataToSend: dataToSend)
+                                            .then((value) {
+                                          controller
+                                              .getQualityQuestions(
+                                                  id: controller.productId)
+                                              .then((value) {
+                                            Get.back();
+                                          });
+                                        });
                                       }
                                     } else {
                                       showSnackBar(
