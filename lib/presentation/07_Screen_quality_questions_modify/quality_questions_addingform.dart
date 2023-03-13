@@ -36,6 +36,8 @@ class _QualityquestionformState extends State<Qualityquestionform> {
   bool vdo = false;
   bool vdoManditory = false;
   List<bool> _checkedItems = [];
+  List<int> indexList = [];
+  List<int> selectedID = [];
 
   @override
   Widget build(BuildContext context) {
@@ -284,6 +286,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                                                           onChanged:
                                                                               (bool? value) {
                                                                             print(_checkedItems);
+                                                                            print(selectedID);
                                                                             setState(() {
                                                                               _checkedItems[index] = !_checkedItems[index];
                                                                               print(_checkedItems);
@@ -336,6 +339,28 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                                 TextButton(
                                                   onPressed: () {
                                                     // Get.find<AuthController>().logOut();
+                                                    for (int i = 0;
+                                                        i <
+                                                            _checkedItems
+                                                                .length;
+                                                        i++) {
+                                                      if (_checkedItems[i]) {
+                                                        indexList.add(i);
+                                                        indexList.toList();
+                                                      }
+                                                    }
+                                                    for (int i = 0;
+                                                        i < indexList.length;
+                                                        i++) {
+                                                      int k = Get.find<
+                                                              ToolsController>()
+                                                          .toolsList[i]
+                                                          .id!;
+                                                      selectedID.add(k);
+                                                      selectedID.toList();
+                                                    }
+                                                    print(selectedID);
+                                                    print(indexList);
                                                   },
                                                   child: Text(
                                                     'Confirm',
