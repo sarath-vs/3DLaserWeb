@@ -4,6 +4,7 @@ import 'package:laser_tech_app/application/tools_controller/tools_controller.dar
 import '../../domain/responsive/dimensions.dart';
 import '../theme/color.dart';
 import '../theme/theme.dart';
+import '../widgets/snackbar.dart';
 import 'widget/image_uploading_widget.dart';
 
 class ScreenToolsADD extends StatefulWidget {
@@ -13,6 +14,10 @@ class ScreenToolsADD extends StatefulWidget {
   @override
   State<ScreenToolsADD> createState() => _ScreenToolsADDState();
 }
+
+String name = '';
+String disc = '';
+String img = '@door_9HyPlSJ_LAZx187.webp;type=image/webp';
 
 class _ScreenToolsADDState extends State<ScreenToolsADD> {
   @override
@@ -57,11 +62,11 @@ class _ScreenToolsADDState extends State<ScreenToolsADD> {
                           "Tool Details",
                           style: AppTheme.h8Style,
                         ),
-                        Icon(
-                          Icons.delete,
-                          color: Colors.red,
-                          size: customHeight(30),
-                        )
+                        // Icon(
+                        //   Icons.delete,
+                        //   color: Colors.red,
+                        //   size: customHeight(30),
+                        // )
                       ],
                     ),
                     // customVerticalGap(20),
@@ -76,7 +81,7 @@ class _ScreenToolsADDState extends State<ScreenToolsADD> {
                           return null;
                         },
                         onChanged: (value) {
-                          // password = value;
+                          name = value;
                         },
                         decoration: InputDecoration(
                           hintText: "Tool Name*",
@@ -104,7 +109,7 @@ class _ScreenToolsADDState extends State<ScreenToolsADD> {
                           return null;
                         },
                         onChanged: (value) {
-                          // password = value;
+                          disc = value;
                         },
                         decoration: InputDecoration(
                           hintText: "Usage Discripiton",
@@ -145,7 +150,21 @@ class _ScreenToolsADDState extends State<ScreenToolsADD> {
                           ),
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            if (name == '' || disc == '' || img == '') {
+                              showSnackBar(message: 'Fill input fields');
+                            } else {
+                              Get.find<ToolsController>()
+                                  .saveToolsQuality(
+                                      name: name, image: img, discription: disc)
+                                  .then((value) {
+                                Get.find<ToolsController>().getTools();
+                                Get.back();
+
+                                showSnackBar(message: 'Item saved');
+                              });
+                            }
+                          },
                           child: Container(
                             alignment: Alignment.center,
                             width: customWidth(50),

@@ -45,4 +45,54 @@ class ToolsController extends GetxController {
       update([toolListWidgetID]);
     });
   }
+
+  Future<void> saveToolsQuality(
+      {required String name,
+      required String image,
+      required String discription}) async {
+    showCircularProgressDialog(msg: 'Signing in');
+    final result = await _toolsFacade.saveToolsDetail(
+        name: name, image: image, description: discription);
+    Navigator.of(navigatorKey.currentContext!).pop();
+    result.fold((NetworkExceptions exp) {
+      return showSingleButtonAlertDialog(
+        Get.context!,
+        'Warning',
+        getMessageFromException(exp),
+        () {
+          Navigator.of(Get.context!).pop();
+        },
+      );
+    }, (String resp) async {
+      //qualityProductList.clear();
+      // qualityProductList.addAll(resp);
+      name = resp;
+      customLog(resp);
+      update([toolListWidgetID]);
+    });
+  }
+
+  Future<void> deleteQualityTools({
+    required int id,
+  }) async {
+    showCircularProgressDialog(msg: 'Signing in');
+    final result = await _toolsFacade.deleteTool(id: id);
+    Navigator.of(navigatorKey.currentContext!).pop();
+    result.fold((NetworkExceptions exp) {
+      return showSingleButtonAlertDialog(
+        Get.context!,
+        'Warning',
+        getMessageFromException(exp),
+        () {
+          Navigator.of(Get.context!).pop();
+        },
+      );
+    }, (String resp) async {
+      //qualityProductList.clear();
+      // qualityProductList.addAll(resp);
+      // name = resp;
+      customLog(resp);
+      update([toolListWidgetID]);
+    });
+  }
 }

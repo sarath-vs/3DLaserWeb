@@ -25,6 +25,9 @@ class URLPool {
   // String get getDigitalMannualList => 'http://65.1.86.132/digital-manual/';
   // String get getDigitalMannualDetail => 'http://65.1.86.132/digital-manual/';
   String get getToolsList => 'http://65.1.86.132/admin-dashboard/tools/';
+  String get saveTools => 'http://65.1.86.132/admin-dashboard/tools/';
+  String get deleteTools => 'http://65.1.86.132/admin-dashboard/tools';
+
   String get getQualityProducts =>
       'http://65.1.86.132/admin-dashboard/category/';
   String get saveQualityProducts =>
