@@ -27,7 +27,7 @@ class ToolsController extends GetxController {
   String get toolListWidgetID => 'toolListWidgetID';
 
   List<ToolsResult> toolsList = [];
-  FilePickerResult? filepath;
+  String? filepath;
 
   Future<void> getTools() async {
     showCircularProgressDialog(msg: 'Signing in');
@@ -52,11 +52,11 @@ class ToolsController extends GetxController {
 
   Future<void> saveToolsQuality(
       {required String name,
-      required FilePickerResult image,
+      required String image_base_64,
       required String discription}) async {
     showCircularProgressDialog(msg: 'Signing in');
     final result = await _toolsFacade.saveToolsDetail(
-        name: name, image: image, description: discription);
+        name: name, image_base_64: image_base_64, description: discription);
     Navigator.of(navigatorKey.currentContext!).pop();
     result.fold((NetworkExceptions exp) {
       return showSingleButtonAlertDialog(

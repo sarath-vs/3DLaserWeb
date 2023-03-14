@@ -10,7 +10,7 @@ abstract class ToolsFacade {
   Future<Either<NetworkExceptions, ToolsModel>> getToolsDetail();
   Future<Either<NetworkExceptions, String>> saveToolsDetail(
       {required String name,
-      required FilePickerResult image,
+      required String image_base_64,
       required String description});
   Future<Either<NetworkExceptions, String>> deleteTool({required int id});
 }

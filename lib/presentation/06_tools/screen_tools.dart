@@ -175,7 +175,7 @@ class _ScreenToolsADDState extends State<ScreenToolsADD> {
                               Get.find<ToolsController>()
                                   .saveToolsQuality(
                                       name: name,
-                                      image: imageuploading!,
+                                      image_base_64: imageuploading!,
                                       discription: disc)
                                   .then((value) {
                                 Get.find<ToolsController>().getTools();

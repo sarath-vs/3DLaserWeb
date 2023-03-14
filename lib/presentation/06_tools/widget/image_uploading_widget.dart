@@ -25,6 +25,7 @@ class _ImageUploadEidgetState extends State<ImageUploadEidget> {
   List<String> imageUrls = [];
   var filePath = '';
   String? selectfilepath;
+  String base64String = '';
   final ImagePicker picker = ImagePicker();
   // final List<XFile>? images = [];
 
@@ -48,21 +49,21 @@ class _ImageUploadEidgetState extends State<ImageUploadEidget> {
       setState(() {
         // pickedImagesInBytes.add(element.bytes);
         selectedImageInBytes = fileResult.files.first.bytes;
+        base64String = base64.encode(selectedImageInBytes!).toString();
         // imageCounts += 1;
       });
     }
-    String base64String = base64.encode(selectedImageInBytes!);
-    List<int> bytes = utf8.encode(base64String);
-    String byteString = base64.encode(bytes);
+
+    // List<int> bytes = utf8.encode(base64String);
+    // String byteString = base64.encode(bytes);
     // File imgFile = File(selctFile);
-    Get.find<ToolsController>().filepath = fileResult;
+    Get.find<ToolsController>().filepath = base64String;
     print("*******");
     print(selctFile);
     print("********");
-    // // print(imgFile);
+    print(base64String);
     // print(selectedImageInBytes);
     print("************/////////////////");
-    print(byteString.toString());
   }
 
   @override

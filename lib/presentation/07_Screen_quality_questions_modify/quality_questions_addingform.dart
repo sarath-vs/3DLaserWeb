@@ -45,6 +45,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
   String discriptionGerman = '';
   List<bool> _checkedItems = [];
   List<int> indexList = [];
+
   final TextEditingController controller1 = TextEditingController();
   final TextEditingController controller2 = TextEditingController();
 
@@ -1055,7 +1056,8 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                       "vdo": vdo,
                                       "vdoMN": vdoManditory,
                                       "rangeFrom": rangeFrom,
-                                      "rangeTo": rangeTo
+                                      "rangeTo": rangeTo,
+                                      "dropDownData": dropDownData
                                     };
                                     final dataToSend = {
                                       "description_english": discriptionEnglish,

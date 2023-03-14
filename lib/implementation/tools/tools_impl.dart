@@ -48,13 +48,12 @@ class ToolsListImpl implements ToolsFacade {
   @override
   Future<Either<NetworkExceptions, String>> saveToolsDetail(
       {required String name,
-      required FilePickerResult image,
+      required String image_base_64,
       required String description}) async {
     String? access = await _employeeDataManager.getRefresh();
     final _body = {
       "name": name,
-      "image": MultipartFile.fromBytes(image.files.first.bytes as List<int>,
-          filename: image.files.first.name),
+      "image_base_64": image_base_64,
       "description": description,
     };
 
