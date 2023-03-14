@@ -97,7 +97,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Question Details",
+                                  "Question Title",
                                   style: AppTheme.h8Style,
                                 ),
                                 // Icon(
@@ -158,7 +158,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                   questionGerman = value;
                                 },
                                 decoration: InputDecoration(
-                                  hintText: "Questions German*",
+                                  hintText: "Questions Vietnam*",
 
                                   // border: OutlineInputBorder(
                                   //     borderRadius: BorderRadius.circular(20)),
@@ -223,7 +223,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                   discriptionGerman = value;
                                 },
                                 decoration: InputDecoration(
-                                  hintText: "Questions Discription german*",
+                                  hintText: "Questions Discription Vietnam*",
 
                                   // border: OutlineInputBorder(
                                   //     borderRadius: BorderRadius.circular(20)),
@@ -530,18 +530,18 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                         fontSize: customFontSize(4),
                                       ),
                                     )),
-                                Expanded(
-                                    flex: 1,
-                                    child: Text(
-                                      'Manditory',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: customFontSize(
-                                          4,
-                                        ),
-                                      ),
-                                    )),
+                                // Expanded(
+                                //     flex: 1,
+                                //     child: Text(
+                                //       'Manditory',
+                                //       textAlign: TextAlign.center,
+                                //       style: TextStyle(
+                                //         fontWeight: FontWeight.bold,
+                                //         fontSize: customFontSize(
+                                //           4,
+                                //         ),
+                                //       ),
+                                //     )),
                               ],
                             ),
                             ////////
@@ -571,22 +571,22 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                   child: Text('Yes/No'),
                                 ),
                                 Expanded(flex: 3, child: Text('Yes or No')),
-                                Expanded(
-                                  flex: 1,
-                                  child: Checkbox(
-                                    value: yesnoManditory,
-                                    checkColor:
-                                        Colors.white, // color of tick Mark
-                                    activeColor: LightColor.primaryColor,
-                                    onChanged: (bool? value) {
-                                      setState(() {
-                                        if (yesno) {
-                                          yesnoManditory = !yesnoManditory;
-                                        }
-                                      });
-                                    },
-                                  ),
-                                ),
+                                // Expanded(
+                                //   flex: 1,
+                                //   child: Checkbox(
+                                //     value: yesnoManditory,
+                                //     checkColor:
+                                //         Colors.white, // color of tick Mark
+                                //     activeColor: LightColor.primaryColor,
+                                //     onChanged: (bool? value) {
+                                //       setState(() {
+                                //         if (yesno) {
+                                //           yesnoManditory = !yesnoManditory;
+                                //         }
+                                //       });
+                                //     },
+                                //   ),
+                                // ),
                               ],
                             ),
                             ////////
@@ -613,28 +613,28 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                 ),
                                 Expanded(
                                   flex: 3,
-                                  child: Text('Yes/No/None'),
+                                  child: Text('None'),
                                 ),
                                 Expanded(
                                     flex: 3,
                                     child: Text('Yes, No or None can be used')),
-                                Expanded(
-                                  flex: 1,
-                                  child: Checkbox(
-                                    value: yesnoNoneManditory,
-                                    checkColor:
-                                        Colors.white, // color of tick Mark
-                                    activeColor: LightColor.primaryColor,
-                                    onChanged: (bool? value) {
-                                      setState(() {
-                                        if (yesnoNone) {
-                                          yesnoNoneManditory =
-                                              !yesnoNoneManditory;
-                                        }
-                                      });
-                                    },
-                                  ),
-                                ),
+                                // Expanded(
+                                //   flex: 1,
+                                //   child: Checkbox(
+                                //     value: yesnoNoneManditory,
+                                //     checkColor:
+                                //         Colors.white, // color of tick Mark
+                                //     activeColor: LightColor.primaryColor,
+                                //     onChanged: (bool? value) {
+                                //       setState(() {
+                                //         if (yesnoNone) {
+                                //           yesnoNoneManditory =
+                                //               !yesnoNoneManditory;
+                                //         }
+                                //       });
+                                //     },
+                                //   ),
+                                // ),
                               ],
                             ),
                             ////////
@@ -738,22 +738,22 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                     ],
                                   ),
                                 ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Checkbox(
-                                    value: rangeManditory,
-                                    checkColor:
-                                        Colors.white, // color of tick Mark
-                                    activeColor: LightColor.primaryColor,
-                                    onChanged: (bool? value) {
-                                      setState(() {
-                                        if (range) {
-                                          rangeManditory = !rangeManditory;
-                                        }
-                                      });
-                                    },
-                                  ),
-                                ),
+                                // Expanded(
+                                //   flex: 1,
+                                //   child: Checkbox(
+                                //     value: rangeManditory,
+                                //     checkColor:
+                                //         Colors.white, // color of tick Mark
+                                //     activeColor: LightColor.primaryColor,
+                                //     onChanged: (bool? value) {
+                                //       setState(() {
+                                //         if (range) {
+                                //           rangeManditory = !rangeManditory;
+                                //         }
+                                //       });
+                                //     },
+                                //   ),
+                                // ),
                               ],
                             ),
                             ////////
@@ -785,23 +785,23 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                 Expanded(
                                     flex: 3,
                                     child: Text('Accept Text or Number')),
-                                Expanded(
-                                  flex: 1,
-                                  child: Checkbox(
-                                    value: inputTextManditory,
-                                    checkColor:
-                                        Colors.white, // color of tick Mark
-                                    activeColor: LightColor.primaryColor,
-                                    onChanged: (bool? value) {
-                                      setState(() {
-                                        if (inputText) {
-                                          inputTextManditory =
-                                              !inputTextManditory;
-                                        }
-                                      });
-                                    },
-                                  ),
-                                ),
+                                // Expanded(
+                                //   flex: 1,
+                                //   child: Checkbox(
+                                //     value: inputTextManditory,
+                                //     checkColor:
+                                //         Colors.white, // color of tick Mark
+                                //     activeColor: LightColor.primaryColor,
+                                //     onChanged: (bool? value) {
+                                //       setState(() {
+                                //         if (inputText) {
+                                //           inputTextManditory =
+                                //               !inputTextManditory;
+                                //         }
+                                //       });
+                                //     },
+                                //   ),
+                                // ),
                               ],
                             ), ////////
                             ///////
@@ -938,23 +938,23 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                     ),
                                   ),
                                 ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Checkbox(
-                                    value: dropDownManditory,
-                                    checkColor:
-                                        Colors.white, // color of tick Mark
-                                    activeColor: LightColor.primaryColor,
-                                    onChanged: (bool? value) {
-                                      setState(() {
-                                        if (dropdown) {
-                                          dropDownManditory =
-                                              !dropDownManditory;
-                                        }
-                                      });
-                                    },
-                                  ),
-                                ),
+                                // Expanded(
+                                //   flex: 1,
+                                //   child: Checkbox(
+                                //     value: dropDownManditory,
+                                //     checkColor:
+                                //         Colors.white, // color of tick Mark
+                                //     activeColor: LightColor.primaryColor,
+                                //     onChanged: (bool? value) {
+                                //       setState(() {
+                                //         if (dropdown) {
+                                //           dropDownManditory =
+                                //               !dropDownManditory;
+                                //         }
+                                //       });
+                                //     },
+                                //   ),
+                                // ),
                               ],
                             ),
                             ////////
@@ -986,22 +986,22 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                 Expanded(
                                     flex: 3,
                                     child: Text('Image file can be uploaded')),
-                                Expanded(
-                                  flex: 1,
-                                  child: Checkbox(
-                                    value: imageManditory,
-                                    checkColor:
-                                        Colors.white, // color of tick Mark
-                                    activeColor: LightColor.primaryColor,
-                                    onChanged: (bool? value) {
-                                      setState(() {
-                                        if (image) {
-                                          imageManditory = !imageManditory;
-                                        }
-                                      });
-                                    },
-                                  ),
-                                ),
+                                // Expanded(
+                                //   flex: 1,
+                                //   child: Checkbox(
+                                //     value: imageManditory,
+                                //     checkColor:
+                                //         Colors.white, // color of tick Mark
+                                //     activeColor: LightColor.primaryColor,
+                                //     onChanged: (bool? value) {
+                                //       setState(() {
+                                //         if (image) {
+                                //           imageManditory = !imageManditory;
+                                //         }
+                                //       });
+                                //     },
+                                //   ),
+                                // ),
                               ],
                             ),
 

@@ -54,7 +54,7 @@ class SideMenu extends StatelessWidget {
             },
           ),
           DrawerListTile(
-            title: " quality Products",
+            title: " Quality Panel",
             icon: Icon(
               Icons.category,
               color: Colors.grey,
