@@ -49,7 +49,7 @@ class _ImageUploadEidgetState extends State<ImageUploadEidget> {
       setState(() {
         // pickedImagesInBytes.add(element.bytes);
         selectedImageInBytes = fileResult.files.first.bytes;
-        base64String = base64.encode(selectedImageInBytes!).toString();
+        base64String = base64.encode(selectedImageInBytes!);
         // imageCounts += 1;
       });
     }
@@ -61,9 +61,9 @@ class _ImageUploadEidgetState extends State<ImageUploadEidget> {
     print("*******");
     print(selctFile);
     print("********");
-    print(base64String);
+    print("*********" + base64String + "**********");
     // print(selectedImageInBytes);
-    print("************/////////////////");
+    // print("************/////////////////");
   }
 
   @override
