@@ -54,7 +54,7 @@ class WorkingTools extends StatelessWidget {
                                           height: customHeight(100),
                                           child: Image.network(
                                             '${controller.toolsList[index].image}',
-                                            fit: BoxFit.cover,
+                                            fit: BoxFit.contain,
                                           )),
                                       customHorizontalGap(10),
                                       Column(

@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,6 +10,7 @@ import '../../application/tools_controller/tools_controller.dart';
 import '../../domain/responsive/dimensions.dart';
 import '../theme/color.dart';
 import '../theme/theme.dart';
+import 'widget/qualityqp_image_uploading_widget.dart';
 
 class Qualityquestionform extends StatefulWidget {
   static const routeName = 'Qualityquestionform';
@@ -50,6 +54,71 @@ class _QualityquestionformState extends State<Qualityquestionform> {
   final TextEditingController controller2 = TextEditingController();
 
   PlatformFile? objFile;
+
+  String selctFile = '';
+
+  Uint8List? selectedvideoInBytes;
+  List<Uint8List> pickedImagesInBytes = [];
+  List<String> selectedimages = [];
+  List<String> selectedimagesin64bytes = [];
+  String selectedvideo = "";
+  var filePath = '';
+  String? selectfilepath;
+  String base64String = '';
+
+  int imageCounts = 0;
+  _selectvideoFile(bool imageFrom) async {
+    FilePickerResult? fileResult =
+        await FilePicker.platform.pickFiles(type: FileType.video);
+
+    if (fileResult != null) {
+      if (fileResult.files.first.size <=
+          5851340) //size checking file this is for 5 mb
+      {
+        selctFile = fileResult.files.first.name;
+        selectfilepath = fileResult.files.first.identifier;
+
+        setState(() {
+          selectedvideo = selctFile;
+
+          selectedvideoInBytes = fileResult.files.first.bytes;
+          base64String = base64.encode(selectedvideoInBytes!);
+          // imageCounts += 1;
+        });
+        print("*********" +
+            base64String +
+            "**********"); //this is video byte string
+      } else {
+        print("5mb less video provide");
+      }
+    }
+  }
+
+  _selectedimages(bool imageFrom) async {
+    FilePickerResult? fileResult = await FilePicker.platform
+        .pickFiles(allowMultiple: true, type: FileType.image);
+
+    if (fileResult != null) {
+      selctFile = fileResult.files.first.name;
+      fileResult.files.forEach((element) {
+        setState(() {
+          pickedImagesInBytes.add(element.bytes as Uint8List);
+          selectedimages.add(element.name);
+          selectedimagesin64bytes.add(base64.encode(element.bytes!));
+          //selectedImageInBytes = fileResult.files.first.bytes;
+          imageCounts += 1;
+        });
+      });
+    }
+    print("***********" +
+        selectedimages.toString() +
+        "**************"); // List of selected images names
+    print("***********" +
+        selectedimagesin64bytes.toString() +
+        "**************"); //List of selected images 64bytes form
+
+    // print(pickedImagesInBytes);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -239,37 +308,129 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 customHorizontalGap(50),
-                                InkWell(
-                                  onTap: () async {
-                                    // var picked =
-                                    //     await FilePicker.platform.pickFiles(
-                                    //   withReadStream: true,
-                                    // );
-                                    // if (picked != null) {
-                                    //   setState(() {
-                                    //     objFile = picked.files.single;
-                                    //   });
-                                    // }
-                                  },
-                                  child: Container(
-                                    alignment: Alignment.center,
-                                    width: customWidth(35),
-                                    height: customHeight(30),
-                                    decoration: BoxDecoration(
-                                      color: LightColor.orange,
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(5)),
-                                      border: Border.all(
-                                          width: 1,
-                                          color: LightColor.primaryColor),
+                                Column(
+                                  children: [
+                                    Container(
+                                        alignment: Alignment.center,
+                                        width: customWidth(35),
+                                        height: customHeight(20),
+                                        decoration: BoxDecoration(
+                                          color: LightColor.grey2,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5)),
+                                          border: Border.all(
+                                              width: 1,
+                                              color: LightColor.black),
+                                        ),
+                                        child: (selectedvideo == "")
+                                            ? const Text(
+                                                "uploaded files here",
+                                                style: TextStyle(
+                                                    color: LightColor.grey),
+                                              )
+                                            : Text(
+                                                selectedvideo,
+                                                style: TextStyle(
+                                                    color: LightColor.grey),
+                                              )),
+                                    customVerticalGap(10),
+                                    InkWell(
+                                      onTap: () async {
+                                        _selectvideoFile(true);
+                                        // var picked =
+                                        //     await FilePicker.platform.pickFiles(
+                                        //   withReadStream: true,
+                                        // );
+                                        // if (picked != null) {
+                                        //   setState(() {
+                                        //     objFile = picked.files.single;
+                                        //   });
+                                        // }
+                                      },
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width: customWidth(35),
+                                        height: customHeight(30),
+                                        decoration: BoxDecoration(
+                                          color: LightColor.orange,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5)),
+                                          border: Border.all(
+                                              width: 1,
+                                              color: LightColor.primaryColor),
+                                        ),
+                                        child: Text(
+                                          "Upload Video",
+                                          style: TextStyle(
+                                              fontSize: customFontSize(3),
+                                              color: Colors.white),
+                                        ),
+                                      ),
                                     ),
-                                    child: Text(
-                                      "Upload Images",
-                                      style: TextStyle(
-                                          fontSize: customFontSize(3),
-                                          color: Colors.white),
+                                  ],
+                                ),
+                                customHorizontalGap(20),
+                                Column(
+                                  children: [
+                                    Container(
+                                        alignment: Alignment.center,
+                                        width: customWidth(35),
+                                        height: customHeight(20),
+                                        decoration: BoxDecoration(
+                                          color: LightColor.grey2,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5)),
+                                          border: Border.all(
+                                              width: 1,
+                                              color: LightColor.black),
+                                        ),
+                                        child:
+                                            (selectedimages.toString() == "[]")
+                                                ? const Text(
+                                                    "uploaded files here",
+                                                    style: TextStyle(
+                                                        color: LightColor.grey),
+                                                  )
+                                                : Text(
+                                                    selectedimages.toString(),
+                                                    style: TextStyle(
+                                                        color: LightColor.grey),
+                                                  )),
+                                    customVerticalGap(10),
+                                    InkWell(
+                                      onTap: () async {
+                                        _selectedimages(true);
+                                        // var picked =
+                                        //     await FilePicker.platform.pickFiles(
+                                        //   withReadStream: true,
+                                        // );
+                                        // if (picked != null) {
+                                        //   setState(() {
+                                        //     objFile = picked.files.single;
+                                        //   });
+                                        // }
+                                      },
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width: customWidth(35),
+                                        height: customHeight(30),
+                                        decoration: BoxDecoration(
+                                          color: LightColor.orange,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5)),
+                                          border: Border.all(
+                                              width: 1,
+                                              color: LightColor.primaryColor),
+                                        ),
+                                        child: Text(
+                                          "Upload Images",
+                                          style: TextStyle(
+                                              fontSize: customFontSize(3),
+                                              color: Colors.white),
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                  ],
                                 ),
                                 customHorizontalGap(20),
                                 InkWell(
@@ -330,7 +491,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                                                         child: Image.network(
                                                                           '${controller.toolsList[index].image}',
                                                                           fit: BoxFit
-                                                                              .cover,
+                                                                              .contain,
                                                                         )),
                                                                   ),
                                                                   customHorizontalGap(
@@ -594,50 +755,50 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                             ///////
                             //////
                             ///Answer Yes/No/None
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Checkbox(
-                                    value: yesnoNone,
-                                    checkColor:
-                                        Colors.white, // color of tick Mark
-                                    activeColor: LightColor.primaryColor,
-                                    onChanged: (bool? value) {
-                                      setState(() {
-                                        yesnoNone = !yesnoNone;
-                                        yesnoNoneManditory = false;
-                                      });
-                                    },
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 3,
-                                  child: Text('None'),
-                                ),
-                                Expanded(
-                                    flex: 3,
-                                    child: Text('Yes, No or None can be used')),
-                                // Expanded(
-                                //   flex: 1,
-                                //   child: Checkbox(
-                                //     value: yesnoNoneManditory,
-                                //     checkColor:
-                                //         Colors.white, // color of tick Mark
-                                //     activeColor: LightColor.primaryColor,
-                                //     onChanged: (bool? value) {
-                                //       setState(() {
-                                //         if (yesnoNone) {
-                                //           yesnoNoneManditory =
-                                //               !yesnoNoneManditory;
-                                //         }
-                                //       });
-                                //     },
-                                //   ),
-                                // ),
-                              ],
-                            ),
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            //   children: [
+                            //     Expanded(
+                            //       flex: 1,
+                            //       child: Checkbox(
+                            //         value: yesnoNone,
+                            //         checkColor:
+                            //             Colors.white, // color of tick Mark
+                            //         activeColor: LightColor.primaryColor,
+                            //         onChanged: (bool? value) {
+                            //           setState(() {
+                            //             yesnoNone = !yesnoNone;
+                            //             yesnoNoneManditory = false;
+                            //           });
+                            //         },
+                            //       ),
+                            //     ),
+                            //     Expanded(
+                            //       flex: 3,
+                            //       child: Text('None'),
+                            //     ),
+                            //     Expanded(
+                            //         flex: 3,
+                            //         child: Text('Yes, No or None can be used')),
+                            //     // Expanded(
+                            //     //   flex: 1,
+                            //     //   child: Checkbox(
+                            //     //     value: yesnoNoneManditory,
+                            //     //     checkColor:
+                            //     //         Colors.white, // color of tick Mark
+                            //     //     activeColor: LightColor.primaryColor,
+                            //     //     onChanged: (bool? value) {
+                            //     //       setState(() {
+                            //     //         if (yesnoNone) {
+                            //     //           yesnoNoneManditory =
+                            //     //               !yesnoNoneManditory;
+                            //     //         }
+                            //     //       });
+                            //     //     },
+                            //     //   ),
+                            //     // ),
+                            //   ],
+                            // ),
                             ////////
                             ///////
                             //////

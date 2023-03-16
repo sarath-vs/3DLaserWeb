@@ -54,7 +54,7 @@ class SideMenu extends StatelessWidget {
             },
           ),
           DrawerListTile(
-            title: " Quality Panel",
+            title: " Quality Plan",
             icon: Icon(
               Icons.category,
               color: Colors.grey,
@@ -64,7 +64,7 @@ class SideMenu extends StatelessWidget {
             },
           ),
           DrawerListTile(
-            title: "Quality Mannual",
+            title: "Assembly Plan",
             icon: Icon(
               Icons.high_quality,
               color: Colors.grey,

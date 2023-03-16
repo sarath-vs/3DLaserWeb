@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:laser_tech_app/application/quality_products_controller/quality_product_controller.dart';
+import 'package:laser_tech_app/presentation/04_Screen_quality_control_properties/quality_control_properties_addingform.dart';
 
 import '../../../application/home_screen_controller/controller.dart';
 import '../../../domain/responsive/dimensions.dart';
+import '../../theme/color.dart';
 import '../../widgets/custom_appbar.dart';
 
 class Categories extends StatelessWidget {
@@ -72,50 +74,95 @@ class Categories extends StatelessWidget {
                                           // )
                                         ],
                                       ),
-                                      trailing: GestureDetector(
-                                        onTap: () {
-                                          int id = controller
-                                              .qualityProductList[index].id!;
-                                          showDialog(
-                                            context: context,
-                                            barrierDismissible: false,
-                                            builder: (context) {
-                                              return AlertDialog(
-                                                title: Text('Alert'),
-                                                content: Text(
-                                                    'Are you sure you want to delete'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      Get.back();
-                                                    },
-                                                    child: const Text('No'),
-                                                  ),
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      controller
-                                                          .deleteQualityProduct(
-                                                              id: id)
-                                                          .then((value) =>
-                                                              controller
-                                                                  .getQualityProducts());
-                                                      Get.back();
-                                                    },
-                                                    child: const Text('Yes'),
-                                                  ),
-                                                ],
+                                      trailing: Wrap(
+                                        spacing: 12,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: InkWell(
+                                              onTap: () {
+                                                //                                      Navigator.pushNamed(
+                                                //   Get.context!,
+                                                //   Qualitycontrolproperties.routeName,
+                                                //   arguments: {
+                                                //     'id': id,
+                                                //     'productName': title,
+                                                //   },
+                                                // );
+                                              },
+                                              child: Container(
+                                                alignment: Alignment.center,
+                                                width: customWidth(20),
+                                                height: customHeight(25),
+                                                decoration: BoxDecoration(
+                                                  color: LightColor.orange,
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(5)),
+                                                  border: Border.all(
+                                                      width: 1,
+                                                      color: LightColor
+                                                          .primaryColor),
+                                                ),
+                                                child: Text(
+                                                  "EDIT",
+                                                  style: TextStyle(
+                                                      fontSize:
+                                                          customFontSize(3),
+                                                      color: Colors.white),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              int id = controller
+                                                  .qualityProductList[index]
+                                                  .id!;
+                                              showDialog(
+                                                context: context,
+                                                barrierDismissible: false,
+                                                builder: (context) {
+                                                  return AlertDialog(
+                                                    title: Text('Alert'),
+                                                    content: Text(
+                                                        'Are you sure you want to delete'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () {
+                                                          Get.back();
+                                                        },
+                                                        child: const Text('No'),
+                                                      ),
+                                                      TextButton(
+                                                        onPressed: () {
+                                                          controller
+                                                              .deleteQualityProduct(
+                                                                  id: id)
+                                                              .then((value) =>
+                                                                  controller
+                                                                      .getQualityProducts());
+                                                          Get.back();
+                                                        },
+                                                        child:
+                                                            const Text('Yes'),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
                                               );
                                             },
-                                          );
-                                        },
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Icon(
-                                            Icons.delete,
-                                            color: Colors.red,
-                                            size: customHeight(25),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Icon(
+                                                Icons.delete,
+                                                color: Colors.red,
+                                                size: customHeight(25),
+                                              ),
+                                            ),
                                           ),
-                                        ),
+                                        ],
                                       ),
                                     );
                                   },

@@ -38,6 +38,8 @@ class URLPool {
       'http://65.1.86.132/admin-dashboard/question/';
   String get deleteQualityQuestions =>
       'http://65.1.86.132/admin-dashboard/question/';
+  // String get editQualityQuestions =>
+  //     'http://65.1.86.132/admin-dashboard/question/';
   String get postQualityQuestions =>
       'http://65.1.86.132/admin-dashboard/question/';
 }

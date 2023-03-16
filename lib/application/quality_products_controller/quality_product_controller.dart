@@ -77,6 +77,30 @@ class QualityProductController extends GetxController {
     });
   }
 
+  // Future<void> editQualityProduct({
+  //   required int id,
+  // }) async {
+  //   showCircularProgressDialog(msg: 'Signing in');
+  //   final result = await _qualityProductFacade.editQualityProduct(id: id);
+  //   Navigator.of(navigatorKey.currentContext!).pop();
+  //   result.fold((NetworkExceptions exp) {
+  //     return showSingleButtonAlertDialog(
+  //       Get.context!,
+  //       'Warning',
+  //       getMessageFromException(exp),
+  //       () {
+  //         Navigator.of(Get.context!).pop();
+  //       },
+  //     );
+  //   }, (String resp) async {
+  //     //qualityProductList.clear();
+  //     // qualityProductList.addAll(resp);
+  //     name = resp;
+  //     customLog(resp);
+  //     update([qualityProductID]);
+  //   });
+  // }
+
   Future<void> deleteQualityProduct({
     required int id,
   }) async {

@@ -67,6 +67,34 @@ class QualityProductImpl implements QualityProductFacade {
     }
   }
 
+  // @override
+  // Future<Either<NetworkExceptions, String>> editQualityProduct(
+  //     {required int id,
+  //       required String name, required String description}) async {
+  //   String? access = await _employeeDataManager.getRefresh();
+  //   final _body = {
+  //     "id":
+  //     "name": name,
+  //     "description": description,
+  //   };
+
+  //   final result = await Postman.sendPutRequest(
+  //     _url.editQualityQuestions,
+  //     _body,
+  //   );
+  //   if (result.statusCode == 201) {
+  //     final data = SaveQualtyProductModel.fromJson(
+  //         jsonDecode(result.body) as Map<String, dynamic>);
+  //     customLog('--->>>');
+  //     customLog(result.body);
+
+  //     return right(data.name!);
+  //   } else {
+  //     print('${result.statusCode}');
+  //     return left(getExceptionFromStatusCode(result.statusCode));
+  //   }
+  // }
+
   @override
   Future<Either<NetworkExceptions, String>> deleteQualityProduct(
       {required int id}) async {

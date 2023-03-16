@@ -58,10 +58,10 @@ class _ImageUploadEidgetState extends State<ImageUploadEidget> {
     // String byteString = base64.encode(bytes);
     // File imgFile = File(selctFile);
     Get.find<ToolsController>().filepath = base64String;
-    print("*******");
-    print(selctFile);
-    print("********");
-    print("*********" + base64String + "**********");
+    // print("*******");
+    // print(selctFile);
+    // print("********");
+    // print("*********" + base64String + "**********");
     // print(selectedImageInBytes);
     // print("************/////////////////");
   }

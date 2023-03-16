@@ -19,9 +19,13 @@ class ScreenToolsADD extends StatefulWidget {
   State<ScreenToolsADD> createState() => _ScreenToolsADDState();
 }
 
-String name = '';
-String disc = '';
-String img = '@door_9HyPlSJ_LAZx187.webp;type=image/webp';
+String englishname = '';
+String czechname = '';
+String vietnamname = '';
+
+String englishdisc = '';
+String czechdisc = '';
+String vietnamdisc = '';
 
 class _ScreenToolsADDState extends State<ScreenToolsADD> {
   Future<File> getImageFileFromAssets(String path) async {
@@ -34,7 +38,6 @@ class _ScreenToolsADDState extends State<ScreenToolsADD> {
     return file;
   }
 
-  String img = '@door_9HyPlSJ_LAZx187.webp;type=image/webp';
   @override
   Widget build(BuildContext context) {
     // WidgetsBinding.instance.addPostFrameCallback((duration) {
@@ -96,10 +99,50 @@ class _ScreenToolsADDState extends State<ScreenToolsADD> {
                           return null;
                         },
                         onChanged: (value) {
-                          name = value;
+                          englishname = value;
                         },
                         decoration: InputDecoration(
-                          hintText: "Tool Name*",
+                          hintText: "Tool Name english*",
+
+                          // border: OutlineInputBorder(
+                          //     borderRadius: BorderRadius.circular(20)),
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          floatingLabelStyle: AppTheme.h2Style,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: customWidth(400),
+                      child: TextFormField(
+                        validator: (val) {
+                          return null;
+                        },
+                        onChanged: (value) {
+                          czechname = value;
+                        },
+                        decoration: InputDecoration(
+                          hintText: "Tool Name Czech*",
+
+                          // border: OutlineInputBorder(
+                          //     borderRadius: BorderRadius.circular(20)),
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          floatingLabelStyle: AppTheme.h2Style,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: customWidth(400),
+                      child: TextFormField(
+                        validator: (val) {
+                          return null;
+                        },
+                        onChanged: (value) {
+                          vietnamname = value;
+                        },
+                        decoration: InputDecoration(
+                          hintText: "Tool Name Vietnam*",
 
                           // border: OutlineInputBorder(
                           //     borderRadius: BorderRadius.circular(20)),
@@ -124,10 +167,50 @@ class _ScreenToolsADDState extends State<ScreenToolsADD> {
                           return null;
                         },
                         onChanged: (value) {
-                          disc = value;
+                          englishdisc = value;
                         },
                         decoration: InputDecoration(
-                          hintText: "Usage Discripiton",
+                          hintText: "Usage Discripiton English",
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          floatingLabelStyle: AppTheme.h2Style,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      // width: customWidth(150),
+                      child: TextFormField(
+                        keyboardType: TextInputType.multiline,
+                        minLines: 1,
+                        maxLines: 7,
+                        validator: (val) {
+                          return null;
+                        },
+                        onChanged: (value) {
+                          czechdisc = value;
+                        },
+                        decoration: InputDecoration(
+                          hintText: "Usage Discripiton Czech",
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          floatingLabelStyle: AppTheme.h2Style,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      // width: customWidth(150),
+                      child: TextFormField(
+                        keyboardType: TextInputType.multiline,
+                        minLines: 1,
+                        maxLines: 7,
+                        validator: (val) {
+                          return null;
+                        },
+                        onChanged: (value) {
+                          vietnamdisc = value;
+                        },
+                        decoration: InputDecoration(
+                          hintText: "Usage Discripiton Vietnam",
                           fillColor: Colors.grey.shade200,
                           filled: true,
                           floatingLabelStyle: AppTheme.h2Style,
@@ -169,14 +252,16 @@ class _ScreenToolsADDState extends State<ScreenToolsADD> {
                             var imageuploading =
                                 Get.find<ToolsController>().filepath;
 
-                            if (name == '' || disc == '' || img == '') {
+                            if (englishname == '' ||
+                                englishdisc == '' ||
+                                imageuploading == '') {
                               showSnackBar(message: 'Fill input fields');
                             } else {
                               Get.find<ToolsController>()
                                   .saveToolsQuality(
-                                      name: name,
+                                      name: englishname,
                                       image_base_64: imageuploading!,
-                                      discription: disc)
+                                      discription: englishdisc)
                                   .then((value) {
                                 Get.find<ToolsController>().getTools();
                                 Get.back();
