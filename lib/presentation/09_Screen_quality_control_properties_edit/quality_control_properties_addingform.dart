@@ -120,7 +120,7 @@ class _QualitycontrolpropertiesEditorState extends State<Qualitycontrolpropertie
                       ),
                     ),
                     Text(
-                      "Discripiton",
+                      "Descripiton",
                       style: AppTheme.h6Style,
                     ),
                     SizedBox(
@@ -136,7 +136,7 @@ class _QualitycontrolpropertiesEditorState extends State<Qualitycontrolpropertie
                           description = value;
                         },
                         decoration: InputDecoration(
-                          hintText: description==""?"Discripiton":description,
+                          hintText: description==""?"Descripiton":description,
                           fillColor: Colors.grey.shade200,
                           filled: true,
                           floatingLabelStyle: AppTheme.h2Style,
