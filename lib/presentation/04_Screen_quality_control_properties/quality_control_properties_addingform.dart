@@ -28,7 +28,7 @@ class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Add/Edit Product",
+          "Add Product",
           textAlign: TextAlign.center,
           style: AppTheme.appBarText,
         ),

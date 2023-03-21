@@ -35,7 +35,7 @@ class _QualitycontrolpropertiesEditorState extends State<Qualitycontrolpropertie
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Add/Edit Product",
+          "Edit Product",
           textAlign: TextAlign.center,
           style: AppTheme.appBarText,
         ),

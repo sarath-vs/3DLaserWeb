@@ -239,7 +239,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                               ),
                             ),
                             Text(
-                              "Question Discription Details",
+                              "Question Description Details",
                               style: AppTheme.h8Style,
                             ),
                             SizedBox(
@@ -252,7 +252,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                   discriptionEnglish = value;
                                 },
                                 decoration: InputDecoration(
-                                  hintText: "Questions Discription English (optional)",
+                                  hintText: "Questions Description English (optional)",
 
                                   // border: OutlineInputBorder(
                                   //     borderRadius: BorderRadius.circular(20)),
@@ -273,7 +273,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                   discriptionCzech = value;
                                 },
                                 decoration: InputDecoration(
-                                  hintText: "Questions Discription Czech (optional)",
+                                  hintText: "Questions Description Czech (optional)",
 
                                   // border: OutlineInputBorder(
                                   //     borderRadius: BorderRadius.circular(20)),
@@ -293,7 +293,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                   discriptionGerman = value;
                                 },
                                 decoration: InputDecoration(
-                                  hintText: "Questions Discription Vietnam (optional)",
+                                  hintText: "Questions Description Vietnam (optional)",
 
                                   // border: OutlineInputBorder(
                                   //     borderRadius: BorderRadius.circular(20)),
