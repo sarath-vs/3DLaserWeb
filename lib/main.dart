@@ -14,6 +14,7 @@ import 'package:laser_tech_app/presentation/05_Employee_details/employee_work_de
 import 'package:laser_tech_app/presentation/06_tools/screen_tools.dart';
 import 'package:laser_tech_app/presentation/07_Screen_quality_questions_modify/quality_questions_addingform.dart';
 import 'package:laser_tech_app/presentation/10_completedProductList/screen_completed_product_list.dart';
+import 'package:laser_tech_app/presentation/10_completedProductList/screen_questions_its_answer.dart';
 import 'package:laser_tech_app/presentation/theme/theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'application/ansswered_product_controller/answered_product_controller.dart';
@@ -101,9 +102,13 @@ class _MyAppState extends State<MyApp> {
           Qualityquestionform.routeName: (context) =>
               const Qualityquestionform(),
           ScreenToolsADD.routeName: (context) => const ScreenToolsADD(),
-          QualityquestionEdit.routeName: (context) => const QualityquestionEdit(),
-           QualitycontrolpropertiesEditor.routeName: (context) => const QualitycontrolpropertiesEditor(),
-           ScreenCompletedProducts.routeName: (context) => const ScreenCompletedProducts(),
+          QualityquestionEdit.routeName: (context) =>
+              const QualityquestionEdit(),
+          QualitycontrolpropertiesEditor.routeName: (context) =>
+              const QualitycontrolpropertiesEditor(),
+          ScreenCompletedProducts.routeName: (context) =>
+              const ScreenCompletedProducts(),
+          Questionsanswer.routeName: (context) => const Questionsanswer(),
         },
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
@@ -128,9 +133,9 @@ initializeGetxController() {
   Get.put<ToolsController>(getIt<ToolsController>(), permanent: false);
   Get.put<QualityProductController>(getIt<QualityProductController>(),
       permanent: false);
-        Get.put<QualityQuestionEditController>(getIt<QualityQuestionEditController>(),
+  Get.put<QualityQuestionEditController>(getIt<QualityQuestionEditController>(),
       permanent: false);
-       Get.put<AnsweredProductController>(getIt<AnsweredProductController>(),
+  Get.put<AnsweredProductController>(getIt<AnsweredProductController>(),
       permanent: false);
 }
 

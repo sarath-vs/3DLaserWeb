@@ -7,6 +7,7 @@ import '../../../application/home_screen_controller/controller.dart';
 import '../../../domain/responsive/dimensions.dart';
 import '../../09_Screen_quality_control_properties_edit/quality_control_properties_addingform.dart';
 import '../../10_completedProductList/screen_completed_product_list.dart';
+import '../../10_completedProductList/screen_questions_its_answer.dart';
 import '../../theme/color.dart';
 import '../../widgets/custom_appbar.dart';
 
@@ -27,22 +28,25 @@ class Categories extends StatelessWidget {
               CustomAppBar(context, false, controller.screen),
               customVerticalGap(5),
               Padding(
-                padding:  EdgeInsets.symmetric(horizontal: customWidth(20)),
+                padding: EdgeInsets.symmetric(horizontal: customWidth(20)),
                 child: Container(
-                  
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.black,),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.black,
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: TextFormField(
                       cursorColor: Colors.white,
                       style: const TextStyle(color: Colors.white),
                       decoration: const InputDecoration(
-                    border: InputBorder.none,
+                        border: InputBorder.none,
                         hintText: 'Search Here',
                         hintStyle: TextStyle(color: Colors.white),
                       ),
                       onChanged: (data) {
-                         Get.find<QualityProductController>().searchDirectory(data);
+                        Get.find<QualityProductController>()
+                            .searchDirectory(data);
                       },
                     ),
                   ),
@@ -103,63 +107,71 @@ class Categories extends StatelessWidget {
                                         spacing: 12,
                                         children: [
                                           GestureDetector(
-                                            onTap: (){
-                                                                                  Navigator.pushNamed(
-                                                  Get.context!,
-                                                  ScreenCompletedProducts.routeName,
-                                                  arguments: {
-                                                    'id': controller
-                                                .qualityProductList[index].id!,
-                                                    'productName': controller
-                                               
-
-                                                  },
-                                                );
-
+                                            onTap: () {
+                                              Navigator.pushNamed(
+                                                Get.context!,
+                                                ScreenCompletedProducts
+                                                    .routeName,
+                                                arguments: {
+                                                  'id': controller
+                                                      .qualityProductList[index]
+                                                      .id!,
+                                                  'productName': controller
+                                                },
+                                              );
                                             },
                                             child: Padding(
-                                              padding: const EdgeInsets.all(8.0),
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
                                               child: Container(
-                                                    alignment: Alignment.center,
-                                                    width: customWidth(40),
-                                                    height: customHeight(25),
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.black,
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(5)),
-                                                      border: Border.all(
-                                                          width: 1,
-                                                          color: LightColor
-                                                              .primaryColor),
-                                                    ),
-                                                    child: Text(
-                                                      "Completed Works",
-                                                      style: TextStyle(
-                                                          fontSize:
-                                                              customFontSize(4),
-                                                          color: Colors.white),
-                                                    ),
-                                                  ),
+                                                alignment: Alignment.center,
+                                                width: customWidth(40),
+                                                height: customHeight(25),
+                                                decoration: BoxDecoration(
+                                                  color: Colors.black,
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(5)),
+                                                  border: Border.all(
+                                                      width: 1,
+                                                      color: LightColor
+                                                          .primaryColor),
+                                                ),
+                                                child: Text(
+                                                  "Completed Works",
+                                                  style: TextStyle(
+                                                      fontSize:
+                                                          customFontSize(4),
+                                                      color: Colors.white),
+                                                ),
+                                              ),
                                             ),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: InkWell(
                                               onTap: () {
-                                                           Navigator.pushNamed(
+                                                Navigator.pushNamed(
                                                   Get.context!,
-                                                  QualitycontrolpropertiesEditor.routeName,
+                                                  QualitycontrolpropertiesEditor
+                                                      .routeName,
                                                   arguments: {
                                                     'id': controller
-                                                .qualityProductList[index].id!,
+                                                        .qualityProductList[
+                                                            index]
+                                                        .id!,
                                                     'productName': controller
-                                                .qualityProductList[index].name!,
-                                                'description': controller
-                                                .qualityProductList[index].description!,
-                                                'time_limit': controller
-                                                .qualityProductList[index].time_limit!,
-
+                                                        .qualityProductList[
+                                                            index]
+                                                        .name!,
+                                                    'description': controller
+                                                        .qualityProductList[
+                                                            index]
+                                                        .description!,
+                                                    'time_limit': controller
+                                                        .qualityProductList[
+                                                            index]
+                                                        .time_limit!,
                                                   },
                                                 );
                                               },
