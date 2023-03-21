@@ -6,6 +6,7 @@ import 'package:laser_tech_app/presentation/04_Screen_quality_control_properties
 import '../../../application/home_screen_controller/controller.dart';
 import '../../../domain/responsive/dimensions.dart';
 import '../../09_Screen_quality_control_properties_edit/quality_control_properties_addingform.dart';
+import '../../10_completedProductList/screen_completed_product_list.dart';
 import '../../theme/color.dart';
 import '../../widgets/custom_appbar.dart';
 
@@ -103,6 +104,17 @@ class Categories extends StatelessWidget {
                                         children: [
                                           GestureDetector(
                                             onTap: (){
+                                                                                  Navigator.pushNamed(
+                                                  Get.context!,
+                                                  ScreenCompletedProducts.routeName,
+                                                  arguments: {
+                                                    'id': controller
+                                                .qualityProductList[index].id!,
+                                                    'productName': controller
+                                               
+
+                                                  },
+                                                );
 
                                             },
                                             child: Padding(
@@ -135,7 +147,7 @@ class Categories extends StatelessWidget {
                                             padding: const EdgeInsets.all(8.0),
                                             child: InkWell(
                                               onTap: () {
-                                                                                     Navigator.pushNamed(
+                                                           Navigator.pushNamed(
                                                   Get.context!,
                                                   QualitycontrolpropertiesEditor.routeName,
                                                   arguments: {
