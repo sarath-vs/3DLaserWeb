@@ -45,7 +45,7 @@ class AnsweredProductImpl implements AnsweredProductFacade {
       final data = AnsweredProductListModel.fromJson(
           jsonDecode(result.body) as Map<String, dynamic>);
       customLog('--->>>');
-      customLog(result.statusCode);
+      customLog(result.body);
 
       return right(data);
     } else {
