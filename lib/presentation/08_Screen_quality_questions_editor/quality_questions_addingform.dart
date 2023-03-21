@@ -265,7 +265,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                               ),
                             ),
                             Text(
-                              "Question Discription Details",
+                              "Question Description Details",
                               style: AppTheme.h8Style,
                             ),
                             SizedBox(
