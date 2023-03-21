@@ -7,7 +7,8 @@ import 'get_question_details_model.dart';
 abstract class QualityProductFacade {
   Future<Either<NetworkExceptions, QualtyProductListModel>> getQualityProduct();
   Future<Either<NetworkExceptions, String>> saveQualityProduct(
-      {required String name, required String description});
+      {required String name, required String description,required String time});
+      
   Future<Either<NetworkExceptions, String>> deleteQualityProduct(
       {required int id});
   // Future<Either<NetworkExceptions, String>> editQualityProduct(
@@ -23,4 +24,6 @@ abstract class QualityProductFacade {
       {required String id});
        Future<Either<NetworkExceptions, String>> putQuestionEdit(
       {required String id,required Map<String, Object?> dataToSend});
+       Future<Either<NetworkExceptions, String>> putQualityProduct(
+      {required int id, required String name, required String description,required String time});
 }

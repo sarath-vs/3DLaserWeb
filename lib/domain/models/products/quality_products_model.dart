@@ -35,6 +35,7 @@ class QualityProductResult {
   String? name;
   String? description;
   String? dateCreated;
+  String? time_limit;
 
   QualityProductResult(
       {this.id, this.name, this.description, this.dateCreated});
@@ -44,6 +45,7 @@ class QualityProductResult {
     name = json['name'];
     description = json['description'];
     dateCreated = json['date_created'];
+    time_limit =json['time_limit'];
   }
 
   Map<String, dynamic> toJson() {
@@ -52,6 +54,7 @@ class QualityProductResult {
     data['name'] = this.name;
     data['description'] = this.description;
     data['date_created'] = this.dateCreated;
+    data['time_limit'] = this.time_limit;
     return data;
   }
 }

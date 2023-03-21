@@ -29,11 +29,29 @@ class QualityProductController extends GetxController {
   String get qualityQuestionID => 'qualityQuestionID';
 
   List<QualityProductResult> qualityProductList = [];
+  final List<QualityProductResult> _qualityProductListFilter =
+      [];
   List<QuestionResult> qualityQuestionList = [];
     
 
   String name = '';
   int productId = 0;
+
+  Future<void> searchDirectory(String query) async {
+    if (query.isEmpty ||
+        query == '' ) {
+      qualityProductList.clear();
+      qualityProductList.addAll(_qualityProductListFilter);
+    } else {
+      final searchResult = _qualityProductListFilter.where((data) =>
+          data.name!.toLowerCase().contains(query.toLowerCase()) ||
+          data.id.toString().contains(query) );
+
+      qualityProductList.clear();
+      qualityProductList = searchResult.toList();
+    }
+    update([qualityProductID]);
+  }
   Future<void> getQualityProducts() async {
     showCircularProgressDialog(msg: 'Loading');
     final result = await _qualityProductFacade.getQualityProduct();
@@ -48,6 +66,8 @@ class QualityProductController extends GetxController {
         },
       );
     }, (QualtyProductListModel resp) async {
+      _qualityProductListFilter.clear();
+      _qualityProductListFilter.addAll(resp.results!);
       qualityProductList.clear();
       qualityProductList.addAll(resp.results!);
       customLog(qualityProductList);
@@ -56,10 +76,10 @@ class QualityProductController extends GetxController {
   }
 
   Future<void> saveQualityQuestions(
-      {required String name, required String discription}) async {
+      {required String name, required String discription,required String time}) async {
     showCircularProgressDialog(msg: 'Saving');
     final result = await _qualityProductFacade.saveQualityProduct(
-        name: name, description: discription);
+        name: name, description: discription,time: time);
     Navigator.of(navigatorKey.currentContext!).pop();
     result.fold((NetworkExceptions exp) {
       return showSingleButtonAlertDialog(
@@ -191,6 +211,32 @@ class QualityProductController extends GetxController {
       update([qualityQuestionID]);
     });
   }
+
+    Future<void> putQualityProducts({required int id, required String name, required String description,required String time}
+      ) async {
+    showCircularProgressDialog(msg: 'Loading');
+    final result = await _qualityProductFacade.putQualityProduct(id: id, name: name, description: description, time: time);
+    Navigator.of(navigatorKey.currentContext!).pop();
+    result.fold((NetworkExceptions exp) {
+      return showSingleButtonAlertDialog(
+        Get.context!,
+        'Warning',
+        getMessageFromException(exp),
+        () {
+          Navigator.of(Get.context!).pop();
+        },
+      );
+    }, (String resp) async {
+      getQualityProducts();
+      Get.back();
+      // qualityQuestionList.clear();
+      // qualityQuestionList.addAll(resp.data!);
+      customLog(resp);
+      update([qualityQuestionID]);
+    });
+  }
+
+  
 
    
 }

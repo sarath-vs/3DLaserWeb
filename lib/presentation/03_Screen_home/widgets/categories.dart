@@ -5,6 +5,7 @@ import 'package:laser_tech_app/presentation/04_Screen_quality_control_properties
 
 import '../../../application/home_screen_controller/controller.dart';
 import '../../../domain/responsive/dimensions.dart';
+import '../../09_Screen_quality_control_properties_edit/quality_control_properties_addingform.dart';
 import '../../theme/color.dart';
 import '../../widgets/custom_appbar.dart';
 
@@ -23,9 +24,32 @@ class Categories extends StatelessWidget {
           return Column(
             children: [
               CustomAppBar(context, false, controller.screen),
+              customVerticalGap(5),
+              Padding(
+                padding:  EdgeInsets.symmetric(horizontal: customWidth(20)),
+                child: Container(
+                  
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.black,),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: TextFormField(
+                      cursorColor: Colors.white,
+                      style: const TextStyle(color: Colors.white),
+                      decoration: const InputDecoration(
+                    border: InputBorder.none,
+                        hintText: 'Search Here',
+                        hintStyle: TextStyle(color: Colors.white),
+                      ),
+                      onChanged: (data) {
+                         Get.find<QualityProductController>().searchDirectory(data);
+                      },
+                    ),
+                  ),
+                ),
+              ),
               Container(
                 // color: Colors.yellow,
-                height: customHeight(630),
+                height: customHeight(580),
                 width: customWidth(300),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -63,7 +87,7 @@ class Categories extends StatelessWidget {
                                       title: Row(
                                         children: [
                                           Text(
-                                            '${controller.qualityProductList[index].name}',
+                                            '${controller.qualityProductList[index].name}  (Time Usage : ${controller.qualityProductList[index].time_limit})',
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold),
                                           ),
@@ -77,18 +101,55 @@ class Categories extends StatelessWidget {
                                       trailing: Wrap(
                                         spacing: 12,
                                         children: [
+                                          GestureDetector(
+                                            onTap: (){
+
+                                            },
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Container(
+                                                    alignment: Alignment.center,
+                                                    width: customWidth(40),
+                                                    height: customHeight(25),
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.black,
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(5)),
+                                                      border: Border.all(
+                                                          width: 1,
+                                                          color: LightColor
+                                                              .primaryColor),
+                                                    ),
+                                                    child: Text(
+                                                      "Completed Works",
+                                                      style: TextStyle(
+                                                          fontSize:
+                                                              customFontSize(4),
+                                                          color: Colors.white),
+                                                    ),
+                                                  ),
+                                            ),
+                                          ),
                                           Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: InkWell(
                                               onTap: () {
-                                                //                                      Navigator.pushNamed(
-                                                //   Get.context!,
-                                                //   Qualitycontrolproperties.routeName,
-                                                //   arguments: {
-                                                //     'id': id,
-                                                //     'productName': title,
-                                                //   },
-                                                // );
+                                                                                     Navigator.pushNamed(
+                                                  Get.context!,
+                                                  QualitycontrolpropertiesEditor.routeName,
+                                                  arguments: {
+                                                    'id': controller
+                                                .qualityProductList[index].id!,
+                                                    'productName': controller
+                                                .qualityProductList[index].name!,
+                                                'description': controller
+                                                .qualityProductList[index].description!,
+                                                'time_limit': controller
+                                                .qualityProductList[index].time_limit!,
+
+                                                  },
+                                                );
                                               },
                                               child: Container(
                                                 alignment: Alignment.center,

@@ -9,22 +9,29 @@ import '../theme/theme.dart';
 
 import 'widget/image_uploading_widget.dart';
 
-class Qualitycontrolproperties extends StatefulWidget {
-  static const routeName = 'Qualitycontrolproperties';
-  const Qualitycontrolproperties({super.key});
+class QualitycontrolpropertiesEditor extends StatefulWidget {
+  static const routeName = 'QualitycontrolpropertiesEditor';
+  const QualitycontrolpropertiesEditor({super.key});
 
   @override
-  State<Qualitycontrolproperties> createState() =>
-      _QualitycontrolpropertiesState();
+  State<QualitycontrolpropertiesEditor> createState() =>
+      _QualitycontrolpropertiesEditorState();
 }
 
-String name = '';
-String disc = '';
-String time ='';
+String productName = '';
+String description = '';
+String timeLimit ='';
+int id=0;
 
-class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
+class _QualitycontrolpropertiesEditorState extends State<QualitycontrolpropertiesEditor> {
   @override
   Widget build(BuildContext context) {
+     final arguments = ModalRoute.of(context)!.settings.arguments as Map;
+
+     id = arguments['id'];
+     productName=arguments['productName'];
+      description=arguments['description'];
+       timeLimit=arguments['time_limit'];
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -71,12 +78,12 @@ class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
                           return null;
                         },
                         onChanged: (value) {
-                          name = value;
+                          productName = value;
                           // controller.answerField.first.dd = true;
                           // controller.priintAnswerField();
                         },
                         decoration: InputDecoration(
-                          hintText: "Property Name*",
+                          hintText:productName==''? "Property Name*":productName,
 
                           // border: OutlineInputBorder(
                           //     borderRadius: BorderRadius.circular(20)),
@@ -97,10 +104,13 @@ class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
                           return null;
                         },
                         onChanged: (value) {
-                          time = value;
+
+                          timeLimit = value;
                         },
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                          hintText: "Time (eg: Hr.mm)",
+                          hintText: timeLimit==''?"Time (eg: Hr.mm)":timeLimit,
+                        
                           // border: OutlineInputBorder(
                           //     borderRadius: BorderRadius.circular(20)),
                           fillColor: Colors.grey.shade200,
@@ -110,7 +120,7 @@ class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
                       ),
                     ),
                     Text(
-                      "Descripiton",
+                      "Discripiton",
                       style: AppTheme.h6Style,
                     ),
                     SizedBox(
@@ -123,10 +133,10 @@ class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
                           return null;
                         },
                         onChanged: (value) {
-                          disc = value;
+                          description = value;
                         },
                         decoration: InputDecoration(
-                          hintText: "Descripiton",
+                          hintText: description==""?"Discripiton":description,
                           fillColor: Colors.grey.shade200,
                           filled: true,
                           floatingLabelStyle: AppTheme.h2Style,
@@ -165,16 +175,13 @@ class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
                         ),
                         InkWell(
                           onTap: () {
-                            if (name == '' || disc == '') {
+                            if (productName == '' || description == '') {
                               showSnackBar(message: 'Fill input fields');
                             } else {
                               Get.find<QualityProductController>()
-                                  .saveQualityQuestions(
-                                      name: name, discription: disc,time: time)
+                                  .putQualityProducts(id: id, name: productName, description: description, time: timeLimit)
                                   .then((value) {
-                                Get.find<QualityProductController>()
-                                    .getQualityProducts();
-                                Get.back();
+                             
 
                                 showSnackBar(message: 'Item saved');
                               });

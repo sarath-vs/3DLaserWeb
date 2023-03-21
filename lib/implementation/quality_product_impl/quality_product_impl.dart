@@ -46,11 +46,12 @@ class QualityProductImpl implements QualityProductFacade {
 
   @override
   Future<Either<NetworkExceptions, String>> saveQualityProduct(
-      {required String name, required String description}) async {
+      {required String name, required String description,required String time}) async {
     String? access = await _employeeDataManager.getRefresh();
     final _body = {
       "name": name,
       "description": description,
+      "time_limit": time,
     };
 
     final result =
@@ -68,33 +69,7 @@ class QualityProductImpl implements QualityProductFacade {
     }
   }
 
-  // @override
-  // Future<Either<NetworkExceptions, String>> editQualityProduct(
-  //     {required int id,
-  //       required String name, required String description}) async {
-  //   String? access = await _employeeDataManager.getRefresh();
-  //   final _body = {
-  //     "id":
-  //     "name": name,
-  //     "description": description,
-  //   };
-
-  //   final result = await Postman.sendPutRequest(
-  //     _url.editQualityQuestions,
-  //     _body,
-  //   );
-  //   if (result.statusCode == 201) {
-  //     final data = SaveQualtyProductModel.fromJson(
-  //         jsonDecode(result.body) as Map<String, dynamic>);
-  //     customLog('--->>>');
-  //     customLog(result.body);
-
-  //     return right(data.name!);
-  //   } else {
-  //     print('${result.statusCode}');
-  //     return left(getExceptionFromStatusCode(result.statusCode));
-  //   }
-  // }
+  
 
   @override
   Future<Either<NetworkExceptions, String>> deleteQualityProduct(
@@ -202,4 +177,28 @@ class QualityProductImpl implements QualityProductFacade {
     } else {
       return left(getExceptionFromStatusCode(result.statusCode));
     }}
+    
+      @override
+      Future<Either<NetworkExceptions, String>> putQualityProduct({required int id, required String name, required String description, required String time})async {
+    String? access = await _employeeDataManager.getRefresh();
+    final _body = {
+      "name": name,
+      "description": description,
+      "time_limit": time,
+    };
+
+    final result =
+        await Postman.sendPutRequest(_url.saveQualityProducts+'$id/', _body, access);
+    if (result.statusCode == 200) {
+      final data = SaveQualtyProductModel.fromJson(
+          jsonDecode(result.body) as Map<String, dynamic>);
+      customLog('--->>>');
+      customLog(result.body);
+
+      return right(data.name!);
+    } else {
+      print('${result.statusCode}');
+      return left(getExceptionFromStatusCode(result.statusCode));
+    }
+  }
 }

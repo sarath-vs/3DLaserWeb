@@ -46,7 +46,7 @@ class Qualityquestions extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 20.0),
                         child: Text(
-                          '  ${controller.appBar}',
+                          '  ${controller.appBar} (Questions)',
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: customFontSize(4),
@@ -77,14 +77,7 @@ class Qualityquestions extends StatelessWidget {
                                   shrinkWrap: true,
                                   itemBuilder: (context, index) {
                                     return ListTile(
-                                      onTap: () {
-          //                               Navigator.pushNamed(context,arguments: {
-          //   'id': controller.qualityQuestionList[index].id,
-            
-           
-          // },
-          //                                   QualityquestionEdit.routeName);
-                                      },
+                                      
                                       tileColor: Colors.green.shade300,
                                       leading: Text('${index + 1}'),
                                       title: Row(
@@ -104,11 +97,11 @@ class Qualityquestions extends StatelessWidget {
                                             child: InkWell(
                                               onTap: () {
                                                 Navigator.pushNamed(context,arguments: {
-            'id': controller.qualityQuestionList[index].id,
+                                           'id': controller.qualityQuestionList[index].id,  },QualityquestionEdit.routeName);
             
            
-          },
-                                            QualityquestionEdit.routeName);
+        
+                                            
                                               },
                                               child: Container(
                                                 alignment: Alignment.center,

@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:laser_tech_app/domain/injection/injection.dart';
 import 'package:laser_tech_app/presentation/03_Screen_home/screen_home.dart';
 import 'package:laser_tech_app/presentation/04_Screen_quality_control_properties/quality_control_properties_addingform.dart';
+import 'package:laser_tech_app/presentation/09_Screen_quality_control_properties_edit/quality_control_properties_addingform.dart';
 import 'package:laser_tech_app/presentation/05_Employee_details/employee_details_add.dart';
 import 'package:laser_tech_app/presentation/05_Employee_details/employee_work_details.dart';
 import 'package:laser_tech_app/presentation/06_tools/screen_tools.dart';
@@ -99,6 +100,7 @@ class _MyAppState extends State<MyApp> {
               const Qualityquestionform(),
           ScreenToolsADD.routeName: (context) => const ScreenToolsADD(),
           QualityquestionEdit.routeName: (context) => const QualityquestionEdit(),
+           QualitycontrolpropertiesEditor.routeName: (context) => const QualitycontrolpropertiesEditor(),
         },
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
