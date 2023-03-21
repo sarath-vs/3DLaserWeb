@@ -5,7 +5,7 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 import '../../../application/home_screen_controller/controller.dart';
 import '../../../application/quality_products_controller/quality_product_controller.dart';
 import '../../../domain/responsive/dimensions.dart';
-import '../../07_Screen_quality_questions_modify/quality_questions_addingform.dart';
+import '../../08_Screen_quality_questions_editor/quality_questions_addingform.dart';
 import '../../theme/color.dart';
 import '../../widgets/custom_appbar.dart';
 
@@ -78,8 +78,12 @@ class Qualityquestions extends StatelessWidget {
                                   itemBuilder: (context, index) {
                                     return ListTile(
                                       onTap: () {
-                                        // Navigator.pushNamed(context,
-                                        //     Qualityquestionform.routeName);
+          //                               Navigator.pushNamed(context,arguments: {
+          //   'id': controller.qualityQuestionList[index].id,
+            
+           
+          // },
+          //                                   QualityquestionEdit.routeName);
                                       },
                                       tileColor: Colors.green.shade300,
                                       leading: Text('${index + 1}'),
@@ -92,54 +96,94 @@ class Qualityquestions extends StatelessWidget {
                                           ),
                                         ],
                                       ),
-                                      trailing: GestureDetector(
-                                        onTap: () {
-                                          showDialog(
-                                            context: context,
-                                            barrierDismissible: false,
-                                            builder: (context) {
-                                              return AlertDialog(
-                                                title: Text('Alert'),
-                                                content: Text(
-                                                    'Are you sure you want to delete'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      Get.back();
-                                                    },
-                                                    child: const Text('No'),
-                                                  ),
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      controller
-                                                          .deleteQualityQuestions(
-                                                              id: controller
-                                                                  .qualityQuestionList[
-                                                                      index]
-                                                                  .id!)
-                                                          .then((value) {
-                                                        controller
-                                                            .getQualityQuestions(
-                                                                id: controller
-                                                                    .productId);
-                                                      });
+                                      trailing: Wrap(
+                                        spacing: 12,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: InkWell(
+                                              onTap: () {
+                                                Navigator.pushNamed(context,arguments: {
+            'id': controller.qualityQuestionList[index].id,
+            
+           
+          },
+                                            QualityquestionEdit.routeName);
+                                              },
+                                              child: Container(
+                                                alignment: Alignment.center,
+                                                width: customWidth(20),
+                                                height: customHeight(25),
+                                                decoration: BoxDecoration(
+                                                  color: LightColor.orange,
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(5)),
+                                                  border: Border.all(
+                                                      width: 1,
+                                                      color: LightColor
+                                                          .primaryColor),
+                                                ),
+                                                child: Text(
+                                                  "EDIT",
+                                                  style: TextStyle(
+                                                      fontSize:
+                                                          customFontSize(3),
+                                                      color: Colors.white),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              showDialog(
+                                                context: context,
+                                                barrierDismissible: false,
+                                                builder: (context) {
+                                                  return AlertDialog(
+                                                    title: Text('Alert'),
+                                                    content: Text(
+                                                        'Are you sure you want to delete'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () {
+                                                          Get.back();
+                                                        },
+                                                        child: const Text('No'),
+                                                      ),
+                                                      TextButton(
+                                                        onPressed: () {
+                                                          controller
+                                                              .deleteQualityQuestions(
+                                                                  id: controller
+                                                                      .qualityQuestionList[
+                                                                          index]
+                                                                      .id!)
+                                                              .then((value) {
+                                                            controller
+                                                                .getQualityQuestions(
+                                                                    id: controller
+                                                                        .productId);
+                                                          });
 
-                                                      Get.back();
-                                                    },
-                                                    child: const Text('Yes'),
-                                                  ),
-                                                ],
+                                                          Get.back();
+                                                        },
+                                                        child: const Text('Yes'),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
                                               );
                                             },
-                                          );
-                                        },
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Icon(
-                                            Icons.delete,
-                                            color: Colors.red,
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(10.0),
+                                              child: Icon(
+                                                Icons.delete,
+                                                color: Colors.red,
+                                              ),
+                                            ),
                                           ),
-                                        ),
+                                        ],
                                       ),
                                     );
                                   },

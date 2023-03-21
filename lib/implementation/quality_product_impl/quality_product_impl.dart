@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:laser_tech_app/domain/models/products/get_question_details_model.dart';
 
 import 'package:laser_tech_app/domain/models/products/quality_product_facade.dart';
 import 'package:laser_tech_app/domain/models/products/questionModel.dart';
@@ -170,4 +171,35 @@ class QualityProductImpl implements QualityProductFacade {
       return left(getExceptionFromStatusCode(result.statusCode));
     }
   }
+
+  @override
+  Future<Either<NetworkExceptions, GetQuestionDetailsModel>> getQuestionDetails({required String id})  async {
+    String? access = await _employeeDataManager.getRefresh();
+    final result = await Postman.sendGetRequest(
+        _url.editQualityQuestions + '$id/', access!);
+    if (result.statusCode == 200) {
+      final data = GetQuestionDetailsModel.fromJson(
+          jsonDecode(result.body) as Map<String, dynamic>);
+      customLog('--->>> Question Details');
+      customLog(result.body);
+
+      return right(data);
+    } else {
+      return left(getExceptionFromStatusCode(result.statusCode));
+    }}
+    
+      @override
+      Future<Either<NetworkExceptions, String>> putQuestionEdit({required String id,required Map<String, Object?> dataToSend}) async {
+    String? access = await _employeeDataManager.getRefresh();
+    final result = await Postman.sendPutRequest(_url.editQualityQuestions + '$id/',dataToSend, access);
+    if (result.statusCode == 200) {
+      // final data = GetQuestionDetailsModel.fromJson(
+      //     jsonDecode(result.body) as Map<String, dynamic>);
+      customLog('--->>> Question Details');
+      customLog(result.body);
+
+      return right(result.body.length.toString());
+    } else {
+      return left(getExceptionFromStatusCode(result.statusCode));
+    }}
 }

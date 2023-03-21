@@ -12,6 +12,7 @@ import 'package:laser_tech_app/presentation/04_Screen_quality_control_properties
 import '../../application/home_screen_controller/controller.dart';
 import '../05_Employee_details/employee_details_add.dart';
 import '../06_tools/screen_tools.dart';
+import '../08_Screen_quality_questions_editor/quality_questions_addingform.dart';
 import '../07_Screen_quality_questions_modify/quality_questions_addingform.dart';
 import '../widgets/responsive.dart';
 import '../widgets/side_menu.dart';

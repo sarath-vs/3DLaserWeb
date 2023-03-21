@@ -4,49 +4,51 @@ import 'dart:typed_data';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:laser_tech_app/application/home_screen_controller/controller.dart';
 import 'package:laser_tech_app/presentation/widgets/snackbar.dart';
 import '../../application/quality_products_controller/quality_product_controller.dart';
+import '../../application/quality_question_edit_controller/quality_question_edit_controller.dart';
 import '../../application/tools_controller/tools_controller.dart';
 import '../../domain/responsive/dimensions.dart';
 import '../theme/color.dart';
 import '../theme/theme.dart';
 import 'widget/qualityqp_image_uploading_widget.dart';
 
-class Qualityquestionform extends StatefulWidget {
-  static const routeName = 'Qualityquestionform';
-  const Qualityquestionform({super.key});
+class QualityquestionEdit extends StatefulWidget {
+  static const routeName = 'QualityquestionEdit';
+  const QualityquestionEdit({super.key});
 
   @override
-  State<Qualityquestionform> createState() => _QualityquestionformState();
+  State<QualityquestionEdit> createState() => _QualityquestionEditState();
 }
 
-class _QualityquestionformState extends State<Qualityquestionform> {
-  bool yesno = false;
-  bool yesnoManditory = false;
-  bool yesnoNone = false;
-  bool yesnoNoneManditory = false;
-  bool dropdown = false;
-  bool dropDownManditory = false;
-  bool inputText = false;
-  bool inputTextManditory = false;
-  bool image = false;
-  bool imageManditory = false;
-  bool range = false;
-  bool rangeManditory = false;
-  bool number = false;
-  bool numberManditory = false;
-  bool vdo = false;
-  bool vdoManditory = false;
-  String rangeFrom = '';
-  String rangeTo = '';
-  String dropDownData = '';
+class _QualityquestionEditState extends State<QualityquestionEdit> {
+  // bool yesno = false;
+  // bool yesnoManditory = false;
+  // bool yesnoNone = false;
+  // bool yesnoNoneManditory = false;
+  // bool dropdown = false;
+  // bool dropDownManditory = false;
+  // bool inputText = false;
+  // bool inputTextManditory = false;
+  // bool image = false;
+  // bool imageManditory = false;
+  // bool range = false;
+  // bool rangeManditory = false;
+  // bool number = false;
+  // bool numberManditory = false;
+  // bool vdo = false;
+  // bool vdoManditory = false;
+  // String rangeFrom = '';
+  // String rangeTo = '';
+  // String dropDownData = '';
   List<int> selectedID = [];
-  String? questionEnglish;
-  String? questionCzech;
-  String? questionGerman;
-  String? discriptionEnglish;
-  String? discriptionCzech;
-  String? discriptionGerman;
+  // String? questionEnglish;
+  // String? questionCzech;
+  // String? questionGerman;
+  // String? discriptionEnglish;
+  // String? discriptionCzech;
+  // String? discriptionGerman;
   List<bool> _checkedItems = [];
   List<int> indexList = [];
 
@@ -84,6 +86,13 @@ class _QualityquestionformState extends State<Qualityquestionform> {
           selectedvideoInBytes = fileResult.files.first.bytes;
           base64StringVDO.add( base64.encode(selectedvideoInBytes!));
           // imageCounts += 1;
+          if(selectedimagesin64bytes.isNotEmpty){
+            QualityQuestionEditController.base64StringVDO=base64StringVDO;
+          }
+          else{
+            QualityQuestionEditController.base64StringVDO.clear();
+
+          }
         });
         print("*********" +
             base64StringVDO.first +
@@ -107,6 +116,13 @@ class _QualityquestionformState extends State<Qualityquestionform> {
           selectedimagesin64bytes.add(base64.encode(element.bytes!));
           //selectedImageInBytes = fileResult.files.first.bytes;
           imageCounts += 1;
+          if(selectedimagesin64bytes.isNotEmpty){
+            QualityQuestionEditController.selectedimagesin64bytes=selectedimagesin64bytes;
+          }
+          else{
+            QualityQuestionEditController.selectedimagesin64bytes.clear();
+
+          }
         });
       });
     }
@@ -123,24 +139,34 @@ class _QualityquestionformState extends State<Qualityquestionform> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((duration) {
-      Get.find<ToolsController>().getTools().then((value) {
+       final arguments = ModalRoute.of(context)!.settings.arguments as Map;
+
+    final id = arguments['id'];
+    final productIDZ=arguments['productID'];
+       Get.find<ToolsController>().getTools().then((value) {
         if (_checkedItems.isEmpty) {
           _checkedItems =
               List.filled(Get.find<ToolsController>().toolsList.length, false);
         }
       });
+      QualityQuestionEditController.questionID=id.toString();
+      if(QualityQuestionEditController.productId==null){
+         Get.find<QualityQuestionEditController>().getEditQuestionDetails(id: id.toString());
+      }
+
+     
     });
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            "Add Questions",
+            "Edit Questions",
             textAlign: TextAlign.center,
             style: AppTheme.appBarText,
           ),
         ),
         // drawer: SideMenu(),
-        body: GetBuilder<QualityProductController>(
-            id: Get.find<QualityProductController>().qualityProductID,
+        body: GetBuilder<QualityQuestionEditController>(
+            id: Get.find<QualityQuestionEditController>().qualityQuestionDetailID,
             builder: (controller) {
               return SafeArea(
                   child: ListView(
@@ -185,10 +211,10 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                   return null;
                                 },
                                 onChanged: (value) {
-                                  questionEnglish = value;
+                                QualityQuestionEditController.questionEnglish = value;
                                 },
                                 decoration: InputDecoration(
-                                  hintText: "Questions English (optional)",
+                                  hintText: QualityQuestionEditController.questionEnglish??'N/A'+'  (English)',
 
                                   // border: OutlineInputBorder(
                                   //     borderRadius: BorderRadius.circular(20)),
@@ -205,10 +231,10 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                   return null;
                                 },
                                 onChanged: (value) {
-                                  questionCzech = value;
+                                  QualityQuestionEditController.questionCzech = value;
                                 },
                                 decoration: InputDecoration(
-                                  hintText: "Questions Czech (optional)",
+                                  hintText: QualityQuestionEditController.questionCzech??"N/A"+'  (Czech)',
 
                                   // border: OutlineInputBorder(
                                   //     borderRadius: BorderRadius.circular(20)),
@@ -225,10 +251,10 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                   return null;
                                 },
                                 onChanged: (value) {
-                                  questionGerman = value;
+                                   QualityQuestionEditController.questionGerman = value;
                                 },
                                 decoration: InputDecoration(
-                                  hintText: "Questions Vietnam (optional)",
+                                  hintText: QualityQuestionEditController.questionGerman??"N/A" +'    (Vietnam)',
 
                                   // border: OutlineInputBorder(
                                   //     borderRadius: BorderRadius.circular(20)),
@@ -249,10 +275,10 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                   return null;
                                 },
                                 onChanged: (value) {
-                                  discriptionEnglish = value;
+                                  QualityQuestionEditController.discriptionEnglish = value;
                                 },
                                 decoration: InputDecoration(
-                                  hintText: "Questions Discription English (optional)",
+                                  hintText: QualityQuestionEditController.discriptionEnglish??"N/A" +'   (English)',
 
                                   // border: OutlineInputBorder(
                                   //     borderRadius: BorderRadius.circular(20)),
@@ -270,10 +296,10 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                   return null;
                                 },
                                 onChanged: (value) {
-                                  discriptionCzech = value;
+                                  QualityQuestionEditController.discriptionCzech = value;
                                 },
                                 decoration: InputDecoration(
-                                  hintText: "Questions Discription Czech (optional)",
+                                  hintText:QualityQuestionEditController.discriptionCzech??'N/A'+  '   (Czech)',
 
                                   // border: OutlineInputBorder(
                                   //     borderRadius: BorderRadius.circular(20)),
@@ -290,10 +316,10 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                   return null;
                                 },
                                 onChanged: (value) {
-                                  discriptionGerman = value;
+                                  QualityQuestionEditController.discriptionGerman = value;
                                 },
                                 decoration: InputDecoration(
-                                  hintText: "Questions Discription Vietnam (optional)",
+                                  hintText: QualityQuestionEditController.discriptionGerman??'N/A' + '  (Vietnam)',
 
                                   // border: OutlineInputBorder(
                                   //     borderRadius: BorderRadius.circular(20)),
@@ -323,8 +349,8 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                               color: LightColor.black),
                                         ),
                                         child: (selectedvideo == "")
-                                            ? const Text(
-                                                "uploaded files here",
+                                            ?  Text(
+                                             QualityQuestionEditController.base64StringVDO.length.toString()+'Files',
                                                 style: TextStyle(
                                                     color: LightColor.grey),
                                               )
@@ -360,7 +386,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                               color: LightColor.primaryColor),
                                         ),
                                         child: Text(
-                                          "Upload Video",
+                                         QualityQuestionEditController.base64StringVDO.length<=0 ?  "Upload Video":"Delete and update new",
                                           style: TextStyle(
                                               fontSize: customFontSize(3),
                                               color: Colors.white),
@@ -374,7 +400,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                   children: [
                                     Container(
                                         alignment: Alignment.center,
-                                        width: customWidth(35),
+                                        width: customWidth(45),
                                         height: customHeight(20),
                                         decoration: BoxDecoration(
                                           color: LightColor.grey2,
@@ -386,8 +412,8 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                         ),
                                         child:
                                             (selectedimages.toString() == "[]")
-                                                ? const Text(
-                                                    "uploaded files here",
+                                                ?  Text(
+                                                    QualityQuestionEditController.base64StringVDO.length.toString() + 'Files',
                                                     style: TextStyle(
                                                         color: LightColor.grey),
                                                   )
@@ -423,7 +449,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                               color: LightColor.primaryColor),
                                         ),
                                         child: Text(
-                                          "Upload Images",
+                                        QualityQuestionEditController.selectedimagesin64bytes.length<=0 ?  "Upload Image":"Delete and update new",
                                           style: TextStyle(
                                               fontSize: customFontSize(3),
                                               color: Colors.white),
@@ -435,7 +461,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                 customHorizontalGap(20),
                                 InkWell(
                                   onTap: () {
-                                    showDialog(
+                                   showDialog(
                                       context: context,
                                       builder: (_) => AlertDialog(
                                         shape: RoundedRectangleBorder(
@@ -603,6 +629,9 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                                             .id!;
                                                         selectedID.add(k);
                                                       }
+                                                      if(selectedID.isNotEmpty){
+                                                        QualityQuestionEditController.tools=selectedID;
+                                                      }
                                                     }
 
                                                     print(selectedID);
@@ -692,18 +721,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                         fontSize: customFontSize(4),
                                       ),
                                     )),
-                                // Expanded(
-                                //     flex: 1,
-                                //     child: Text(
-                                //       'Manditory',
-                                //       textAlign: TextAlign.center,
-                                //       style: TextStyle(
-                                //         fontWeight: FontWeight.bold,
-                                //         fontSize: customFontSize(
-                                //           4,
-                                //         ),
-                                //       ),
-                                //     )),
+                               
                               ],
                             ),
                             ////////
@@ -716,14 +734,14 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                 Expanded(
                                   flex: 1,
                                   child: Checkbox(
-                                    value: yesno,
+                                    value: QualityQuestionEditController.yesno,
                                     checkColor:
                                         Colors.white, // color of tick Mark
                                     activeColor: LightColor.primaryColor,
                                     onChanged: (bool? value) {
                                       setState(() {
-                                        yesno = !yesno;
-                                        yesnoManditory = false;
+                                        QualityQuestionEditController.yesno = !QualityQuestionEditController.yesno;
+                                        QualityQuestionEditController.yesnoManditory = false;
                                       });
                                     },
                                   ),
@@ -733,72 +751,10 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                   child: Text('Yes/No'),
                                 ),
                                 Expanded(flex: 3, child: Text('Yes or No')),
-                                // Expanded(
-                                //   flex: 1,
-                                //   child: Checkbox(
-                                //     value: yesnoManditory,
-                                //     checkColor:
-                                //         Colors.white, // color of tick Mark
-                                //     activeColor: LightColor.primaryColor,
-                                //     onChanged: (bool? value) {
-                                //       setState(() {
-                                //         if (yesno) {
-                                //           yesnoManditory = !yesnoManditory;
-                                //         }
-                                //       });
-                                //     },
-                                //   ),
-                                // ),
+                               
                               ],
                             ),
-                            ////////
-                            ///////
-                            //////
-                            ///Answer Yes/No/None
-                            // Row(
-                            //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            //   children: [
-                            //     Expanded(
-                            //       flex: 1,
-                            //       child: Checkbox(
-                            //         value: yesnoNone,
-                            //         checkColor:
-                            //             Colors.white, // color of tick Mark
-                            //         activeColor: LightColor.primaryColor,
-                            //         onChanged: (bool? value) {
-                            //           setState(() {
-                            //             yesnoNone = !yesnoNone;
-                            //             yesnoNoneManditory = false;
-                            //           });
-                            //         },
-                            //       ),
-                            //     ),
-                            //     Expanded(
-                            //       flex: 3,
-                            //       child: Text('None'),
-                            //     ),
-                            //     Expanded(
-                            //         flex: 3,
-                            //         child: Text('Yes, No or None can be used')),
-                            //     // Expanded(
-                            //     //   flex: 1,
-                            //     //   child: Checkbox(
-                            //     //     value: yesnoNoneManditory,
-                            //     //     checkColor:
-                            //     //         Colors.white, // color of tick Mark
-                            //     //     activeColor: LightColor.primaryColor,
-                            //     //     onChanged: (bool? value) {
-                            //     //       setState(() {
-                            //     //         if (yesnoNone) {
-                            //     //           yesnoNoneManditory =
-                            //     //               !yesnoNoneManditory;
-                            //     //         }
-                            //     //       });
-                            //     //     },
-                            //     //   ),
-                            //     // ),
-                            //   ],
-                            // ),
+                            
                             ////////
                             ///////
                             //////
@@ -809,14 +765,14 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                 Expanded(
                                   flex: 1,
                                   child: Checkbox(
-                                    value: range,
+                                    value: QualityQuestionEditController.range,
                                     checkColor:
                                         Colors.white, // color of tick Mark
                                     activeColor: LightColor.primaryColor,
                                     onChanged: (bool? value) {
                                       setState(() {
-                                        range = !range;
-                                        rangeManditory = false;
+                                        QualityQuestionEditController.range = !QualityQuestionEditController.range;
+                                        QualityQuestionEditController.rangeManditory = false;
                                       });
                                     },
                                   ),
@@ -837,10 +793,10 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                             return null;
                                           },
                                           onChanged: (value) {
-                                            rangeFrom = value;
+                                            QualityQuestionEditController.rangeFrom = value;
                                           },
                                           decoration: InputDecoration(
-                                            hintText: "From",
+                                            hintText: QualityQuestionEditController.rangeFrom==""?"From":QualityQuestionEditController.rangeFrom,
                                             // border: OutlineInputBorder(
                                             //     borderRadius: BorderRadius.circular(20)),
                                             fillColor: Colors.grey.shade200,
@@ -860,7 +816,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                         child: TextFormField(
                                             validator: (val) {},
                                              decoration: InputDecoration(
-                                            hintText: "To",
+                                            hintText: QualityQuestionEditController.rangeTo==""?"To":QualityQuestionEditController.rangeTo,
                                             // border: OutlineInputBorder(
                                             //     borderRadius: BorderRadius.circular(20)),
                                             fillColor: Colors.grey.shade200,
@@ -870,11 +826,11 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                           ),
                                             
                                             onChanged: (value) {
-                                              rangeTo = value;
+                                             QualityQuestionEditController. rangeTo = value;
                                               double torange =
                                                   double.parse(value);
                                               double startrange =
-                                                  double.parse(rangeFrom);
+                                                  double.parse(QualityQuestionEditController.rangeFrom);
                                                   
                                               if (startrange > torange) {
                                                 showDialog(
@@ -911,22 +867,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                     ],
                                   ),
                                 ),
-                                // Expanded(
-                                //   flex: 1,
-                                //   child: Checkbox(
-                                //     value: rangeManditory,
-                                //     checkColor:
-                                //         Colors.white, // color of tick Mark
-                                //     activeColor: LightColor.primaryColor,
-                                //     onChanged: (bool? value) {
-                                //       setState(() {
-                                //         if (range) {
-                                //           rangeManditory = !rangeManditory;
-                                //         }
-                                //       });
-                                //     },
-                                //   ),
-                                // ),
+                              
                               ],
                             ),
                             ////////
@@ -939,14 +880,14 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                 Expanded(
                                   flex: 1,
                                   child: Checkbox(
-                                    value: inputText,
+                                    value: QualityQuestionEditController.inputText,
                                     checkColor:
                                         Colors.white, // color of tick Mark
                                     activeColor: LightColor.primaryColor,
                                     onChanged: (bool? value) {
                                       setState(() {
-                                        inputText = !inputText;
-                                        inputTextManditory = false;
+                                        QualityQuestionEditController.inputText = !QualityQuestionEditController.inputText;
+                                        QualityQuestionEditController.inputTextManditory = false;
                                       });
                                     },
                                   ),
@@ -958,110 +899,10 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                 Expanded(
                                     flex: 3,
                                     child: Text('Accept Text or Number')),
-                                // Expanded(
-                                //   flex: 1,
-                                //   child: Checkbox(
-                                //     value: inputTextManditory,
-                                //     checkColor:
-                                //         Colors.white, // color of tick Mark
-                                //     activeColor: LightColor.primaryColor,
-                                //     onChanged: (bool? value) {
-                                //       setState(() {
-                                //         if (inputText) {
-                                //           inputTextManditory =
-                                //               !inputTextManditory;
-                                //         }
-                                //       });
-                                //     },
-                                //   ),
-                                // ),
+                               
                               ],
                             ), ////////
-                            ///////
-                            //////
-                            ///Answer Number
-                            // Row(
-                            //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            //   children: [
-                            //     Expanded(
-                            //       flex: 1,
-                            //       child: Checkbox(
-                            //         value: number,
-                            //         checkColor: Colors.white, // color of tick Mark
-                            //         activeColor: LightColor.primaryColor,
-                            //         onChanged: (bool? value) {
-                            //           setState(() {
-                            //             number = !number;
-                            //             numberManditory = false;
-                            //           });
-                            //         },
-                            //       ),
-                            //     ),
-                            //     Expanded(
-                            //       flex: 3,
-                            //       child: Text('Number Field'),
-                            //     ),
-                            //     Row(
-                            //       // crossAxisAlignment: CrossAxisAlignment.start,
-                            //       // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            //       children: [
-                            //         SizedBox(
-                            //           width: customWidth(10),
-                            //           height: customHeight(30),
-                            //           child: TextFormField(
-                            //             validator: (val) {
-                            //               return null;
-                            //             },
-                            //             onChanged: (value) {
-                            //               // password = value;
-                            //             },
-                            //             decoration: InputDecoration(
-                            //               hintText: "answer",
-                            //               // border: OutlineInputBorder(
-                            //               //     borderRadius: BorderRadius.circular(20)),
-                            //               fillColor: Colors.grey.shade200,
-                            //               filled: true,
-                            //               floatingLabelStyle: AppTheme.h2Style,
-                            //             ),
-                            //           ),
-                            //         ),
-                            //         Text('OR'),
-                            //         Text('Any'),
-                            //         Padding(
-                            //           padding: const EdgeInsets.only(right: 50),
-                            //           child: Checkbox(
-                            //             value: numberManditory,
-                            //             checkColor: Colors.white, // color of tick Mark
-                            //             activeColor: LightColor.primaryColor,
-                            //             onChanged: (bool? value) {
-                            //               setState(() {
-                            //                 if (number) {
-                            //                   numberManditory = !numberManditory;
-                            //                 }
-                            //               });
-                            //             },
-                            //           ),
-                            //         ),
-                            //       ],
-                            //     ),
-                            //     Expanded(flex: 3, child: Text('Accept Only Numbers')),
-                            //     Expanded(
-                            //       flex: 1,
-                            //       child: Checkbox(
-                            //         value: numberManditory,
-                            //         checkColor: Colors.white, // color of tick Mark
-                            //         activeColor: LightColor.primaryColor,
-                            //         onChanged: (bool? value) {
-                            //           setState(() {
-                            //             if (number) {
-                            //               numberManditory = !numberManditory;
-                            //             }
-                            //           });
-                            //         },
-                            //       ),
-                            //     ),
-                            //   ],
-                            // ),
+                            
                             ////////
                             ///////
                             //////
@@ -1072,14 +913,14 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                 Expanded(
                                   flex: 1,
                                   child: Checkbox(
-                                    value: dropdown,
+                                    value: QualityQuestionEditController.dropdown,
                                     checkColor:
                                         Colors.white, // color of tick Mark
                                     activeColor: LightColor.primaryColor,
                                     onChanged: (bool? value) {
                                       setState(() {
-                                        dropdown = !dropdown;
-                                        dropDownManditory = false;
+                                        QualityQuestionEditController.dropdown = !QualityQuestionEditController.dropdown;
+                                        QualityQuestionEditController.dropDownManditory = false;
                                       });
                                     },
                                   ),
@@ -1098,11 +939,11 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                       return null;
                                     },
                                     onChanged: (value) {
-                                      dropDownData = value;
+                                      QualityQuestionEditController.dropDownData = value;
                                     },
                                     decoration: InputDecoration(
                                       hintText:
-                                          "Add Drop Down Values seperate by ||.(eg:one||Two||Three)",
+                                          QualityQuestionEditController.dropDownData==""?"Add Drop Down Values seperate by ||.(eg:one||Two||Three)":QualityQuestionEditController.dropDownData,
                                       hintStyle: TextStyle(
                                           fontSize: customFontSize(4)),
                                       fillColor: Colors.grey.shade200,
@@ -1111,23 +952,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                     ),
                                   ),
                                 ),
-                                // Expanded(
-                                //   flex: 1,
-                                //   child: Checkbox(
-                                //     value: dropDownManditory,
-                                //     checkColor:
-                                //         Colors.white, // color of tick Mark
-                                //     activeColor: LightColor.primaryColor,
-                                //     onChanged: (bool? value) {
-                                //       setState(() {
-                                //         if (dropdown) {
-                                //           dropDownManditory =
-                                //               !dropDownManditory;
-                                //         }
-                                //       });
-                                //     },
-                                //   ),
-                                // ),
+                              
                               ],
                             ),
                             ////////
@@ -1140,14 +965,14 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                 Expanded(
                                   flex: 1,
                                   child: Checkbox(
-                                    value: image,
+                                    value: QualityQuestionEditController.image,
                                     checkColor:
                                         Colors.white, // color of tick Mark
                                     activeColor: LightColor.primaryColor,
                                     onChanged: (bool? value) {
                                       setState(() {
-                                        image = !image;
-                                        imageManditory = false;
+                                        QualityQuestionEditController.image = !QualityQuestionEditController.image;
+                                        QualityQuestionEditController.imageManditory = false;
                                       });
                                     },
                                   ),
@@ -1211,105 +1036,37 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                   ),
                                 ),
                                 InkWell(
-                                  onTap: () {
-                                    final answerField = {
-                                      "yn": yesno,
-                                      "ynMN": yesnoManditory,
-                                      "ynn": yesnoNone,
-                                      "ynnMN": yesnoNoneManditory,
-                                      "rg": range,
-                                      "rgMN": rangeManditory,
-                                      "tf": inputText,
-                                      "tfMN": inputTextManditory,
-                                      "dd": dropdown,
-                                      "ddMN": dropDownManditory,
-                                      "img": image,
-                                      "imgMN": imageManditory,
-                                      "vdo": vdo,
-                                      "vdoMN": vdoManditory,
-                                      "rangeFrom": rangeFrom,
-                                      "rangeTo": rangeTo,
-                                      "dropDownData": dropDownData
-                                    };
-                                    final dataToSend = {
-                                       "description_english": discriptionEnglish,
-                                      "description_czech": discriptionCzech,
-                                      "description_german": discriptionGerman,
-                                      "image_base_64": selectedimagesin64bytes,
-                                      "video_base_64": base64StringVDO,
-                                     
-                                      "question_english": questionEnglish,
-                                      "question_czech": questionCzech,
-                                      "question_german": questionGerman,
-                                      "time_limit": 0,
-                                       "field_info_object": answerField,
-                                       "category": controller.productId,
-                                      "tools_used": selectedID
-                                     
-                        
-                                    };
-                                    if (questionEnglish != '' 
-                                       ) {
-                                      if (range == true) {
-                                        if (rangeFrom == '' || rangeTo == '') {
-                                          showSnackBar(
-                                              message:
-                                                  'Please Provide Range Data');
-                                        } else {
-                                          ////
-                                          controller
-                                              .postQualityQuestions(
-                                                  dataToSend: dataToSend)
-                                              .then((value) {
-                                            controller
-                                                .getQualityQuestions(
-                                                    id: controller.productId)
-                                                .then((value) {
-                                              Get.back();
-                                            });
-                                          });
-                                        }
-                                      } else if (dropdown == true) {
-                                        if (dropDownData == '') {
-                                          showSnackBar(
-                                              message:
-                                                  'Please Provide DropDown Data');
-                                        } else {
-                                          ///
-                                          controller
-                                              .postQualityQuestions(
-                                                  dataToSend: dataToSend)
-                                              .then((value) {
-                                            controller
-                                                .getQualityQuestions(
-                                                    id: controller.productId)
-                                                .then((value) {
-                                              Get.back();
-                                            });
-                                          });
+                                  onTap: () {  if(selectedimagesin64bytes.isNotEmpty){
+            QualityQuestionEditController.base64StringVDO=base64StringVDO;
+          }
+          else{
+            QualityQuestionEditController.base64StringVDO.clear();
 
-////
-                                        }
-                                      } else {
-                                        controller
-                                            .postQualityQuestions(
-                                                dataToSend: dataToSend)
-                                            .then((value) {
-                                          controller
-                                              .getQualityQuestions(
-                                                  id: controller.productId)
-                                              .then((value) {
-                                            Get.back();
-                                          });
-                                        });
-                                      }
-                                    } else {
-                                      showSnackBar(
-                                          message:
-                                              'Please Provid Required Fields');
-                                    }
-                                    print(dataToSend);
-                                  },
+          }
+           if(selectedimagesin64bytes.isNotEmpty){
+            QualityQuestionEditController.selectedimagesin64bytes=selectedimagesin64bytes;
+          }
+          else{
+            QualityQuestionEditController.selectedimagesin64bytes.clear();
+
+          }
+                                    controller.putEditQuestionDetails().then((value) {
+                              
+                                      Get.back();
+                                       Get.back();
+                                      
+                                      QualityQuestionEditController.productId=null;
+                                    }).then((value) {
+                                      setState(() {
+                                          Get.find<HomeScreenController>().setHomeScreen('Products');
+                                        
+                                      });
+                                      
+                                    });
+                                    showSnackBar(message: 'Question Details Updated');
+                                  
+                                  
+                                 },
                                   child: Container(
                                     alignment: Alignment.center,
                                     width: customWidth(50),

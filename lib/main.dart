@@ -11,17 +11,19 @@ import 'package:laser_tech_app/presentation/04_Screen_quality_control_properties
 import 'package:laser_tech_app/presentation/05_Employee_details/employee_details_add.dart';
 import 'package:laser_tech_app/presentation/05_Employee_details/employee_work_details.dart';
 import 'package:laser_tech_app/presentation/06_tools/screen_tools.dart';
+import 'package:laser_tech_app/presentation/07_Screen_quality_questions_modify/quality_questions_addingform.dart';
 import 'package:laser_tech_app/presentation/theme/theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'application/auth_controller/auth_controller.dart';
 
 import 'application/home_screen_controller/controller.dart';
 import 'application/quality_products_controller/quality_product_controller.dart';
+import 'application/quality_question_edit_controller/quality_question_edit_controller.dart';
 import 'application/tools_controller/tools_controller.dart';
 import 'classes/language_constants.dart';
 import 'presentation/01_Screen_splash/screen_splash.dart';
 import 'presentation/02_Screen_login/screen_login.dart';
-import 'presentation/07_Screen_quality_questions_modify/quality_questions_addingform.dart';
+import 'presentation/08_Screen_quality_questions_editor/quality_questions_addingform.dart';
 
 Future<void> main() async {
   HttpOverrides.global = MyHttpOverrides();
@@ -96,6 +98,7 @@ class _MyAppState extends State<MyApp> {
           Qualityquestionform.routeName: (context) =>
               const Qualityquestionform(),
           ScreenToolsADD.routeName: (context) => const ScreenToolsADD(),
+          QualityquestionEdit.routeName: (context) => const QualityquestionEdit(),
         },
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
@@ -119,6 +122,8 @@ initializeGetxController() {
       permanent: false);
   Get.put<ToolsController>(getIt<ToolsController>(), permanent: false);
   Get.put<QualityProductController>(getIt<QualityProductController>(),
+      permanent: false);
+        Get.put<QualityQuestionEditController>(getIt<QualityQuestionEditController>(),
       permanent: false);
 }
 

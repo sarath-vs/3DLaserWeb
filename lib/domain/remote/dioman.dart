@@ -45,11 +45,11 @@ class Postman {
   }
 
   static Future<http.Response> sendPutRequest(
-      String url, Map<String, dynamic> body) async {
+      String url, Map<String, dynamic> body, access) async {
     customLog('URL PUT -> $url\nBODY -> $body');
     return http.put(
       Uri.parse(url),
-      headers: await getCustomheader(),
+      headers: {'Authorization': access, 'Content-Type': 'application/json'},
       body: jsonEncode(body),
     );
   }

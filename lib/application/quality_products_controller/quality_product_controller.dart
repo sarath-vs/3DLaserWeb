@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
 import 'package:laser_tech_app/domain/log/custom_log.dart';
+import 'package:laser_tech_app/domain/models/products/get_question_details_model.dart';
 import 'package:laser_tech_app/domain/models/products/questionModel.dart';
 import 'package:laser_tech_app/domain/models/products/save_quality_product_model.dart';
 import 'package:laser_tech_app/presentation/03_Screen_home/widgets/qualitycontrol_questions.dart';
@@ -29,11 +30,12 @@ class QualityProductController extends GetxController {
 
   List<QualityProductResult> qualityProductList = [];
   List<QuestionResult> qualityQuestionList = [];
+    
 
   String name = '';
   int productId = 0;
   Future<void> getQualityProducts() async {
-    showCircularProgressDialog(msg: 'Signing in');
+    showCircularProgressDialog(msg: 'Loading');
     final result = await _qualityProductFacade.getQualityProduct();
     Navigator.of(navigatorKey.currentContext!).pop();
     result.fold((NetworkExceptions exp) {
@@ -55,7 +57,7 @@ class QualityProductController extends GetxController {
 
   Future<void> saveQualityQuestions(
       {required String name, required String discription}) async {
-    showCircularProgressDialog(msg: 'Signing in');
+    showCircularProgressDialog(msg: 'Saving');
     final result = await _qualityProductFacade.saveQualityProduct(
         name: name, description: discription);
     Navigator.of(navigatorKey.currentContext!).pop();
@@ -104,7 +106,7 @@ class QualityProductController extends GetxController {
   Future<void> deleteQualityProduct({
     required int id,
   }) async {
-    showCircularProgressDialog(msg: 'Signing in');
+    showCircularProgressDialog(msg: 'Deleting');
     final result = await _qualityProductFacade.deleteQualityProduct(id: id);
     Navigator.of(navigatorKey.currentContext!).pop();
     result.fold((NetworkExceptions exp) {
@@ -126,7 +128,7 @@ class QualityProductController extends GetxController {
   }
 
   Future<void> getQualityQuestions({required int id}) async {
-    showCircularProgressDialog(msg: 'Signing in');
+    showCircularProgressDialog(msg: 'Loading');
     final result = await _qualityProductFacade.getQualityQuestions(id: id);
     Navigator.of(navigatorKey.currentContext!).pop();
     result.fold((NetworkExceptions exp) {
@@ -147,7 +149,7 @@ class QualityProductController extends GetxController {
   }
 
   Future<void> deleteQualityQuestions({required int id}) async {
-    showCircularProgressDialog(msg: 'Signing in');
+    showCircularProgressDialog(msg: 'Loading');
     final result = await _qualityProductFacade.deleteQualityQuestions(id: id);
     Navigator.of(navigatorKey.currentContext!).pop();
     result.fold((NetworkExceptions exp) {
@@ -169,7 +171,7 @@ class QualityProductController extends GetxController {
 
   Future<void> postQualityQuestions(
       {required Map<String, Object?> dataToSend}) async {
-    showCircularProgressDialog(msg: 'Signing in');
+    showCircularProgressDialog(msg: 'Loading');
     final result = await _qualityProductFacade.postQualityQuestions(
         dataToSend: dataToSend);
     Navigator.of(navigatorKey.currentContext!).pop();
@@ -189,4 +191,6 @@ class QualityProductController extends GetxController {
       update([qualityQuestionID]);
     });
   }
+
+   
 }
