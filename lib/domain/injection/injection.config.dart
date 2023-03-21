@@ -8,19 +8,23 @@
 import 'package:connectivity_plus/connectivity_plus.dart' as _i3;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
+import 'package:laser_tech_app/application/ansswered_product_controller/answered_product_controller.dart'
+    as _i20;
 import 'package:laser_tech_app/application/auth_controller/auth_controller.dart'
-    as _i18;
+    as _i21;
 import 'package:laser_tech_app/application/home_screen_controller/controller.dart'
     as _i8;
 import 'package:laser_tech_app/application/quality_products_controller/quality_product_controller.dart'
-    as _i16;
+    as _i18;
 import 'package:laser_tech_app/application/quality_question_edit_controller/quality_question_edit_controller.dart'
     as _i11;
 import 'package:laser_tech_app/application/tools_controller/tools_controller.dart'
-    as _i17;
+    as _i19;
 import 'package:laser_tech_app/domain/employee_data/employee_data_manager.dart'
     as _i7;
-import 'package:laser_tech_app/domain/models/login/login_facade.dart' as _i14;
+import 'package:laser_tech_app/domain/models/answered_product_list/answered_product_facade.dart'
+    as _i14;
+import 'package:laser_tech_app/domain/models/login/login_facade.dart' as _i16;
 import 'package:laser_tech_app/domain/models/products/quality_product_facade.dart'
     as _i9;
 import 'package:laser_tech_app/domain/models/tools_model/tools_facade.dart'
@@ -28,14 +32,16 @@ import 'package:laser_tech_app/domain/models/tools_model/tools_facade.dart'
 import 'package:laser_tech_app/domain/remote/connectivity/internet_connectivity.dart'
     as _i4;
 import 'package:laser_tech_app/domain/remote/url/url_pool.dart' as _i6;
-import 'package:laser_tech_app/implementation/auth/auth_impl.dart' as _i15;
+import 'package:laser_tech_app/implementation/answered_product_list_impl/answered_product_impl.dart'
+    as _i15;
+import 'package:laser_tech_app/implementation/auth/auth_impl.dart' as _i17;
 import 'package:laser_tech_app/implementation/quality_product_impl/quality_product_impl.dart'
     as _i10;
 import 'package:laser_tech_app/implementation/tools/tools_impl.dart' as _i13;
 import 'package:shared_preferences/shared_preferences.dart' as _i5;
 
-import '../modules/modules.dart' as _i19;
-import '../remote/connectivity/internet_connectivity.dart' as _i20;
+import '../modules/modules.dart' as _i22;
+import '../remote/connectivity/internet_connectivity.dart' as _i23;
 
 const String _prod = 'prod';
 const String _dev = 'dev';
@@ -87,28 +93,35 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i6.URLPool>(),
           gh<_i4.InternetConnectivity>(),
         ));
-    gh.lazySingleton<_i14.AuthFacade>(() => _i15.AuthImpl(
+    gh.lazySingleton<_i14.AnsweredProductFacade>(() => _i15.AnsweredProductImpl(
           gh<_i7.EmployeeDataManager>(),
           gh<_i6.URLPool>(),
           gh<_i4.InternetConnectivity>(),
         ));
-    gh.factory<_i16.QualityProductController>(
-        () => _i16.QualityProductController(
+    gh.lazySingleton<_i16.AuthFacade>(() => _i17.AuthImpl(
+          gh<_i7.EmployeeDataManager>(),
+          gh<_i6.URLPool>(),
+          gh<_i4.InternetConnectivity>(),
+        ));
+    gh.factory<_i18.QualityProductController>(
+        () => _i18.QualityProductController(
               gh<_i9.QualityProductFacade>(),
               gh<_i7.EmployeeDataManager>(),
             ));
-    gh.factory<_i17.ToolsController>(() => _i17.ToolsController(
+    gh.factory<_i19.ToolsController>(() => _i19.ToolsController(
           gh<_i12.ToolsFacade>(),
           gh<_i7.EmployeeDataManager>(),
         ));
-    gh.factory<_i18.AuthController>(() => _i18.AuthController(
-          gh<_i14.AuthFacade>(),
+    gh.factory<_i20.AnsweredProductController>(
+        () => _i20.AnsweredProductController(gh<_i14.AnsweredProductFacade>()));
+    gh.factory<_i21.AuthController>(() => _i21.AuthController(
+          gh<_i16.AuthFacade>(),
           gh<_i7.EmployeeDataManager>(),
         ));
     return this;
   }
 }
 
-class _$Modules extends _i19.Modules {}
+class _$Modules extends _i22.Modules {}
 
-class _$ConnectivityModule extends _i20.ConnectivityModule {}
+class _$ConnectivityModule extends _i23.ConnectivityModule {}

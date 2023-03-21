@@ -13,8 +13,10 @@ import 'package:laser_tech_app/presentation/05_Employee_details/employee_details
 import 'package:laser_tech_app/presentation/05_Employee_details/employee_work_details.dart';
 import 'package:laser_tech_app/presentation/06_tools/screen_tools.dart';
 import 'package:laser_tech_app/presentation/07_Screen_quality_questions_modify/quality_questions_addingform.dart';
+import 'package:laser_tech_app/presentation/10_completedProductList/screen_completed_product_list.dart';
 import 'package:laser_tech_app/presentation/theme/theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'application/ansswered_product_controller/answered_product_controller.dart';
 import 'application/auth_controller/auth_controller.dart';
 
 import 'application/home_screen_controller/controller.dart';
@@ -101,6 +103,7 @@ class _MyAppState extends State<MyApp> {
           ScreenToolsADD.routeName: (context) => const ScreenToolsADD(),
           QualityquestionEdit.routeName: (context) => const QualityquestionEdit(),
            QualitycontrolpropertiesEditor.routeName: (context) => const QualitycontrolpropertiesEditor(),
+           ScreenCompletedProducts.routeName: (context) => const ScreenCompletedProducts(),
         },
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
@@ -126,6 +129,8 @@ initializeGetxController() {
   Get.put<QualityProductController>(getIt<QualityProductController>(),
       permanent: false);
         Get.put<QualityQuestionEditController>(getIt<QualityQuestionEditController>(),
+      permanent: false);
+       Get.put<AnsweredProductController>(getIt<AnsweredProductController>(),
       permanent: false);
 }
 
