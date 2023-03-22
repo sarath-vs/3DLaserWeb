@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:laser_tech_app/presentation/widgets/snackbar.dart';
 
@@ -22,6 +23,8 @@ String productName = '';
 String description = '';
 String timeLimit ='';
 int id=0;
+String min ='';
+String sec ='';
 
 class _QualitycontrolpropertiesEditorState extends State<QualitycontrolpropertiesEditor> {
   @override
@@ -97,20 +100,49 @@ class _QualitycontrolpropertiesEditorState extends State<Qualitycontrolpropertie
                       "Maximum Time To Complete",
                       style: AppTheme.h6Style,
                     ),
-                    SizedBox(
-                      width: customWidth(150),
+                  Row(
+                      children: [
+                        SizedBox(
+                          width: customWidth(30),
+                          child: TextFormField(
+                            validator: (val) {
+                              return null;
+                            },
+                            onChanged: (value) {
+                              min = value;
+                            },
+                              inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.digitsOnly
+                             ],
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                              hintText: "Minutes",
+                              // border: OutlineInputBorder(
+                              //     borderRadius: BorderRadius.circular(20)),
+                              fillColor: Colors.grey.shade200,
+                              filled: true,
+                              floatingLabelStyle: AppTheme.h2Style,
+                            ),
+                          ),
+                        ),
+                        customHorizontalGap(10),
+                      SizedBox(
+                      width: customWidth(30),
                       child: TextFormField(
                         validator: (val) {
+                          
                           return null;
+                          
                         },
-                        onChanged: (value) {
-
-                          timeLimit = value;
-                        },
+                        inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly
+                        ],
                         keyboardType: TextInputType.number,
+                        onChanged: (value) {
+                          sec = value;
+                        },
                         decoration: InputDecoration(
-                          hintText: timeLimit==''?"Time (eg: Hr.mm)":timeLimit,
-                        
+                          hintText: "Seconds",
                           // border: OutlineInputBorder(
                           //     borderRadius: BorderRadius.circular(20)),
                           fillColor: Colors.grey.shade200,
@@ -118,6 +150,8 @@ class _QualitycontrolpropertiesEditorState extends State<Qualitycontrolpropertie
                           floatingLabelStyle: AppTheme.h2Style,
                         ),
                       ),
+                    ),
+                      ],
                     ),
                     Text(
                       "Descripiton",
@@ -179,7 +213,7 @@ class _QualitycontrolpropertiesEditorState extends State<Qualitycontrolpropertie
                               showSnackBar(message: 'Fill input fields');
                             } else {
                               Get.find<QualityProductController>()
-                                  .putQualityProducts(id: id, name: productName, description: description, time: timeLimit)
+                                  .putQualityProducts(id: id, name: productName, description: description,time: '${min==''?'0':min}.${sec==''?'0':sec}')
                                   .then((value) {
                              
 

@@ -108,7 +108,7 @@ class _MyAppState extends State<MyApp> {
               const QualitycontrolpropertiesEditor(),
           ScreenCompletedProducts.routeName: (context) =>
               const ScreenCompletedProducts(),
-          Questionsanswer.routeName: (context) => const Questionsanswer(),
+         // Questionsanswer.routeName: (context) => const Questionsanswer(),
         },
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
 import 'package:laser_tech_app/domain/log/custom_log.dart';
+import 'package:laser_tech_app/domain/models/answered_product_list/answer_model.dart';
 import 'package:laser_tech_app/domain/models/answered_product_list/answered_product_list_model.dart';
 import '../../domain/models/answered_product_list/answered_product_facade.dart';
 import '../../domain/remote/exceptions/network_exceptions.dart';
@@ -22,6 +23,7 @@ class AnsweredProductController extends GetxController {
 
 
  List<AnsweredListResult> productList = [];
+ List<AnswerList> answerList = [];
 
   
 
@@ -44,6 +46,31 @@ class AnsweredProductController extends GetxController {
     }, (AnsweredProductListModel resp) {
       productList.clear();
       productList.addAll(resp.data!);
+     
+      customLog(resp);
+      update([answeredProductListWidgetID]);
+    });
+  }
+
+    Future<void> getAnswerLists
+  ({
+    required int id,
+  }) async {
+    showCircularProgressDialog(msg: 'Loading');
+    final result = await _answeredProductFacade.getAnswerList(id: id);
+    Navigator.of(navigatorKey.currentContext!).pop();
+    result.fold((NetworkExceptions exp) {
+      return showSingleButtonAlertDialog(
+        Get.context!,
+        'Warning',
+        getMessageFromException(exp),
+        () {
+          Navigator.of(Get.context!).pop();
+        },
+      );
+    }, (AnswerModel resp) {
+      answerList.clear();
+      answerList.addAll(resp.data!);
      
       customLog(resp);
       update([answeredProductListWidgetID]);

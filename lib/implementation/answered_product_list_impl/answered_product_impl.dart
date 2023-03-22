@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:injectable/injectable.dart';
+import 'package:laser_tech_app/domain/models/answered_product_list/answer_model.dart';
 import 'package:laser_tech_app/domain/models/answered_product_list/answered_product_list_model.dart';
 import 'package:laser_tech_app/domain/models/tools_model/tools_model.dart';
 import '../../domain/employee_data/employee_data_manager.dart';
@@ -43,6 +44,25 @@ class AnsweredProductImpl implements AnsweredProductFacade {
         await Postman.sendGetRequest(_url.getAnsweredProduct + '?category_id=$id', access!);
     if (result.statusCode == 200) {
       final data = AnsweredProductListModel.fromJson(
+          jsonDecode(result.body) as Map<String, dynamic>);
+      customLog('--->>>');
+      customLog(result.body);
+
+      return right(data);
+    } else {
+      print('${result.statusCode}');
+      return left(getExceptionFromStatusCode(result.statusCode));
+    }
+  }
+
+  @override
+  Future<Either<NetworkExceptions, AnswerModel>> getAnswerList({required int id}) async {
+    String? access = await _employeeDataManager.getRefresh();
+
+    final result =
+        await Postman.sendGetRequest(_url.getAnsweredProduct + '$id/', access!);
+    if (result.statusCode == 200) {
+      final data = AnswerModel.fromJson(
           jsonDecode(result.body) as Map<String, dynamic>);
       customLog('--->>>');
       customLog(result.body);
