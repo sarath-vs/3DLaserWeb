@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:laser_tech_app/presentation/widgets/snackbar.dart';
 
@@ -20,7 +21,8 @@ class Qualitycontrolproperties extends StatefulWidget {
 
 String name = '';
 String disc = '';
-String time ='';
+String min ='';
+String sec ='';
 
 class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
   @override
@@ -90,17 +92,49 @@ class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
                       "Maximum Time To Complete",
                       style: AppTheme.h6Style,
                     ),
-                    SizedBox(
-                      width: customWidth(150),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: customWidth(30),
+                          child: TextFormField(
+                            validator: (val) {
+                              return null;
+                            },
+                            onChanged: (value) {
+                              min = value;
+                            },
+                              inputFormatters: <TextInputFormatter>[
+    FilteringTextInputFormatter.digitsOnly
+],
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                              hintText: "Minutes",
+                              // border: OutlineInputBorder(
+                              //     borderRadius: BorderRadius.circular(20)),
+                              fillColor: Colors.grey.shade200,
+                              filled: true,
+                              floatingLabelStyle: AppTheme.h2Style,
+                            ),
+                          ),
+                        ),
+                        customHorizontalGap(10),
+                      SizedBox(
+                      width: customWidth(30),
                       child: TextFormField(
                         validator: (val) {
+                          
                           return null;
+                          
                         },
+                        inputFormatters: <TextInputFormatter>[
+    FilteringTextInputFormatter.digitsOnly
+],
+                        keyboardType: TextInputType.number,
                         onChanged: (value) {
-                          time = value;
+                          sec = value;
                         },
                         decoration: InputDecoration(
-                          hintText: "Time (eg: Hr.mm)",
+                          hintText: "Seconds",
                           // border: OutlineInputBorder(
                           //     borderRadius: BorderRadius.circular(20)),
                           fillColor: Colors.grey.shade200,
@@ -109,6 +143,9 @@ class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
                         ),
                       ),
                     ),
+                      ],
+                    ),
+                    
                     Text(
                       "Descripiton",
                       style: AppTheme.h6Style,
@@ -170,7 +207,7 @@ class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
                             } else {
                               Get.find<QualityProductController>()
                                   .saveQualityQuestions(
-                                      name: name, discription: disc,time: time)
+                                      name: name, discription: disc,time: '${min==''?'0':min}.${sec==''?'0':sec}')
                                   .then((value) {
                                 Get.find<QualityProductController>()
                                     .getQualityProducts();

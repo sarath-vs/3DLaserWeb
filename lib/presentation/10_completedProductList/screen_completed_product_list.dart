@@ -51,7 +51,7 @@ class ScreenCompletedProducts extends StatelessWidget {
                           );
                         },
                         child: Container(
-                          height: customHeight(80),
+                          height: customHeight(100),
                           width: 100,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -68,13 +68,29 @@ class ScreenCompletedProducts extends StatelessWidget {
                                         child: Text(
                                       'Sl.No : ',
                                       style: TextStyle(
-                                          fontSize: customFontSize(5),
+                                          fontSize: customFontSize(4),
                                           fontWeight: FontWeight.bold),
                                     )),
                                     Expanded(
                                         flex: 9,
                                         child: Text(
                                             ' ${controller.productList[index].slNo}')),
+                                  ],
+                                ),
+                                     Row(
+                                  children: [
+                                    Expanded(
+                                        flex: 1,
+                                        child: Text(
+                                          'User : ',
+                                          style: TextStyle(
+                                              fontSize: customFontSize(4),
+                                              fontWeight: FontWeight.bold),
+                                        )),
+                                    Expanded(
+                                        flex: 9,
+                                        child: Text(
+                                            ' ${controller.productList[index].user}')),
                                   ],
                                 ),
                                 Row(
@@ -84,31 +100,32 @@ class ScreenCompletedProducts extends StatelessWidget {
                                         child: Text(
                                           'Date Created :',
                                           style: TextStyle(
-                                              fontSize: customFontSize(5),
+                                              fontSize: customFontSize(4),
                                               fontWeight: FontWeight.bold),
                                         )),
                                     Expanded(
                                         flex: 9,
                                         child: Text(
-                                            'Date Created :  ${controller.productList[index].dateCreated}')),
+                                            ' ${controller.productList[index].dateCreated!.split(' ').first}')),
                                   ],
                                 ),
-                                Row(
+                                 Row(
                                   children: [
                                     Expanded(
                                         flex: 1,
                                         child: Text(
-                                          'User : ',
+                                          'Time Created :',
                                           style: TextStyle(
-                                              fontSize: customFontSize(5),
+                                              fontSize: customFontSize(4),
                                               fontWeight: FontWeight.bold),
                                         )),
                                     Expanded(
                                         flex: 9,
                                         child: Text(
-                                            'User :  ${controller.productList[index].user}')),
+                                            ' ${controller.productList[index].dateCreated!.split(' ').last}')),
                                   ],
                                 ),
+                           
                               ],
                             ),
                           ),
