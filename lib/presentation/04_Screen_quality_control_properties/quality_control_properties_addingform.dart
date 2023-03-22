@@ -104,8 +104,8 @@ class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
                               min = value;
                             },
                               inputFormatters: <TextInputFormatter>[
-    FilteringTextInputFormatter.digitsOnly
-],
+                              FilteringTextInputFormatter.digitsOnly
+                             ],
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               hintText: "Minutes",
@@ -127,8 +127,8 @@ class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
                           
                         },
                         inputFormatters: <TextInputFormatter>[
-    FilteringTextInputFormatter.digitsOnly
-],
+                        FilteringTextInputFormatter.digitsOnly
+                        ],
                         keyboardType: TextInputType.number,
                         onChanged: (value) {
                           sec = value;
