@@ -10,7 +10,7 @@ import '../../domain/models/login/login_model.dart';
 import '../../domain/models/login/refresh_model.dart';
 import '../../domain/remote/exceptions/network_exceptions.dart';
 import '../../main.dart';
-import '../../presentation/01_Screen_splash/screen_splash.dart';
+import '../../presentation/02_Screen_login/screen_login.dart';
 import '../../presentation/03_Screen_home/screen_home.dart';
 import '../../presentation/widgets/circular_progress_dialog.dart';
 import '../../presentation/widgets/single_button_alert_dialog.dart';
@@ -72,7 +72,7 @@ class AuthController extends GetxController {
 
   Future<void> logOut() async {
     Navigator.of(navigatorKey.currentContext!).pushNamedAndRemoveUntil(
-      ScreenSplash.routeName,
+      ScreenLogin.routeName,
       (route) => false,
     );
     Get.deleteAll();

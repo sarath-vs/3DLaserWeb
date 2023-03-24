@@ -89,9 +89,9 @@ class _MyAppState extends State<MyApp> {
         navigatorKey: navigatorKey,
         title: 'laser_tech_app',
         theme: AppTheme.lightTheme.copyWith(),
-        home: ScreenSplash(),
+        home: ScreenLogin(),
         routes: {
-          ScreenSplash.routeName: (context) => const ScreenSplash(),
+         // ScreenSplash.routeName: (context) => const ScreenSplash(),
           ScreenLogin.routeName: (context) => const ScreenLogin(),
           ScreenHome.routeName: (context) => const ScreenHome(),
           EmployeeWorkDetails.routeName: (context) =>

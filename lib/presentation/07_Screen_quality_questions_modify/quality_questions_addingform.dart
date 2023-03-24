@@ -875,8 +875,8 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                                   double.parse(value);
                                               double startrange =
                                                   double.parse(rangeFrom);
-                                                  
-                                              if (startrange > torange) {
+                                                  Future.delayed(Duration(seconds: 4), (){
+      if (startrange > torange) {
                                                 showDialog(
                                                   context: context,
                                                   builder: (context) =>
@@ -896,6 +896,9 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                                   ),
                                                 );
                                               }
+});
+                                                  
+                                              
                                               decoration:
                                               InputDecoration(
                                                 hintText: "To",

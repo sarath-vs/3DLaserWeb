@@ -54,9 +54,16 @@ static String questionID='';
 static int? productId;
 
 
-
+final TextEditingController questionEnglishController = TextEditingController();
+final TextEditingController questionCzechController = TextEditingController();
+final TextEditingController questionGermanController = TextEditingController();
+final TextEditingController discriptionEnglishController = TextEditingController();
+final TextEditingController discriptionCzechController = TextEditingController();
+final TextEditingController discriptionGermanController = TextEditingController();
+final TextEditingController dropDownValueController = TextEditingController();
 
  static List<String> selectedimagesin64bytes = [];
+ 
 
 
 static  List<String> base64StringVDO = [];
@@ -120,6 +127,7 @@ static final answerField = {
                 rangeFrom = resp.data!.fieldInfoObject!.rangeFrom??"";
                   rangeTo = resp.data!.fieldInfoObject!.rangeTo??"";
                     dropDownData = resp.data!.fieldInfoObject!.dropDownData??"";
+                    dropDownValueController.text=resp.data!.fieldInfoObject!.dropDownData??"";
                     productId=resp.data!.category;
                     questionID=resp.data!.id.toString();
                     questionEnglish=resp.data!.questionEnglish.toString();
@@ -131,8 +139,17 @@ static final answerField = {
                     selectedimagesin64bytes=resp.data!.images!;
                     base64StringVDO=resp.data!.videos!;
                     tools.clear();
+                    questionEnglishController.text = resp.data!.questionEnglish??"N/A";
+ questionCzechController.text = resp.data!.questionCzech??"N/A";
+ questionGermanController.text = resp.data!.questionGerman??"N/A";
+
+ discriptionEnglishController.text = resp.data!.descriptionEnglish??"N/A";
+ discriptionCzechController.text = resp.data!.descriptionCzech??"N/A";
+ discriptionGermanController.text = resp.data!.descriptionGerman??"N/A";
                     resp.data!.toolsUsed!.forEach((element) {
                       tools.add(element.toolId!);
+
+                       
                      
                     })
                    
@@ -145,15 +162,15 @@ static final answerField = {
 
       Future<void> putEditQuestionDetails(
       ) async {  final dataToSend = {
-                                       "description_english": discriptionEnglish,
-                                      "description_czech": discriptionCzech,
-                                      "description_german": discriptionGerman,
+                                       "description_english": discriptionEnglishController.text,
+                                      "description_czech": discriptionCzechController.text,
+                                      "description_german": discriptionGermanController.text,
                                       "image_base_64": selectedimagesin64bytes,
                                       "video_base_64": base64StringVDO,
                                      
-                                      "question_english": questionEnglish,
-                                      "question_czech": questionCzech,
-                                      "question_german": questionGerman,
+                                      "question_english": questionEnglishController.text,
+                                      "question_czech": questionCzechController.text,
+                                      "question_german": questionGermanController.text,
                                       "time_limit": 0,
                                        "field_info_object": answerField,
                                        "category": productId,

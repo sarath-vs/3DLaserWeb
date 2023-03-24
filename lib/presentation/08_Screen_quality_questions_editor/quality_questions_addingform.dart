@@ -143,16 +143,20 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
 
     final id = arguments['id'];
     final productIDZ=arguments['productID'];
-       Get.find<ToolsController>().getTools().then((value) {
+ 
+  Get.find<ToolsController>().getTools().then((value) {
         if (_checkedItems.isEmpty) {
           _checkedItems =
               List.filled(Get.find<ToolsController>().toolsList.length, false);
         }
       });
       QualityQuestionEditController.questionID=id.toString();
-      if(QualityQuestionEditController.productId==null){
-         Get.find<QualityQuestionEditController>().getEditQuestionDetails(id: id.toString());
-      }
+ 
+     
+     if(QualityQuestionEditController.productId==null){
+         
+        
+     }
 
      
     });
@@ -207,14 +211,20 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                             SizedBox(
                               width: customWidth(400),
                               child: TextFormField(
+                                controller: controller.questionEnglishController,
+                      //initialValue: controller.questionEnglishController.text,
+                               
                                 validator: (val) {
                                   return null;
                                 },
-                                onChanged: (value) {
-                                QualityQuestionEditController.questionEnglish = value;
-                                },
+                                
+                              //   onChanged: (value) {
+                              //  // QualityQuestionEditController.questionEnglish = value;
+                              //   },
                                 decoration: InputDecoration(
-                                  hintText: QualityQuestionEditController.questionEnglish??'N/A'+'  (English)',
+                                 
+                                 // labelText: controller.questionCzechController.text,
+                                 // hintText: QualityQuestionEditController.questionEnglish??'N/A'+'  (English)',
 
                                   // border: OutlineInputBorder(
                                   //     borderRadius: BorderRadius.circular(20)),
@@ -227,14 +237,15 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                             SizedBox(
                               width: customWidth(400),
                               child: TextFormField(
+                                 controller: controller.questionCzechController,
                                 validator: (val) {
                                   return null;
                                 },
-                                onChanged: (value) {
-                                  QualityQuestionEditController.questionCzech = value;
-                                },
+                                // onChanged: (value) {
+                                //   QualityQuestionEditController.questionCzech = value;
+                                // },
                                 decoration: InputDecoration(
-                                  hintText: QualityQuestionEditController.questionCzech??"N/A"+'  (Czech)',
+                                  //hintText: QualityQuestionEditController.questionCzech??"N/A"+'  (Czech)',
 
                                   // border: OutlineInputBorder(
                                   //     borderRadius: BorderRadius.circular(20)),
@@ -247,14 +258,15 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                             SizedBox(
                               width: customWidth(400),
                               child: TextFormField(
+                                 controller: controller.questionGermanController,
                                 validator: (val) {
                                   return null;
                                 },
-                                onChanged: (value) {
-                                   QualityQuestionEditController.questionGerman = value;
-                                },
+                                // onChanged: (value) {
+                                //    QualityQuestionEditController.questionGerman = value;
+                                // },
                                 decoration: InputDecoration(
-                                  hintText: QualityQuestionEditController.questionGerman??"N/A" +'    (Vietnam)',
+                                 // hintText: QualityQuestionEditController.questionGerman??"N/A" +'    (Vietnam)',
 
                                   // border: OutlineInputBorder(
                                   //     borderRadius: BorderRadius.circular(20)),
@@ -271,14 +283,15 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                             SizedBox(
                               width: customWidth(400),
                               child: TextFormField(
+                                 controller: controller.discriptionEnglishController,
                                 validator: (val) {
                                   return null;
                                 },
-                                onChanged: (value) {
-                                  QualityQuestionEditController.discriptionEnglish = value;
-                                },
+                                // onChanged: (value) {
+                                //   QualityQuestionEditController.discriptionEnglish = value;
+                                // },
                                 decoration: InputDecoration(
-                                  hintText: QualityQuestionEditController.discriptionEnglish??"N/A" +'   (English)',
+                                 // hintText: QualityQuestionEditController.discriptionEnglish??"N/A" +'   (English)',
 
                                   // border: OutlineInputBorder(
                                   //     borderRadius: BorderRadius.circular(20)),
@@ -292,14 +305,13 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                             SizedBox(
                               width: customWidth(400),
                               child: TextFormField(
+                                 controller: controller.questionCzechController,
                                 validator: (val) {
                                   return null;
                                 },
-                                onChanged: (value) {
-                                  QualityQuestionEditController.discriptionCzech = value;
-                                },
+                               
                                 decoration: InputDecoration(
-                                  hintText:QualityQuestionEditController.discriptionCzech??'N/A'+  '   (Czech)',
+                                  //hintText:QualityQuestionEditController.discriptionCzech??'N/A'+  '   (Czech)',
 
                                   // border: OutlineInputBorder(
                                   //     borderRadius: BorderRadius.circular(20)),
@@ -312,14 +324,13 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                             SizedBox(
                               width: customWidth(400),
                               child: TextFormField(
+                                 controller: controller.questionGermanController,
                                 validator: (val) {
                                   return null;
                                 },
-                                onChanged: (value) {
-                                  QualityQuestionEditController.discriptionGerman = value;
-                                },
+                                
                                 decoration: InputDecoration(
-                                  hintText: QualityQuestionEditController.discriptionGerman??'N/A' + '  (Vietnam)',
+                                 // hintText: QualityQuestionEditController.discriptionGerman??'N/A' + '  (Vietnam)',
 
                                   // border: OutlineInputBorder(
                                   //     borderRadius: BorderRadius.circular(20)),
@@ -832,6 +843,8 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                               double startrange =
                                                   double.parse(QualityQuestionEditController.rangeFrom);
                                                   
+                                             Future.delayed(Duration(seconds: 4), (){
+                                              
                                               if (startrange > torange) {
                                                 showDialog(
                                                   context: context,
@@ -843,6 +856,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                                     actions: [
                                                       TextButton(
                                                         onPressed: () {
+                                                          
                                                           Navigator.pop(
                                                               context);
                                                         },
@@ -852,6 +866,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                                   ),
                                                 );
                                               }
+});
                                               decoration:
                                               InputDecoration(
                                                 hintText: "To",
@@ -885,10 +900,10 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                         Colors.white, // color of tick Mark
                                     activeColor: LightColor.primaryColor,
                                     onChanged: (bool? value) {
-                                      setState(() {
+                                     setState(() {
                                         QualityQuestionEditController.inputText = !QualityQuestionEditController.inputText;
                                         QualityQuestionEditController.inputTextManditory = false;
-                                      });
+                                   });
                                     },
                                   ),
                                 ),
@@ -932,6 +947,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                 Expanded(
                                   flex: 3,
                                   child: TextFormField(
+                                    controller: controller.dropDownValueController,
                                     keyboardType: TextInputType.multiline,
                                     minLines: 1,
                                     maxLines: 7,
@@ -939,11 +955,11 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                       return null;
                                     },
                                     onChanged: (value) {
-                                      QualityQuestionEditController.dropDownData = value;
+                                      QualityQuestionEditController.dropDownData = controller.dropDownValueController.text;
                                     },
                                     decoration: InputDecoration(
-                                      hintText:
-                                          QualityQuestionEditController.dropDownData==""?"Add Drop Down Values seperate by ||.(eg:one||Two||Three)":QualityQuestionEditController.dropDownData,
+                                      // hintText:
+                                      //     QualityQuestionEditController.dropDownData==""?"Add Drop Down Values seperate by ||.(eg:one||Two||Three)":QualityQuestionEditController.dropDownData,
                                       hintStyle: TextStyle(
                                           fontSize: customFontSize(4)),
                                       fillColor: Colors.grey.shade200,

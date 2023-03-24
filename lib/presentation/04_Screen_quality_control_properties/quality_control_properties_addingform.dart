@@ -21,8 +21,8 @@ class Qualitycontrolproperties extends StatefulWidget {
 
 String name = '';
 String disc = '';
-String min ='';
-String sec ='';
+int min =0;
+int sec =0;
 
 class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
   @override
@@ -101,7 +101,7 @@ class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
                               return null;
                             },
                             onChanged: (value) {
-                              min = value;
+                              min = int.parse(value);
                             },
                               inputFormatters: <TextInputFormatter>[
                               FilteringTextInputFormatter.digitsOnly
@@ -131,7 +131,7 @@ class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
                         ],
                         keyboardType: TextInputType.number,
                         onChanged: (value) {
-                          sec = value;
+                          sec = int.parse(value);
                         },
                         decoration: InputDecoration(
                           hintText: "Seconds",
@@ -207,7 +207,7 @@ class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
                             } else {
                               Get.find<QualityProductController>()
                                   .saveQualityQuestions(
-                                      name: name, discription: disc,time: '${min==''?'0':min}.${sec==''?'0':sec}')
+                                      name: name, discription: disc,time: '${min*60+sec}')
                                   .then((value) {
                                 Get.find<QualityProductController>()
                                     .getQualityProducts();

@@ -4,6 +4,7 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 import '../../../application/home_screen_controller/controller.dart';
 import '../../../application/quality_products_controller/quality_product_controller.dart';
+import '../../../application/quality_question_edit_controller/quality_question_edit_controller.dart';
 import '../../../domain/responsive/dimensions.dart';
 import '../../08_Screen_quality_questions_editor/quality_questions_addingform.dart';
 import '../../theme/color.dart';
@@ -96,8 +97,11 @@ class Qualityquestions extends StatelessWidget {
                                             padding: const EdgeInsets.all(8.0),
                                             child: InkWell(
                                               onTap: () {
-                                                Navigator.pushNamed(context,arguments: {
+                                                Get.find<QualityQuestionEditController>().getEditQuestionDetails(id:controller.qualityQuestionList[index].id.toString()).then((value) {
+                                                  Navigator.pushNamed(context,arguments: {
                                            'id': controller.qualityQuestionList[index].id,  },QualityquestionEdit.routeName);
+                                                });
+                                                
             
            
         

@@ -23,8 +23,8 @@ String productName = '';
 String description = '';
 String timeLimit ='';
 int id=0;
-String min ='';
-String sec ='';
+int min =0;
+int sec =0;
 
 class _QualitycontrolpropertiesEditorState extends State<QualitycontrolpropertiesEditor> {
   @override
@@ -109,7 +109,7 @@ class _QualitycontrolpropertiesEditorState extends State<Qualitycontrolpropertie
                               return null;
                             },
                             onChanged: (value) {
-                              min = value;
+                              min = int.parse(value);
                             },
                               inputFormatters: <TextInputFormatter>[
                               FilteringTextInputFormatter.digitsOnly
@@ -139,7 +139,7 @@ class _QualitycontrolpropertiesEditorState extends State<Qualitycontrolpropertie
                         ],
                         keyboardType: TextInputType.number,
                         onChanged: (value) {
-                          sec = value;
+                          sec = int.parse(value);
                         },
                         decoration: InputDecoration(
                           hintText: "Seconds",
@@ -213,7 +213,7 @@ class _QualitycontrolpropertiesEditorState extends State<Qualitycontrolpropertie
                               showSnackBar(message: 'Fill input fields');
                             } else {
                               Get.find<QualityProductController>()
-                                  .putQualityProducts(id: id, name: productName, description: description,time: '${min==''?'0':min}.${sec==''?'0':sec}')
+                                  .putQualityProducts(id: id, name: productName, description: description,time: '${min*60+sec}')
                                   .then((value) {
                              
 
