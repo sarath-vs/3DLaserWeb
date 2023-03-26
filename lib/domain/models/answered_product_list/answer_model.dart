@@ -73,19 +73,29 @@ class AnswerList {
 
 class Answer {
   String? image;
-  String? answer;
+  String? dropdown;
+  String? range;
+  String? yesOrNo;
+  String? yesOrNoOrNoOne;
 
-  Answer({this.image, this.answer});
+  Answer({this.image, this.dropdown, this.range,this.yesOrNo});
 
   Answer.fromJson(Map<String, dynamic> json) {
     image = json['image'];
-    answer = json['answer'];
+    dropdown = json['drop_down'];
+    range = json['range'];
+    yesOrNo = json['yesOrNo'];
+    yesOrNoOrNoOne = json['yesOrNoOrNoOne'];
+    
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['image'] = this.image;
-    data['answer'] = this.answer;
+    data['drop_down'] = this.dropdown;
+     data['range'] = this.range;
+     data['yesOrNo'] = this.yesOrNo;
+     data['yesOrNoOrNoOne'] = this.yesOrNoOrNoOne;
     return data;
   }
 }

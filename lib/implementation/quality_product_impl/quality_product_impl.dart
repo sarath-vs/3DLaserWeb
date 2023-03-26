@@ -164,7 +164,7 @@ class QualityProductImpl implements QualityProductFacade {
     }}
     
       @override
-      Future<Either<NetworkExceptions, String>> putQuestionEdit({required String id,required Map<String, Object?> dataToSend}) async {
+      Future<Either<NetworkExceptions, String>> putQuestionEdit({required String id,required Map<String, Object?> dataToSend,}) async {
     String? access = await _employeeDataManager.getRefresh();
     final result = await Postman.sendPutRequest(_url.editQualityQuestions + '$id/',dataToSend, access);
     if (result.statusCode == 200) {

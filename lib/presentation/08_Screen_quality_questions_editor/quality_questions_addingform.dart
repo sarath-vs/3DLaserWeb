@@ -1066,7 +1066,8 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
             QualityQuestionEditController.selectedimagesin64bytes.clear();
 
           }
-                                    controller.putEditQuestionDetails().then((value) {
+          if(base64StringVDO.isNotEmpty){
+            controller.putEditQuestionDetails(vdo:  base64StringVDO.first).then((value) {
                               
                                       Get.back();
                                        Get.back();
@@ -1079,6 +1080,23 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                       });
                                       
                                     });
+
+          }else{
+            controller.putEditQuestionDetails(vdo: '').then((value) {
+                              
+                                      Get.back();
+                                       Get.back();
+                                      
+                                      QualityQuestionEditController.productId=null;
+                                    }).then((value) {
+                                      setState(() {
+                                          Get.find<HomeScreenController>().setHomeScreen('Products');
+                                        
+                                      });
+                                      
+                                    });
+          }
+                                    
                                     showSnackBar(message: 'Question Details Updated');
                                   
                                   

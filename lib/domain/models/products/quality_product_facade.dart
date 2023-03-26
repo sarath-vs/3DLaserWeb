@@ -23,7 +23,7 @@ abstract class QualityProductFacade {
        Future<Either<NetworkExceptions, GetQuestionDetailsModel>> getQuestionDetails(
       {required String id});
        Future<Either<NetworkExceptions, String>> putQuestionEdit(
-      {required String id,required Map<String, Object?> dataToSend});
+      {required String id,required Map<String, Object?> dataToSend,});
        Future<Either<NetworkExceptions, String>> putQualityProduct(
       {required int id, required String name, required String description,required String time});
 }

@@ -107,7 +107,7 @@ class ScreenCompletedProducts extends StatelessWidget {
                                     Expanded(
                                         flex: 9,
                                         child: Text(
-                                            ' ${controller.productList[index].dateCreated!.split(' ').first}')),
+                                            ' ${controller.productList[index].dateCreated!.split(', ').first}')),
                                   ],
                                 ),
                                  Row(

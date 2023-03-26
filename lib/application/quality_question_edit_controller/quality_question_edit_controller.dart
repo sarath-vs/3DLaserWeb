@@ -67,6 +67,7 @@ final TextEditingController dropDownValueController = TextEditingController();
 
 
 static  List<String> base64StringVDO = [];
+
 static final answerField = {
                                       "yn": yesno,
                                       "ynMN": yesnoManditory,
@@ -160,13 +161,13 @@ static final answerField = {
     });
   }
 
-      Future<void> putEditQuestionDetails(
+      Future<void> putEditQuestionDetails({required String vdo}
       ) async {  final dataToSend = {
                                        "description_english": discriptionEnglishController.text,
                                       "description_czech": discriptionCzechController.text,
                                       "description_german": discriptionGermanController.text,
                                       "image_base_64": selectedimagesin64bytes,
-                                      "video_base_64": base64StringVDO,
+                                      "video_base_64": [vdo],
                                      
                                       "question_english": questionEnglishController.text,
                                       "question_czech": questionCzechController.text,
