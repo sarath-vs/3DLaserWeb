@@ -45,11 +45,11 @@ class ScreenCompletedProducts extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: InkWell(
                         onTap: () {
-                          //controller.getAnswerLists(id: controller.productList[index].id!);
-                          // Navigator.pushNamed(
-                          //   Get.context!,
-                          //   Questionsanswer.routeName,
-                          // );
+                          controller.getAnswerLists(id: controller.productList[index].id!);
+                          Navigator.pushNamed(
+                            Get.context!,
+                            Questionsanswer.routeName,
+                          );
                         },
                         child: Container(
                           height: customHeight(100),
