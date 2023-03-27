@@ -2,17 +2,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:laser_tech_app/application/quality_products_controller/quality_product_controller.dart';
 import 'package:laser_tech_app/presentation/03_Screen_home/widgets/categories.dart';
 import 'package:laser_tech_app/presentation/03_Screen_home/widgets/dashboard.dart';
 import 'package:laser_tech_app/presentation/03_Screen_home/widgets/employees.dart';
 import 'package:laser_tech_app/presentation/03_Screen_home/widgets/qualitycontrol_questions.dart';
 import 'package:laser_tech_app/presentation/03_Screen_home/widgets/qualitymannual.dart';
 import 'package:laser_tech_app/presentation/04_Screen_quality_control_properties/quality_control_properties_addingform.dart';
+
 import '../../application/home_screen_controller/controller.dart';
 import '../05_Employee_details/employee_details_add.dart';
 import '../06_tools/screen_tools.dart';
-import '../08_Screen_quality_questions_editor/quality_questions_addingform.dart';
 import '../07_Screen_quality_questions_modify/quality_questions_addingform.dart';
 import '../widgets/responsive.dart';
 import '../widgets/side_menu.dart';
@@ -46,8 +45,7 @@ class _ScreenHomeState extends State<ScreenHome> {
               return FloatingActionButton(
                 onPressed: () {
                   if (controller.screen == 'Products') {
-                    Navigator.pushNamed(
-                        context, Qualitycontrolproperties.routeName);
+                    Navigator.pushNamed(context, Qualitycontrolproperties.routeName);
                   } else if (controller.screen == 'Employees') {
                     Navigator.pushNamed(context, EmployeeDetailsAdd.routeName);
                   } else if (controller.screen == 'Tools') {
@@ -73,36 +71,36 @@ class _ScreenHomeState extends State<ScreenHome> {
                 // and it takes 1/6 part of the screen
                 child: SideMenu(),
               ),
-            if (Responsive.isDesktop(context))
-              GetBuilder<HomeScreenController>(
-                  id: Get.find<HomeScreenController>().screenHomeWidget,
-                  builder: (controller) {
-                    // if (controller.screen == 'DashBoard')
-                    return Expanded(
-                      // It takes 5/6 part of the screen
-                      flex: 5,
-                      child: GetBuilder<HomeScreenController>(
-                          id: Get.find<HomeScreenController>().screenHomeWidget,
-                          builder: (controller) {
-                            if (controller.screen == 'Products')
-                              return Categories();
-                            else if (controller.screen == 'DashBoard')
-                              return DashBoard();
-                            else if (controller.screen == 'Tools')
-                              return WorkingTools();
-                            else if (controller.screen == 'Employees')
-                              return Employees();
-                            else if (controller.screen == 'Qualityquestions')
-                              return Qualityquestions();
-                            else
-                              return QulityMannual();
-                          }),
-                    );
-                  }),
-            if (!Responsive.isDesktop(context))
-              Center(
-                child: Text('visible only in full screen'),
-              )
+            //if (Responsive.isDesktop(context))
+            GetBuilder<HomeScreenController>(
+                id: Get.find<HomeScreenController>().screenHomeWidget,
+                builder: (controller) {
+                  // if (controller.screen == 'DashBoard')
+                  return Expanded(
+                    // It takes 5/6 part of the screen
+                    flex: 5,
+                    child: GetBuilder<HomeScreenController>(
+                        id: Get.find<HomeScreenController>().screenHomeWidget,
+                        builder: (controller) {
+                          if (controller.screen == 'Products')
+                            return Categories();
+                          else if (controller.screen == 'DashBoard')
+                            return DashBoard();
+                          else if (controller.screen == 'Tools')
+                            return WorkingTools();
+                          else if (controller.screen == 'Employees')
+                            return Employees();
+                          else if (controller.screen == 'Qualityquestions')
+                            return Qualityquestions();
+                          else
+                            return QulityMannual();
+                        }),
+                  );
+                }),
+            // if (!Responsive.isDesktop(context))
+            //   Center(
+            //     child: Text('visible only in full screen'),
+            //   )
           ],
         ),
       ),

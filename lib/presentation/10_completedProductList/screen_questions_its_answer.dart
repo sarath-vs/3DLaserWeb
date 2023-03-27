@@ -1,89 +1,196 @@
-import 'package:data_table_2/data_table_2.dart';
+import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:laser_tech_app/domain/models/answered_product_list/answer_model.dart';
+import 'package:laser_tech_app/application/ansswered_product_controller/answered_product_controller.dart';
+import 'package:laser_tech_app/domain/extensions/int.dart';
 
-import '../../application/ansswered_product_controller/answered_product_controller.dart';
-import '../../domain/responsive/dimensions.dart';
-import '../theme/theme.dart';
-
-class Questionsanswer extends StatefulWidget {
+class Questionsanswer extends GetView<AnsweredProductController> {
   static const routeName = 'Questionsanswer';
 
   const Questionsanswer({super.key});
 
   @override
-  State<Questionsanswer> createState() => _QuestionsanswerState();
+  Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((duration) {
+      final arguments = ModalRoute.of(context)!.settings.arguments as Map;
+
+      final id = arguments['id'];
+      //final productIDZ = arguments['productName'];
+      controller.updateData();
+    });
+
+    final _widgetsList = [
+      Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ObxValue(
+            (final question) => Text(
+              question.value,
+              textAlign: TextAlign.start,
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            controller.question,
+          ),
+          ObxValue(
+            (final time) => Text(
+              '⏳ ${time.value.toMinAndSec()} Sec',
+              textAlign: TextAlign.start,
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            controller.timeTakenToComplete,
+          ),
+        ],
+      ),
+      Text(
+        'Answers',
+        style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.normal),
+      ),
+      ObxValue(
+        (final value) {
+          if (value.value != null) {
+            return Text(
+              'Drop Down : ${controller.answerDropDown.value}',
+              textAlign: TextAlign.start,
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+            );
+          } else {
+            return const SizedBox();
+          }
+        },
+        controller.answerDropDown,
+      ),
+      ObxValue((final value) {
+        if (value.value != null) {
+          return Text(
+            'Range : ${controller.answerRange.value}',
+            textAlign: TextAlign.start,
+            style: const TextStyle(
+              color: Colors.black,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          );
+        } else {
+          return const SizedBox();
+        }
+      }, controller.answerRange),
+      ObxValue((final value) {
+        if (value.value != null) {
+          return Text(
+            'Yes or No : ${controller.answerYesOrNo.value}',
+            textAlign: TextAlign.start,
+            style: const TextStyle(
+              color: Colors.black,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          );
+        } else {
+          return const SizedBox();
+        }
+      }, controller.answerYesOrNo),
+      ObxValue((final value) {
+        if (value.value != null) {
+          return Text(
+            'Yes or No or NoOne : ${controller.answerYesOrNoOrNoOne.value}',
+            textAlign: TextAlign.start,
+            style: const TextStyle(
+              color: Colors.black,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          );
+        } else {
+          return const SizedBox();
+        }
+      }, controller.answerYesOrNoOrNoOne),
+      ObxValue((final value) {
+        if (value.value != null) {
+          final data = base64Decode(controller.answerImage.value!);
+          return GestureDetector(
+            onTap: () {
+              Get.to(() => FullScreenImage(uint8List: data));
+            },
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.75,
+              height: MediaQuery.of(context).size.width * 0.75,
+              child: Image.memory(data),
+            ),
+          );
+        } else {
+          return const SizedBox();
+        }
+      }, controller.answerImage),
+    ].where((element) => element is! SizedBox).toList();
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Sl No : ${controller.currentSelectedAnswer?.slNo}'),
+      ),
+      body: SafeArea(
+        child: ListView.separated(
+          padding: const EdgeInsets.all(10.0),
+          itemBuilder: (final ctx, final index) => _widgetsList[index],
+          separatorBuilder: (final ctx, final index) => const SizedBox(height: 10),
+          itemCount: _widgetsList.length,
+        ),
+      ),
+    );
+  }
 }
 
-class _QuestionsanswerState extends State<Questionsanswer> {
- 
-  int activePage = 0;
+class FullScreenImage extends StatelessWidget {
+  static const routeName = 'FullScreenImage';
+  final Uint8List uint8List;
+
+  const FullScreenImage({
+    super.key,
+    required this.uint8List,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AnsweredProductController>(
-            id: Get.find<AnsweredProductController>()
-                .answeredProductListWidgetID,
-            builder: (controller) { 
-                final data =controller.answerList;
-              
-              return Scaffold(
-            
-        appBar: AppBar(
-          leading: GestureDetector(
-              onTap: () {
-                Get.back();
-              },
-              child: Icon(Icons.arrow_back_ios)),
-          title: Text(
-            " Product Reivew",
-            textAlign: TextAlign.center,
-            style: AppTheme.appBarText,
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
           ),
         ),
-        body: Padding(
-      padding: const EdgeInsets.all(16),
-      child: DataTable2(
-          columnSpacing: 12,
-          horizontalMargin: 12,
-          minWidth: 600,
-          columns: [
-            DataColumn2(
-              label: Text('Column A'),
-              size: ColumnSize.L,
+      ),
+      body: InteractiveViewer(
+        maxScale: 10,
+        child: Align(
+          alignment: Alignment.center,
+          child: Hero(
+            tag: 'imageHero',
+            child: Image.memory(
+              uint8List,
             ),
-            DataColumn(
-              label: Text('Column B'),
-            ),
-            DataColumn(
-              label: Text('Column C'),
-            ),
-            DataColumn(
-              label: Text('Column D'),
-            ),
-            DataColumn(
-              label: Text('Column NUMBERS'),
-              numeric: true,
-            ),
-             DataColumn(
-              label: Text('Column '),
-              numeric: true,
-            ),
-          ],
-          rows: List<DataRow>.generate(
-              100,
-              (index) => DataRow(cells: [
-                    DataCell(Text('A' * (10 - index % 10))),
-                    DataCell(Text('B' * (10 - (index + 5) % 10))),
-                    DataCell(Text('C' * (15 - (index + 5) % 10))),
-                     DataCell(Text('C' * (15 - (index + 5) % 10))),
-                    DataCell(Text('D' * (15 - (index + 10) % 10))),
-                    DataCell(Text(((index + 0.1) * 25.4).toString()))
-                  ]))),
-    )
-        );});
+          ),
+        ),
+      ),
+    );
   }
-
- 
 }
