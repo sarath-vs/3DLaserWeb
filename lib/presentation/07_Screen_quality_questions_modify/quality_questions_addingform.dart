@@ -69,22 +69,32 @@ class _QualityquestionformState extends State<Qualityquestionform> {
   int imageCounts = 0;
   _selectvideoFile(bool imageFrom) async {
     FilePickerResult? fileResult =
-        await FilePicker.platform.pickFiles(type: FileType.video);
+        await FilePicker.platform.pickFiles(allowMultiple: true,type: FileType.video);
 
     if (fileResult != null) {
       if (fileResult.files.first.size <=
           5851340) //size checking file this is for 5 mb
       {
-        selctFile = fileResult.files.first.name;
-        selectfilepath = fileResult.files.first.identifier;
+       // selctFile = fileResult.files.first.name;
+       // selectfilepath = fileResult.files.first.identifier;
 
+        fileResult.files.forEach((element) {
         setState(() {
-          selectedvideo = selctFile;
-
-          selectedvideoInBytes = fileResult.files.first.bytes;
-          base64StringVDO.add( base64.encode(selectedvideoInBytes!));
-          // imageCounts += 1;
+          base64StringVDO.add( base64.encode(element.bytes!));
+          //base64StringVDO.add(element.name);
+         // selectedimagesin64bytes.add(base64.encode(element.bytes!));
+          //selectedImageInBytes = fileResult.files.first.bytes;
+          //imageCounts += 1;
         });
+      });
+
+        // setState(() {
+        //   selectedvideo = selctFile;
+
+        //   selectedvideoInBytes = fileResult.files.first.bytes;
+        //   base64StringVDO.add( base64.encode(selectedvideoInBytes!));
+        //   // imageCounts += 1;
+        // });
         print("*********" +
             base64StringVDO.first +
             "**********"); //this is video byte string
@@ -871,12 +881,12 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                             
                                             onChanged: (value) {
                                               rangeTo = value;
-                                              double torange =
-                                                  double.parse(value);
-                                              double startrange =
-                                                  double.parse(rangeFrom);
+                                              // double torange =
+                                              //     double.parse(value);
+                                              // double startrange =
+                                              //     double.parse(rangeFrom);
                                                   Future.delayed(Duration(seconds: 4), (){
-      if (startrange > torange) {
+      if (int.parse(rangeFrom) > int.parse(rangeTo)) {
                                                 showDialog(
                                                   context: context,
                                                   builder: (context) =>

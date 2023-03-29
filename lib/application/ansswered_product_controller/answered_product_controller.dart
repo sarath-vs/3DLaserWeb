@@ -30,6 +30,7 @@ class AnsweredProductController extends GetxController {
   RxnString answerImage = RxnString();
   RxInt timeTakenToComplete = RxInt(0);
 
+ String get answerWidgetID => 'answerWidgetID';
   Future<void> getAnswerProductLists({required int id}) async {
     productList.clear();
     showCircularProgressDialog(msg: 'Loading');
@@ -69,6 +70,7 @@ class AnsweredProductController extends GetxController {
       answerList.clear();
       answerList.addAll(resp.data!);
       answerList.refresh();
+           update([answerWidgetID]);
     });
   }
 

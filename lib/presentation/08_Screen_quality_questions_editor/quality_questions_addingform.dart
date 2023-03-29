@@ -397,7 +397,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                               color: LightColor.primaryColor),
                                         ),
                                         child: Text(
-                                         QualityQuestionEditController.base64StringVDO.length<=0 ?  "Upload Video":"Delete and update new",
+                                         QualityQuestionEditController.base64StringVDO.length<=0 ?  "Upload Video":"Delete and update Video",
                                           style: TextStyle(
                                               fontSize: customFontSize(3),
                                               color: Colors.white),
@@ -424,7 +424,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                         child:
                                             (selectedimages.toString() == "[]")
                                                 ?  Text(
-                                                    QualityQuestionEditController.base64StringVDO.length.toString() + 'Files',
+                                                    QualityQuestionEditController.selectedimagesin64bytes.length.toString() + 'Files',
                                                     style: TextStyle(
                                                         color: LightColor.grey),
                                                   )
@@ -460,7 +460,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                               color: LightColor.primaryColor),
                                         ),
                                         child: Text(
-                                        QualityQuestionEditController.selectedimagesin64bytes.length<=0 ?  "Upload Image":"Delete and update new",
+                                        QualityQuestionEditController.selectedimagesin64bytes.length<=0 ?  "Upload Image":"Delete and update Image",
                                           style: TextStyle(
                                               fontSize: customFontSize(3),
                                               color: Colors.white),

@@ -76,6 +76,7 @@ class Answer {
   String? range;
   String? yesOrNo;
   String? yesOrNoOrNoOne;
+  String? answer;
 
   Answer({this.image, this.dropdown, this.range, this.yesOrNo});
 
@@ -85,6 +86,7 @@ class Answer {
     range = json['range'];
     yesOrNo = json['yesOrNo'];
     yesOrNoOrNoOne = json['yesOrNoOrNoOne'];
+    answer = json['answer'];
   }
 
   Map<String, dynamic> toJson() {
@@ -94,6 +96,7 @@ class Answer {
     data['range'] = this.range;
     data['yesOrNo'] = this.yesOrNo;
     data['yesOrNoOrNoOne'] = this.yesOrNoOrNoOne;
+    data['answer'] = this.answer;
     return data;
   }
 }
