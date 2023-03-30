@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:laser_tech_app/domain/models/answered_product_list/answered_product_list_model.dart';
 
 import '../../application/ansswered_product_controller/answered_product_controller.dart';
+import '../../domain/responsive/dimensions.dart';
 import '../theme/theme.dart';
 import '../widgets/single_button_alert_dialog.dart';
 import 'screen_questions_its_answer.dart';
@@ -40,48 +41,81 @@ class ScreenCompletedProducts extends GetView<AnsweredProductController> {
           style: AppTheme.appBarText,
         ),
       ),
-      body: ObxValue(
-        (final items) {
-          if (items.value.isEmpty) {
-            return const Center(
-              child: Text('No items found'),
-            );
-          } else {
-            return ListView.separated(
-              padding: const EdgeInsets.all(10),
-              itemBuilder: (final ctx, final index) => _ListItem(
-                data: items.value[index],
-                onTap: () {
-                  controller.onTapItem(
-                    index: index,
-                    onSuccess: () {
-                      Navigator.pushNamed(
-                        Get.context!,
-                        Questionsanswer.routeName,
-                        arguments: {
-                          'id': items.value[index].id,
-                        },
-                      );
-                    },
-                    onError: (message) {
-                      showSingleButtonAlertDialog(
-                        Get.context!,
-                        'Warning',
-                        message,
-                        () {
-                          Navigator.of(Get.context!).pop();
-                        },
-                      );
-                    },
-                  );
-                },
+      body: Column(
+        children: [
+           customVerticalGap(10),
+                    Padding(
+                padding: EdgeInsets.symmetric(horizontal: customWidth(20)),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.black,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: TextFormField(
+                      cursorColor: Colors.white,
+                      style: const TextStyle(color: Colors.white),
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Search Here',
+                        hintStyle: TextStyle(color: Colors.white),
+                      ),
+                      onChanged: (data) {
+                        Get.find<AnsweredProductController>()
+                            .searchDirectory(data);
+                      },
+                    ),
+                  ),
+                ),
               ),
-              separatorBuilder: (final ctx, final index) => const SizedBox(height: 10),
-              itemCount: items.value.length,
-            );
-          }
-        },
-        controller.productList,
+          ObxValue(
+            (final items) {
+              if (items.value.isEmpty) {
+                return const Center(
+                  child: Text('No items found'),
+                );
+              } else {
+                return Container(
+                  height: 580,
+                  child: ListView.separated(
+                    padding: const EdgeInsets.all(10),
+                    itemBuilder: (final ctx, final index) => _ListItem(
+                      data: items.value[index],
+                      onTap: () {
+                        controller.onTapItem(
+                          index: index,
+                          onSuccess: () {
+                            Navigator.pushNamed(
+                              Get.context!,
+                              Questionsanswer.routeName,
+                              arguments: {
+                                'id': items.value[index].id,
+                              },
+                            );
+                          },
+                          onError: (message) {
+                            showSingleButtonAlertDialog(
+                              Get.context!,
+                              'Warning',
+                              message,
+                              () {
+                                Navigator.of(Get.context!).pop();
+                              },
+                            );
+                          },
+                        );
+                      },
+                    ),
+                    separatorBuilder: (final ctx, final index) => const SizedBox(height: 10),
+                    itemCount: items.value.length,
+                  ),
+                );
+              }
+            },
+            controller.productList,
+          ),
+        ],
       ),
     );
   }

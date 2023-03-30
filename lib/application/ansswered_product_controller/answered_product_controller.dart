@@ -20,6 +20,7 @@ class AnsweredProductController extends GetxController {
 
   RxList<AnsweredListResult> productList = RxList.empty(growable: true);
   RxList<AnswerList> answerList = RxList.empty(growable: true);
+  final RxList<AnsweredListResult> _productListData = RxList.empty(growable: true);
 
   AnsweredListResult? currentSelectedAnswer;
   RxString question = RxString('Question not available');
@@ -31,6 +32,31 @@ class AnsweredProductController extends GetxController {
   RxInt timeTakenToComplete = RxInt(0);
 
  String get answerWidgetID => 'answerWidgetID';
+
+
+
+ Future<void> searchDirectory(String query) async {
+    if (productList.isEmpty ||
+        productList == '' ) {
+      productList.clear();
+      productList.addAll(_productListData);
+    } else {
+      final searchResult = _productListData.where((data) =>
+          data.slNo!.toLowerCase().contains(query.toLowerCase()) ||
+          data.id.toString().contains(query) );
+
+         
+
+      productList.clear();
+      productList.addAll(searchResult);
+    }
+    update([answerWidgetID]);
+     productList.refresh();
+  }
+
+
+
+
   Future<void> getAnswerProductLists({required int id}) async {
     productList.clear();
     showCircularProgressDialog(msg: 'Loading');
@@ -46,6 +72,8 @@ class AnsweredProductController extends GetxController {
         },
       );
     }, (AnsweredProductListModel resp) {
+      _productListData.clear();
+      _productListData.addAll(resp.data!);
       productList.clear();
       productList.addAll(resp.data!);
       productList.refresh();

@@ -38,14 +38,14 @@ class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
       // drawer: SideMenu(),
       body: SafeArea(
           child: ListView(
-        // shrinkWrap: true,
+      shrinkWrap: true,
         children: [
           // CustomAppBar(context, false, controller.screen),
 
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 45),
             child: Container(
-              height: customHeight(530),
+              height: customHeight(730),
               width: customWidth(250),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -164,6 +164,100 @@ class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
                         },
                         decoration: InputDecoration(
                           hintText: "Descripiton",
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          floatingLabelStyle: AppTheme.h2Style,
+                        ),
+                      ),
+                    ),
+                     Text(
+                      "IP Address",
+                      style: AppTheme.h6Style,
+                    ),
+                    SizedBox(
+                    width: customWidth(80),
+                      child: TextFormField(
+                        keyboardType: TextInputType.multiline,
+                        minLines: 1,
+                        maxLines: 7,
+                        validator: (val) {
+                          return null;
+                        },
+                        onChanged: (value) {
+                          disc = value;
+                        },
+                        decoration: InputDecoration(
+                          hintText: "Enter IP Address Here",
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          floatingLabelStyle: AppTheme.h2Style,
+                        ),
+                      ),
+                    ),
+                      Text(
+                      "PORT Number",
+                      style: AppTheme.h6Style,
+                    ),
+                    SizedBox(
+                    width: customWidth(80),
+                      child: TextFormField(
+                        keyboardType: TextInputType.multiline,
+                        minLines: 1,
+                        maxLines: 7,
+                        validator: (val) {
+                          return null;
+                        },
+                        onChanged: (value) {
+                          disc = value;
+                        },
+                        decoration: InputDecoration(
+                          hintText: "Enter PORT Number Here",
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          floatingLabelStyle: AppTheme.h2Style,
+                        ),
+                      ),
+                    ),
+                       Text(
+                      "Barcode label",
+                      style: AppTheme.h6Style,
+                    ),
+                    SizedBox(
+                    width: customWidth(80),
+                      child: TextFormField(
+                        keyboardType: TextInputType.multiline,
+                        minLines: 1,
+                        maxLines: 7,
+                        validator: (val) {
+                          return null;
+                        },
+                        onChanged: (value) {
+                          disc = value;
+                        },
+                        decoration: InputDecoration(
+                          hintText: "Enter Barcode label Here",
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          floatingLabelStyle: AppTheme.h2Style,
+                        ),
+                      ),
+                    ),
+                       Text(
+                      "Zebra Printer Data",
+                      style: AppTheme.h6Style,
+                    ),
+                    SizedBox(
+                   height: customHeight(200),
+                      child: TextField(
+                        keyboardType: TextInputType.multiline,
+                       
+                        maxLines: 30,
+                       
+                        onChanged: (value) {
+                          disc = value;
+                        },
+                        decoration: InputDecoration(
+                          hintText: "Enter Zebra Data Here",
                           fillColor: Colors.grey.shade200,
                           filled: true,
                           floatingLabelStyle: AppTheme.h2Style,
