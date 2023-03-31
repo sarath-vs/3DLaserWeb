@@ -218,30 +218,7 @@ class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
                         ),
                       ),
                     ),
-                       Text(
-                      "Barcode label",
-                      style: AppTheme.h6Style,
-                    ),
-                    SizedBox(
-                    width: customWidth(80),
-                      child: TextFormField(
-                        keyboardType: TextInputType.multiline,
-                        minLines: 1,
-                        maxLines: 7,
-                        validator: (val) {
-                          return null;
-                        },
-                        onChanged: (value) {
-                          disc = value;
-                        },
-                        decoration: InputDecoration(
-                          hintText: "Enter Barcode label Here",
-                          fillColor: Colors.grey.shade200,
-                          filled: true,
-                          floatingLabelStyle: AppTheme.h2Style,
-                        ),
-                      ),
-                    ),
+                      
                        Text(
                       "Zebra Printer Data",
                       style: AppTheme.h6Style,
