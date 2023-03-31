@@ -10,8 +10,8 @@ import '../../08_Screen_quality_questions_editor/quality_questions_addingform.da
 import '../../theme/color.dart';
 import '../../widgets/custom_appbar.dart';
 
-class Qualityquestions extends StatelessWidget {
-  const Qualityquestions({super.key});
+class AssemblyPlanScreen extends StatelessWidget {
+  const AssemblyPlanScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,44 +24,36 @@ class Qualityquestions extends StatelessWidget {
           // if (controller.screen == 'DashBoard')
           return Column(
             children: [
-              Container(
-                color: LightColor.black,
-                height: customHeight(50),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    customHorizontalGap(10),
-                    GestureDetector(
-                      onTap: () {
-                        Get.find<HomeScreenController>()
-                            .setHomeScreen('Products');
+               CustomAppBar(context, false, "ASSEMBLY PLAN"),
+              customVerticalGap(5),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: customWidth(20)),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.black,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: TextFormField(
+                      cursorColor: Colors.white,
+                      style: const TextStyle(color: Colors.white),
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Search Here',
+                        hintStyle: TextStyle(color: Colors.white),
+                      ),
+                      onChanged: (data) {
+                        Get.find<QualityProductController>()
+                            .searchDirectory(data);
                       },
-                      child: Icon(
-                        Icons.arrow_back_ios_new,
-                        color: Colors.green,
-                        size: 20,
-                      ),
                     ),
-                    Expanded(
-                      flex: 3,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20.0),
-                        child: Text(
-                          '  ${controller.appBar} (Questions)',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: customFontSize(4),
-                              letterSpacing: 3,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    )
-                  ],
+                  ),
                 ),
               ),
               Container(
                 // color: Colors.yellow,
-                height: customHeight(630),
+                height: customHeight(580),
                 width: customWidth(300),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),

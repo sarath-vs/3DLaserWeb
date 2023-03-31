@@ -46,12 +46,16 @@ class QualityProductImpl implements QualityProductFacade {
 
   @override
   Future<Either<NetworkExceptions, String>> saveQualityProduct(
-      {required String name, required String description,required String time}) async {
+      {required String name, required String description,required String time, required String ip,required String port,required String printerData}) async {
     String? access = await _employeeDataManager.getRefresh();
     final _body = {
       "name": name,
       "description": description,
       "time_limit": time,
+      "ip_address":ip,
+      "port":port,
+      "product_obj":{"zebraData":printerData},
+
     };
 
     final result =
@@ -179,12 +183,15 @@ class QualityProductImpl implements QualityProductFacade {
     }}
     
       @override
-      Future<Either<NetworkExceptions, String>> putQualityProduct({required int id, required String name, required String description, required String time})async {
+      Future<Either<NetworkExceptions, String>> putQualityProduct({required int id, required String name, required String description, required String time,required String ip,required String port,required String printerData})async {
     String? access = await _employeeDataManager.getRefresh();
     final _body = {
       "name": name,
       "description": description,
       "time_limit": time,
+      "ip_address":ip,
+      "port":port,
+    "product_obj":{"zebraData":printerData},
     };
 
     final result =

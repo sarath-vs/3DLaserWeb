@@ -41,7 +41,7 @@ class _ScreenHomeState extends State<ScreenHome> {
             if (controller.screen == 'Products' ||
                 controller.screen == 'Employees' ||
                 controller.screen == 'Tools' ||
-                controller.screen == 'Qualityquestions')
+                controller.screen == 'Qualityquestions'||controller.screen == 'Quality Mannual')
               return FloatingActionButton(
                 onPressed: () {
                   if (controller.screen == 'Products') {
@@ -90,8 +90,8 @@ class _ScreenHomeState extends State<ScreenHome> {
                             return WorkingTools();
                           else if (controller.screen == 'Employees')
                             return Employees();
-                          else if (controller.screen == 'Qualityquestions')
-                            return Qualityquestions();
+                          else if (controller.screen == 'Quality Mannual')
+                            return AssemblyPlanScreen();
                           else
                             return QulityMannual();
                         }),

@@ -21,6 +21,9 @@ class Qualitycontrolproperties extends StatefulWidget {
 
 String name = '';
 String disc = '';
+String ipAddress = '';
+String portNumber = '';
+String printerData = '';
 int min =0;
 int sec =0;
 
@@ -184,7 +187,7 @@ class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
                           return null;
                         },
                         onChanged: (value) {
-                          disc = value;
+                          ipAddress = value;
                         },
                         decoration: InputDecoration(
                           hintText: "Enter IP Address Here",
@@ -208,7 +211,7 @@ class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
                           return null;
                         },
                         onChanged: (value) {
-                          disc = value;
+                          portNumber = value;
                         },
                         decoration: InputDecoration(
                           hintText: "Enter PORT Number Here",
@@ -231,7 +234,7 @@ class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
                         maxLines: 30,
                        
                         onChanged: (value) {
-                          disc = value;
+                          printerData = value;
                         },
                         decoration: InputDecoration(
                           hintText: "Enter Zebra Data Here",
@@ -278,7 +281,7 @@ class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
                             } else {
                               Get.find<QualityProductController>()
                                   .saveQualityQuestions(
-                                      name: name, discription: disc,time: '${min*60+sec}')
+                                      name: name, discription: disc,time: '${min*60+sec}', ip: ipAddress, port: portNumber, printerData: printerData)
                                   .then((value) {
                                 Get.find<QualityProductController>()
                                     .getQualityProducts();

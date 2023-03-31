@@ -36,14 +36,24 @@ class QualityProductResult {
   String? description;
   String? dateCreated;
   String? time_limit;
+  String? ipAddress;
+  String? port;
+  ProductObj? productObj;
 
   QualityProductResult(
-      {this.id, this.name, this.description, this.dateCreated});
+      {this.id, this.name, this.description, this.dateCreated,   this.ipAddress,
+      this.port,
+      this.productObj,});
 
   QualityProductResult.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     description = json['description'];
+    ipAddress = json['ip_address'];
+    port = json['port'];
+    productObj = json['product_obj'] != null
+        ? new ProductObj.fromJson(json['product_obj'])
+        : null;
     dateCreated = json['date_created'];
     time_limit =json['time_limit'];
   }
@@ -53,8 +63,31 @@ class QualityProductResult {
     data['id'] = this.id;
     data['name'] = this.name;
     data['description'] = this.description;
+      data['ip_address'] = this.ipAddress;
+    data['port'] = this.port;
+    if (this.productObj != null) {
+      data['product_obj'] = this.productObj!.toJson();
+    }
     data['date_created'] = this.dateCreated;
     data['time_limit'] = this.time_limit;
     return data;
   }
+
+  
 }
+
+
+class ProductObj {
+  String? zebraData;
+
+  ProductObj({this.zebraData});
+
+  ProductObj.fromJson(Map<String, dynamic> json) {
+    zebraData = json['zebraData'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['zebraData'] = this.zebraData;
+    return data;
+  }}

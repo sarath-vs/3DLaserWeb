@@ -22,6 +22,9 @@ class QualitycontrolpropertiesEditor extends StatefulWidget {
 String productName = '';
 String description = '';
 String timeLimit ='';
+String ipAddress = '';
+String portNumber = '';
+String printerData = '';
 int id=0;
 int min =0;
 int sec =0;
@@ -35,6 +38,9 @@ class _QualitycontrolpropertiesEditorState extends State<Qualitycontrolpropertie
      productName=arguments['productName'];
       description=arguments['description'];
        timeLimit=arguments['time_limit'];
+       ipAddress=arguments['ipAddress'];
+       portNumber=arguments['portNumber'];
+       printerData=arguments['printerData'];
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -53,7 +59,7 @@ class _QualitycontrolpropertiesEditorState extends State<Qualitycontrolpropertie
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 45),
             child: Container(
-              height: customHeight(530),
+              height: customHeight(730),
               width: customWidth(250),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -177,6 +183,80 @@ class _QualitycontrolpropertiesEditorState extends State<Qualitycontrolpropertie
                         ),
                       ),
                     ),
+                      Text(
+                      "IP Address",
+                      style: AppTheme.h6Style,
+                    ),
+                    SizedBox(
+                    width: customWidth(80),
+                      child: TextFormField(
+                        keyboardType: TextInputType.multiline,
+                        minLines: 1,
+                        maxLines: 7,
+                        validator: (val) {
+                          return null;
+                        },
+                        onChanged: (value) {
+                          ipAddress = value;
+                        },
+                        decoration: InputDecoration(
+                          hintText:ipAddress==''? " Enter IP Address Here*":ipAddress,
+                         
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          floatingLabelStyle: AppTheme.h2Style,
+                        ),
+                      ),
+                    ),
+                      Text(
+                      "PORT Number",
+                      style: AppTheme.h6Style,
+                    ),
+                    SizedBox(
+                    width: customWidth(80),
+                      child: TextFormField(
+                        keyboardType: TextInputType.multiline,
+                        minLines: 1,
+                        maxLines: 7,
+                        validator: (val) {
+                          return null;
+                        },
+                        onChanged: (value) {
+                          portNumber = value;
+                        },
+                        decoration: InputDecoration(
+                           hintText:portNumber==''? " Enter PORT Number Here*":portNumber,
+                         
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          floatingLabelStyle: AppTheme.h2Style,
+                        ),
+                      ),
+                    ),
+                      
+                       Text(
+                      "Zebra Printer Data",
+                      style: AppTheme.h6Style,
+                    ),
+                    SizedBox(
+                   height: customHeight(200),
+                      child: TextField(
+                        keyboardType: TextInputType.multiline,
+                       
+                        maxLines: 30,
+                       
+                        onChanged: (value) {
+                          printerData = value;
+                        },
+                        decoration: InputDecoration(
+                          hintText:printerData==''? " Enter ZPL Here*":printerData,
+                          
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          floatingLabelStyle: AppTheme.h2Style,
+                        ),
+                      ),
+                    ),
                     // Center(
                     //   child: SizedBox(
                     //       width: customWidth(150),
@@ -213,7 +293,7 @@ class _QualitycontrolpropertiesEditorState extends State<Qualitycontrolpropertie
                               showSnackBar(message: 'Fill input fields');
                             } else {
                               Get.find<QualityProductController>()
-                                  .putQualityProducts(id: id, name: productName, description: description,time: '${min*60+sec}')
+                                  .putQualityProducts(id: id, name: productName, description: description,time: '${min*60+sec}',ip: ipAddress, port: portNumber, printerData: printerData)
                                   .then((value) {
                              
 

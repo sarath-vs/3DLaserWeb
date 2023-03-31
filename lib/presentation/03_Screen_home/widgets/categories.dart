@@ -172,6 +172,18 @@ class Categories extends StatelessWidget {
                                                         .qualityProductList[
                                                             index]
                                                         .time_limit!,
+
+                                                        
+
+                                                           'ipAddress':controller
+                                                        .qualityProductList[
+                                                            index].ipAddress,
+      'portNumber':controller
+                                                        .qualityProductList[
+                                                            index].port,
+   'printerData':controller
+                                                        .qualityProductList[
+                                                            index].productObj!.zebraData??"N/A",
                                                   },
                                                 );
                                               },

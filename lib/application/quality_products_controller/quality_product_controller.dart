@@ -76,10 +76,10 @@ class QualityProductController extends GetxController {
   }
 
   Future<void> saveQualityQuestions(
-      {required String name, required String discription,required String time}) async {
+      {required String name, required String discription,required String time,required String ip,required String port, required String printerData}) async {
     showCircularProgressDialog(msg: 'Saving');
     final result = await _qualityProductFacade.saveQualityProduct(
-        name: name, description: discription,time: time);
+        name: name, description: discription,time: time, ip: ip, port: port, printerData: printerData);
     Navigator.of(navigatorKey.currentContext!).pop();
     result.fold((NetworkExceptions exp) {
       return showSingleButtonAlertDialog(
@@ -212,10 +212,10 @@ class QualityProductController extends GetxController {
     });
   }
 
-    Future<void> putQualityProducts({required int id, required String name, required String description,required String time}
+    Future<void> putQualityProducts({required int id, required String name, required String description,required String time,required String ip,required String port, required String printerData}
       ) async {
     showCircularProgressDialog(msg: 'Loading');
-    final result = await _qualityProductFacade.putQualityProduct(id: id, name: name, description: description, time: time);
+    final result = await _qualityProductFacade.putQualityProduct(id: id, name: name, description: description, time: time, ip: '', port: '', printerData: '');
     Navigator.of(navigatorKey.currentContext!).pop();
     result.fold((NetworkExceptions exp) {
       return showSingleButtonAlertDialog(
