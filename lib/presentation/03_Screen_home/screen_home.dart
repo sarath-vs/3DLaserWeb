@@ -91,6 +91,8 @@ class _ScreenHomeState extends State<ScreenHome> {
                           else if (controller.screen == 'Employees')
                             return Employees();
                           else if (controller.screen == 'Quality Mannual')
+                            return QulityMannual();
+                             else if (controller.screen == 'Qualityquestions')
                             return AssemblyPlanScreen();
                           else
                             return QulityMannual();

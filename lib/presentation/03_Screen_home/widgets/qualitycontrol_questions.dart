@@ -24,7 +24,7 @@ class AssemblyPlanScreen extends StatelessWidget {
           // if (controller.screen == 'DashBoard')
           return Column(
             children: [
-               CustomAppBar(context, false, "ASSEMBLY PLAN"),
+               CustomAppBar(context, false, "Quality Questions"),
               customVerticalGap(5),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: customWidth(20)),
