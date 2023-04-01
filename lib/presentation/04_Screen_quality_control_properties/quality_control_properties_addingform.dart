@@ -229,13 +229,13 @@ class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
                     SizedBox(
                    height: customHeight(200),
                       child: TextFormField(
-                         initialValue:'''{^XA
+                         initialValue:'''^XA
 ^LH0,0
 ^FO20,20^BQR,2,5
 ^FD
-{Product:[productname],ID:[ID],SerialNumber:[*Don't change here*],Timestamp:[**Don't change here**]}
+Product:[productname],ID:[ID],SerialNumber:[*Don't change here*],Timestamp:[**Don't change here**]
 ^FS
-^XZ,}''',
+^XZ''',
                         keyboardType: TextInputType.multiline,
                        
                         maxLines: 30,
