@@ -215,7 +215,7 @@ class QualityProductController extends GetxController {
     Future<void> putQualityProducts({required int id, required String name, required String description,required String time,required String ip,required String port, required String printerData}
       ) async {
     showCircularProgressDialog(msg: 'Loading');
-    final result = await _qualityProductFacade.putQualityProduct(id: id, name: name, description: description, time: time, ip: '', port: '', printerData: '');
+    final result = await _qualityProductFacade.putQualityProduct(id: id, name: name, description: description, time: time, ip: ip, port: port, printerData: printerData);
     Navigator.of(navigatorKey.currentContext!).pop();
     result.fold((NetworkExceptions exp) {
       return showSingleButtonAlertDialog(

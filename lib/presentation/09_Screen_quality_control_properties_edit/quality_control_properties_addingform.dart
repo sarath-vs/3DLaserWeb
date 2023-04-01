@@ -83,6 +83,7 @@ class _QualitycontrolpropertiesEditorState extends State<Qualitycontrolpropertie
                     SizedBox(
                       width: customWidth(400),
                       child: TextFormField(
+                        initialValue: productName,
                         validator: (val) {
                           return null;
                         },
@@ -166,6 +167,7 @@ class _QualitycontrolpropertiesEditorState extends State<Qualitycontrolpropertie
                     SizedBox(
                       // width: customWidth(150),
                       child: TextFormField(
+                        initialValue: description,
                         keyboardType: TextInputType.multiline,
                         minLines: 1,
                         maxLines: 7,
@@ -190,6 +192,7 @@ class _QualitycontrolpropertiesEditorState extends State<Qualitycontrolpropertie
                     SizedBox(
                     width: customWidth(80),
                       child: TextFormField(
+                        initialValue: ipAddress,
                         keyboardType: TextInputType.multiline,
                         minLines: 1,
                         maxLines: 7,
@@ -215,7 +218,9 @@ class _QualitycontrolpropertiesEditorState extends State<Qualitycontrolpropertie
                     SizedBox(
                     width: customWidth(80),
                       child: TextFormField(
+                        initialValue: portNumber,
                         keyboardType: TextInputType.multiline,
+                  
                         minLines: 1,
                         maxLines: 7,
                         validator: (val) {
@@ -240,13 +245,17 @@ class _QualitycontrolpropertiesEditorState extends State<Qualitycontrolpropertie
                     ),
                     SizedBox(
                    height: customHeight(200),
-                      child: TextField(
+                      child: TextFormField(
+                              initialValue:printerData,
+                        
                         keyboardType: TextInputType.multiline,
+                        
                        
                         maxLines: 30,
                        
                         onChanged: (value) {
                           printerData = value;
+                          print(value);
                         },
                         decoration: InputDecoration(
                           hintText:printerData==''? " Enter ZPL Here*":printerData,
@@ -289,7 +298,7 @@ class _QualitycontrolpropertiesEditorState extends State<Qualitycontrolpropertie
                         ),
                         InkWell(
                           onTap: () {
-                            if (productName == '' || description == '') {
+                            if (productName == '' || description == ''||ipAddress==''||portNumber==""||printerData=="") {
                               showSnackBar(message: 'Fill input fields');
                             } else {
                               Get.find<QualityProductController>()
