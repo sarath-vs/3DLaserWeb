@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
-
+import '../../../application/assembly_controller/assembly_controller.dart';
 import '../../../application/home_screen_controller/controller.dart';
 import '../../../application/quality_products_controller/quality_product_controller.dart';
 import '../../../application/quality_question_edit_controller/quality_question_edit_controller.dart';
@@ -10,8 +9,8 @@ import '../../08_Screen_quality_questions_editor/quality_questions_addingform.da
 import '../../theme/color.dart';
 import '../../widgets/custom_appbar.dart';
 
-class QualityQuestionScreen extends StatelessWidget {
-  const QualityQuestionScreen({super.key});
+class AssemblyQuestionListScreen extends StatelessWidget {
+  const AssemblyQuestionListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +23,7 @@ class QualityQuestionScreen extends StatelessWidget {
           // if (controller.screen == 'DashBoard')
           return Column(
             children: [
-               CustomAppBar(context, false, "Quality Questions"),
+               CustomAppBar(context, false, "Assembly Questions"),
               customVerticalGap(5),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: customWidth(20)),
@@ -59,11 +58,11 @@ class QualityQuestionScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: SingleChildScrollView(
                       scrollDirection: Axis.vertical,
-                      child: GetBuilder<QualityProductController>(
-                          id: Get.find<QualityProductController>()
-                              .qualityQuestionID,
+                      child: GetBuilder<AssemblyProductController>(
+                          id: Get.find<AssemblyProductController>()
+                              .assemblyProductID,
                           builder: (controller) {
-                            if (controller.qualityProductList.isNotEmpty) {
+                            if (controller.assemblyQuestionList.isNotEmpty) {
                               return ListView.separated(
                                   //scrollDirection: Axis.vertical,
                                   //physics: NeverScrollableScrollPhysics(),
@@ -71,12 +70,12 @@ class QualityQuestionScreen extends StatelessWidget {
                                   itemBuilder: (context, index) {
                                     return ListTile(
                                       
-                                      tileColor: Colors.green.shade300,
+                                      tileColor: Colors.blue.shade300,
                                       leading: Text('${index + 1}'),
                                       title: Row(
                                         children: [
                                           Text(
-                                            '${controller.qualityQuestionList[index].questionEnglish} ',
+                                            '${controller.assemblyQuestionList[index].questionEnglish} ',
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold),
                                           ),
@@ -89,9 +88,9 @@ class QualityQuestionScreen extends StatelessWidget {
                                             padding: const EdgeInsets.all(8.0),
                                             child: InkWell(
                                               onTap: () {
-                                                Get.find<QualityQuestionEditController>().getEditQuestionDetails(id:controller.qualityQuestionList[index].id.toString()).then((value) {
+                                                Get.find<QualityQuestionEditController>().getEditQuestionDetails(id:controller.assemblyQuestionList[index].id.toString()).then((value) {
                                                   Navigator.pushNamed(context,arguments: {
-                                           'id': controller.qualityQuestionList[index].id,  },QualityquestionEdit.routeName);
+                                           'id': controller.assemblyQuestionList[index].id,  },QualityquestionEdit.routeName);
                                                 });
                                                 
             
@@ -142,18 +141,18 @@ class QualityQuestionScreen extends StatelessWidget {
                                                       ),
                                                       TextButton(
                                                         onPressed: () {
-                                                          controller
-                                                              .deleteQualityQuestions(
-                                                                  id: controller
-                                                                      .qualityQuestionList[
-                                                                          index]
-                                                                      .id!)
-                                                              .then((value) {
-                                                            controller
-                                                                .getQualityQuestions(
-                                                                    id: controller
-                                                                        .productId);
-                                                          });
+                                                          // controller
+                                                          //     .deleteQualityQuestions(
+                                                          //         id: controller
+                                                          //             .qualityQuestionList[
+                                                          //                 index]
+                                                          //             .id!)
+                                                          //     .then((value) {
+                                                          //   controller
+                                                          //       .getQualityQuestions(
+                                                          //           id: controller
+                                                          //               .productId);
+                                                          // });
 
                                                           Get.back();
                                                         },
@@ -180,7 +179,7 @@ class QualityQuestionScreen extends StatelessWidget {
                                     return customVerticalGap(10);
                                   },
                                   itemCount:
-                                      controller.qualityQuestionList.length);
+                                      controller.assemblyQuestionList.length);
                             } else {
                               return Text('No Data');
                             }

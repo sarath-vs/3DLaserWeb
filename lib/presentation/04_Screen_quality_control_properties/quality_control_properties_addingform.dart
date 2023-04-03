@@ -30,6 +30,9 @@ int sec =0;
 class _QualitycontrolpropertiesState extends State<Qualitycontrolproperties> {
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((duration) {
+      
+    });
     return Scaffold(
       appBar: AppBar(
         title: Text(

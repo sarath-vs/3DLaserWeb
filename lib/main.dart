@@ -17,9 +17,13 @@ import 'package:laser_tech_app/presentation/07_Screen_quality_questions_modify/q
 import 'package:laser_tech_app/presentation/09_Screen_quality_control_properties_edit/quality_control_properties_addingform.dart';
 import 'package:laser_tech_app/presentation/10_completedProductList/screen_completed_product_list.dart';
 import 'package:laser_tech_app/presentation/10_completedProductList/screen_questions_its_answer.dart';
+import 'package:laser_tech_app/presentation/11_screen_assembly_add/assembly_add.dart';
+import 'package:laser_tech_app/presentation/11_screen_assembly_add/assembly_edit.dart';
+import 'package:laser_tech_app/presentation/12_screen_assembly_question_add/screen_assembly_question_add.dart';
 import 'package:laser_tech_app/presentation/theme/theme.dart';
 
 import 'application/ansswered_product_controller/answered_product_controller.dart';
+import 'application/assembly_controller/assembly_controller.dart';
 import 'application/auth_controller/auth_controller.dart';
 import 'application/home_screen_controller/controller.dart';
 import 'application/quality_products_controller/quality_product_controller.dart';
@@ -91,7 +95,7 @@ class _MyAppState extends State<MyApp> {
         theme: AppTheme.lightTheme.copyWith(),
         home: ScreenLogin(),
         routes: {
-          // ScreenSplash.routeName: (context) => const ScreenSplash(),
+           AssemblyQuestionAddScreen.routeName: (context) => const AssemblyQuestionAddScreen(),
           ScreenLogin.routeName: (context) => const ScreenLogin(),
           ScreenHome.routeName: (context) => const ScreenHome(),
           EmployeeWorkDetails.routeName: (context) => const EmployeeWorkDetails(),
@@ -104,6 +108,8 @@ class _MyAppState extends State<MyApp> {
               const QualitycontrolpropertiesEditor(),
           ScreenCompletedProducts.routeName: (context) => const ScreenCompletedProducts(),
           Questionsanswer.routeName: (context) => const Questionsanswer(),
+          AssemblyPlanAddScreen.routeName: (context) => const AssemblyPlanAddScreen(),
+          AssemblyProductEditor.routeName: (context) => const AssemblyProductEditor(),
         },
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
@@ -128,6 +134,7 @@ initializeGetxController() {
   Get.put<QualityProductController>(getIt<QualityProductController>(), permanent: false);
   Get.put<QualityQuestionEditController>(getIt<QualityQuestionEditController>(), permanent: false);
   Get.put<AnsweredProductController>(getIt<AnsweredProductController>(), permanent: false);
+    Get.put<AssemblyProductController>(getIt<AssemblyProductController>(), permanent: false);
 }
 
 class MyHttpOverrides extends HttpOverrides {

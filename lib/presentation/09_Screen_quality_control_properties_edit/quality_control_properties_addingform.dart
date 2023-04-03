@@ -41,6 +41,8 @@ class _QualitycontrolpropertiesEditorState extends State<Qualitycontrolpropertie
        ipAddress=arguments['ipAddress'];
        portNumber=arguments['portNumber'];
        printerData=arguments['printerData'];
+         sec = int.parse(timeLimit) % 60;
+          min = (int.parse(timeLimit) / 60).floor();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -115,6 +117,7 @@ class _QualitycontrolpropertiesEditorState extends State<Qualitycontrolpropertie
                             validator: (val) {
                               return null;
                             },
+                             initialValue: min.toString(),
                             onChanged: (value) {
                               min = int.parse(value);
                             },
@@ -145,6 +148,7 @@ class _QualitycontrolpropertiesEditorState extends State<Qualitycontrolpropertie
                         FilteringTextInputFormatter.digitsOnly
                         ],
                         keyboardType: TextInputType.number,
+                        initialValue: sec.toString(),
                         onChanged: (value) {
                           sec = int.parse(value);
                         },
