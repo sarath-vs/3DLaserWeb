@@ -88,9 +88,9 @@ class AssemblyQuestionListScreen extends StatelessWidget {
                                             padding: const EdgeInsets.all(8.0),
                                             child: InkWell(
                                               onTap: () {
-                                                Get.find<QualityQuestionEditController>().getEditQuestionDetails(id:controller.assemblyQuestionList[index].id.toString()).then((value) {
+                                                Get.find<QualityQuestionEditController>().getEditQuestionDetails(id:controller.assemblyQuestionList[index].id.toString(),screenName: 'Assembly').then((value) {
                                                   Navigator.pushNamed(context,arguments: {
-                                           'id': controller.assemblyQuestionList[index].id,  },QualityquestionEdit.routeName);
+                                           'id': controller.assemblyQuestionList[index].id, 'screenName':'Assembly' },QualityquestionEdit.routeName);
                                                 });
                                                 
             
@@ -141,18 +141,18 @@ class AssemblyQuestionListScreen extends StatelessWidget {
                                                       ),
                                                       TextButton(
                                                         onPressed: () {
-                                                          // controller
-                                                          //     .deleteQualityQuestions(
-                                                          //         id: controller
-                                                          //             .qualityQuestionList[
-                                                          //                 index]
-                                                          //             .id!)
-                                                          //     .then((value) {
-                                                          //   controller
-                                                          //       .getQualityQuestions(
-                                                          //           id: controller
-                                                          //               .productId);
-                                                          // });
+                                                          controller
+                                                              .deleteQualityQuestions(
+                                                                  id: controller
+                                                                      .assemblyQuestionList[
+                                                                          index]
+                                                                      .id!)
+                                                              .then((value) {
+                                                            controller
+                                                                .getAssemblyQuestions(
+                                                                    id: controller
+                                                                        .productId);
+                                                          });
 
                                                           Get.back();
                                                         },

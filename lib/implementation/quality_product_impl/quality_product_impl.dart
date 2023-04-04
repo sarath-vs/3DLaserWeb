@@ -152,10 +152,10 @@ class QualityProductImpl implements QualityProductFacade {
   }
 
   @override
-  Future<Either<NetworkExceptions, GetQuestionDetailsModel>> getQuestionDetails({required String id})  async {
+  Future<Either<NetworkExceptions, GetQuestionDetailsModel>> getQuestionDetails({required String id,required String screenName})  async {
     String? access = await _employeeDataManager.getRefresh();
     final result = await Postman.sendGetRequest(
-        _url.editQualityQuestions + '$id/', access!);
+      screenName=='Quality'?  _url.editQualityQuestions + '$id/':_url.assemblyQuestionDetails+'$id', access!);
     if (result.statusCode == 200) {
       final data = GetQuestionDetailsModel.fromJson(
           jsonDecode(result.body) as Map<String, dynamic>);
@@ -168,9 +168,9 @@ class QualityProductImpl implements QualityProductFacade {
     }}
     
       @override
-      Future<Either<NetworkExceptions, String>> putQuestionEdit({required String id,required Map<String, Object?> dataToSend,}) async {
+      Future<Either<NetworkExceptions, String>> putQuestionEdit({required String id,required Map<String, Object?> dataToSend,required String screenName}) async {
     String? access = await _employeeDataManager.getRefresh();
-    final result = await Postman.sendPutRequest(_url.editQualityQuestions + '$id/',dataToSend, access);
+    final result = await Postman.sendPutRequest( screenName=='Quality'? _url.editQualityQuestions + '$id/':_url.assemblyQuestionDetails+'$id/',dataToSend, access);
     if (result.statusCode == 200) {
       // final data = GetQuestionDetailsModel.fromJson(
       //     jsonDecode(result.body) as Map<String, dynamic>);

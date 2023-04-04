@@ -21,9 +21,9 @@ abstract class QualityProductFacade {
   Future<Either<NetworkExceptions, String>> postQualityQuestions(
       {required Map<String, Object?> dataToSend});
        Future<Either<NetworkExceptions, GetQuestionDetailsModel>> getQuestionDetails(
-      {required String id});
+      {required String id,required String screenName});
        Future<Either<NetworkExceptions, String>> putQuestionEdit(
-      {required String id,required Map<String, Object?> dataToSend,});
+      {required String id,required Map<String, Object?> dataToSend,required String screenName});
        Future<Either<NetworkExceptions, String>> putQualityProduct(
       {required int id, required String name, required String description,required String time,required String ip,required String port,required String printerData});
 }

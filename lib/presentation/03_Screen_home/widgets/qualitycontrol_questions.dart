@@ -89,9 +89,9 @@ class QualityQuestionScreen extends StatelessWidget {
                                             padding: const EdgeInsets.all(8.0),
                                             child: InkWell(
                                               onTap: () {
-                                                Get.find<QualityQuestionEditController>().getEditQuestionDetails(id:controller.qualityQuestionList[index].id.toString()).then((value) {
+                                                Get.find<QualityQuestionEditController>().getEditQuestionDetails(id:controller.qualityQuestionList[index].id.toString(),screenName: 'Quality').then((value) {
                                                   Navigator.pushNamed(context,arguments: {
-                                           'id': controller.qualityQuestionList[index].id,  },QualityquestionEdit.routeName);
+                                           'id': controller.qualityQuestionList[index].id, 'screenName':'Quality' },QualityquestionEdit.routeName);
                                                 });
                                                 
             

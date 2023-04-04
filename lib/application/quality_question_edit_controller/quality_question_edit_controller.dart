@@ -96,10 +96,10 @@ static final answerField = {
 
 
     Future<void> getEditQuestionDetails(
-      {required String id}) async {
+      {required String id,required String screenName}) async {
     showCircularProgressDialog(msg: 'Loading');
     final result = await _qualityProductFacade.getQuestionDetails(
-        id: id);
+        id: id,screenName: screenName);
     Navigator.of(navigatorKey.currentContext!).pop();
     result.fold((NetworkExceptions exp) {
       return showSingleButtonAlertDialog(
@@ -161,7 +161,7 @@ static final answerField = {
     });
   }
 
-      Future<void> putEditQuestionDetails({required String vdo}
+      Future<void> putEditQuestionDetails({required String vdo,required String screenName}
       ) async {  final dataToSend = {
                                        "description_english": discriptionEnglishController.text,
                                       "description_czech": discriptionCzechController.text,
@@ -180,7 +180,7 @@ static final answerField = {
                         
                                     };
          showCircularProgressDialog(msg: 'Loading');
-    final result = await _qualityProductFacade.putQuestionEdit(id: questionID, dataToSend: dataToSend);
+    final result = await _qualityProductFacade.putQuestionEdit(id: questionID, dataToSend: dataToSend,screenName: screenName);
     Navigator.of(navigatorKey.currentContext!).pop();
      result.fold((NetworkExceptions exp) {
       return showSingleButtonAlertDialog(

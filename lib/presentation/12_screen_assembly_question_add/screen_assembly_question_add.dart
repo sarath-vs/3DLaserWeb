@@ -790,23 +790,7 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                                 Expanded(
                                     flex: 3,
                                     child: Text('No Answer input field')),
-                                // Expanded(
-                                //   flex: 1,
-                                //   child: Checkbox(
-                                //     value: yesnoNoneManditory,
-                                //     checkColor:
-                                //         Colors.white, // color of tick Mark
-                                //     activeColor: LightColor.primaryColor,
-                                //     onChanged: (bool? value) {
-                                //       setState(() {
-                                //         if (yesnoNone) {
-                                //           yesnoNoneManditory =
-                                //               !yesnoNoneManditory;
-                                //         }
-                                //       });
-                                //     },
-                                //   ),
-                                // ),
+                              
                               ],
                             ),
                             ////////

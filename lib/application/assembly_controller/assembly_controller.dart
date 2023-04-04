@@ -192,7 +192,26 @@ Future<void> saveAssemblyProduct(
       update([assemblyProductID]);
     });
   }
-
+ Future<void> deleteQualityQuestions({required int id}) async {
+    showCircularProgressDialog(msg: 'Loading');
+    final result = await _assemblyProductFacade.deleteAssemblyQuestions(id: id);
+    Navigator.of(navigatorKey.currentContext!).pop();
+    result.fold((NetworkExceptions exp) {
+      return showSingleButtonAlertDialog(
+        Get.context!,
+        'Warning',
+        getMessageFromException(exp),
+        () {
+          Navigator.of(Get.context!).pop();
+        },
+      );
+    }, (String resp) async {
+      // qualityQuestionList.clear();
+      // qualityQuestionList.addAll(resp.data!);
+      customLog(resp);
+      update([assemblyProductID]);
+    });
+  }
 
 
 

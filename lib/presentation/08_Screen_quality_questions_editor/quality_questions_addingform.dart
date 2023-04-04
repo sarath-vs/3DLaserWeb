@@ -135,7 +135,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
 
     // print(pickedImagesInBytes);
   }
-
+String screenName='';
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((duration) {
@@ -143,6 +143,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
 
     final id = arguments['id'];
     final productIDZ=arguments['productID'];
+    screenName=arguments['screenName'];
  
   Get.find<ToolsController>().getTools().then((value) {
         if (_checkedItems.isEmpty) {
@@ -224,7 +225,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                 decoration: InputDecoration(
                                  
                                  // labelText: controller.questionCzechController.text,
-                                 // hintText: QualityQuestionEditController.questionEnglish??'N/A'+'  (English)',
+                                hintText: '(English)',
 
                                   // border: OutlineInputBorder(
                                   //     borderRadius: BorderRadius.circular(20)),
@@ -245,7 +246,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                 //   QualityQuestionEditController.questionCzech = value;
                                 // },
                                 decoration: InputDecoration(
-                                  //hintText: QualityQuestionEditController.questionCzech??"N/A"+'  (Czech)',
+                                  hintText: '(Czech)',
 
                                   // border: OutlineInputBorder(
                                   //     borderRadius: BorderRadius.circular(20)),
@@ -266,7 +267,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                 //    QualityQuestionEditController.questionGerman = value;
                                 // },
                                 decoration: InputDecoration(
-                                 // hintText: QualityQuestionEditController.questionGerman??"N/A" +'    (Vietnam)',
+                                 hintText: '(Vietnam)',
 
                                   // border: OutlineInputBorder(
                                   //     borderRadius: BorderRadius.circular(20)),
@@ -291,7 +292,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                 //   QualityQuestionEditController.discriptionEnglish = value;
                                 // },
                                 decoration: InputDecoration(
-                                 // hintText: QualityQuestionEditController.discriptionEnglish??"N/A" +'   (English)',
+                                hintText:'(English)',
 
                                   // border: OutlineInputBorder(
                                   //     borderRadius: BorderRadius.circular(20)),
@@ -305,13 +306,13 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                             SizedBox(
                               width: customWidth(400),
                               child: TextFormField(
-                                 controller: controller.questionCzechController,
+                                 controller: controller.discriptionCzechController,
                                 validator: (val) {
                                   return null;
                                 },
                                
                                 decoration: InputDecoration(
-                                  //hintText:QualityQuestionEditController.discriptionCzech??'N/A'+  '   (Czech)',
+                                  hintText:'(Czech)',
 
                                   // border: OutlineInputBorder(
                                   //     borderRadius: BorderRadius.circular(20)),
@@ -324,13 +325,13 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                             SizedBox(
                               width: customWidth(400),
                               child: TextFormField(
-                                 controller: controller.questionGermanController,
+                                 controller: controller.discriptionGermanController,
                                 validator: (val) {
                                   return null;
                                 },
                                 
                                 decoration: InputDecoration(
-                                 // hintText: QualityQuestionEditController.discriptionGerman??'N/A' + '  (Vietnam)',
+                                 hintText: '(Vietnam)',
 
                                   // border: OutlineInputBorder(
                                   //     borderRadius: BorderRadius.circular(20)),
@@ -765,6 +766,35 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                
                               ],
                             ),
+                             ///Answer Yes/No/None
+                           screenName=='Assembly'? Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Expanded(
+                                  flex: 1,
+                                  child: Checkbox(
+                                    value: QualityQuestionEditController.yesnoNone,
+                                    checkColor:
+                                        Colors.white, // color of tick Mark
+                                    activeColor: LightColor.primaryColor,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        QualityQuestionEditController.yesnoNone = !QualityQuestionEditController.yesnoNone;
+                                       QualityQuestionEditController. yesnoNoneManditory = false;
+                                      });
+                                    },
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 3,
+                                  child: Text('None'),
+                                ),
+                                Expanded(
+                                    flex: 3,
+                                    child: Text('No Answer input field')),
+                              
+                              ],
+                            ):SizedBox(),
                             
                             ////////
                             ///////
@@ -1067,7 +1097,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
 
           }
           if(base64StringVDO.isNotEmpty){
-            controller.putEditQuestionDetails(vdo:  base64StringVDO.first).then((value) {
+            controller.putEditQuestionDetails(vdo:  base64StringVDO.first,screenName: screenName).then((value) {
                               
                                       Get.back();
                                        Get.back();
@@ -1075,14 +1105,15 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                       QualityQuestionEditController.productId=null;
                                     }).then((value) {
                                       setState(() {
-                                          Get.find<HomeScreenController>().setHomeScreen('Products');
+                                        screenName=='Quality'?
+                                          Get.find<HomeScreenController>().setHomeScreen('Products'):Get.find<HomeScreenController>().setHomeScreen('ASSEMBLY PLAN');
                                         
                                       });
                                       
                                     });
 
           }else{
-            controller.putEditQuestionDetails(vdo: '').then((value) {
+            controller.putEditQuestionDetails(vdo: '',screenName: screenName).then((value) {
                               
                                       Get.back();
                                        Get.back();
@@ -1090,7 +1121,8 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                       QualityQuestionEditController.productId=null;
                                     }).then((value) {
                                       setState(() {
-                                          Get.find<HomeScreenController>().setHomeScreen('Products');
+                                            screenName=='Quality'?
+                                          Get.find<HomeScreenController>().setHomeScreen('Products'):Get.find<HomeScreenController>().setHomeScreen('ASSEMBLY PLAN');
                                         
                                       });
                                       

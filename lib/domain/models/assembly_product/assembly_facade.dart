@@ -17,5 +17,8 @@ Future<Either<NetworkExceptions, QualityProductQuestionModel>>
       getAssemblyQuestions({required int id});
       Future<Either<NetworkExceptions, String>> postAssemblyQuestions(
       {required Map<String, Object?> dataToSend});
+
+      Future<Either<NetworkExceptions, String>> deleteAssemblyQuestions(
+      {required int id});
       
 }

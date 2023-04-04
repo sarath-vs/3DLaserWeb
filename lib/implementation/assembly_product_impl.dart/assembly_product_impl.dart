@@ -166,7 +166,23 @@ class AssemblyProductImpl implements AssemblyProductFacade {
       return left(getExceptionFromStatusCode(result.statusCode));
     }
   }
+  @override
+  Future<Either<NetworkExceptions, String>> deleteAssemblyQuestions(
+      {required int id}) async {
+    String? access = await _employeeDataManager.getRefresh();
+    final result = await Postman.sendDeleteRequest(
+        _url.assemblyQuestionDetails + '$id/', access!);
+    if (result.statusCode == 204) {
+      // final data = QualityProductQuestionModel.fromJson(
+      //     jsonDecode(result.body) as Map<String, dynamic>);
+      customLog('--->>>');
+      customLog(result.body);
 
+      return right(result.statusCode.toString());
+    } else {
+      return left(getExceptionFromStatusCode(result.statusCode));
+    }
+  }
  
 
 
