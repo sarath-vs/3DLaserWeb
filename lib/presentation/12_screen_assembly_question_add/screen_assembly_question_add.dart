@@ -39,7 +39,9 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
   bool vdoManditory = false;
   String rangeFrom = '';
   String rangeTo = '';
-  String dropDownData = '';
+  String dropDownDataEnglish = '';
+  String dropDownDataVietnam = '';
+  String dropDownDataCzech = '';
   List<int> selectedID = [];
   String? questionEnglish;
   String? questionCzech;
@@ -1085,28 +1087,78 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                                   flex: 3,
                                   child: Text('DropDown'),
                                 ),
-                                Expanded(
-                                  flex: 3,
-                                  child: TextFormField(
-                                    keyboardType: TextInputType.multiline,
-                                    minLines: 1,
-                                    maxLines: 7,
-                                    validator: (val) {
-                                      return null;
-                                    },
-                                    onChanged: (value) {
-                                      dropDownData = value;
-                                    },
-                                    decoration: InputDecoration(
-                                      hintText:
-                                          "Add Drop Down Values seperate by ||.(eg:one||Two||Three)",
-                                      hintStyle: TextStyle(
-                                          fontSize: customFontSize(4)),
-                                      fillColor: Colors.grey.shade200,
-                                      filled: true,
-                                      floatingLabelStyle: AppTheme.h2Style,
+                                Column(
+                                  children: [
+                                    Expanded(
+                                      flex: 3,
+                                      child: TextFormField(
+                                        keyboardType: TextInputType.multiline,
+                                        minLines: 1,
+                                        maxLines: 7,
+                                        validator: (val) {
+                                          return null;
+                                        },
+                                        onChanged: (value) {
+                                          dropDownDataEnglish = value;
+                                        },
+                                        decoration: InputDecoration(
+                                          hintText:
+                                              "Add Drop Down Values in English.(eg:one||Two||Three)",
+                                          hintStyle: TextStyle(
+                                              fontSize: customFontSize(4)),
+                                          fillColor: Colors.grey.shade200,
+                                          filled: true,
+                                          floatingLabelStyle: AppTheme.h2Style,
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                      Expanded(
+                                      flex: 3,
+                                      child: TextFormField(
+                                        keyboardType: TextInputType.multiline,
+                                        minLines: 1,
+                                        maxLines: 7,
+                                        validator: (val) {
+                                          return null;
+                                        },
+                                        onChanged: (value) {
+                                          dropDownDataCzech = value;
+                                        },
+                                        decoration: InputDecoration(
+                                          hintText:
+                                              "Add Drop Down Values in Czech.(eg:one||Two||Three)",
+                                          hintStyle: TextStyle(
+                                              fontSize: customFontSize(4)),
+                                          fillColor: Colors.grey.shade200,
+                                          filled: true,
+                                          floatingLabelStyle: AppTheme.h2Style,
+                                        ),
+                                      ),
+                                    ),
+                                      Expanded(
+                                      flex: 3,
+                                      child: TextFormField(
+                                        keyboardType: TextInputType.multiline,
+                                        minLines: 1,
+                                        maxLines: 7,
+                                        validator: (val) {
+                                          return null;
+                                        },
+                                        onChanged: (value) {
+                                          dropDownDataVietnam = value;
+                                        },
+                                        decoration: InputDecoration(
+                                          hintText:
+                                              "Add Drop Down Values in Vietnam.(eg:one||Two||Three)",
+                                          hintStyle: TextStyle(
+                                              fontSize: customFontSize(4)),
+                                          fillColor: Colors.grey.shade200,
+                                          filled: true,
+                                          floatingLabelStyle: AppTheme.h2Style,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 // Expanded(
                                 //   flex: 1,
@@ -1226,7 +1278,7 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                                       "vdoMN": vdoManditory,
                                       "rangeFrom": rangeFrom,
                                       "rangeTo": rangeTo,
-                                      "dropDownData": dropDownData
+                                      "dropDownData": dropDownDataEnglish+'&&'+dropDownDataCzech+'&&'+dropDownDataVietnam
                                     };
                                     final dataToSend = {
                                        "description_english": discriptionEnglish,
@@ -1267,7 +1319,7 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                                           });
                                         }
                                       } else if (dropdown == true) {
-                                        if (dropDownData == '') {
+                                        if (dropDownDataEnglish == ''||dropDownDataVietnam == ''||dropDownDataCzech == '') {
                                           showSnackBar(
                                               message:
                                                   'Please Provide DropDown Data');

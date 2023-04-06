@@ -39,7 +39,9 @@ class QualityQuestionEditController extends GetxController {
   static bool vdoManditory = false;
   static String rangeFrom = '';
   static String rangeTo = '';
-  static String dropDownData = '';
+  static String dropDownDataEnglish = '';
+  static String dropDownDataCzech = '';
+  static String dropDownDataVietnam = '';
   static List<int> selectedID = [];
   static String? questionEnglish;
   static String? questionCzech;
@@ -60,7 +62,9 @@ final TextEditingController questionGermanController = TextEditingController();
 final TextEditingController discriptionEnglishController = TextEditingController();
 final TextEditingController discriptionCzechController = TextEditingController();
 final TextEditingController discriptionGermanController = TextEditingController();
-final TextEditingController dropDownValueController = TextEditingController();
+final TextEditingController dropDownValueEnglishController = TextEditingController();
+final TextEditingController dropDownValueCzechController = TextEditingController();
+final TextEditingController dropDownValueVietnamController = TextEditingController();
 
  static List<String> selectedimagesin64bytes = [];
  
@@ -85,7 +89,7 @@ static final answerField = {
                                       "vdoMN": vdoManditory,
                                       "rangeFrom": rangeFrom,
                                       "rangeTo": rangeTo,
-                                      "dropDownData": dropDownData
+                                      "dropDownData": dropDownDataEnglish+'&&'+dropDownDataCzech+'&&'+dropDownDataVietnam
                                     };
                                   
 
@@ -127,8 +131,12 @@ static final answerField = {
               number = false;
                 rangeFrom = resp.data!.fieldInfoObject!.rangeFrom??"";
                   rangeTo = resp.data!.fieldInfoObject!.rangeTo??"";
-                    dropDownData = resp.data!.fieldInfoObject!.dropDownData??"";
-                    dropDownValueController.text=resp.data!.fieldInfoObject!.dropDownData??"";
+                    dropDownDataEnglish = resp.data!.fieldInfoObject!.dropDownData!.split("&&")[0]??"";
+                     dropDownDataCzech = resp.data!.fieldInfoObject!.dropDownData!.split("&&")[1]??"";
+                      dropDownDataVietnam = resp.data!.fieldInfoObject!.dropDownData!.split("&&")[2]??"";
+                    dropDownValueEnglishController.text=resp.data!.fieldInfoObject!.dropDownData!.split("&&")[0]??"";
+                    dropDownValueCzechController.text=resp.data!.fieldInfoObject!.dropDownData!.split("&&")[1]??"";
+                    dropDownValueVietnamController.text=resp.data!.fieldInfoObject!.dropDownData!.split("&&")[2]??"";
                     productId=resp.data!.category;
                     questionID=resp.data!.id.toString();
                     questionEnglish=resp.data!.questionEnglish.toString();

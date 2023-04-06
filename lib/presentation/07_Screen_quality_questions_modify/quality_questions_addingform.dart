@@ -39,7 +39,9 @@ class _QualityquestionformState extends State<Qualityquestionform> {
   bool vdoManditory = false;
   String rangeFrom = '';
   String rangeTo = '';
-  String dropDownData = '';
+  String dropDownDataEnglish = '';
+  String dropDownDataCzech = '';
+  String dropDownDataViatnam = '';
   List<int> selectedID = [];
   String? questionEnglish;
   String? questionCzech;
@@ -1103,25 +1105,69 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                 ),
                                 Expanded(
                                   flex: 3,
-                                  child: TextFormField(
-                                    keyboardType: TextInputType.multiline,
-                                    minLines: 1,
-                                    maxLines: 7,
-                                    validator: (val) {
-                                      return null;
-                                    },
-                                    onChanged: (value) {
-                                      dropDownData = value;
-                                    },
-                                    decoration: InputDecoration(
-                                      hintText:
-                                          "Add Drop Down Values seperate by ||.(eg:one||Two||Three)",
-                                      hintStyle: TextStyle(
-                                          fontSize: customFontSize(4)),
-                                      fillColor: Colors.grey.shade200,
-                                      filled: true,
-                                      floatingLabelStyle: AppTheme.h2Style,
-                                    ),
+                                  child: Column(
+                                    children: [
+                                      TextFormField(
+                                        keyboardType: TextInputType.multiline,
+                                        minLines: 1,
+                                        maxLines: 7,
+                                        validator: (val) {
+                                          return null;
+                                        },
+                                        onChanged: (value) {
+                                          dropDownDataEnglish = value;
+                                        },
+                                        decoration: InputDecoration(
+                                          hintText:
+                                              "Add Drop Down Values in English.(eg:one||Two||Three)",
+                                          hintStyle: TextStyle(
+                                              fontSize: customFontSize(4)),
+                                          fillColor: Colors.grey.shade200,
+                                          filled: true,
+                                          floatingLabelStyle: AppTheme.h2Style,
+                                        ),
+                                      ),
+                                      TextFormField(
+                                        keyboardType: TextInputType.multiline,
+                                        minLines: 1,
+                                        maxLines: 7,
+                                        validator: (val) {
+                                          return null;
+                                        },
+                                        onChanged: (value) {
+                                          dropDownDataCzech = value;
+                                        },
+                                        decoration: InputDecoration(
+                                          hintText:
+                                              "Add Drop Down Values in Czech.(eg:one||Two||Three)",
+                                          hintStyle: TextStyle(
+                                              fontSize: customFontSize(4)),
+                                          fillColor: Colors.grey.shade200,
+                                          filled: true,
+                                          floatingLabelStyle: AppTheme.h2Style,
+                                        ),
+                                      ),
+                                      TextFormField(
+                                        keyboardType: TextInputType.multiline,
+                                        minLines: 1,
+                                        maxLines: 7,
+                                        validator: (val) {
+                                          return null;
+                                        },
+                                        onChanged: (value) {
+                                          dropDownDataViatnam = value;
+                                        },
+                                        decoration: InputDecoration(
+                                          hintText:
+                                              "Add Drop Down Values in Vietnam.(eg:one||Two||Three)",
+                                          hintStyle: TextStyle(
+                                              fontSize: customFontSize(4)),
+                                          fillColor: Colors.grey.shade200,
+                                          filled: true,
+                                          floatingLabelStyle: AppTheme.h2Style,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                                 // Expanded(
@@ -1242,7 +1288,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                       "vdoMN": vdoManditory,
                                       "rangeFrom": rangeFrom,
                                       "rangeTo": rangeTo,
-                                      "dropDownData": dropDownData
+                                      "dropDownData": dropDownDataEnglish+'&&'+dropDownDataCzech+'&&'+dropDownDataViatnam
                                     };
                                     final dataToSend = {
                                        "description_english": discriptionEnglish,
@@ -1283,7 +1329,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                           });
                                         }
                                       } else if (dropdown == true) {
-                                        if (dropDownData == '') {
+                                        if (dropDownDataEnglish == ''||dropDownDataCzech==''||dropDownDataViatnam=='') {
                                           showSnackBar(
                                               message:
                                                   'Please Provide DropDown Data');
