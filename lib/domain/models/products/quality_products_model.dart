@@ -39,11 +39,13 @@ class QualityProductResult {
   String? ipAddress;
   String? port;
   ProductObj? productObj;
+  bool? qrRequired;
+  bool? isFinal;
 
   QualityProductResult(
       {this.id, this.name, this.description, this.dateCreated,   this.ipAddress,
       this.port,
-      this.productObj,});
+      this.productObj,this.qrRequired,this.isFinal,});
 
   QualityProductResult.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -56,6 +58,8 @@ class QualityProductResult {
         : null;
     dateCreated = json['date_created'];
     time_limit =json['time_limit'];
+    qrRequired =json['qr_required'];
+    isFinal =json['is_final'];
   }
 
   Map<String, dynamic> toJson() {
@@ -70,10 +74,12 @@ class QualityProductResult {
     }
     data['date_created'] = this.dateCreated;
     data['time_limit'] = this.time_limit;
+     data['qr_required'] = this.qrRequired;
+      data['is_final'] = this.isFinal;
     return data;
   }
 
-  
+ 
 }
 
 

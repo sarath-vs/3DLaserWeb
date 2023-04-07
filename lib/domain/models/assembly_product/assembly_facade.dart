@@ -7,7 +7,7 @@ import '../products/questionModel.dart';
 abstract class AssemblyProductFacade {
   Future<Either<NetworkExceptions, QualtyProductListModel>> getAssemblyProduct();
     Future<Either<NetworkExceptions, String>> saveAssemblyProduct(
-      {required String name, required String description,required String time,required String ip,required String port,required String printerData});
+      {required String name, required String description,required String time,required String ip,required String port,required String printerData,required bool genQr,required bool finalAssembly});
   Future<Either<NetworkExceptions, String>> deleteAssemblyProduct(
       {required int id});
              Future<Either<NetworkExceptions, String>> putAssemblyProduct(

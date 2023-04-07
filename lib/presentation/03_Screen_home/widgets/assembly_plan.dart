@@ -171,6 +171,16 @@ class AssemblyPlanScreen extends StatelessWidget {
                                                         .assemblyProductList[
                                                             index]
                                                         .time_limit!,
+                                                         'genQR': controller
+                                                        .assemblyProductList[
+                                                            index]
+                                                        .qrRequired!,
+                                                         'finalAssembly': controller
+                                                        .assemblyProductList[
+                                                            index]
+                                                        .isFinal!,
+
+                                                        
 
                                                         
 
@@ -183,7 +193,11 @@ class AssemblyPlanScreen extends StatelessWidget {
    'printerData':controller
                                                         .assemblyProductList[
                                                             index].productObj!.zebraData??"N/A",
+
+                                                            
                                                   },
+
+                                                    
                                                 );
                                               },
                                               child: Container(

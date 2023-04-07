@@ -21,6 +21,8 @@ String disc = '';
 String ipAddress = '';
 String portNumber = '';
 String printerData = '';
+bool finalAssembly =false;
+bool generateQr=false;
 int min =0;
 int sec =0;
 
@@ -173,6 +175,28 @@ class _AssemblyPlanAddScreenState extends State<AssemblyPlanAddScreen> {
                         ),
                       ),
                     ),
+                        Row(children: [Text('Final Assembly :'),Checkbox(
+                                    value: finalAssembly,
+                                    checkColor:
+                                        Colors.white, // color of tick Mark
+                                    activeColor: LightColor.primaryColor,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                      finalAssembly=!finalAssembly;
+                                      });
+                                    },
+                                  ),],),
+                                   Row(children: [Text('Generate QR      :'),Checkbox(
+                                    value: generateQr,
+                                    checkColor:
+                                        Colors.white, // color of tick Mark
+                                    activeColor: LightColor.primaryColor,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                      generateQr=!generateQr;
+                                      });
+                                    },
+                                  ),],),
                     //  Text(
                     //   "IP Address",
                     //   style: AppTheme.h6Style,
@@ -288,7 +312,7 @@ class _AssemblyPlanAddScreenState extends State<AssemblyPlanAddScreen> {
                             } else {
                               Get.find<AssemblyProductController>()
                                   .saveAssemblyProduct(
-                                      name: name, discription: disc,time: '${min*60+sec}', ip: ipAddress, port: portNumber, printerData: printerData)
+                                      name: name, discription: disc,time: '${min*60+sec}', ip: ipAddress, port: portNumber, printerData: printerData,genQr: generateQr,finalAssembly: finalAssembly)
                                   .then((value) {
                                 Get.find<AssemblyProductController>()
                                     .getAssemblyProducts();

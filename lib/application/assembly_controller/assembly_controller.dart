@@ -76,10 +76,10 @@ class AssemblyProductController extends GetxController {
     });
   }
 Future<void> saveAssemblyProduct(
-      {required String name, required String discription,required String time,required String ip,required String port, required String printerData}) async {
+      {required String name, required String discription,required String time,required String ip,required String port, required String printerData,required bool genQr,required bool finalAssembly}) async {
     showCircularProgressDialog(msg: 'Saving');
     final result = await _assemblyProductFacade.saveAssemblyProduct(
-        name: name, description: discription,time: time, ip: ip, port: port, printerData: printerData);
+        name: name, description: discription,time: time, ip: ip, port: port, printerData: printerData,genQr: genQr,finalAssembly: finalAssembly);
     Navigator.of(navigatorKey.currentContext!).pop();
     result.fold((NetworkExceptions exp) {
       return showSingleButtonAlertDialog(

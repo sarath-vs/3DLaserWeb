@@ -24,6 +24,8 @@ String timeLimit ='';
 String ipAddress = '';
 String portNumber = '';
 String printerData = '';
+bool? generateQr;
+bool? finalAssembly;
 int id=0;
 int min =0;
 int sec =0;
@@ -40,6 +42,12 @@ class _AssemblyProductEditorState extends State<AssemblyProductEditor> {
        ipAddress=arguments['ipAddress'];
        portNumber=arguments['portNumber'];
        printerData=arguments['printerData'];
+       if(generateQr==null||finalAssembly==null){
+            generateQr=arguments['genQR'];
+       finalAssembly=arguments['finalAssembly'];
+
+       }
+   
 
         sec = int.parse(timeLimit) % 60;
           min = (int.parse(timeLimit) / 60).floor();
@@ -189,6 +197,34 @@ class _AssemblyProductEditorState extends State<AssemblyProductEditor> {
                         ),
                       ),
                     ),
+                    Row(children: [Text('Final Assembly :'),Checkbox(
+                                    value: finalAssembly,
+                                    checkColor:
+                                        Colors.white, // color of tick Mark
+                                    activeColor: LightColor.primaryColor,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                        if(finalAssembly!=null){
+    finalAssembly=!finalAssembly!;
+                                        }
+                                  
+                                      });
+                                    },
+                                  ),],),
+                                   Row(children: [Text('Generate QR      :'),Checkbox(
+                                    value: generateQr,
+                                    checkColor:
+                                        Colors.white, // color of tick Mark
+                                    activeColor: LightColor.primaryColor,
+                                    onChanged: (bool? value) {
+                                      setState(() {
+                                  
+                                       if(generateQr!=null){
+      generateQr=!generateQr!;
+                                        }
+                                      });
+                                    },
+                                  ),],),
                     //   Text(
                     //   "IP Address",
                     //   style: AppTheme.h6Style,

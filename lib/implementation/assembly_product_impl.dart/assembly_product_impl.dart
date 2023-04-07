@@ -50,7 +50,7 @@ class AssemblyProductImpl implements AssemblyProductFacade {
      required String time,
       required String ip, 
       required String port, 
-      required String printerData})  async {
+      required String printerData,required bool genQr,required bool finalAssembly})  async {
     String? access = await _employeeDataManager.getRefresh();
     final _body = {
       "name": name,
@@ -59,6 +59,8 @@ class AssemblyProductImpl implements AssemblyProductFacade {
       "ip_address":ip,
       "port":port,
       "product_obj":{"zebraData":printerData},
+        "qr_required": genQr,
+  "is_final": finalAssembly,
 
     };
 
