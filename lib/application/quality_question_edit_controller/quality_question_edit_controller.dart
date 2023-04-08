@@ -23,6 +23,7 @@ class QualityQuestionEditController extends GetxController {
   String get qualityQuestionDetailID => 'qualityQuestionDetailID';
   static  bool yesno = false;
   static bool yesnoManditory = false;
+   static bool qrScanner = false;
   static bool yesnoNone = false;
   static bool yesnoNoneManditory = false;
   static bool dropdown = false;
@@ -75,6 +76,7 @@ static  List<String> base64StringVDO = [];
 static final answerField = {
                                       "yn": yesno,
                                       "ynMN": yesnoManditory,
+                                      "qr_Scanner":qrScanner,
                                       "ynn": yesnoNone,
                                       "ynnMN": yesnoNoneManditory,
                                       "rg": range,
@@ -117,6 +119,7 @@ static final answerField = {
     }, (GetQuestionDetailsModel resp) async {
      
       yesno = resp.data!.fieldInfoObject!.yn??false;
+        qrScanner = resp.data!.fieldInfoObject!.qr_Scanner??false;
       yesnoManditory = resp.data!.fieldInfoObject!.ynMN??false;
       yesnoNone = resp.data!.fieldInfoObject!.ynn??false;
       yesnoNoneManditory = resp.data!.fieldInfoObject!.ynnMN??false;

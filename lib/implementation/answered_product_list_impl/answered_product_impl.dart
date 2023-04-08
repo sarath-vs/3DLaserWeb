@@ -37,11 +37,14 @@ class AnsweredProductImpl implements AnsweredProductFacade {
 
 
   @override
-  Future<Either<NetworkExceptions, AnsweredProductListModel>> getAnsweredProductList({required int id})  async {
+  Future<Either<NetworkExceptions, AnsweredProductListModel>> getAnsweredProductList({required int id,required String screenName})  async {
     String? access = await _employeeDataManager.getRefresh();
+    customLog(screenName);
 
     final result =
-        await Postman.sendGetRequest(_url.getAnsweredProduct + '?category_id=$id', access!);
+        await Postman.sendGetRequest(screenName=='Quatily'?_url.getAnsweredProduct + '?category_id=$id'
+        :screenName=='Assembly'?_url.assemplyCompletedList + '?category_id=$id'
+        :_url.finalAssembly + '?category_id=$id', access!);
     if (result.statusCode == 200) {
       final data = AnsweredProductListModel.fromJson(
           jsonDecode(result.body) as Map<String, dynamic>);

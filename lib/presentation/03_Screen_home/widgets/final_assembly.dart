@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:laser_tech_app/application/quality_products_controller/quality_product_controller.dart';
-import 'package:laser_tech_app/presentation/11_screen_assembly_add/assembly_edit.dart';
-import '../../../application/assembly_controller/assembly_controller.dart';
+import '../../../application/final_assembly_controller/final_assembly_controller.dart';
 import '../../../application/home_screen_controller/controller.dart';
 import '../../../domain/responsive/dimensions.dart';
-import '../../09_Screen_quality_control_properties_edit/quality_control_properties_addingform.dart';
 import '../../10_completedProductList/screen_completed_product_list.dart';
+import '../../13_screen_final_assembly/final_assembly_edit.dart';
 import '../../theme/color.dart';
 import '../../widgets/custom_appbar.dart';
 
-class AssemblyPlanScreen extends StatelessWidget {
-  const AssemblyPlanScreen({Key? key}) : super(key: key);
+class FinalAssemblyPlanScreen extends StatelessWidget {
+  const FinalAssemblyPlanScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +17,7 @@ class AssemblyPlanScreen extends StatelessWidget {
         id: Get.find<HomeScreenController>().screenHomeWidget,
         builder: (controller) {
           WidgetsBinding.instance.addPostFrameCallback((duration) {
-            Get.find<AssemblyProductController>().getAssemblyProducts();
+            Get.find<FinalAssemblyController>().getAssemblyProducts();
           });
           // if (controller.screen == 'DashBoard')
           return Column(
@@ -44,7 +42,7 @@ class AssemblyPlanScreen extends StatelessWidget {
                         hintStyle: TextStyle(color: Colors.white),
                       ),
                       onChanged: (data) {
-                        Get.find<AssemblyProductController>()
+                        Get.find<FinalAssemblyController>()
                             .searchDirectory(data);
                       },
                     ),
@@ -59,9 +57,9 @@ class AssemblyPlanScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: SingleChildScrollView(
                       scrollDirection: Axis.vertical,
-                      child: GetBuilder<AssemblyProductController>(
-                          id: Get.find<AssemblyProductController>()
-                              .assemblyProductID,
+                      child: GetBuilder<FinalAssemblyController>(
+                          id: Get.find<FinalAssemblyController>()
+                              .finalAssemblyProductID,
                           builder: (controller) {
                             if (controller.assemblyProductList.isNotEmpty) {
                               return ListView.separated(
@@ -71,12 +69,12 @@ class AssemblyPlanScreen extends StatelessWidget {
                                   itemBuilder: (context, index) {
                                     return ListTile(
                                      onTap: () {
-                                       Get.find<AssemblyProductController>()
+                                       Get.find<FinalAssemblyController>()
                                             .getAssemblyQuestions(id: controller
                                                     .assemblyProductList[index]
                                                     .id!);
                                      
-                                        Get.find<AssemblyProductController>()
+                                        Get.find<FinalAssemblyController>()
                                                 .productId =
                                             controller
                                                 .assemblyProductList[index].id!;
@@ -84,9 +82,9 @@ class AssemblyPlanScreen extends StatelessWidget {
                                         Get.find<HomeScreenController>().appBarName(
                                             '${controller.assemblyProductList[index].name}   ');
                                         Get.find<HomeScreenController>()
-                                            .setHomeScreen('ASSEMBLY QUESTION');
+                                            .setHomeScreen('FINAL ASSEMBLY QUESTIONS');
                                       },
-                                      tileColor: Colors.blue.shade100,
+                                      tileColor: Colors.red.shade100,
                                       leading: Text('${index + 1}'),
                                       title: Row(
                                         children: [
@@ -115,8 +113,7 @@ class AssemblyPlanScreen extends StatelessWidget {
                                                   'id': controller
                                                       .assemblyProductList[index]
                                                       .id!,
-                                                 
-                                                  'screenName':'Assembly'
+                                                    'screenName':'FinalAssembly'
                                                 },
                                               );
                                             },
@@ -153,7 +150,7 @@ class AssemblyPlanScreen extends StatelessWidget {
                                               onTap: () {
                                                 Navigator.pushNamed(
                                                   Get.context!,
-                                                  AssemblyProductEditor
+                                                  FinalAssemblyProductEditor
                                                       .routeName,
                                                   arguments: {
                                                     'id': controller

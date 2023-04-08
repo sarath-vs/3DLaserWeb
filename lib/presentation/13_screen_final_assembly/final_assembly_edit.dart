@@ -1,41 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:laser_tech_app/application/final_assembly_controller/final_assembly_controller.dart';
 import 'package:laser_tech_app/presentation/widgets/snackbar.dart';
+
 import '../../application/assembly_controller/assembly_controller.dart';
 import '../../application/quality_products_controller/quality_product_controller.dart';
 import '../../domain/responsive/dimensions.dart';
 import '../theme/color.dart';
 import '../theme/theme.dart';
-class AssemblyPlanAddScreen extends StatefulWidget {
-  static const routeName = 'AssemblyPlanAddScreen';
-  const AssemblyPlanAddScreen({super.key});
+
+class FinalAssemblyProductEditor extends StatefulWidget {
+  static const routeName = 'FinalAssemblyProductEditor';
+  const FinalAssemblyProductEditor({super.key});
 
   @override
-  State<AssemblyPlanAddScreen> createState() =>
-      _AssemblyPlanAddScreenState();
+  State<FinalAssemblyProductEditor> createState() =>
+      _FinalAssemblyProductEditorState();
 }
 
-String name = '';
-String disc = '';
+String productName = '';
+String description = '';
+String timeLimit ='';
 String ipAddress = '';
 String portNumber = '';
 String printerData = '';
-bool finalAssembly =false;
-bool generateQr=false;
+bool? generateQr;
+bool? finalAssembly;
+int id=0;
 int min =0;
 int sec =0;
 
-class _AssemblyPlanAddScreenState extends State<AssemblyPlanAddScreen> {
+class _FinalAssemblyProductEditorState extends State<FinalAssemblyProductEditor> {
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((duration) {
-      
-    });
+     final arguments = ModalRoute.of(context)!.settings.arguments as Map;
+
+     id = arguments['id'];
+     productName=arguments['productName'];
+      description=arguments['description'];
+       timeLimit=arguments['time_limit'];
+       ipAddress=arguments['ipAddress'];
+       portNumber=arguments['portNumber'];
+       printerData=arguments['printerData'];
+       if(generateQr==null||finalAssembly==null){
+            generateQr=arguments['genQR'];
+       finalAssembly=arguments['finalAssembly'];
+
+       }
+   
+
+        sec = int.parse(timeLimit) % 60;
+          min = (int.parse(timeLimit) / 60).floor();
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Add Assembly Plan",
+          "Edit Assembly",
           textAlign: TextAlign.center,
           style: AppTheme.appBarText,
         ),
@@ -43,7 +63,7 @@ class _AssemblyPlanAddScreenState extends State<AssemblyPlanAddScreen> {
       // drawer: SideMenu(),
       body: SafeArea(
           child: ListView(
-      shrinkWrap: true,
+        // shrinkWrap: true,
         children: [
           // CustomAppBar(context, false, controller.screen),
 
@@ -63,7 +83,7 @@ class _AssemblyPlanAddScreenState extends State<AssemblyPlanAddScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Product Details",
+                      "Assembly Details",
                       style: AppTheme.h8Style,
                     ),
                     // customVerticalGap(20),
@@ -74,16 +94,17 @@ class _AssemblyPlanAddScreenState extends State<AssemblyPlanAddScreen> {
                     SizedBox(
                       width: customWidth(400),
                       child: TextFormField(
+                        initialValue: productName,
                         validator: (val) {
                           return null;
                         },
                         onChanged: (value) {
-                          name = value;
+                          productName = value;
                           // controller.answerField.first.dd = true;
                           // controller.priintAnswerField();
                         },
                         decoration: InputDecoration(
-                          hintText: "Property Name*",
+                          hintText:productName==''? "Property Name*":productName,
 
                           // border: OutlineInputBorder(
                           //     borderRadius: BorderRadius.circular(20)),
@@ -97,7 +118,7 @@ class _AssemblyPlanAddScreenState extends State<AssemblyPlanAddScreen> {
                       "Maximum Time To Complete",
                       style: AppTheme.h6Style,
                     ),
-                    Row(
+                  Row(
                       children: [
                         SizedBox(
                           width: customWidth(30),
@@ -108,6 +129,7 @@ class _AssemblyPlanAddScreenState extends State<AssemblyPlanAddScreen> {
                             onChanged: (value) {
                               min = int.parse(value);
                             },
+                             initialValue: min.toString(),
                               inputFormatters: <TextInputFormatter>[
                               FilteringTextInputFormatter.digitsOnly
                              ],
@@ -131,6 +153,7 @@ class _AssemblyPlanAddScreenState extends State<AssemblyPlanAddScreen> {
                           return null;
                           
                         },
+                         initialValue: sec.toString(),
                         inputFormatters: <TextInputFormatter>[
                         FilteringTextInputFormatter.digitsOnly
                         ],
@@ -150,7 +173,6 @@ class _AssemblyPlanAddScreenState extends State<AssemblyPlanAddScreen> {
                     ),
                       ],
                     ),
-                    
                     Text(
                       "Descripiton",
                       style: AppTheme.h6Style,
@@ -158,6 +180,7 @@ class _AssemblyPlanAddScreenState extends State<AssemblyPlanAddScreen> {
                     SizedBox(
                       // width: customWidth(150),
                       child: TextFormField(
+                        initialValue: description,
                         keyboardType: TextInputType.multiline,
                         minLines: 1,
                         maxLines: 7,
@@ -165,45 +188,52 @@ class _AssemblyPlanAddScreenState extends State<AssemblyPlanAddScreen> {
                           return null;
                         },
                         onChanged: (value) {
-                          disc = value;
+                          description = value;
                         },
                         decoration: InputDecoration(
-                          hintText: "Descripiton",
+                          hintText: description==""?"Descripiton":description,
                           fillColor: Colors.grey.shade200,
                           filled: true,
                           floatingLabelStyle: AppTheme.h2Style,
                         ),
                       ),
                     ),
-                        // Row(children: [Text('Final Assembly :'),Checkbox(
-                        //             value: finalAssembly,
-                        //             checkColor:
-                        //                 Colors.white, // color of tick Mark
-                        //             activeColor: LightColor.primaryColor,
-                        //             onChanged: (bool? value) {
-                        //               setState(() {
-                        //               finalAssembly=!finalAssembly;
-                        //               });
-                        //             },
-                        //           ),],),
-                        //            Row(children: [Text('Generate QR      :'),Checkbox(
-                        //             value: generateQr,
-                        //             checkColor:
-                        //                 Colors.white, // color of tick Mark
-                        //             activeColor: LightColor.primaryColor,
-                        //             onChanged: (bool? value) {
-                        //               setState(() {
-                        //               generateQr=!generateQr;
-                        //               });
-                        //             },
-                        //           ),],),
-                    //  Text(
+    //                 Row(children: [Text('Final Assembly :'),Checkbox(
+    //                                 value: finalAssembly,
+    //                                 checkColor:
+    //                                     Colors.white, // color of tick Mark
+    //                                 activeColor: LightColor.primaryColor,
+    //                                 onChanged: (bool? value) {
+    //                                   setState(() {
+    //                                     if(finalAssembly!=null){
+    // finalAssembly=!finalAssembly!;
+    //                                     }
+                                  
+    //                                   });
+    //                                 },
+    //                               ),],),
+    //                                Row(children: [Text('Generate QR      :'),Checkbox(
+    //                                 value: generateQr,
+    //                                 checkColor:
+    //                                     Colors.white, // color of tick Mark
+    //                                 activeColor: LightColor.primaryColor,
+    //                                 onChanged: (bool? value) {
+    //                                   setState(() {
+                                  
+    //                                    if(generateQr!=null){
+    //   generateQr=!generateQr!;
+    //                                     }
+    //                                   });
+    //                                 },
+    //                               ),],),
+                    //   Text(
                     //   "IP Address",
                     //   style: AppTheme.h6Style,
                     // ),
                     // SizedBox(
                     // width: customWidth(80),
                     //   child: TextFormField(
+                    //     initialValue: ipAddress,
                     //     keyboardType: TextInputType.multiline,
                     //     minLines: 1,
                     //     maxLines: 7,
@@ -214,7 +244,8 @@ class _AssemblyPlanAddScreenState extends State<AssemblyPlanAddScreen> {
                     //       ipAddress = value;
                     //     },
                     //     decoration: InputDecoration(
-                    //       hintText: "Enter IP Address Here",
+                    //       hintText:ipAddress==''? " Enter IP Address Here*":ipAddress,
+                         
                     //       fillColor: Colors.grey.shade200,
                     //       filled: true,
                     //       floatingLabelStyle: AppTheme.h2Style,
@@ -228,7 +259,9 @@ class _AssemblyPlanAddScreenState extends State<AssemblyPlanAddScreen> {
                     // SizedBox(
                     // width: customWidth(80),
                     //   child: TextFormField(
+                    //     initialValue: portNumber,
                     //     keyboardType: TextInputType.multiline,
+                  
                     //     minLines: 1,
                     //     maxLines: 7,
                     //     validator: (val) {
@@ -238,7 +271,8 @@ class _AssemblyPlanAddScreenState extends State<AssemblyPlanAddScreen> {
                     //       portNumber = value;
                     //     },
                     //     decoration: InputDecoration(
-                    //       hintText: "Enter PORT Number Here",
+                    //        hintText:portNumber==''? " Enter PORT Number Here*":portNumber,
+                         
                     //       fillColor: Colors.grey.shade200,
                     //       filled: true,
                     //       floatingLabelStyle: AppTheme.h2Style,
@@ -246,35 +280,33 @@ class _AssemblyPlanAddScreenState extends State<AssemblyPlanAddScreen> {
                     //   ),
                     // ),
                       
-//                        Text(
-//                       "Zebra Printer Data",
-//                       style: AppTheme.h6Style,
-//                     ),
-//                     SizedBox(
-//                    height: customHeight(200),
-//                       child: TextFormField(
-//                          initialValue:'''^XA
-// ^LH0,0
-// ^FO20,20^BQR,2,5
-// ^FD
-// Product:[productname],ID:[ID],SerialNumber:[*Don't change here*],Timestamp:[**Don't change here**]
-// ^FS
-// ^XZ''',
-//                         keyboardType: TextInputType.multiline,
+                    //    Text(
+                    //   "Zebra Printer Data",
+                    //   style: AppTheme.h6Style,
+                    // ),
+                  //   SizedBox(
+                  //  height: customHeight(200),
+                  //     child: TextFormField(
+                  //             initialValue:printerData,
+                        
+                  //       keyboardType: TextInputType.multiline,
+                        
                        
-//                         maxLines: 30,
+                  //       maxLines: 30,
                        
-//                         onChanged: (value) {
-//                           printerData = value;
-//                         },
-//                         decoration: InputDecoration(
-//                           hintText: "Enter Zebra Data Here",
-//                           fillColor: Colors.grey.shade200,
-//                           filled: true,
-//                           floatingLabelStyle: AppTheme.h2Style,
-//                         ),
-//                       ),
-//                     ),
+                  //       onChanged: (value) {
+                  //         printerData = value;
+                  //         print(value);
+                  //       },
+                  //       decoration: InputDecoration(
+                  //         hintText:printerData==''? " Enter ZPL Here*":printerData,
+                          
+                  //         fillColor: Colors.grey.shade200,
+                  //         filled: true,
+                  //         floatingLabelStyle: AppTheme.h2Style,
+                  //       ),
+                  //     ),
+                  //   ),
                     // Center(
                     //   child: SizedBox(
                     //       width: customWidth(150),
@@ -307,16 +339,13 @@ class _AssemblyPlanAddScreenState extends State<AssemblyPlanAddScreen> {
                         ),
                         InkWell(
                           onTap: () {
-                            if (name == '' || disc == '') {
+                            if (productName == '' || description == '') {
                               showSnackBar(message: 'Fill input fields');
                             } else {
-                              Get.find<AssemblyProductController>()
-                                  .saveAssemblyProduct(
-                                      name: name, discription: disc,time: '${min*60+sec}', ip: ipAddress, port: portNumber, printerData: printerData,genQr: generateQr,finalAssembly: finalAssembly)
+                              Get.find<FinalAssemblyController>()
+                                  .putAssemblyProducts(id: id, name: productName, description: description,time: '${min*60+sec}',ip: '', port: '', printerData: '')
                                   .then((value) {
-                                Get.find<AssemblyProductController>()
-                                    .getAssemblyProducts();
-                                Get.back();
+                             
 
                                 showSnackBar(message: 'Item saved');
                               });

@@ -40,8 +40,8 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
   String rangeFrom = '';
   String rangeTo = '';
   String dropDownDataEnglish = '';
-  String dropDownDataVietnam = '';
   String dropDownDataCzech = '';
+  String dropDownDataViatnam = '';
   List<int> selectedID = [];
   String? questionEnglish;
   String? questionCzech;
@@ -145,7 +145,7 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            "Add Assembly Questions",
+            "Add Questions",
             textAlign: TextAlign.center,
             style: AppTheme.appBarText,
           ),
@@ -767,34 +767,50 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                             ///////
                             //////
                             ///Answer Yes/No/None
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Checkbox(
-                                    value: yesnoNone,
-                                    checkColor:
-                                        Colors.white, // color of tick Mark
-                                    activeColor: LightColor.primaryColor,
-                                    onChanged: (bool? value) {
-                                      setState(() {
-                                        yesnoNone = !yesnoNone;
-                                        yesnoNoneManditory = false;
-                                      });
-                                    },
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 3,
-                                  child: Text('None'),
-                                ),
-                                Expanded(
-                                    flex: 3,
-                                    child: Text('No Answer input field')),
-                              
-                              ],
-                            ),
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            //   children: [
+                            //     Expanded(
+                            //       flex: 1,
+                            //       child: Checkbox(
+                            //         value: yesnoNone,
+                            //         checkColor:
+                            //             Colors.white, // color of tick Mark
+                            //         activeColor: LightColor.primaryColor,
+                            //         onChanged: (bool? value) {
+                            //           setState(() {
+                            //             yesnoNone = !yesnoNone;
+                            //             yesnoNoneManditory = false;
+                            //           });
+                            //         },
+                            //       ),
+                            //     ),
+                            //     Expanded(
+                            //       flex: 3,
+                            //       child: Text('None'),
+                            //     ),
+                            //     Expanded(
+                            //         flex: 3,
+                            //         child: Text('Yes, No or None can be used')),
+                            //     // Expanded(
+                            //     //   flex: 1,
+                            //     //   child: Checkbox(
+                            //     //     value: yesnoNoneManditory,
+                            //     //     checkColor:
+                            //     //         Colors.white, // color of tick Mark
+                            //     //     activeColor: LightColor.primaryColor,
+                            //     //     onChanged: (bool? value) {
+                            //     //       setState(() {
+                            //     //         if (yesnoNone) {
+                            //     //           yesnoNoneManditory =
+                            //     //               !yesnoNoneManditory;
+                            //     //         }
+                            //     //       });
+                            //     //     },
+                            //     //   ),
+                            //     // ),
+                            //   ],
+                            // ),
                             ////////
                             ///////
                             //////
@@ -1087,11 +1103,11 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                                   flex: 3,
                                   child: Text('DropDown'),
                                 ),
-                                Column(
-                                  children: [
-                                    Expanded(
-                                      flex: 3,
-                                      child: TextFormField(
+                                Expanded(
+                                  flex: 3,
+                                  child: Column(
+                                    children: [
+                                      TextFormField(
                                         keyboardType: TextInputType.multiline,
                                         minLines: 1,
                                         maxLines: 7,
@@ -1111,10 +1127,7 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                                           floatingLabelStyle: AppTheme.h2Style,
                                         ),
                                       ),
-                                    ),
-                                      Expanded(
-                                      flex: 3,
-                                      child: TextFormField(
+                                      TextFormField(
                                         keyboardType: TextInputType.multiline,
                                         minLines: 1,
                                         maxLines: 7,
@@ -1134,10 +1147,7 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                                           floatingLabelStyle: AppTheme.h2Style,
                                         ),
                                       ),
-                                    ),
-                                      Expanded(
-                                      flex: 3,
-                                      child: TextFormField(
+                                      TextFormField(
                                         keyboardType: TextInputType.multiline,
                                         minLines: 1,
                                         maxLines: 7,
@@ -1145,7 +1155,7 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                                           return null;
                                         },
                                         onChanged: (value) {
-                                          dropDownDataVietnam = value;
+                                          dropDownDataViatnam = value;
                                         },
                                         decoration: InputDecoration(
                                           hintText:
@@ -1157,8 +1167,8 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                                           floatingLabelStyle: AppTheme.h2Style,
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                                 // Expanded(
                                 //   flex: 1,
@@ -1278,7 +1288,7 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                                       "vdoMN": vdoManditory,
                                       "rangeFrom": rangeFrom,
                                       "rangeTo": rangeTo,
-                                      "dropDownData": dropDownDataEnglish+'&&'+dropDownDataCzech+'&&'+dropDownDataVietnam
+                                      "dropDownData": dropDownDataEnglish+'&&'+dropDownDataCzech+'&&'+dropDownDataViatnam
                                     };
                                     final dataToSend = {
                                        "description_english": discriptionEnglish,
@@ -1319,7 +1329,7 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                                           });
                                         }
                                       } else if (dropdown == true) {
-                                        if (dropDownDataEnglish == ''||dropDownDataVietnam == ''||dropDownDataCzech == '') {
+                                        if (dropDownDataEnglish == ''||dropDownDataCzech==''||dropDownDataViatnam=='') {
                                           showSnackBar(
                                               message:
                                                   'Please Provide DropDown Data');

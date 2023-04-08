@@ -57,10 +57,10 @@ class AnsweredProductController extends GetxController {
 
 
 
-  Future<void> getAnswerProductLists({required int id}) async {
+  Future<void> getAnswerProductLists({required int id,required String screenName}) async {
     productList.clear();
     showCircularProgressDialog(msg: 'Loading');
-    final result = await _answeredProductFacade.getAnsweredProductList(id: id);
+    final result = await _answeredProductFacade.getAnsweredProductList(id: id,screenName: screenName);
     Navigator.of(navigatorKey.currentContext!).pop();
     result.fold((NetworkExceptions exp) {
       return showSingleButtonAlertDialog(

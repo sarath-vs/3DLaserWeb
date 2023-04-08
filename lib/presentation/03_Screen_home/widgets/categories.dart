@@ -113,7 +113,7 @@ class Categories extends StatelessWidget {
                                                   'id': controller
                                                       .qualityProductList[index]
                                                       .id!,
-                                                  'productName': controller
+                                                  'screenName': 'Quatily'
                                                 },
                                               );
                                             },

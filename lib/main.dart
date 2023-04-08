@@ -2,7 +2,6 @@
 
 import 'dart:async';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,11 +19,15 @@ import 'package:laser_tech_app/presentation/10_completedProductList/screen_quest
 import 'package:laser_tech_app/presentation/11_screen_assembly_add/assembly_add.dart';
 import 'package:laser_tech_app/presentation/11_screen_assembly_add/assembly_edit.dart';
 import 'package:laser_tech_app/presentation/12_screen_assembly_question_add/screen_assembly_question_add.dart';
+import 'package:laser_tech_app/presentation/13_screen_final_assembly/final_assembly_add.dart';
+import 'package:laser_tech_app/presentation/13_screen_final_assembly/final_assembly_edit.dart';
+import 'package:laser_tech_app/presentation/13_screen_final_assembly/final_assembly_questionAdd.dart';
+import 'package:laser_tech_app/presentation/13_screen_final_assembly/final_assembly_question_edit.dart';
 import 'package:laser_tech_app/presentation/theme/theme.dart';
-
 import 'application/ansswered_product_controller/answered_product_controller.dart';
 import 'application/assembly_controller/assembly_controller.dart';
 import 'application/auth_controller/auth_controller.dart';
+import 'application/final_assembly_controller/final_assembly_controller.dart';
 import 'application/home_screen_controller/controller.dart';
 import 'application/quality_products_controller/quality_product_controller.dart';
 import 'application/quality_question_edit_controller/quality_question_edit_controller.dart';
@@ -110,6 +113,10 @@ class _MyAppState extends State<MyApp> {
           Questionsanswer.routeName: (context) => const Questionsanswer(),
           AssemblyPlanAddScreen.routeName: (context) => const AssemblyPlanAddScreen(),
           AssemblyProductEditor.routeName: (context) => const AssemblyProductEditor(),
+          FinalAssemblyPlanAddScreen.routeName: (context) => const FinalAssemblyPlanAddScreen(),
+          FinalAssemblyProductEditor.routeName: (context) => const FinalAssemblyProductEditor(),
+          FinalAssemblyQuestionAddScreen.routeName: (context) => const FinalAssemblyQuestionAddScreen(),
+         // FinalAssemblyQuestionEdit.routeName: (context) => const FinalAssemblyQuestionEdit(),
         },
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
@@ -135,6 +142,7 @@ initializeGetxController() {
   Get.put<QualityQuestionEditController>(getIt<QualityQuestionEditController>(), permanent: false);
   Get.put<AnsweredProductController>(getIt<AnsweredProductController>(), permanent: false);
     Get.put<AssemblyProductController>(getIt<AssemblyProductController>(), permanent: false);
+      Get.put<FinalAssemblyController>(getIt<FinalAssemblyController>(), permanent: false);
 }
 
 class MyHttpOverrides extends HttpOverrides {

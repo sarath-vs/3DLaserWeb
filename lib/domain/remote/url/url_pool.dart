@@ -50,7 +50,14 @@ class URLPool {
 
       String get assemblyDetails =>
       'http://65.1.86.132/admin-dashboard/assembly/category/';
+      String get assemplyCompletedList =>'http://65.1.86.132/admin-dashboard/assembly/products/';
        String get assemblyQuestionDetails =>
       'http://65.1.86.132/admin-dashboard/assembly/question/';
+       String get finalAssemblyProductList =>
+      'http://65.1.86.132/final-admin/category/';
+        String get finalAssembly =>
+      'http://65.1.86.132/final-admin/category/';
+       String get finalAssemblyQuestion =>
+      'http://65.1.86.132/final-admin/question/';
       
 }

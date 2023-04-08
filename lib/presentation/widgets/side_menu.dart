@@ -64,13 +64,23 @@ class SideMenu extends StatelessWidget {
             },
           ),
           DrawerListTile(
-            title: "Assembly Plan",
+            title: "Pre Assembly",
             icon: Icon(
               Icons.high_quality,
               color: Colors.grey,
             ),
             press: () {
               Get.find<HomeScreenController>().setHomeScreen('ASSEMBLY PLAN');
+            },
+          ),
+           DrawerListTile(
+            title: "Final Assembly",
+            icon: Icon(
+              Icons.production_quantity_limits,
+              color: Colors.grey,
+            ),
+            press: () {
+              Get.find<HomeScreenController>().setHomeScreen('FINAL ASSEMBLY');
             },
           ),
           DrawerListTile(

@@ -146,6 +146,7 @@ class FieldInfoObject {
   bool? imgMN;
   bool? vdoMN;
   bool? ynnMN;
+  bool? qr_Scanner;
   String? rangeTo;
   String? rangeFrom;
   String? dropDownData;
@@ -167,6 +168,7 @@ class FieldInfoObject {
       this.ynnMN,
       this.rangeTo,
       this.rangeFrom,
+      this.qr_Scanner,
       this.dropDownData});
 
   FieldInfoObject.fromJson(Map<String, dynamic> json) {
@@ -187,12 +189,14 @@ class FieldInfoObject {
     rangeTo = json['rangeTo'];
     rangeFrom = json['rangeFrom'];
     dropDownData = json['dropDownData'];
+     qr_Scanner = json['qr_Scanner'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['dd'] = this.dd;
     data['rg'] = this.rg;
+     data['qr_Scanner'] = this.qr_Scanner;
     data['tf'] = this.tf;
     data['yn'] = this.yn;
     data['img'] = this.img;

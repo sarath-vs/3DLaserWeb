@@ -8,24 +8,29 @@ import '../theme/theme.dart';
 import '../widgets/single_button_alert_dialog.dart';
 import 'screen_questions_its_answer.dart';
 
+
+
 class ScreenCompletedProducts extends GetView<AnsweredProductController> {
   static const routeName = 'ScreenCompletedProducts';
+  
   const ScreenCompletedProducts({super.key});
 
   @override
+  
   StatelessElement createElement() {
     // TODO: implement createElement
     return super.createElement();
   }
 
   @override
+  
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((duration) {
       final arguments = ModalRoute.of(context)!.settings.arguments as Map;
 
       final id = arguments['id'];
-      //final productIDZ = arguments['productName'];
-      Get.find<AnsweredProductController>().getAnswerProductLists(id: id);
+   final screenName = arguments['screenName'];
+      Get.find<AnsweredProductController>().getAnswerProductLists(id: id,screenName: screenName);
     });
     return Scaffold(
       appBar: AppBar(

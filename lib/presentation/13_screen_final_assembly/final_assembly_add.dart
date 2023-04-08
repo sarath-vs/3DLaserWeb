@@ -3,17 +3,18 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:laser_tech_app/presentation/widgets/snackbar.dart';
 import '../../application/assembly_controller/assembly_controller.dart';
+import '../../application/final_assembly_controller/final_assembly_controller.dart';
 import '../../application/quality_products_controller/quality_product_controller.dart';
 import '../../domain/responsive/dimensions.dart';
 import '../theme/color.dart';
 import '../theme/theme.dart';
-class AssemblyPlanAddScreen extends StatefulWidget {
-  static const routeName = 'AssemblyPlanAddScreen';
-  const AssemblyPlanAddScreen({super.key});
+class FinalAssemblyPlanAddScreen extends StatefulWidget {
+  static const routeName = 'FinalAssemblyPlanAddScreen';
+  const FinalAssemblyPlanAddScreen({super.key});
 
   @override
-  State<AssemblyPlanAddScreen> createState() =>
-      _AssemblyPlanAddScreenState();
+  State<FinalAssemblyPlanAddScreen> createState() =>
+      _FinalAssemblyPlanAddScreenState();
 }
 
 String name = '';
@@ -26,7 +27,7 @@ bool generateQr=false;
 int min =0;
 int sec =0;
 
-class _AssemblyPlanAddScreenState extends State<AssemblyPlanAddScreen> {
+class _FinalAssemblyPlanAddScreenState extends State<FinalAssemblyPlanAddScreen> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((duration) {
@@ -35,7 +36,7 @@ class _AssemblyPlanAddScreenState extends State<AssemblyPlanAddScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Add Assembly Plan",
+          "Add Final Assembly Plan",
           textAlign: TextAlign.center,
           style: AppTheme.appBarText,
         ),
@@ -310,11 +311,11 @@ class _AssemblyPlanAddScreenState extends State<AssemblyPlanAddScreen> {
                             if (name == '' || disc == '') {
                               showSnackBar(message: 'Fill input fields');
                             } else {
-                              Get.find<AssemblyProductController>()
+                              Get.find<FinalAssemblyController>()
                                   .saveAssemblyProduct(
                                       name: name, discription: disc,time: '${min*60+sec}', ip: ipAddress, port: portNumber, printerData: printerData,genQr: generateQr,finalAssembly: finalAssembly)
                                   .then((value) {
-                                Get.find<AssemblyProductController>()
+                                Get.find<FinalAssemblyController>()
                                     .getAssemblyProducts();
                                 Get.back();
 

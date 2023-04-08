@@ -7,6 +7,8 @@ import 'package:laser_tech_app/presentation/03_Screen_home/widgets/assembly_ques
 import 'package:laser_tech_app/presentation/03_Screen_home/widgets/categories.dart';
 import 'package:laser_tech_app/presentation/03_Screen_home/widgets/dashboard.dart';
 import 'package:laser_tech_app/presentation/03_Screen_home/widgets/employees.dart';
+import 'package:laser_tech_app/presentation/03_Screen_home/widgets/final_assembly.dart';
+import 'package:laser_tech_app/presentation/03_Screen_home/widgets/final_assembly_questions.dart';
 import 'package:laser_tech_app/presentation/03_Screen_home/widgets/qualitycontrol_questions.dart';
 import 'package:laser_tech_app/presentation/04_Screen_quality_control_properties/quality_control_properties_addingform.dart';
 import 'package:laser_tech_app/presentation/11_screen_assembly_add/assembly_add.dart';
@@ -16,6 +18,8 @@ import '../05_Employee_details/employee_details_add.dart';
 import '../06_tools/screen_tools.dart';
 import '../07_Screen_quality_questions_modify/quality_questions_addingform.dart';
 import '../12_screen_assembly_question_add/screen_assembly_question_add.dart';
+import '../13_screen_final_assembly/final_assembly_add.dart';
+import '../13_screen_final_assembly/final_assembly_questionAdd.dart';
 import '../widgets/responsive.dart';
 import '../widgets/side_menu.dart';
 import 'widgets/tools.dart';
@@ -44,7 +48,7 @@ class _ScreenHomeState extends State<ScreenHome> {
             if (controller.screen == 'Products' ||
                 controller.screen == 'Employees' ||
                 controller.screen == 'Tools' ||
-                controller.screen == 'Qualityquestions'||controller.screen == 'ASSEMBLY PLAN'||controller.screen == 'ASSEMBLY QUESTION')
+                controller.screen == 'Qualityquestions'||controller.screen == 'ASSEMBLY PLAN'||controller.screen == 'ASSEMBLY QUESTION'||controller.screen=='FINAL ASSEMBLY'||controller.screen=='FINAL ASSEMBLY QUESTIONS')
               return FloatingActionButton(
                 onPressed: () {
                   if (controller.screen == 'Products') {
@@ -62,6 +66,13 @@ class _ScreenHomeState extends State<ScreenHome> {
                    else if (controller.screen == 'ASSEMBLY QUESTION') {
                     Navigator.pushNamed(context, AssemblyQuestionAddScreen.routeName);
                   }
+                   else if (controller.screen == 'FINAL ASSEMBLY') {
+                    Navigator.pushNamed(context, FinalAssemblyPlanAddScreen.routeName);
+                  }
+                    else if (controller.screen == 'FINAL ASSEMBLY QUESTIONS') {
+                    Navigator.pushNamed(context, FinalAssemblyQuestionAddScreen.routeName);
+                  }
+                  
                 },
                 child: Icon(Icons.add),
               );
@@ -105,6 +116,11 @@ class _ScreenHomeState extends State<ScreenHome> {
                             return QualityQuestionScreen();
                              else if (controller.screen == 'ASSEMBLY QUESTION')
                             return AssemblyQuestionListScreen();
+                             else if (controller.screen == 'FINAL ASSEMBLY')
+                            return FinalAssemblyPlanScreen();
+                             else if (controller.screen == 'FINAL ASSEMBLY QUESTIONS') {
+                  return FinalAssemblyQuestionListScreen();
+                  }
                           else
                             return AssemblyPlanScreen();
                         }),
