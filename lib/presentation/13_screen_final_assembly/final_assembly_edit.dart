@@ -7,6 +7,7 @@ import 'package:laser_tech_app/presentation/widgets/snackbar.dart';
 import '../../application/assembly_controller/assembly_controller.dart';
 import '../../application/quality_products_controller/quality_product_controller.dart';
 import '../../domain/responsive/dimensions.dart';
+import '../06_tools/widget/image_uploading_widget.dart';
 import '../theme/color.dart';
 import '../theme/theme.dart';
 
@@ -70,7 +71,7 @@ class _FinalAssemblyProductEditorState extends State<FinalAssemblyProductEditor>
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 45),
             child: Container(
-              height: customHeight(530),
+              height: customHeight(830),
               width: customWidth(250),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -226,92 +227,92 @@ class _FinalAssemblyProductEditorState extends State<FinalAssemblyProductEditor>
     //                                   });
     //                                 },
     //                               ),],),
-                    //   Text(
-                    //   "IP Address",
-                    //   style: AppTheme.h6Style,
-                    // ),
-                    // SizedBox(
-                    // width: customWidth(80),
-                    //   child: TextFormField(
-                    //     initialValue: ipAddress,
-                    //     keyboardType: TextInputType.multiline,
-                    //     minLines: 1,
-                    //     maxLines: 7,
-                    //     validator: (val) {
-                    //       return null;
-                    //     },
-                    //     onChanged: (value) {
-                    //       ipAddress = value;
-                    //     },
-                    //     decoration: InputDecoration(
-                    //       hintText:ipAddress==''? " Enter IP Address Here*":ipAddress,
+                      Text(
+                      "IP Address",
+                      style: AppTheme.h6Style,
+                    ),
+                    SizedBox(
+                    width: customWidth(80),
+                      child: TextFormField(
+                        initialValue: ipAddress,
+                        keyboardType: TextInputType.multiline,
+                        minLines: 1,
+                        maxLines: 7,
+                        validator: (val) {
+                          return null;
+                        },
+                        onChanged: (value) {
+                          ipAddress = value;
+                        },
+                        decoration: InputDecoration(
+                          hintText:ipAddress==''? " Enter IP Address Here*":ipAddress,
                          
-                    //       fillColor: Colors.grey.shade200,
-                    //       filled: true,
-                    //       floatingLabelStyle: AppTheme.h2Style,
-                    //     ),
-                    //   ),
-                    // ),
-                    //   Text(
-                    //   "PORT Number",
-                    //   style: AppTheme.h6Style,
-                    // ),
-                    // SizedBox(
-                    // width: customWidth(80),
-                    //   child: TextFormField(
-                    //     initialValue: portNumber,
-                    //     keyboardType: TextInputType.multiline,
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          floatingLabelStyle: AppTheme.h2Style,
+                        ),
+                      ),
+                    ),
+                      Text(
+                      "PORT Number",
+                      style: AppTheme.h6Style,
+                    ),
+                    SizedBox(
+                    width: customWidth(80),
+                      child: TextFormField(
+                        initialValue: portNumber,
+                        keyboardType: TextInputType.multiline,
                   
-                    //     minLines: 1,
-                    //     maxLines: 7,
-                    //     validator: (val) {
-                    //       return null;
-                    //     },
-                    //     onChanged: (value) {
-                    //       portNumber = value;
-                    //     },
-                    //     decoration: InputDecoration(
-                    //        hintText:portNumber==''? " Enter PORT Number Here*":portNumber,
+                        minLines: 1,
+                        maxLines: 7,
+                        validator: (val) {
+                          return null;
+                        },
+                        onChanged: (value) {
+                          portNumber = value;
+                        },
+                        decoration: InputDecoration(
+                           hintText:portNumber==''? " Enter PORT Number Here*":portNumber,
                          
-                    //       fillColor: Colors.grey.shade200,
-                    //       filled: true,
-                    //       floatingLabelStyle: AppTheme.h2Style,
-                    //     ),
-                    //   ),
-                    // ),
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          floatingLabelStyle: AppTheme.h2Style,
+                        ),
+                      ),
+                    ),
                       
-                    //    Text(
-                    //   "Zebra Printer Data",
-                    //   style: AppTheme.h6Style,
-                    // ),
-                  //   SizedBox(
-                  //  height: customHeight(200),
-                  //     child: TextFormField(
-                  //             initialValue:printerData,
+                       Text(
+                      "Zebra Printer Data",
+                      style: AppTheme.h6Style,
+                    ),
+                    SizedBox(
+                   height: customHeight(200),
+                      child: TextFormField(
+                              initialValue:printerData,
                         
-                  //       keyboardType: TextInputType.multiline,
+                        keyboardType: TextInputType.multiline,
                         
                        
-                  //       maxLines: 30,
+                        maxLines: 30,
                        
-                  //       onChanged: (value) {
-                  //         printerData = value;
-                  //         print(value);
-                  //       },
-                  //       decoration: InputDecoration(
-                  //         hintText:printerData==''? " Enter ZPL Here*":printerData,
+                        onChanged: (value) {
+                          printerData = value;
+                          print(value);
+                        },
+                        decoration: InputDecoration(
+                          hintText:printerData==''? " Enter ZPL Here*":printerData,
                           
-                  //         fillColor: Colors.grey.shade200,
-                  //         filled: true,
-                  //         floatingLabelStyle: AppTheme.h2Style,
-                  //       ),
-                  //     ),
-                  //   ),
-                    // Center(
-                    //   child: SizedBox(
-                    //       width: customWidth(150),
-                    //       child: const ImageUploadEidget()),
-                    // ),
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          floatingLabelStyle: AppTheme.h2Style,
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: SizedBox(
+                          width: customWidth(150),
+                          child: const ImageUploadEidget()),
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -343,7 +344,7 @@ class _FinalAssemblyProductEditorState extends State<FinalAssemblyProductEditor>
                               showSnackBar(message: 'Fill input fields');
                             } else {
                               Get.find<FinalAssemblyController>()
-                                  .putAssemblyProducts(id: id, name: productName, description: description,time: '${min*60+sec}',ip: '', port: '', printerData: '')
+                                  .putAssemblyProducts(id: id, name: productName, description: description,time: '${min*60+sec}',ip: ipAddress, port: portNumber, printerData: printerData)
                                   .then((value) {
                              
 

@@ -6,6 +6,7 @@ import '../../application/assembly_controller/assembly_controller.dart';
 import '../../application/final_assembly_controller/final_assembly_controller.dart';
 import '../../application/quality_products_controller/quality_product_controller.dart';
 import '../../domain/responsive/dimensions.dart';
+import '../06_tools/widget/image_uploading_widget.dart';
 import '../theme/color.dart';
 import '../theme/theme.dart';
 class FinalAssemblyPlanAddScreen extends StatefulWidget {
@@ -51,7 +52,7 @@ class _FinalAssemblyPlanAddScreenState extends State<FinalAssemblyPlanAddScreen>
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 45),
             child: Container(
-              height: customHeight(530),
+              height: customHeight(830),
               width: customWidth(250),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -198,89 +199,89 @@ class _FinalAssemblyPlanAddScreenState extends State<FinalAssemblyPlanAddScreen>
                         //               });
                         //             },
                         //           ),],),
-                    //  Text(
-                    //   "IP Address",
-                    //   style: AppTheme.h6Style,
-                    // ),
-                    // SizedBox(
-                    // width: customWidth(80),
-                    //   child: TextFormField(
-                    //     keyboardType: TextInputType.multiline,
-                    //     minLines: 1,
-                    //     maxLines: 7,
-                    //     validator: (val) {
-                    //       return null;
-                    //     },
-                    //     onChanged: (value) {
-                    //       ipAddress = value;
-                    //     },
-                    //     decoration: InputDecoration(
-                    //       hintText: "Enter IP Address Here",
-                    //       fillColor: Colors.grey.shade200,
-                    //       filled: true,
-                    //       floatingLabelStyle: AppTheme.h2Style,
-                    //     ),
-                    //   ),
-                    // ),
-                    //   Text(
-                    //   "PORT Number",
-                    //   style: AppTheme.h6Style,
-                    // ),
-                    // SizedBox(
-                    // width: customWidth(80),
-                    //   child: TextFormField(
-                    //     keyboardType: TextInputType.multiline,
-                    //     minLines: 1,
-                    //     maxLines: 7,
-                    //     validator: (val) {
-                    //       return null;
-                    //     },
-                    //     onChanged: (value) {
-                    //       portNumber = value;
-                    //     },
-                    //     decoration: InputDecoration(
-                    //       hintText: "Enter PORT Number Here",
-                    //       fillColor: Colors.grey.shade200,
-                    //       filled: true,
-                    //       floatingLabelStyle: AppTheme.h2Style,
-                    //     ),
-                    //   ),
-                    // ),
+                     Text(
+                      "IP Address",
+                      style: AppTheme.h6Style,
+                    ),
+                    SizedBox(
+                    width: customWidth(80),
+                      child: TextFormField(
+                        keyboardType: TextInputType.multiline,
+                        minLines: 1,
+                        maxLines: 7,
+                        validator: (val) {
+                          return null;
+                        },
+                        onChanged: (value) {
+                          ipAddress = value;
+                        },
+                        decoration: InputDecoration(
+                          hintText: "Enter IP Address Here",
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          floatingLabelStyle: AppTheme.h2Style,
+                        ),
+                      ),
+                    ),
+                      Text(
+                      "PORT Number",
+                      style: AppTheme.h6Style,
+                    ),
+                    SizedBox(
+                    width: customWidth(80),
+                      child: TextFormField(
+                        keyboardType: TextInputType.multiline,
+                        minLines: 1,
+                        maxLines: 7,
+                        validator: (val) {
+                          return null;
+                        },
+                        onChanged: (value) {
+                          portNumber = value;
+                        },
+                        decoration: InputDecoration(
+                          hintText: "Enter PORT Number Here",
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          floatingLabelStyle: AppTheme.h2Style,
+                        ),
+                      ),
+                    ),
                       
-//                        Text(
-//                       "Zebra Printer Data",
-//                       style: AppTheme.h6Style,
-//                     ),
-//                     SizedBox(
-//                    height: customHeight(200),
-//                       child: TextFormField(
-//                          initialValue:'''^XA
-// ^LH0,0
-// ^FO20,20^BQR,2,5
-// ^FD
-// Product:[productname],ID:[ID],SerialNumber:[*Don't change here*],Timestamp:[**Don't change here**]
-// ^FS
-// ^XZ''',
-//                         keyboardType: TextInputType.multiline,
+                       Text(
+                      "Zebra Printer Data",
+                      style: AppTheme.h6Style,
+                    ),
+                    SizedBox(
+                   height: customHeight(200),
+                      child: TextFormField(
+                         initialValue:'''^XA
+^LH0,0
+^FO20,20^BQR,2,5
+^FD
+Product:[productname],ID:[ID],SerialNumber:[*Don't change here*],Timestamp:[**Don't change here**]
+^FS
+^XZ''',
+                        keyboardType: TextInputType.multiline,
                        
-//                         maxLines: 30,
+                        maxLines: 30,
                        
-//                         onChanged: (value) {
-//                           printerData = value;
-//                         },
-//                         decoration: InputDecoration(
-//                           hintText: "Enter Zebra Data Here",
-//                           fillColor: Colors.grey.shade200,
-//                           filled: true,
-//                           floatingLabelStyle: AppTheme.h2Style,
-//                         ),
-//                       ),
-//                     ),
-                    // Center(
-                    //   child: SizedBox(
-                    //       width: customWidth(150),
-                    //       child: const ImageUploadEidget()),
-                    // ),
+                        onChanged: (value) {
+                          printerData = value;
+                        },
+                        decoration: InputDecoration(
+                          hintText: "Enter Zebra Data Here",
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          floatingLabelStyle: AppTheme.h2Style,
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: SizedBox(
+                          width: customWidth(150),
+                          child: const ImageUploadEidget()),
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.center,
