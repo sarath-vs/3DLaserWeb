@@ -197,34 +197,17 @@ class _AssemblyProductEditorState extends State<AssemblyProductEditor> {
                         ),
                       ),
                     ),
-    //                 Row(children: [Text('Final Assembly :'),Checkbox(
-    //                                 value: finalAssembly,
-    //                                 checkColor:
-    //                                     Colors.white, // color of tick Mark
-    //                                 activeColor: LightColor.primaryColor,
-    //                                 onChanged: (bool? value) {
-    //                                   setState(() {
-    //                                     if(finalAssembly!=null){
-    // finalAssembly=!finalAssembly!;
-    //                                     }
-                                  
-    //                                   });
-    //                                 },
-    //                               ),],),
-    //                                Row(children: [Text('Generate QR      :'),Checkbox(
-    //                                 value: generateQr,
-    //                                 checkColor:
-    //                                     Colors.white, // color of tick Mark
-    //                                 activeColor: LightColor.primaryColor,
-    //                                 onChanged: (bool? value) {
-    //                                   setState(() {
-                                  
-    //                                    if(generateQr!=null){
-    //   generateQr=!generateQr!;
-    //                                     }
-    //                                   });
-    //                                 },
-    //                               ),],),
+    Row(children: [Text('Final Assembly :'),Checkbox(
+                                    value: finalAssembly,
+                                    checkColor:
+                                        Colors.white, // color of tick Mark
+                                    activeColor: LightColor.primaryColor,
+                                    onChanged: (bool? value) {
+                                      // setState(() {
+                                      // finalAssembly=!finalAssembly!;
+                                      // });
+                                    },
+                                  ),],),
                     //   Text(
                     //   "IP Address",
                     //   style: AppTheme.h6Style,

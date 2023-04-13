@@ -65,7 +65,7 @@ class AssemblyProductImpl implements AssemblyProductFacade {
     };
 
     final result =
-        await Postman.sendPostRequest(_url.assemblyDetails, _body, access);
+        await Postman.sendPostRequest(finalAssembly!=true?_url.assemblyDetails:_url.finalAssembly, _body, access);
     if (result.statusCode == 201) {
       final data = SaveQualtyProductModel.fromJson(
           jsonDecode(result.body) as Map<String, dynamic>);

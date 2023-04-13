@@ -64,7 +64,7 @@ class SideMenu extends StatelessWidget {
             },
           ),
           DrawerListTile(
-            title: "Pre Assembly",
+            title: "Assembly Plan",
             icon: Icon(
               Icons.high_quality,
               color: Colors.grey,
@@ -73,16 +73,16 @@ class SideMenu extends StatelessWidget {
               Get.find<HomeScreenController>().setHomeScreen('ASSEMBLY PLAN');
             },
           ),
-           DrawerListTile(
-            title: "Final Assembly",
-            icon: Icon(
-              Icons.production_quantity_limits,
-              color: Colors.grey,
-            ),
-            press: () {
-              Get.find<HomeScreenController>().setHomeScreen('FINAL ASSEMBLY');
-            },
-          ),
+          //  DrawerListTile(
+          //   title: "Final Assembly",
+          //   icon: Icon(
+          //     Icons.production_quantity_limits,
+          //     color: Colors.grey,
+          //   ),
+          //   press: () {
+          //     Get.find<HomeScreenController>().setHomeScreen('ASSEMBLY PLAN');
+          //   },
+          // ),
           DrawerListTile(
             title: "Tools",
             icon: Icon(

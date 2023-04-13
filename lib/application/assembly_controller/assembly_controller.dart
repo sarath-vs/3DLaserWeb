@@ -11,6 +11,7 @@ import '../../domain/remote/exceptions/network_exceptions.dart';
 import '../../main.dart';
 import '../../presentation/widgets/circular_progress_dialog.dart';
 import '../../presentation/widgets/single_button_alert_dialog.dart';
+import '../final_assembly_controller/final_assembly_controller.dart';
 
 @injectable
 class AssemblyProductController extends GetxController {
@@ -73,6 +74,7 @@ class AssemblyProductController extends GetxController {
       assemblyProductList.addAll(resp.results!);
       customLog(assemblyProductList);
       update([assemblyProductID]);
+      Get.find<FinalAssemblyController>().getAssemblyProducts();
     });
   }
 Future<void> saveAssemblyProduct(
