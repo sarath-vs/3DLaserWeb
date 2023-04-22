@@ -179,7 +179,7 @@ String screenName='';
                     padding: const EdgeInsets.symmetric(
                         vertical: 20, horizontal: 45),
                     child: Container(
-                      height: customHeight(900),
+                      height: customHeight(1000),
                       width: customWidth(250),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -195,8 +195,8 @@ String screenName='';
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Question Title",
-                                  style: AppTheme.h8Style,
+                                  "Question English",
+                                  style: AppTheme.h9Style,
                                 ),
                                 // Icon(
                                 //   Icons.delete,
@@ -210,22 +210,18 @@ String screenName='';
                               width: customWidth(400),
                               child: TextFormField(
                                 controller: controller.questionEnglishController,
-                      //initialValue: controller.questionEnglishController.text,
+                    
                                
                                 validator: (val) {
                                   return null;
                                 },
                                 
-                              //   onChanged: (value) {
-                              //  // QualityQuestionEditController.questionEnglish = value;
-                              //   },
+                            
                                 decoration: InputDecoration(
                                  
-                                 // labelText: controller.questionCzechController.text,
                                 hintText: '(English)',
 
-                                  // border: OutlineInputBorder(
-                                  //     borderRadius: BorderRadius.circular(20)),
+                                  
                                   fillColor: Colors.grey.shade200,
                                   filled: true,
                                   floatingLabelStyle: AppTheme.h2Style,
@@ -234,108 +230,151 @@ String screenName='';
                             ),
                             SizedBox(
                               width: customWidth(400),
-                              child: TextFormField(
-                                 controller: controller.questionCzechController,
-                                validator: (val) {
-                                  return null;
-                                },
-                                // onChanged: (value) {
-                                //   QualityQuestionEditController.questionCzech = value;
-                                // },
-                                decoration: InputDecoration(
-                                  hintText: '(Czech)',
-
-                                  // border: OutlineInputBorder(
-                                  //     borderRadius: BorderRadius.circular(20)),
-                                  fillColor: Colors.grey.shade200,
-                                  filled: true,
-                                  floatingLabelStyle: AppTheme.h2Style,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                  "Question Czech",
+                                  style: AppTheme.h9Style,
                                 ),
+                                  TextFormField(
+                                     controller: controller.questionCzechController,
+                                    validator: (val) {
+                                      return null;
+                                    },
+                                    // onChanged: (value) {
+                                    //   QualityQuestionEditController.questionCzech = value;
+                                    // },
+                                    decoration: InputDecoration(
+                                      hintText: '(Czech)',
+
+                                      // border: OutlineInputBorder(
+                                      //     borderRadius: BorderRadius.circular(20)),
+                                      fillColor: Colors.grey.shade200,
+                                      filled: true,
+                                      floatingLabelStyle: AppTheme.h2Style,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             SizedBox(
                               width: customWidth(400),
-                              child: TextFormField(
-                                 controller: controller.questionGermanController,
-                                validator: (val) {
-                                  return null;
-                                },
-                                // onChanged: (value) {
-                                //    QualityQuestionEditController.questionGerman = value;
-                                // },
-                                decoration: InputDecoration(
-                                 hintText: '(Vietnam)',
-
-                                  // border: OutlineInputBorder(
-                                  //     borderRadius: BorderRadius.circular(20)),
-                                  fillColor: Colors.grey.shade200,
-                                  filled: true,
-                                  floatingLabelStyle: AppTheme.h2Style,
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                  "Question Vietnam",
+                                  style: AppTheme.h9Style,
                                 ),
+                                  TextFormField(
+                                     controller: controller.questionGermanController,
+                                    validator: (val) {
+                                      return null;
+                                    },
+                                    // onChanged: (value) {
+                                    //    QualityQuestionEditController.questionGerman = value;
+                                    // },
+                                    decoration: InputDecoration(
+                                     hintText: '(Vietnam)',
+
+                                      // border: OutlineInputBorder(
+                                      //     borderRadius: BorderRadius.circular(20)),
+                                      fillColor: Colors.grey.shade200,
+                                      filled: true,
+                                      floatingLabelStyle: AppTheme.h2Style,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            Text(
-                              "Question Description Details",
-                              style: AppTheme.h8Style,
+                            customVerticalGap(20),
+                           
+                            SizedBox(
+                              width: customWidth(400),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                  "Description English",
+                                  style: AppTheme.h9Style,
+                                ),
+                                  TextFormField(
+                                     controller: controller.discriptionEnglishController,
+                                    validator: (val) {
+                                      return null;
+                                    },
+                                    // onChanged: (value) {
+                                    //   QualityQuestionEditController.discriptionEnglish = value;
+                                    // },
+                                    decoration: InputDecoration(
+                                    hintText:'(English)',
+
+                                      // border: OutlineInputBorder(
+                                      //     borderRadius: BorderRadius.circular(20)),
+                                      fillColor: Colors.grey.shade200,
+                                      filled: true,
+                                      floatingLabelStyle: AppTheme.h2Style,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            SizedBox(
+                              width: customWidth(400),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                   Text(
+                                  "Description Czech",
+                                  style: AppTheme.h9Style,
+                                ),
+                                  TextFormField(
+                                     controller: controller.discriptionCzechController,
+                                    validator: (val) {
+                                      return null;
+                                    },
+                                   
+                                    decoration: InputDecoration(
+                                      hintText:'(Czech)',
+
+                                      // border: OutlineInputBorder(
+                                      //     borderRadius: BorderRadius.circular(20)),
+                                      fillColor: Colors.grey.shade200,
+                                      filled: true,
+                                      floatingLabelStyle: AppTheme.h2Style,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                             SizedBox(
                               width: customWidth(400),
-                              child: TextFormField(
-                                 controller: controller.discriptionEnglishController,
-                                validator: (val) {
-                                  return null;
-                                },
-                                // onChanged: (value) {
-                                //   QualityQuestionEditController.discriptionEnglish = value;
-                                // },
-                                decoration: InputDecoration(
-                                hintText:'(English)',
-
-                                  // border: OutlineInputBorder(
-                                  //     borderRadius: BorderRadius.circular(20)),
-                                  fillColor: Colors.grey.shade200,
-                                  filled: true,
-                                  floatingLabelStyle: AppTheme.h2Style,
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                   Text(
+                                  "Description Vietnam",
+                                  style: AppTheme.h9Style,
                                 ),
-                              ),
-                            ),
+                                  TextFormField(
+                                     controller: controller.discriptionGermanController,
+                                    validator: (val) {
+                                      return null;
+                                    },
+                                    
+                                    decoration: InputDecoration(
+                                     hintText: '(Vietnam)',
 
-                            SizedBox(
-                              width: customWidth(400),
-                              child: TextFormField(
-                                 controller: controller.discriptionCzechController,
-                                validator: (val) {
-                                  return null;
-                                },
-                               
-                                decoration: InputDecoration(
-                                  hintText:'(Czech)',
-
-                                  // border: OutlineInputBorder(
-                                  //     borderRadius: BorderRadius.circular(20)),
-                                  fillColor: Colors.grey.shade200,
-                                  filled: true,
-                                  floatingLabelStyle: AppTheme.h2Style,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: customWidth(400),
-                              child: TextFormField(
-                                 controller: controller.discriptionGermanController,
-                                validator: (val) {
-                                  return null;
-                                },
-                                
-                                decoration: InputDecoration(
-                                 hintText: '(Vietnam)',
-
-                                  // border: OutlineInputBorder(
-                                  //     borderRadius: BorderRadius.circular(20)),
-                                  fillColor: Colors.grey.shade200,
-                                  filled: true,
-                                  floatingLabelStyle: AppTheme.h2Style,
-                                ),
+                                      // border: OutlineInputBorder(
+                                      //     borderRadius: BorderRadius.circular(20)),
+                                      fillColor: Colors.grey.shade200,
+                                      filled: true,
+                                      floatingLabelStyle: AppTheme.h2Style,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             Row(
@@ -689,10 +728,11 @@ String screenName='';
                                 ),
                               ],
                             ),
-                            Text(
-                              'Select Answer Type ',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
+                            customVerticalGap(10),
+                            // Text(
+                            //   'Select Answer Type ',
+                            //   style: TextStyle(fontWeight: FontWeight.bold),
+                            // ),
                             ////////
                             ///////
                             //////
@@ -847,7 +887,7 @@ String screenName='';
                                   flex: 3,
                                   child: Text('Range'),
                                 ),
-                                Expanded(
+                             QualityQuestionEditController.range?   Expanded(
                                   flex: 3,
                                   child: Row(
                                     children: [
@@ -936,7 +976,7 @@ String screenName='';
                                       ),
                                     ],
                                   ),
-                                ),
+                                ):Expanded(flex: 3,child: SizedBox()),
                               
                               ],
                             ),
@@ -1028,10 +1068,12 @@ String screenName='';
                                   flex: 3,
                                   child: Text('DropDown'),
                                 ),
-                                Expanded(
+                              QualityQuestionEditController.dropdown ?   Expanded(
                                   flex: 3,
                                   child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
+                                         Text('English', style: AppTheme.h9Style,),
                                       TextFormField(
                                         controller: controller.dropDownValueEnglishController,
                                         keyboardType: TextInputType.multiline,
@@ -1053,6 +1095,7 @@ String screenName='';
                                           floatingLabelStyle: AppTheme.h2Style,
                                         ),
                                       ),
+                                         Text('Czech', style: AppTheme.h9Style,),
                                         TextFormField(
                                         controller: controller.dropDownValueCzechController,
                                         keyboardType: TextInputType.multiline,
@@ -1074,6 +1117,7 @@ String screenName='';
                                           floatingLabelStyle: AppTheme.h2Style,
                                         ),
                                       ),
+                                         Text('Vietnam', style: AppTheme.h9Style,),
                                         TextFormField(
                                         controller: controller.dropDownValueVietnamController,
                                         keyboardType: TextInputType.multiline,
@@ -1097,7 +1141,7 @@ String screenName='';
                                       ),
                                     ],
                                   ),
-                                ),
+                                ):Expanded(flex: 3,child: SizedBox()),
                               
                               ],
                             ),

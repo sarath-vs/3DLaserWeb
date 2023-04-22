@@ -54,6 +54,8 @@ class AppTheme {
   static TextStyle h7Style = const TextStyle(fontSize: 12);
   static TextStyle h8Style =
       const TextStyle(fontSize: 26, fontWeight: FontWeight.bold);
+      static TextStyle h9Style =
+      const TextStyle(fontSize: 15, fontWeight: FontWeight.bold);
   static TextStyle appBarText =
       const TextStyle(fontSize: 16, color: Colors.white);
 

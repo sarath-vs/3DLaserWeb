@@ -175,144 +175,187 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Question Title",
-                                  style: AppTheme.h8Style,
-                                ),
-                                // Icon(
-                                //   Icons.delete,
-                                //   color: Colors.red,
-                                //   size: customHeight(20),
-                                // )
-                              ],
-                            ),
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.start,
+                            //   children: [
+                            //     Text(
+                            //       "Title",
+                            //       style: AppTheme.h9Style,
+                            //     ),
+                            //     // Icon(
+                            //     //   Icons.delete,
+                            //     //   color: Colors.red,
+                            //     //   size: customHeight(20),
+                            //     // )
+                            //   ],
+                            // ),
 
                             SizedBox(
                               width: customWidth(400),
-                              child: TextFormField(
-                                validator: (val) {
-                                  return null;
-                                },
-                                onChanged: (value) {
-                                  questionEnglish = value;
-                                },
-                                decoration: InputDecoration(
-                                  hintText: "Questions English (optional)",
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Question in English', style: AppTheme.h9Style,),
+                                  TextFormField(
+                                    validator: (val) {
+                                      return null;
+                                    },
+                                    onChanged: (value) {
+                                      questionEnglish = value;
+                                    },
+                                    decoration: InputDecoration(
+                                      hintText: "Questions English (optional)",
 
-                                  // border: OutlineInputBorder(
-                                  //     borderRadius: BorderRadius.circular(20)),
-                                  fillColor: Colors.grey.shade200,
-                                  filled: true,
-                                  floatingLabelStyle: AppTheme.h2Style,
-                                ),
+                                      // border: OutlineInputBorder(
+                                      //     borderRadius: BorderRadius.circular(20)),
+                                      fillColor: Colors.grey.shade200,
+                                      filled: true,
+                                      floatingLabelStyle: AppTheme.h2Style,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             SizedBox(
                               width: customWidth(400),
-                              child: TextFormField(
-                                validator: (val) {
-                                  return null;
-                                },
-                                onChanged: (value) {
-                                  questionCzech = value;
-                                },
-                                decoration: InputDecoration(
-                                  hintText: "Questions Czech (optional)",
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                   Text('Question in Czech', style: AppTheme.h9Style,),
+                                  TextFormField(
+                                    validator: (val) {
+                                      return null;
+                                    },
+                                    onChanged: (value) {
+                                      questionCzech = value;
+                                    },
+                                    decoration: InputDecoration(
+                                      hintText: "Questions Czech (optional)",
 
-                                  // border: OutlineInputBorder(
-                                  //     borderRadius: BorderRadius.circular(20)),
-                                  fillColor: Colors.grey.shade200,
-                                  filled: true,
-                                  floatingLabelStyle: AppTheme.h2Style,
-                                ),
+                                      // border: OutlineInputBorder(
+                                      //     borderRadius: BorderRadius.circular(20)),
+                                      fillColor: Colors.grey.shade200,
+                                      filled: true,
+                                      floatingLabelStyle: AppTheme.h2Style,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             SizedBox(
                               width: customWidth(400),
-                              child: TextFormField(
-                                validator: (val) {
-                                  return null;
-                                },
-                                onChanged: (value) {
-                                  questionGerman = value;
-                                },
-                                decoration: InputDecoration(
-                                  hintText: "Questions Vietnam (optional)",
+                              child: Column(
+                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                    Text('Question in Vietnam', style: AppTheme.h9Style,),
+                                  TextFormField(
+                                    validator: (val) {
+                                      return null;
+                                    },
+                                    onChanged: (value) {
+                                      questionGerman = value;
+                                    },
+                                    decoration: InputDecoration(
+                                      hintText: "Questions Vietnam (optional)",
 
-                                  // border: OutlineInputBorder(
-                                  //     borderRadius: BorderRadius.circular(20)),
-                                  fillColor: Colors.grey.shade200,
-                                  filled: true,
-                                  floatingLabelStyle: AppTheme.h2Style,
-                                ),
+                                      // border: OutlineInputBorder(
+                                      //     borderRadius: BorderRadius.circular(20)),
+                                      fillColor: Colors.grey.shade200,
+                                      filled: true,
+                                      floatingLabelStyle: AppTheme.h2Style,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            Text(
-                              "Question Description Details",
-                              style: AppTheme.h8Style,
+                              customVerticalGap(20),
+                            
+                            SizedBox(
+                              width: customWidth(400),
+                              child: Column(
+                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                              "Description  in English",
+                              style: AppTheme.h9Style,
+                            ),
+                                  TextFormField(
+                                    validator: (val) {
+                                      return null;
+                                    },
+                                    onChanged: (value) {
+                                      discriptionEnglish = value;
+                                    },
+                                    decoration: InputDecoration(
+                                      hintText: "Questions Description English (optional)",
+
+                                      // border: OutlineInputBorder(
+                                      //     borderRadius: BorderRadius.circular(20)),
+                                      fillColor: Colors.grey.shade200,
+                                      filled: true,
+                                      floatingLabelStyle: AppTheme.h2Style,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            SizedBox(
+                              width: customWidth(400),
+                              child: Column(
+                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                              "Description  in Czech",
+                              style: AppTheme.h9Style,
+                            ),
+                                  TextFormField(
+                                    validator: (val) {
+                                      return null;
+                                    },
+                                    onChanged: (value) {
+                                      discriptionCzech = value;
+                                    },
+                                    decoration: InputDecoration(
+                                      hintText: "Questions Description Czech (optional)",
+
+                                      // border: OutlineInputBorder(
+                                      //     borderRadius: BorderRadius.circular(20)),
+                                      fillColor: Colors.grey.shade200,
+                                      filled: true,
+                                      floatingLabelStyle: AppTheme.h2Style,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                             SizedBox(
                               width: customWidth(400),
-                              child: TextFormField(
-                                validator: (val) {
-                                  return null;
-                                },
-                                onChanged: (value) {
-                                  discriptionEnglish = value;
-                                },
-                                decoration: InputDecoration(
-                                  hintText: "Questions Description English (optional)",
-
-                                  // border: OutlineInputBorder(
-                                  //     borderRadius: BorderRadius.circular(20)),
-                                  fillColor: Colors.grey.shade200,
-                                  filled: true,
-                                  floatingLabelStyle: AppTheme.h2Style,
-                                ),
-                              ),
+                              child: Column(
+                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                   Text(
+                              "Description in Czech",
+                              style: AppTheme.h9Style,
                             ),
+                                  TextFormField(
+                                    validator: (val) {
+                                      return null;
+                                    },
+                                    onChanged: (value) {
+                                      discriptionGerman = value;
+                                    },
+                                    decoration: InputDecoration(
+                                      hintText: "Questions Description Vietnam (optional)",
 
-                            SizedBox(
-                              width: customWidth(400),
-                              child: TextFormField(
-                                validator: (val) {
-                                  return null;
-                                },
-                                onChanged: (value) {
-                                  discriptionCzech = value;
-                                },
-                                decoration: InputDecoration(
-                                  hintText: "Questions Description Czech (optional)",
-
-                                  // border: OutlineInputBorder(
-                                  //     borderRadius: BorderRadius.circular(20)),
-                                  fillColor: Colors.grey.shade200,
-                                  filled: true,
-                                  floatingLabelStyle: AppTheme.h2Style,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: customWidth(400),
-                              child: TextFormField(
-                                validator: (val) {
-                                  return null;
-                                },
-                                onChanged: (value) {
-                                  discriptionGerman = value;
-                                },
-                                decoration: InputDecoration(
-                                  hintText: "Questions Description Vietnam (optional)",
-
-                                  // border: OutlineInputBorder(
-                                  //     borderRadius: BorderRadius.circular(20)),
-                                  fillColor: Colors.grey.shade200,
-                                  filled: true,
-                                  floatingLabelStyle: AppTheme.h2Style,
-                                ),
+                                      // border: OutlineInputBorder(
+                                      //     borderRadius: BorderRadius.circular(20)),
+                                      fillColor: Colors.grey.shade200,
+                                      filled: true,
+                                      floatingLabelStyle: AppTheme.h2Style,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             Row(
@@ -837,7 +880,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                   flex: 3,
                                   child: Text('Range'),
                                 ),
-                                Expanded(
+                            range==true?    Expanded(
                                   flex: 3,
                                   child: Row(
                                     children: [
@@ -925,7 +968,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                       ),
                                     ],
                                   ),
-                                ),
+                                ):Expanded(flex: 3,child: SizedBox()),
                                 // Expanded(
                                 //   flex: 1,
                                 //   child: Checkbox(
@@ -1103,10 +1146,12 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                   flex: 3,
                                   child: Text('DropDown'),
                                 ),
-                                Expanded(
+                           dropdown==true?     Expanded(
                                   flex: 3,
                                   child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
+                                        Text('English', style: AppTheme.h9Style,),
                                       TextFormField(
                                         keyboardType: TextInputType.multiline,
                                         minLines: 1,
@@ -1127,6 +1172,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                           floatingLabelStyle: AppTheme.h2Style,
                                         ),
                                       ),
+                                        Text('Czech', style: AppTheme.h9Style,),
                                       TextFormField(
                                         keyboardType: TextInputType.multiline,
                                         minLines: 1,
@@ -1147,6 +1193,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                           floatingLabelStyle: AppTheme.h2Style,
                                         ),
                                       ),
+                                        Text('Vietnam', style: AppTheme.h9Style,),
                                       TextFormField(
                                         keyboardType: TextInputType.multiline,
                                         minLines: 1,
@@ -1169,7 +1216,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                       ),
                                     ],
                                   ),
-                                ),
+                                ):Expanded(flex:3,child: SizedBox()),
                                 // Expanded(
                                 //   flex: 1,
                                 //   child: Checkbox(
