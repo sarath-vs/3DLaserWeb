@@ -8,8 +8,6 @@ import '../../domain/responsive/dimensions.dart';
 import '../theme/color.dart';
 import '../theme/theme.dart';
 
-import 'widget/image_uploading_widget.dart';
-
 class QualitycontrolpropertiesEditor extends StatefulWidget {
   static const routeName = 'QualitycontrolpropertiesEditor';
   const QualitycontrolpropertiesEditor({super.key});
