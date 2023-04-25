@@ -68,7 +68,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
   int imageCounts = 0;
   _selectvideoFile(bool imageFrom) async {
     FilePickerResult? fileResult =
-        await FilePicker.platform.pickFiles(type: FileType.video);
+        await FilePicker.platform.pickFiles(allowMultiple: false,type: FileType.video);
 
     if (fileResult != null) {
       if (fileResult.files.first.size <=

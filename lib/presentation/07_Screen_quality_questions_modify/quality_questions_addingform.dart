@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:typed_data';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,7 +9,6 @@ import '../../application/tools_controller/tools_controller.dart';
 import '../../domain/responsive/dimensions.dart';
 import '../theme/color.dart';
 import '../theme/theme.dart';
-import 'widget/qualityqp_image_uploading_widget.dart';
 
 class Qualityquestionform extends StatefulWidget {
   static const routeName = 'Qualityquestionform';
@@ -71,7 +69,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
   int imageCounts = 0;
   _selectvideoFile(bool imageFrom) async {
     FilePickerResult? fileResult =
-        await FilePicker.platform.pickFiles(allowMultiple: true,type: FileType.video);
+        await FilePicker.platform.pickFiles(allowMultiple: false, type: FileType.video);
 
     if (fileResult != null) {
       if (fileResult.files.first.size <=
@@ -117,7 +115,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
           pickedImagesInBytes.add(element.bytes as Uint8List);
           selectedimages.add(element.name);
           selectedimagesin64bytes.add(base64.encode(element.bytes!));
-          //selectedImageInBytes = fileResult.files.first.bytes;
+          //selectedImageInBytes = fileResult.files.first.bytes;x
           imageCounts += 1;
         });
       });
