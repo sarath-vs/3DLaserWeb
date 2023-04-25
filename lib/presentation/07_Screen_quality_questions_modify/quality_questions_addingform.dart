@@ -161,7 +161,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                     padding: const EdgeInsets.symmetric(
                         vertical: 20, horizontal: 45),
                     child: Container(
-                      height: customHeight(900),
+                      height: customHeight(1300),
                       width: customWidth(250),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -357,134 +357,11 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                               ),
                             ),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                customHorizontalGap(50),
-                                Column(
-                                  children: [
-                                    Container(
-                                        alignment: Alignment.center,
-                                        width: customWidth(35),
-                                        height: customHeight(20),
-                                        decoration: BoxDecoration(
-                                          color: LightColor.grey2,
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5)),
-                                          border: Border.all(
-                                              width: 1,
-                                              color: LightColor.black),
-                                        ),
-                                        child: (selectedvideo == "")
-                                            ? const Text(
-                                                "uploaded files here",
-                                                style: TextStyle(
-                                                    color: LightColor.grey),
-                                              )
-                                            : Text(
-                                                selectedvideo,
-                                                style: TextStyle(
-                                                    color: LightColor.grey),
-                                              )),
-                                    customVerticalGap(10),
-                                    InkWell(
-                                      onTap: () async {
-                                        _selectvideoFile(true);
-                                        // var picked =
-                                        //     await FilePicker.platform.pickFiles(
-                                        //   withReadStream: true,
-                                        // );
-                                        // if (picked != null) {
-                                        //   setState(() {
-                                        //     objFile = picked.files.single;
-                                        //   });
-                                        // }
-                                      },
-                                      child: Container(
-                                        alignment: Alignment.center,
-                                        width: customWidth(35),
-                                        height: customHeight(30),
-                                        decoration: BoxDecoration(
-                                          color: LightColor.orange,
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5)),
-                                          border: Border.all(
-                                              width: 1,
-                                              color: LightColor.primaryColor),
-                                        ),
-                                        child: Text(
-                                          "Upload Video",
-                                          style: TextStyle(
-                                              fontSize: customFontSize(3),
-                                              color: Colors.white),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                customHorizontalGap(20),
-                                Column(
-                                  children: [
-                                    Container(
-                                        alignment: Alignment.center,
-                                        width: customWidth(35),
-                                        height: customHeight(20),
-                                        decoration: BoxDecoration(
-                                          color: LightColor.grey2,
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5)),
-                                          border: Border.all(
-                                              width: 1,
-                                              color: LightColor.black),
-                                        ),
-                                        child:
-                                            (selectedimages.toString() == "[]")
-                                                ? const Text(
-                                                    "uploaded files here",
-                                                    style: TextStyle(
-                                                        color: LightColor.grey),
-                                                  )
-                                                : Text(
-                                                    selectedimages.toString(),
-                                                    style: TextStyle(
-                                                        color: LightColor.grey),
-                                                  )),
-                                    customVerticalGap(10),
-                                    InkWell(
-                                      onTap: () async {
-                                        _selectedimages(true);
-                                        // var picked =
-                                        //     await FilePicker.platform.pickFiles(
-                                        //   withReadStream: true,
-                                        // );
-                                        // if (picked != null) {
-                                        //   setState(() {
-                                        //     objFile = picked.files.single;
-                                        //   });
-                                        // }
-                                      },
-                                      child: Container(
-                                        alignment: Alignment.center,
-                                        width: customWidth(35),
-                                        height: customHeight(30),
-                                        decoration: BoxDecoration(
-                                          color: LightColor.orange,
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5)),
-                                          border: Border.all(
-                                              width: 1,
-                                              color: LightColor.primaryColor),
-                                        ),
-                                        child: Text(
-                                          "Upload Images",
-                                          style: TextStyle(
-                                              fontSize: customFontSize(3),
-                                              color: Colors.white),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                               
+                              
                                 customHorizontalGap(20),
                                 InkWell(
                                   onTap: () {
@@ -1215,23 +1092,8 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                     ],
                                   ),
                                 ):Expanded(flex:3,child: SizedBox()),
-                                // Expanded(
-                                //   flex: 1,
-                                //   child: Checkbox(
-                                //     value: dropDownManditory,
-                                //     checkColor:
-                                //         Colors.white, // color of tick Mark
-                                //     activeColor: LightColor.primaryColor,
-                                //     onChanged: (bool? value) {
-                                //       setState(() {
-                                //         if (dropdown) {
-                                //           dropDownManditory =
-                                //               !dropDownManditory;
-                                //         }
-                                //       });
-                                //     },
-                                //   ),
-                                // ),
+                               
+                               
                               ],
                             ),
                             ////////
@@ -1286,7 +1148,92 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                             // // predefinedtype(),
                             // yesornotype(),
                             //   ImagePickerWidget(),
-                            customVerticalGap(20),
+                            customVerticalGap(20),Text('Image Upload',style: TextStyle(fontWeight: FontWeight.bold),),
+
+                            Container(height: customHeight(150),width: double.infinity,color: Colors.white,child: Row(
+                              children: [
+                               Padding(
+                                 padding: const EdgeInsets.only(left:8.0,right: 8),
+                                 child: GestureDetector(onTap: (){
+                                    _selectedimages(true);
+
+                                 },child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.grey.shade300),height: customHeight(130),width: customWidth(40),child: Icon(Icons.add,color: Colors.black,size: customHeight(50),),)),
+                               ),
+                            pickedImagesInBytes.length>0?    ListView.builder(
+                                  shrinkWrap: true,
+              itemCount: pickedImagesInBytes.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Stack(
+                    children: [
+                      
+                     
+                      SizedBox(height: customHeight(140),child: Image.memory(pickedImagesInBytes[index])),
+                       GestureDetector(
+                        onTap: (){
+                          setState(() {
+                                   pickedImagesInBytes.removeAt(index);
+                            
+                          });
+                       
+                        },
+                         child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.grey.withOpacity(.5)),child: Padding(
+                           padding: const EdgeInsets.all(2.0),
+                           child: Icon(Icons.close,color: Colors.red,),
+                         )),
+                       ),
+                    ],
+                  ),
+                );
+              },
+            ):Text('No Image Selected')
+                              ],
+                            ),),
+                              customVerticalGap(20),Text('Video Upload',style: TextStyle(fontWeight: FontWeight.bold),),
+
+                            Container(height: customHeight(150),width: double.infinity,color: Colors.white,child: Row(
+                              children: [
+                               Padding(
+                                 padding: const EdgeInsets.only(left:8.0,right: 8),
+                                 child: GestureDetector(onTap: (){
+                                     _selectvideoFile(true);
+
+                                 },child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.grey.shade300),height: customHeight(130),width: customWidth(40),child: Icon(Icons.add,color: Colors.black,size: customHeight(50),),)),
+                               ),
+                            base64StringVDO.length>0?    ListView.builder(
+                                  shrinkWrap: true,
+              itemCount: base64StringVDO.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Stack(
+                    children: [
+                      
+                     
+                      SizedBox(height: customHeight(140),child: Text('Video ${index+1}')),
+                       GestureDetector(
+                        onTap: (){
+                          setState(() {
+                                   base64StringVDO.removeAt(index);
+                            
+                          });
+                       
+                        },
+                         child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.grey.withOpacity(.5)),child: Padding(
+                           padding: const EdgeInsets.all(2.0),
+                           child: Icon(Icons.close,color: Colors.red,),
+                         )),
+                       ),
+                    ],
+                  ),
+                );
+              },
+            ):Text('No Video Selected')
+                              ],
+                            ),),
 
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
