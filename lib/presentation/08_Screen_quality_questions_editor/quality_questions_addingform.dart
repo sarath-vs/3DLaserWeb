@@ -69,7 +69,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
   _selectvideoFile(bool imageFrom) async {
     FilePickerResult? fileResult =
         await FilePicker.platform.pickFiles(allowMultiple: false,type: FileType.video);
-
+QualityQuestionEditController.base64StringVDO.clear();
     if (fileResult != null) {
       if (fileResult.files.first.size <=
           5851340) //size checking file this is for 5 mb
@@ -82,14 +82,15 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
 
           selectedvideoInBytes = fileResult.files.first.bytes;
           base64StringVDO.add( base64.encode(selectedvideoInBytes!));
+          QualityQuestionEditController.base64StringVDO.add( base64.encode(selectedvideoInBytes!));
           // imageCounts += 1;
-          if(selectedimagesin64bytes.isNotEmpty){
-            QualityQuestionEditController.base64StringVDO=base64StringVDO;
-          }
-          else{
-            QualityQuestionEditController.base64StringVDO.clear();
+          // if(selectedimagesin64bytes.isNotEmpty){
+          //   QualityQuestionEditController.base64StringVDO=base64StringVDO;
+          // }
+          // else{
+          //   QualityQuestionEditController.base64StringVDO.clear();
 
-          }
+          // }
         });
         print("*********" +
             base64StringVDO.first +
@@ -103,18 +104,22 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
   _selectedimages(bool imageFrom) async {
     FilePickerResult? fileResult = await FilePicker.platform
         .pickFiles(allowMultiple: true, type: FileType.image);
+        QualityQuestionEditController.selectedimagesin64bytesfromurl.clear();
 
     if (fileResult != null) {
       selctFile = fileResult.files.first.name;
       fileResult.files.forEach((element) {
         setState(() {
+          
           pickedImagesInBytes.add(element.bytes as Uint8List);
+          QualityQuestionEditController.selectedimagesin64bytesfromurl.add(element.bytes as Uint8List);
           selectedimages.add(element.name);
           selectedimagesin64bytes.add(base64.encode(element.bytes!));
           //selectedImageInBytes = fileResult.files.first.bytes;
           imageCounts += 1;
           if(selectedimagesin64bytes.isNotEmpty){
             QualityQuestionEditController.selectedimagesin64bytes=selectedimagesin64bytes;
+         // QualityQuestionEditController.selectedimagesin64bytesfromurl=selectedimagesin64bytes;
           }
           else{
             QualityQuestionEditController.selectedimagesin64bytes.clear();
@@ -179,7 +184,7 @@ String screenName='';
                     padding: const EdgeInsets.symmetric(
                         vertical: 20, horizontal: 45),
                     child: Container(
-                      height: customHeight(1000),
+                      height: customHeight(1400),
                       width: customWidth(250),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -378,134 +383,134 @@ String screenName='';
                               ),
                             ),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                customHorizontalGap(50),
-                                Column(
-                                  children: [
-                                    Container(
-                                        alignment: Alignment.center,
-                                        width: customWidth(35),
-                                        height: customHeight(20),
-                                        decoration: BoxDecoration(
-                                          color: LightColor.grey2,
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5)),
-                                          border: Border.all(
-                                              width: 1,
-                                              color: LightColor.black),
-                                        ),
-                                        child: (selectedvideo == "")
-                                            ?  Text(
-                                             QualityQuestionEditController.base64StringVDO.length.toString()+'Files',
-                                                style: TextStyle(
-                                                    color: LightColor.grey),
-                                              )
-                                            : Text(
-                                                selectedvideo,
-                                                style: TextStyle(
-                                                    color: LightColor.grey),
-                                              )),
-                                    customVerticalGap(10),
-                                    InkWell(
-                                      onTap: () async {
-                                        _selectvideoFile(true);
-                                        // var picked =
-                                        //     await FilePicker.platform.pickFiles(
-                                        //   withReadStream: true,
-                                        // );
-                                        // if (picked != null) {
-                                        //   setState(() {
-                                        //     objFile = picked.files.single;
-                                        //   });
-                                        // }
-                                      },
-                                      child: Container(
-                                        alignment: Alignment.center,
-                                        width: customWidth(35),
-                                        height: customHeight(30),
-                                        decoration: BoxDecoration(
-                                          color: LightColor.orange,
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5)),
-                                          border: Border.all(
-                                              width: 1,
-                                              color: LightColor.primaryColor),
-                                        ),
-                                        child: Text(
-                                         QualityQuestionEditController.base64StringVDO.length<=0 ?  "Upload Video":"Delete and update Video",
-                                          style: TextStyle(
-                                              fontSize: customFontSize(3),
-                                              color: Colors.white),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                customHorizontalGap(20),
-                                Column(
-                                  children: [
-                                    Container(
-                                        alignment: Alignment.center,
-                                        width: customWidth(45),
-                                        height: customHeight(20),
-                                        decoration: BoxDecoration(
-                                          color: LightColor.grey2,
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5)),
-                                          border: Border.all(
-                                              width: 1,
-                                              color: LightColor.black),
-                                        ),
-                                        child:
-                                            (selectedimages.toString() == "[]")
-                                                ?  Text(
-                                                    QualityQuestionEditController.selectedimagesin64bytes.length.toString() + 'Files',
-                                                    style: TextStyle(
-                                                        color: LightColor.grey),
-                                                  )
-                                                : Text(
-                                                    selectedimages.toString(),
-                                                    style: TextStyle(
-                                                        color: LightColor.grey),
-                                                  )),
-                                    customVerticalGap(10),
-                                    InkWell(
-                                      onTap: () async {
-                                        _selectedimages(true);
-                                        // var picked =
-                                        //     await FilePicker.platform.pickFiles(
-                                        //   withReadStream: true,
-                                        // );
-                                        // if (picked != null) {
-                                        //   setState(() {
-                                        //     objFile = picked.files.single;
-                                        //   });
-                                        // }
-                                      },
-                                      child: Container(
-                                        alignment: Alignment.center,
-                                        width: customWidth(35),
-                                        height: customHeight(30),
-                                        decoration: BoxDecoration(
-                                          color: LightColor.orange,
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5)),
-                                          border: Border.all(
-                                              width: 1,
-                                              color: LightColor.primaryColor),
-                                        ),
-                                        child: Text(
-                                        QualityQuestionEditController.selectedimagesin64bytes.length<=0 ?  "Upload Image":"Delete and update Image",
-                                          style: TextStyle(
-                                              fontSize: customFontSize(3),
-                                              color: Colors.white),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                               // customHorizontalGap(50),
+                                // Column(
+                                //   children: [
+                                //     Container(
+                                //         alignment: Alignment.center,
+                                //         width: customWidth(35),
+                                //         height: customHeight(20),
+                                //         decoration: BoxDecoration(
+                                //           color: LightColor.grey2,
+                                //           borderRadius: BorderRadius.all(
+                                //               Radius.circular(5)),
+                                //           border: Border.all(
+                                //               width: 1,
+                                //               color: LightColor.black),
+                                //         ),
+                                //         child: (selectedvideo == "")
+                                //             ?  Text(
+                                //              QualityQuestionEditController.base64StringVDO.length.toString()+'Files',
+                                //                 style: TextStyle(
+                                //                     color: LightColor.grey),
+                                //               )
+                                //             : Text(
+                                //                 selectedvideo,
+                                //                 style: TextStyle(
+                                //                     color: LightColor.grey),
+                                //               )),
+                                //     customVerticalGap(10),
+                                //     InkWell(
+                                //       onTap: () async {
+                                //         _selectvideoFile(true);
+                                //         // var picked =
+                                //         //     await FilePicker.platform.pickFiles(
+                                //         //   withReadStream: true,
+                                //         // );
+                                //         // if (picked != null) {
+                                //         //   setState(() {
+                                //         //     objFile = picked.files.single;
+                                //         //   });
+                                //         // }
+                                //       },
+                                //       child: Container(
+                                //         alignment: Alignment.center,
+                                //         width: customWidth(35),
+                                //         height: customHeight(30),
+                                //         decoration: BoxDecoration(
+                                //           color: LightColor.orange,
+                                //           borderRadius: BorderRadius.all(
+                                //               Radius.circular(5)),
+                                //           border: Border.all(
+                                //               width: 1,
+                                //               color: LightColor.primaryColor),
+                                //         ),
+                                //         child: Text(
+                                //          QualityQuestionEditController.base64StringVDO.length<=0 ?  "Upload Video":"Delete and update Video",
+                                //           style: TextStyle(
+                                //               fontSize: customFontSize(3),
+                                //               color: Colors.white),
+                                //         ),
+                                //       ),
+                                //     ),
+                                //   ],
+                                // ),
+                                // customHorizontalGap(20),
+                                // Column(
+                                //   children: [
+                                //     Container(
+                                //         alignment: Alignment.center,
+                                //         width: customWidth(45),
+                                //         height: customHeight(20),
+                                //         decoration: BoxDecoration(
+                                //           color: LightColor.grey2,
+                                //           borderRadius: BorderRadius.all(
+                                //               Radius.circular(5)),
+                                //           border: Border.all(
+                                //               width: 1,
+                                //               color: LightColor.black),
+                                //         ),
+                                //         child:
+                                //             (selectedimages.toString() == "[]")
+                                //                 ?  Text(
+                                //                     QualityQuestionEditController.selectedimagesin64bytes.length.toString() + 'Files',
+                                //                     style: TextStyle(
+                                //                         color: LightColor.grey),
+                                //                   )
+                                //                 : Text(
+                                //                     selectedimages.toString(),
+                                //                     style: TextStyle(
+                                //                         color: LightColor.grey),
+                                //                   )),
+                                //     customVerticalGap(10),
+                                //     InkWell(
+                                //       onTap: () async {
+                                //         _selectedimages(true);
+                                //         // var picked =
+                                //         //     await FilePicker.platform.pickFiles(
+                                //         //   withReadStream: true,
+                                //         // );
+                                //         // if (picked != null) {
+                                //         //   setState(() {
+                                //         //     objFile = picked.files.single;
+                                //         //   });
+                                //         // }
+                                //       },
+                                //       child: Container(
+                                //         alignment: Alignment.center,
+                                //         width: customWidth(35),
+                                //         height: customHeight(30),
+                                //         decoration: BoxDecoration(
+                                //           color: LightColor.orange,
+                                //           borderRadius: BorderRadius.all(
+                                //               Radius.circular(5)),
+                                //           border: Border.all(
+                                //               width: 1,
+                                //               color: LightColor.primaryColor),
+                                //         ),
+                                //         child: Text(
+                                //         QualityQuestionEditController.selectedimagesin64bytes.length<=0 ?  "Upload Image":"Delete and update Image",
+                                //           style: TextStyle(
+                                //               fontSize: customFontSize(3),
+                                //               color: Colors.white),
+                                //         ),
+                                //       ),
+                                //     ),
+                                //   ],
+                                // ),
                                 customHorizontalGap(20),
                                 InkWell(
                                   onTap: () {
@@ -1154,6 +1159,104 @@ String screenName='';
                             // // predefinedtype(),
                             // yesornotype(),
                             //   ImagePickerWidget(),
+                              customVerticalGap(20),Text('Image Upload',style: TextStyle(fontWeight: FontWeight.bold),),
+
+                            Container(height: customHeight(150),width: double.infinity,color: Colors.white,child: Row(
+                              children: [
+                               Padding(
+                                 padding: const EdgeInsets.only(left:8.0,right: 8),
+                                 child: GestureDetector(onTap: (){
+                                    _selectedimages(true);
+
+                                 },child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.grey.shade300),height: customHeight(130),width: customWidth(40),child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                   children: [
+
+                                    Text('Delete & Add'),
+                                     Icon(Icons.add,color: Colors.black,size: customHeight(50),),
+                                   ],
+                                 ),)),
+                               ),
+                           QualityQuestionEditController.selectedimagesin64bytesfromurl.length>0?    ListView.builder(
+                                  shrinkWrap: true,
+              itemCount: QualityQuestionEditController.selectedimagesin64bytesfromurl.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Stack(
+                    children: [
+                      
+                     
+                      SizedBox(height: customHeight(140),child: Image.memory(QualityQuestionEditController.selectedimagesin64bytesfromurl[index] as Uint8List)),
+                      //  GestureDetector(
+                      //   onTap: (){
+                      //     setState(() {
+                      //              QualityQuestionEditController.selectedimagesin64bytesfromurl.removeAt(index);
+                            
+                      //     });
+                       
+                      //   },
+                      //    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.grey.withOpacity(.5)),child: Padding(
+                      //      padding: const EdgeInsets.all(2.0),
+                      //      child: Icon(Icons.close,color: Colors.red,),
+                      //    )),
+                      //  ),
+                    ],
+                  ),
+                );
+              },
+            ):Text('No Image Selected')
+                              ],
+                            ),),
+                             customVerticalGap(20),Text('Video Upload',style: TextStyle(fontWeight: FontWeight.bold),),
+
+                            Container(height: customHeight(150),width: double.infinity,color: Colors.white,child: Row(
+                              children: [
+                               Padding(
+                                 padding: const EdgeInsets.only(left:8.0,right: 8),
+                                 child: GestureDetector(onTap: (){
+                                     _selectvideoFile(true);
+
+                                 },child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.grey.shade300),height: customHeight(130),width: customWidth(40),child: Icon(Icons.add,color: Colors.black,size: customHeight(50),),)),
+                               ),
+                            QualityQuestionEditController.base64StringVDO.length>0?    ListView.builder(
+                                  shrinkWrap: true,
+              itemCount: QualityQuestionEditController.base64StringVDO.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Stack(
+                    children: [
+                      
+                     
+                      SizedBox(height: customHeight(140),child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Video ${index+1}'),
+                        ],
+                      )),
+                      //  GestureDetector(
+                      //   onTap: (){
+                      //     setState(() {
+                      //              base64StringVDO.removeAt(index);
+                            
+                      //     });
+                       
+                      //   },
+                      //    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.grey.withOpacity(.5)),child: Padding(
+                      //      padding: const EdgeInsets.all(2.0),
+                      //      child: Icon(Icons.close,color: Colors.red,),
+                      //    )),
+                      //  ),
+                    ],
+                  ),
+                );
+              },
+            ):Text('No Video Selected')
+                              ],
+                            ),),
                             customVerticalGap(20),
 
                             Row(

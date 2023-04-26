@@ -1,14 +1,19 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
 import 'package:laser_tech_app/domain/log/custom_log.dart';
 import 'package:laser_tech_app/domain/models/products/get_question_details_model.dart';
+import 'package:path_provider/path_provider.dart';
 import '../../domain/employee_data/employee_data_manager.dart';
 import '../../domain/models/products/quality_product_facade.dart';
-
 import '../../domain/remote/exceptions/network_exceptions.dart';
 import '../../main.dart';
-
+import 'dart:ui' as ui;
+import 'package:http/http.dart' as http;
 import '../../presentation/widgets/circular_progress_dialog.dart';
 import '../../presentation/widgets/single_button_alert_dialog.dart';
 
@@ -57,6 +62,8 @@ static String questionID='';
 static int? productId;
 
 
+
+
 final TextEditingController questionEnglishController = TextEditingController();
 final TextEditingController questionCzechController = TextEditingController();
 final TextEditingController questionGermanController = TextEditingController();
@@ -68,10 +75,36 @@ final TextEditingController dropDownValueCzechController = TextEditingController
 final TextEditingController dropDownValueVietnamController = TextEditingController();
 
  static List<String> selectedimagesin64bytes = [];
+  static List<Uint8List> selectedimagesin64bytesfromurl = [];
  
 
 
 static  List<String> base64StringVDO = [];
+
+Future<void> networkImageToBase64() async {
+  selectedimagesin64bytesfromurl.clear();
+   
+  for(int i=0;i<selectedimagesin64bytes.length;i++){
+    // print('=====$i');
+    //  http.Response response = await http.get(Uri.parse('http://65.1.86.132'+selectedimagesin64bytes[i]) );
+    
+  
+    final response = await http.get(Uri.parse('http://65.1.86.132'+selectedimagesin64bytes[i]));
+    if (response.statusCode == 200) {
+  
+        selectedimagesin64bytesfromurl.add(response.bodyBytes);
+        print('000---------1111${selectedimagesin64bytesfromurl}');
+
+    } else {
+      throw Exception('Failed to load image');
+    }
+  
+
+  }
+  
+}
+
+
 
 static final answerField = {
                                       "yn": yesno,
@@ -149,6 +182,7 @@ static final answerField = {
                     discriptionCzech=resp.data!.descriptionCzech.toString();
                     discriptionGerman=resp.data!.descriptionGerman.toString();
                     selectedimagesin64bytes=resp.data!.images!;
+                    
                     base64StringVDO=resp.data!.videos!;
                     tools.clear();
                     questionEnglishController.text = resp.data!.questionEnglish??"N/A";
@@ -160,6 +194,7 @@ static final answerField = {
  discriptionGermanController.text = resp.data!.descriptionGerman??"N/A";
                     resp.data!.toolsUsed!.forEach((element) {
                       tools.add(element.toolId!);
+                      
 
                        
                      
@@ -168,6 +203,9 @@ static final answerField = {
 ;                     
 
       customLog(resp);
+      await networkImageToBase64();
+     
+      print('-------${selectedimagesin64bytesfromurl.first}');
       update([qualityQuestionDetailID]);
     });
   }

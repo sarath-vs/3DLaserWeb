@@ -335,7 +335,7 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                                  crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                    Text(
-                              "Description in Czech",
+                              "Description in Vietnam",
                               style: AppTheme.h9Style,
                             ),
                                   TextFormField(

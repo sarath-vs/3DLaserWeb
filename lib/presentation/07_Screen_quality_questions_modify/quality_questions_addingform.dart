@@ -333,7 +333,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                  crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                    Text(
-                              "Description in Czech",
+                              "Description in Vietnam",
                               style: AppTheme.h9Style,
                             ),
                                   TextFormField(

@@ -22,7 +22,6 @@ import 'package:laser_tech_app/presentation/12_screen_assembly_question_add/scre
 import 'package:laser_tech_app/presentation/13_screen_final_assembly/final_assembly_add.dart';
 import 'package:laser_tech_app/presentation/13_screen_final_assembly/final_assembly_edit.dart';
 import 'package:laser_tech_app/presentation/13_screen_final_assembly/final_assembly_questionAdd.dart';
-import 'package:laser_tech_app/presentation/13_screen_final_assembly/final_assembly_question_edit.dart';
 import 'package:laser_tech_app/presentation/theme/theme.dart';
 import 'application/ansswered_product_controller/answered_product_controller.dart';
 import 'application/assembly_controller/assembly_controller.dart';
@@ -37,7 +36,7 @@ import 'presentation/02_Screen_login/screen_login.dart';
 import 'presentation/08_Screen_quality_questions_editor/quality_questions_addingform.dart';
 
 Future<void> main() async {
-  HttpOverrides.global = MyHttpOverrides();
+ // HttpOverrides.global = MyHttpOverrides();
   await runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
     await configureDependencies();
@@ -145,10 +144,10 @@ initializeGetxController() {
       Get.put<FinalAssemblyController>(getIt<FinalAssemblyController>(), permanent: false);
 }
 
-class MyHttpOverrides extends HttpOverrides {
-  @override
-  HttpClient createHttpClient(SecurityContext? context) {
-    return super.createHttpClient(context)
-      ..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
-  }
-}
+// class MyHttpOverrides extends HttpOverrides {
+//   @override
+//   HttpClient createHttpClient(SecurityContext? context) {
+//     return super.createHttpClient(context)
+//       ..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+//   }
+// }
