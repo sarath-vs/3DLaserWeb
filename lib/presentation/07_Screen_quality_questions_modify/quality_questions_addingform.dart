@@ -281,6 +281,9 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                     validator: (val) {
                                       return null;
                                     },
+                                    
+                                    keyboardType: TextInputType.multiline,
+  maxLines: null,
                                     onChanged: (value) {
                                       discriptionEnglish = value;
                                     },
@@ -311,6 +314,8 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                     validator: (val) {
                                       return null;
                                     },
+                                    keyboardType: TextInputType.multiline,
+  maxLines: null,
                                     onChanged: (value) {
                                       discriptionCzech = value;
                                     },
@@ -340,6 +345,8 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                     validator: (val) {
                                       return null;
                                     },
+                                    keyboardType: TextInputType.multiline,
+  maxLines: null,
                                     onChanged: (value) {
                                       discriptionGerman = value;
                                     },

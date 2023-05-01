@@ -164,7 +164,7 @@ class _FinalAssemblyQuestionAddScreenState extends State<FinalAssemblyQuestionAd
                     padding: const EdgeInsets.symmetric(
                         vertical: 20, horizontal: 45),
                     child: Container(
-                      height: customHeight(1400),
+                      height: customHeight(1800),
                       width: customWidth(250),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -269,6 +269,8 @@ class _FinalAssemblyQuestionAddScreenState extends State<FinalAssemblyQuestionAd
                                     validator: (val) {
                                       return null;
                                     },
+                                    keyboardType: TextInputType.multiline,
+  maxLines: null,
                                     onChanged: (value) {
                                       discriptionEnglish = value;
                                     },
@@ -299,6 +301,8 @@ class _FinalAssemblyQuestionAddScreenState extends State<FinalAssemblyQuestionAd
                                     validator: (val) {
                                       return null;
                                     },
+                                    keyboardType: TextInputType.multiline,
+  maxLines: null,
                                     onChanged: (value) {
                                       discriptionCzech = value;
                                     },
@@ -328,6 +332,8 @@ class _FinalAssemblyQuestionAddScreenState extends State<FinalAssemblyQuestionAd
                                     validator: (val) {
                                       return null;
                                     },
+                                    keyboardType: TextInputType.multiline,
+  maxLines: null,
                                     onChanged: (value) {
                                       discriptionGerman = value;
                                     },

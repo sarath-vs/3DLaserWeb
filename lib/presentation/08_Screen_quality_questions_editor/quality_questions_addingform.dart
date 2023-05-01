@@ -184,7 +184,7 @@ String screenName='';
                     padding: const EdgeInsets.symmetric(
                         vertical: 20, horizontal: 45),
                     child: Container(
-                      height: customHeight(1400),
+                      height: customHeight(1800),
                       width: customWidth(250),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -309,6 +309,8 @@ String screenName='';
                                     validator: (val) {
                                       return null;
                                     },
+                                    keyboardType: TextInputType.multiline,
+  maxLines: null,
                                     // onChanged: (value) {
                                     //   QualityQuestionEditController.discriptionEnglish = value;
                                     // },
@@ -340,7 +342,8 @@ String screenName='';
                                     validator: (val) {
                                       return null;
                                     },
-                                   
+                                   keyboardType: TextInputType.multiline,
+  maxLines: null,
                                     decoration: InputDecoration(
                                       hintText:'(Czech)',
 
@@ -368,6 +371,8 @@ String screenName='';
                                     validator: (val) {
                                       return null;
                                     },
+                                    keyboardType: TextInputType.multiline,
+  maxLines: null,
                                     
                                     decoration: InputDecoration(
                                      hintText: '(Vietnam)',
