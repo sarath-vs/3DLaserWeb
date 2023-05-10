@@ -36,7 +36,7 @@ import 'presentation/02_Screen_login/screen_login.dart';
 import 'presentation/08_Screen_quality_questions_editor/quality_questions_addingform.dart';
 
 Future<void> main() async {
- // HttpOverrides.global = MyHttpOverrides();
+  // HttpOverrides.global = MyHttpOverrides();
   await runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
     await configureDependencies();
@@ -97,25 +97,36 @@ class _MyAppState extends State<MyApp> {
         theme: AppTheme.lightTheme.copyWith(),
         home: ScreenLogin(),
         routes: {
-           AssemblyQuestionAddScreen.routeName: (context) => const AssemblyQuestionAddScreen(),
+          AssemblyQuestionAddScreen.routeName: (context) =>
+              const AssemblyQuestionAddScreen(),
           ScreenLogin.routeName: (context) => const ScreenLogin(),
           ScreenHome.routeName: (context) => const ScreenHome(),
-          EmployeeWorkDetails.routeName: (context) => const EmployeeWorkDetails(),
+          EmployeeWorkDetails.routeName: (context) =>
+              const EmployeeWorkDetails(),
           EmployeeDetailsAdd.routeName: (context) => const EmployeeDetailsAdd(),
-          Qualitycontrolproperties.routeName: (context) => const Qualitycontrolproperties(),
-          Qualityquestionform.routeName: (context) => const Qualityquestionform(),
+          Qualitycontrolproperties.routeName: (context) =>
+              const Qualitycontrolproperties(),
+          Qualityquestionform.routeName: (context) =>
+              const Qualityquestionform(),
           ScreenToolsADD.routeName: (context) => const ScreenToolsADD(),
-          QualityquestionEdit.routeName: (context) => const QualityquestionEdit(),
+          QualityquestionEdit.routeName: (context) =>
+              const QualityquestionEdit(),
           QualitycontrolpropertiesEditor.routeName: (context) =>
               const QualitycontrolpropertiesEditor(),
-          ScreenCompletedProducts.routeName: (context) => const ScreenCompletedProducts(),
+          ScreenCompletedProducts.routeName: (context) =>
+              const ScreenCompletedProducts(),
           Questionsanswer.routeName: (context) => const Questionsanswer(),
-          AssemblyPlanAddScreen.routeName: (context) => const AssemblyPlanAddScreen(),
-          AssemblyProductEditor.routeName: (context) => const AssemblyProductEditor(),
-          FinalAssemblyPlanAddScreen.routeName: (context) => const FinalAssemblyPlanAddScreen(),
-          FinalAssemblyProductEditor.routeName: (context) => const FinalAssemblyProductEditor(),
-          FinalAssemblyQuestionAddScreen.routeName: (context) => const FinalAssemblyQuestionAddScreen(),
-         // FinalAssemblyQuestionEdit.routeName: (context) => const FinalAssemblyQuestionEdit(),
+          AssemblyPlanAddScreen.routeName: (context) =>
+              const AssemblyPlanAddScreen(),
+          AssemblyProductEditor.routeName: (context) =>
+              const AssemblyProductEditor(),
+          FinalAssemblyPlanAddScreen.routeName: (context) =>
+              const FinalAssemblyPlanAddScreen(),
+          FinalAssemblyProductEditor.routeName: (context) =>
+              const FinalAssemblyProductEditor(),
+          FinalAssemblyQuestionAddScreen.routeName: (context) =>
+              const FinalAssemblyQuestionAddScreen(),
+          // FinalAssemblyQuestionEdit.routeName: (context) => const FinalAssemblyQuestionEdit(),
         },
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
@@ -135,13 +146,19 @@ class GetxBindings extends Bindings {
 
 initializeGetxController() {
   Get.put<AuthController>(getIt<AuthController>(), permanent: false);
-  Get.put<HomeScreenController>(getIt<HomeScreenController>(), permanent: false);
+  Get.put<HomeScreenController>(getIt<HomeScreenController>(),
+      permanent: false);
   Get.put<ToolsController>(getIt<ToolsController>(), permanent: false);
-  Get.put<QualityProductController>(getIt<QualityProductController>(), permanent: false);
-  Get.put<QualityQuestionEditController>(getIt<QualityQuestionEditController>(), permanent: false);
-  Get.put<AnsweredProductController>(getIt<AnsweredProductController>(), permanent: false);
-    Get.put<AssemblyProductController>(getIt<AssemblyProductController>(), permanent: false);
-      Get.put<FinalAssemblyController>(getIt<FinalAssemblyController>(), permanent: false);
+  Get.put<QualityProductController>(getIt<QualityProductController>(),
+      permanent: false);
+  Get.put<QualityQuestionEditController>(getIt<QualityQuestionEditController>(),
+      permanent: false);
+  Get.put<AnsweredProductController>(getIt<AnsweredProductController>(),
+      permanent: false);
+  Get.put<AssemblyProductController>(getIt<AssemblyProductController>(),
+      permanent: false);
+  Get.put<FinalAssemblyController>(getIt<FinalAssemblyController>(),
+      permanent: false);
 }
 
 // class MyHttpOverrides extends HttpOverrides {

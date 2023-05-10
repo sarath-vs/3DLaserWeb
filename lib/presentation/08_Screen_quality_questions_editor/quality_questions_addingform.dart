@@ -67,9 +67,9 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
 
   int imageCounts = 0;
   _selectvideoFile(bool imageFrom) async {
-    FilePickerResult? fileResult =
-        await FilePicker.platform.pickFiles(allowMultiple: false,type: FileType.video);
-QualityQuestionEditController.base64StringVDO.clear();
+    FilePickerResult? fileResult = await FilePicker.platform
+        .pickFiles(allowMultiple: false, type: FileType.video);
+    QualityQuestionEditController.base64StringVDO.clear();
     if (fileResult != null) {
       if (fileResult.files.first.size <=
           5851340) //size checking file this is for 5 mb
@@ -81,8 +81,9 @@ QualityQuestionEditController.base64StringVDO.clear();
           selectedvideo = selctFile;
 
           selectedvideoInBytes = fileResult.files.first.bytes;
-          base64StringVDO.add( base64.encode(selectedvideoInBytes!));
-          QualityQuestionEditController.base64StringVDO.add( base64.encode(selectedvideoInBytes!));
+          base64StringVDO.add(base64.encode(selectedvideoInBytes!));
+          QualityQuestionEditController.base64StringVDO
+              .add(base64.encode(selectedvideoInBytes!));
           // imageCounts += 1;
           // if(selectedimagesin64bytes.isNotEmpty){
           //   QualityQuestionEditController.base64StringVDO=base64StringVDO;
@@ -104,26 +105,25 @@ QualityQuestionEditController.base64StringVDO.clear();
   _selectedimages(bool imageFrom) async {
     FilePickerResult? fileResult = await FilePicker.platform
         .pickFiles(allowMultiple: true, type: FileType.image);
-        QualityQuestionEditController.selectedimagesin64bytesfromurl.clear();
+    QualityQuestionEditController.selectedimagesin64bytesfromurl.clear();
 
     if (fileResult != null) {
       selctFile = fileResult.files.first.name;
       fileResult.files.forEach((element) {
         setState(() {
-          
           pickedImagesInBytes.add(element.bytes as Uint8List);
-          QualityQuestionEditController.selectedimagesin64bytesfromurl.add(element.bytes as Uint8List);
+          QualityQuestionEditController.selectedimagesin64bytesfromurl
+              .add(element.bytes as String);
           selectedimages.add(element.name);
           selectedimagesin64bytes.add(base64.encode(element.bytes!));
           //selectedImageInBytes = fileResult.files.first.bytes;
           imageCounts += 1;
-          if(selectedimagesin64bytes.isNotEmpty){
-            QualityQuestionEditController.selectedimagesin64bytes=selectedimagesin64bytes;
-         // QualityQuestionEditController.selectedimagesin64bytesfromurl=selectedimagesin64bytes;
-          }
-          else{
+          if (selectedimagesin64bytes.isNotEmpty) {
+            QualityQuestionEditController.selectedimagesin64bytes =
+                selectedimagesin64bytes;
+            // QualityQuestionEditController.selectedimagesin64bytesfromurl=selectedimagesin64bytes;
+          } else {
             QualityQuestionEditController.selectedimagesin64bytes.clear();
-
           }
         });
       });
@@ -137,31 +137,26 @@ QualityQuestionEditController.base64StringVDO.clear();
 
     // print(pickedImagesInBytes);
   }
-String screenName='';
+
+  String screenName = '';
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((duration) {
-       final arguments = ModalRoute.of(context)!.settings.arguments as Map;
+      final arguments = ModalRoute.of(context)!.settings.arguments as Map;
 
-    final id = arguments['id'];
-    final productIDZ=arguments['productID'];
-    screenName=arguments['screenName'];
- 
-  Get.find<ToolsController>().getTools().then((value) {
+      final id = arguments['id'];
+      final productIDZ = arguments['productID'];
+      screenName = arguments['screenName'];
+
+      Get.find<ToolsController>().getTools().then((value) {
         if (_checkedItems.isEmpty) {
           _checkedItems =
               List.filled(Get.find<ToolsController>().toolsList.length, false);
         }
       });
-      QualityQuestionEditController.questionID=id.toString();
- 
-     
-     if(QualityQuestionEditController.productId==null){
-         
-        
-     }
+      QualityQuestionEditController.questionID = id.toString();
 
-     
+      if (QualityQuestionEditController.productId == null) {}
     });
     return Scaffold(
         appBar: AppBar(
@@ -173,7 +168,8 @@ String screenName='';
         ),
         // drawer: SideMenu(),
         body: GetBuilder<QualityQuestionEditController>(
-            id: Get.find<QualityQuestionEditController>().qualityQuestionDetailID,
+            id: Get.find<QualityQuestionEditController>()
+                .qualityQuestionDetailID,
             builder: (controller) {
               return SafeArea(
                   child: ListView(
@@ -214,19 +210,13 @@ String screenName='';
                             SizedBox(
                               width: customWidth(400),
                               child: TextFormField(
-                                controller: controller.questionEnglishController,
-                    
-                               
+                                controller:
+                                    controller.questionEnglishController,
                                 validator: (val) {
                                   return null;
                                 },
-                                
-                            
                                 decoration: InputDecoration(
-                                 
-                                hintText: '(English)',
-
-                                  
+                                  hintText: '(English)',
                                   fillColor: Colors.grey.shade200,
                                   filled: true,
                                   floatingLabelStyle: AppTheme.h2Style,
@@ -239,11 +229,12 @@ String screenName='';
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                  "Question Czech",
-                                  style: AppTheme.h9Style,
-                                ),
+                                    "Question Czech",
+                                    style: AppTheme.h9Style,
+                                  ),
                                   TextFormField(
-                                     controller: controller.questionCzechController,
+                                    controller:
+                                        controller.questionCzechController,
                                     validator: (val) {
                                       return null;
                                     },
@@ -266,14 +257,15 @@ String screenName='';
                             SizedBox(
                               width: customWidth(400),
                               child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                  "Question Vietnam",
-                                  style: AppTheme.h9Style,
-                                ),
+                                    "Question Vietnam",
+                                    style: AppTheme.h9Style,
+                                  ),
                                   TextFormField(
-                                     controller: controller.questionGermanController,
+                                    controller:
+                                        controller.questionGermanController,
                                     validator: (val) {
                                       return null;
                                     },
@@ -281,7 +273,7 @@ String screenName='';
                                     //    QualityQuestionEditController.questionGerman = value;
                                     // },
                                     decoration: InputDecoration(
-                                     hintText: '(Vietnam)',
+                                      hintText: '(Vietnam)',
 
                                       // border: OutlineInputBorder(
                                       //     borderRadius: BorderRadius.circular(20)),
@@ -294,28 +286,29 @@ String screenName='';
                               ),
                             ),
                             customVerticalGap(20),
-                           
+
                             SizedBox(
                               width: customWidth(400),
                               child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                  "Description English",
-                                  style: AppTheme.h9Style,
-                                ),
+                                    "Description English",
+                                    style: AppTheme.h9Style,
+                                  ),
                                   TextFormField(
-                                     controller: controller.discriptionEnglishController,
+                                    controller:
+                                        controller.discriptionEnglishController,
                                     validator: (val) {
                                       return null;
                                     },
                                     keyboardType: TextInputType.multiline,
-  maxLines: null,
+                                    maxLines: null,
                                     // onChanged: (value) {
                                     //   QualityQuestionEditController.discriptionEnglish = value;
                                     // },
                                     decoration: InputDecoration(
-                                    hintText:'(English)',
+                                      hintText: '(English)',
 
                                       // border: OutlineInputBorder(
                                       //     borderRadius: BorderRadius.circular(20)),
@@ -331,51 +324,52 @@ String screenName='';
                             SizedBox(
                               width: customWidth(400),
                               child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                   Text(
-                                  "Description Czech",
-                                  style: AppTheme.h9Style,
-                                ),
-                                  TextFormField(
-                                     controller: controller.discriptionCzechController,
-                                    validator: (val) {
-                                      return null;
-                                    },
-                                   keyboardType: TextInputType.multiline,
-  maxLines: null,
-                                    decoration: InputDecoration(
-                                      hintText:'(Czech)',
-
-                                      // border: OutlineInputBorder(
-                                      //     borderRadius: BorderRadius.circular(20)),
-                                      fillColor: Colors.grey.shade200,
-                                      filled: true,
-                                      floatingLabelStyle: AppTheme.h2Style,
-                                    ),
+                                  Text(
+                                    "Description Czech",
+                                    style: AppTheme.h9Style,
                                   ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              width: customWidth(400),
-                              child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                   Text(
-                                  "Description Vietnam",
-                                  style: AppTheme.h9Style,
-                                ),
                                   TextFormField(
-                                     controller: controller.discriptionGermanController,
+                                    controller:
+                                        controller.discriptionCzechController,
                                     validator: (val) {
                                       return null;
                                     },
                                     keyboardType: TextInputType.multiline,
-  maxLines: null,
-                                    
+                                    maxLines: null,
                                     decoration: InputDecoration(
-                                     hintText: '(Vietnam)',
+                                      hintText: '(Czech)',
+
+                                      // border: OutlineInputBorder(
+                                      //     borderRadius: BorderRadius.circular(20)),
+                                      fillColor: Colors.grey.shade200,
+                                      filled: true,
+                                      floatingLabelStyle: AppTheme.h2Style,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: customWidth(400),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Description Vietnam",
+                                    style: AppTheme.h9Style,
+                                  ),
+                                  TextFormField(
+                                    controller:
+                                        controller.discriptionGermanController,
+                                    validator: (val) {
+                                      return null;
+                                    },
+                                    keyboardType: TextInputType.multiline,
+                                    maxLines: null,
+                                    decoration: InputDecoration(
+                                      hintText: '(Vietnam)',
 
                                       // border: OutlineInputBorder(
                                       //     borderRadius: BorderRadius.circular(20)),
@@ -391,7 +385,7 @@ String screenName='';
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                               // customHorizontalGap(50),
+                                // customHorizontalGap(50),
                                 // Column(
                                 //   children: [
                                 //     Container(
@@ -519,7 +513,7 @@ String screenName='';
                                 customHorizontalGap(20),
                                 InkWell(
                                   onTap: () {
-                                   showDialog(
+                                    showDialog(
                                       context: context,
                                       builder: (_) => AlertDialog(
                                         shape: RoundedRectangleBorder(
@@ -687,8 +681,10 @@ String screenName='';
                                                             .id!;
                                                         selectedID.add(k);
                                                       }
-                                                      if(selectedID.isNotEmpty){
-                                                        QualityQuestionEditController.tools=selectedID;
+                                                      if (selectedID
+                                                          .isNotEmpty) {
+                                                        QualityQuestionEditController
+                                                            .tools = selectedID;
                                                       }
                                                     }
 
@@ -697,7 +693,7 @@ String screenName='';
                                                     //     ? showSnackBar(
                                                     //         message:
                                                     //             'select some items'):
-                                                        Get.back();
+                                                    Get.back();
                                                   },
                                                   child: Text(
                                                     'Confirm',
@@ -780,7 +776,6 @@ String screenName='';
                                         fontSize: customFontSize(4),
                                       ),
                                     )),
-                               
                               ],
                             ),
                             ////////
@@ -799,8 +794,11 @@ String screenName='';
                                     activeColor: LightColor.primaryColor,
                                     onChanged: (bool? value) {
                                       setState(() {
-                                        QualityQuestionEditController.yesno = !QualityQuestionEditController.yesno;
-                                        QualityQuestionEditController.yesnoManditory = false;
+                                        QualityQuestionEditController.yesno =
+                                            !QualityQuestionEditController
+                                                .yesno;
+                                        QualityQuestionEditController
+                                            .yesnoManditory = false;
                                       });
                                     },
                                   ),
@@ -810,24 +808,29 @@ String screenName='';
                                   child: Text('Yes/No'),
                                 ),
                                 Expanded(flex: 3, child: Text('Yes or No')),
-                               
                               ],
                             ),
-                             ///Answer Yes/No/None
-                          Row(
+
+                            ///Answer Yes/No/None
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Expanded(
                                   flex: 1,
                                   child: Checkbox(
-                                    value: QualityQuestionEditController.yesnoNone,
+                                    value:
+                                        QualityQuestionEditController.yesnoNone,
                                     checkColor:
                                         Colors.white, // color of tick Mark
                                     activeColor: LightColor.primaryColor,
                                     onChanged: (bool? value) {
                                       setState(() {
-                                        QualityQuestionEditController.yesnoNone = !QualityQuestionEditController.yesnoNone;
-                                       QualityQuestionEditController. yesnoNoneManditory = false;
+                                        QualityQuestionEditController
+                                                .yesnoNone =
+                                            !QualityQuestionEditController
+                                                .yesnoNone;
+                                        QualityQuestionEditController
+                                            .yesnoNoneManditory = false;
                                       });
                                     },
                                   ),
@@ -839,23 +842,25 @@ String screenName='';
                                 Expanded(
                                     flex: 3,
                                     child: Text('No Answer input field')),
-                              
                               ],
                             ),
-                                Row(
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Expanded(
                                   flex: 1,
                                   child: Checkbox(
-                                    value: QualityQuestionEditController.qrScanner,
+                                    value:
+                                        QualityQuestionEditController.qrScanner,
                                     checkColor:
                                         Colors.white, // color of tick Mark
                                     activeColor: LightColor.primaryColor,
                                     onChanged: (bool? value) {
                                       setState(() {
-                                        QualityQuestionEditController.qrScanner = !QualityQuestionEditController.qrScanner;
-                                      
+                                        QualityQuestionEditController
+                                                .qrScanner =
+                                            !QualityQuestionEditController
+                                                .qrScanner;
                                       });
                                     },
                                   ),
@@ -865,12 +870,10 @@ String screenName='';
                                   child: Text('QR Scanner'),
                                 ),
                                 Expanded(
-                                    flex: 3,
-                                    child: Text('Scan QR Values')),
-                              
+                                    flex: 3, child: Text('Scan QR Values')),
                               ],
                             ),
-                            
+
                             ////////
                             ///////
                             //////
@@ -887,8 +890,11 @@ String screenName='';
                                     activeColor: LightColor.primaryColor,
                                     onChanged: (bool? value) {
                                       setState(() {
-                                        QualityQuestionEditController.range = !QualityQuestionEditController.range;
-                                        QualityQuestionEditController.rangeManditory = false;
+                                        QualityQuestionEditController.range =
+                                            !QualityQuestionEditController
+                                                .range;
+                                        QualityQuestionEditController
+                                            .rangeManditory = false;
                                       });
                                     },
                                   ),
@@ -897,97 +903,119 @@ String screenName='';
                                   flex: 3,
                                   child: Text('Range'),
                                 ),
-                             QualityQuestionEditController.range?   Expanded(
-                                  flex: 3,
-                                  child: Row(
-                                    children: [
-                                      SizedBox(
-                                        width: customWidth(30),
-                                        height: customHeight(30),
-                                        child: TextFormField(
-                                          validator: (val) {
-                                            return null;
-                                          },
-                                          onChanged: (value) {
-                                            QualityQuestionEditController.rangeFrom = value;
-                                          },
-                                          decoration: InputDecoration(
-                                            hintText: QualityQuestionEditController.rangeFrom==""?"From":QualityQuestionEditController.rangeFrom,
-                                            // border: OutlineInputBorder(
-                                            //     borderRadius: BorderRadius.circular(20)),
-                                            fillColor: Colors.grey.shade200,
-                                            filled: true,
-                                            floatingLabelStyle:
-                                                AppTheme.h2Style,
-                                          ),
-                                        ),
-                                      ),
-                                      Text(
-                                        " - ",
-                                        style: AppTheme.h6Style,
-                                      ),
-                                      SizedBox(
-                                        width: customWidth(30),
-                                        height: customHeight(30),
-                                        child: TextFormField(
-                                            validator: (val) {},
-                                             decoration: InputDecoration(
-                                            hintText: QualityQuestionEditController.rangeTo==""?"To":QualityQuestionEditController.rangeTo,
-                                            // border: OutlineInputBorder(
-                                            //     borderRadius: BorderRadius.circular(20)),
-                                            fillColor: Colors.grey.shade200,
-                                            filled: true,
-                                            floatingLabelStyle:
-                                                AppTheme.h2Style,
-                                          ),
-                                            
-                                            onChanged: (value) {
-                                             QualityQuestionEditController. rangeTo = value;
-                                              double torange =
-                                                  double.parse(value);
-                                              double startrange =
-                                                  double.parse(QualityQuestionEditController.rangeFrom);
-                                                  
-                                             Future.delayed(Duration(seconds: 4), (){
-                                              
-                                              if (startrange > torange) {
-                                                showDialog(
-                                                  context: context,
-                                                  builder: (context) =>
-                                                      AlertDialog(
-                                                    title: Text('Error'),
-                                                    content: Text(
-                                                        'Starting range must lower than ending range'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () {
-                                                          
-                                                          Navigator.pop(
-                                                              context);
-                                                        },
-                                                        child: Text('OK'),
-                                                      ),
-                                                    ],
+                                QualityQuestionEditController.range
+                                    ? Expanded(
+                                        flex: 3,
+                                        child: Row(
+                                          children: [
+                                            SizedBox(
+                                              width: customWidth(30),
+                                              height: customHeight(30),
+                                              child: TextFormField(
+                                                validator: (val) {
+                                                  return null;
+                                                },
+                                                onChanged: (value) {
+                                                  QualityQuestionEditController
+                                                      .rangeFrom = value;
+                                                },
+                                                decoration: InputDecoration(
+                                                  hintText:
+                                                      QualityQuestionEditController
+                                                                  .rangeFrom ==
+                                                              ""
+                                                          ? "From"
+                                                          : QualityQuestionEditController
+                                                              .rangeFrom,
+                                                  // border: OutlineInputBorder(
+                                                  //     borderRadius: BorderRadius.circular(20)),
+                                                  fillColor:
+                                                      Colors.grey.shade200,
+                                                  filled: true,
+                                                  floatingLabelStyle:
+                                                      AppTheme.h2Style,
+                                                ),
+                                              ),
+                                            ),
+                                            Text(
+                                              " - ",
+                                              style: AppTheme.h6Style,
+                                            ),
+                                            SizedBox(
+                                              width: customWidth(30),
+                                              height: customHeight(30),
+                                              child: TextFormField(
+                                                  validator: (val) {},
+                                                  decoration: InputDecoration(
+                                                    hintText:
+                                                        QualityQuestionEditController
+                                                                    .rangeTo ==
+                                                                ""
+                                                            ? "To"
+                                                            : QualityQuestionEditController
+                                                                .rangeTo,
+                                                    // border: OutlineInputBorder(
+                                                    //     borderRadius: BorderRadius.circular(20)),
+                                                    fillColor:
+                                                        Colors.grey.shade200,
+                                                    filled: true,
+                                                    floatingLabelStyle:
+                                                        AppTheme.h2Style,
                                                   ),
-                                                );
-                                              }
-});
-                                              decoration:
-                                              InputDecoration(
-                                                hintText: "To",
-                                                // border: OutlineInputBorder(
-                                                //     borderRadius: BorderRadius.circular(20)),
-                                                fillColor: Colors.grey.shade200,
-                                                filled: true,
-                                                floatingLabelStyle:
-                                                    AppTheme.h2Style,
-                                              );
-                                            }),
-                                      ),
-                                    ],
-                                  ),
-                                ):Expanded(flex: 3,child: SizedBox()),
-                              
+                                                  onChanged: (value) {
+                                                    QualityQuestionEditController
+                                                        .rangeTo = value;
+                                                    double torange =
+                                                        double.parse(value);
+                                                    double startrange =
+                                                        double.parse(
+                                                            QualityQuestionEditController
+                                                                .rangeFrom);
+
+                                                    Future.delayed(
+                                                        Duration(seconds: 4),
+                                                        () {
+                                                      if (startrange >
+                                                          torange) {
+                                                        showDialog(
+                                                          context: context,
+                                                          builder: (context) =>
+                                                              AlertDialog(
+                                                            title:
+                                                                Text('Error'),
+                                                            content: Text(
+                                                                'Starting range must lower than ending range'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () {
+                                                                  Navigator.pop(
+                                                                      context);
+                                                                },
+                                                                child:
+                                                                    Text('OK'),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        );
+                                                      }
+                                                    });
+                                                    decoration:
+                                                    InputDecoration(
+                                                      hintText: "To",
+                                                      // border: OutlineInputBorder(
+                                                      //     borderRadius: BorderRadius.circular(20)),
+                                                      fillColor:
+                                                          Colors.grey.shade200,
+                                                      filled: true,
+                                                      floatingLabelStyle:
+                                                          AppTheme.h2Style,
+                                                    );
+                                                  }),
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    : Expanded(flex: 3, child: SizedBox()),
                               ],
                             ),
                             ////////
@@ -1000,15 +1028,20 @@ String screenName='';
                                 Expanded(
                                   flex: 1,
                                   child: Checkbox(
-                                    value: QualityQuestionEditController.inputText,
+                                    value:
+                                        QualityQuestionEditController.inputText,
                                     checkColor:
                                         Colors.white, // color of tick Mark
                                     activeColor: LightColor.primaryColor,
                                     onChanged: (bool? value) {
-                                     setState(() {
-                                        QualityQuestionEditController.inputText = !QualityQuestionEditController.inputText;
-                                        QualityQuestionEditController.inputTextManditory = false;
-                                   });
+                                      setState(() {
+                                        QualityQuestionEditController
+                                                .inputText =
+                                            !QualityQuestionEditController
+                                                .inputText;
+                                        QualityQuestionEditController
+                                            .inputTextManditory = false;
+                                      });
                                     },
                                   ),
                                 ),
@@ -1019,10 +1052,9 @@ String screenName='';
                                 Expanded(
                                     flex: 3,
                                     child: Text('Accept Text or Number')),
-                               
                               ],
                             ), ////////
-                                ///Answer Image
+                            ///Answer Image
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
@@ -1035,8 +1067,11 @@ String screenName='';
                                     activeColor: LightColor.primaryColor,
                                     onChanged: (bool? value) {
                                       setState(() {
-                                        QualityQuestionEditController.image = !QualityQuestionEditController.image;
-                                        QualityQuestionEditController.imageManditory = false;
+                                        QualityQuestionEditController.image =
+                                            !QualityQuestionEditController
+                                                .image;
+                                        QualityQuestionEditController
+                                            .imageManditory = false;
                                       });
                                     },
                                   ),
@@ -1048,10 +1083,9 @@ String screenName='';
                                 Expanded(
                                     flex: 3,
                                     child: Text('Image file can be uploaded')),
-                               
                               ],
                             ),
-                            
+
                             ////////
                             ///////
                             //////
@@ -1062,14 +1096,18 @@ String screenName='';
                                 Expanded(
                                   flex: 1,
                                   child: Checkbox(
-                                    value: QualityQuestionEditController.dropdown,
+                                    value:
+                                        QualityQuestionEditController.dropdown,
                                     checkColor:
                                         Colors.white, // color of tick Mark
                                     activeColor: LightColor.primaryColor,
                                     onChanged: (bool? value) {
                                       setState(() {
-                                        QualityQuestionEditController.dropdown = !QualityQuestionEditController.dropdown;
-                                        QualityQuestionEditController.dropDownManditory = false;
+                                        QualityQuestionEditController.dropdown =
+                                            !QualityQuestionEditController
+                                                .dropdown;
+                                        QualityQuestionEditController
+                                            .dropDownManditory = false;
                                       });
                                     },
                                   ),
@@ -1078,190 +1116,306 @@ String screenName='';
                                   flex: 3,
                                   child: Text('DropDown'),
                                 ),
-                              QualityQuestionEditController.dropdown ?   Expanded(
-                                  flex: 3,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                         Text('English', style: AppTheme.h9Style,),
-                                      TextFormField(
-                                        controller: controller.dropDownValueEnglishController,
-                                        keyboardType: TextInputType.multiline,
-                                        minLines: 1,
-                                        maxLines: 7,
-                                        validator: (val) {
-                                          return null;
-                                        },
-                                        onChanged: (value) {
-                                          QualityQuestionEditController.dropDownDataEnglish = controller.dropDownValueEnglishController.text;
-                                        },
-                                        decoration: InputDecoration(
-                                          // hintText:
-                                          //     QualityQuestionEditController.dropDownData==""?"Add Drop Down Values seperate by ||.(eg:one||Two||Three)":QualityQuestionEditController.dropDownData,
-                                          hintStyle: TextStyle(
-                                              fontSize: customFontSize(4)),
-                                          fillColor: Colors.grey.shade200,
-                                          filled: true,
-                                          floatingLabelStyle: AppTheme.h2Style,
+                                QualityQuestionEditController.dropdown
+                                    ? Expanded(
+                                        flex: 3,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'English',
+                                              style: AppTheme.h9Style,
+                                            ),
+                                            TextFormField(
+                                              controller: controller
+                                                  .dropDownValueEnglishController,
+                                              keyboardType:
+                                                  TextInputType.multiline,
+                                              minLines: 1,
+                                              maxLines: 7,
+                                              validator: (val) {
+                                                return null;
+                                              },
+                                              onChanged: (value) {
+                                                QualityQuestionEditController
+                                                        .dropDownDataEnglish =
+                                                    controller
+                                                        .dropDownValueEnglishController
+                                                        .text;
+                                              },
+                                              decoration: InputDecoration(
+                                                // hintText:
+                                                //     QualityQuestionEditController.dropDownData==""?"Add Drop Down Values seperate by ||.(eg:one||Two||Three)":QualityQuestionEditController.dropDownData,
+                                                hintStyle: TextStyle(
+                                                    fontSize:
+                                                        customFontSize(4)),
+                                                fillColor: Colors.grey.shade200,
+                                                filled: true,
+                                                floatingLabelStyle:
+                                                    AppTheme.h2Style,
+                                              ),
+                                            ),
+                                            Text(
+                                              'Czech',
+                                              style: AppTheme.h9Style,
+                                            ),
+                                            TextFormField(
+                                              controller: controller
+                                                  .dropDownValueCzechController,
+                                              keyboardType:
+                                                  TextInputType.multiline,
+                                              minLines: 1,
+                                              maxLines: 7,
+                                              validator: (val) {
+                                                return null;
+                                              },
+                                              onChanged: (value) {
+                                                QualityQuestionEditController
+                                                        .dropDownDataCzech =
+                                                    controller
+                                                        .dropDownValueCzechController
+                                                        .text;
+                                              },
+                                              decoration: InputDecoration(
+                                                // hintText:
+                                                //     QualityQuestionEditController.dropDownData==""?"Add Drop Down Values seperate by ||.(eg:one||Two||Three)":QualityQuestionEditController.dropDownData,
+                                                hintStyle: TextStyle(
+                                                    fontSize:
+                                                        customFontSize(4)),
+                                                fillColor: Colors.grey.shade200,
+                                                filled: true,
+                                                floatingLabelStyle:
+                                                    AppTheme.h2Style,
+                                              ),
+                                            ),
+                                            Text(
+                                              'Vietnam',
+                                              style: AppTheme.h9Style,
+                                            ),
+                                            TextFormField(
+                                              controller: controller
+                                                  .dropDownValueVietnamController,
+                                              keyboardType:
+                                                  TextInputType.multiline,
+                                              minLines: 1,
+                                              maxLines: 7,
+                                              validator: (val) {
+                                                return null;
+                                              },
+                                              onChanged: (value) {
+                                                QualityQuestionEditController
+                                                        .dropDownDataVietnam =
+                                                    controller
+                                                        .dropDownValueVietnamController
+                                                        .text;
+                                              },
+                                              decoration: InputDecoration(
+                                                // hintText:
+                                                //     QualityQuestionEditController.dropDownData==""?"Add Drop Down Values seperate by ||.(eg:one||Two||Three)":QualityQuestionEditController.dropDownData,
+                                                hintStyle: TextStyle(
+                                                    fontSize:
+                                                        customFontSize(4)),
+                                                fillColor: Colors.grey.shade200,
+                                                filled: true,
+                                                floatingLabelStyle:
+                                                    AppTheme.h2Style,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ),
-                                         Text('Czech', style: AppTheme.h9Style,),
-                                        TextFormField(
-                                        controller: controller.dropDownValueCzechController,
-                                        keyboardType: TextInputType.multiline,
-                                        minLines: 1,
-                                        maxLines: 7,
-                                        validator: (val) {
-                                          return null;
-                                        },
-                                        onChanged: (value) {
-                                          QualityQuestionEditController.dropDownDataCzech = controller.dropDownValueCzechController.text;
-                                        },
-                                        decoration: InputDecoration(
-                                          // hintText:
-                                          //     QualityQuestionEditController.dropDownData==""?"Add Drop Down Values seperate by ||.(eg:one||Two||Three)":QualityQuestionEditController.dropDownData,
-                                          hintStyle: TextStyle(
-                                              fontSize: customFontSize(4)),
-                                          fillColor: Colors.grey.shade200,
-                                          filled: true,
-                                          floatingLabelStyle: AppTheme.h2Style,
-                                        ),
-                                      ),
-                                         Text('Vietnam', style: AppTheme.h9Style,),
-                                        TextFormField(
-                                        controller: controller.dropDownValueVietnamController,
-                                        keyboardType: TextInputType.multiline,
-                                        minLines: 1,
-                                        maxLines: 7,
-                                        validator: (val) {
-                                          return null;
-                                        },
-                                        onChanged: (value) {
-                                          QualityQuestionEditController.dropDownDataVietnam = controller.dropDownValueVietnamController.text;
-                                        },
-                                        decoration: InputDecoration(
-                                          // hintText:
-                                          //     QualityQuestionEditController.dropDownData==""?"Add Drop Down Values seperate by ||.(eg:one||Two||Three)":QualityQuestionEditController.dropDownData,
-                                          hintStyle: TextStyle(
-                                              fontSize: customFontSize(4)),
-                                          fillColor: Colors.grey.shade200,
-                                          filled: true,
-                                          floatingLabelStyle: AppTheme.h2Style,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ):Expanded(flex: 3,child: SizedBox()),
-                              
+                                      )
+                                    : Expanded(flex: 3, child: SizedBox()),
                               ],
                             ),
                             ////////
                             ///////
                             //////
-                        
 
                             // // Numerictype(),
                             // // predefinedtype(),
                             // yesornotype(),
                             //   ImagePickerWidget(),
-                              customVerticalGap(20),Text('Image Upload',style: TextStyle(fontWeight: FontWeight.bold),),
+                            customVerticalGap(20),
+                            Text(
+                              'Image Upload',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
 
-                            Container(height: customHeight(150),width: double.infinity,color: Colors.white,child: Row(
-                              children: [
-                               Padding(
-                                 padding: const EdgeInsets.only(left:8.0,right: 8),
-                                 child: GestureDetector(onTap: (){
-                                    _selectedimages(true);
+                            Container(
+                              height: customHeight(150),
+                              width: double.infinity,
+                              color: Colors.white,
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 8.0, right: 8),
+                                    child: GestureDetector(
+                                        onTap: () {
+                                          _selectedimages(true);
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              color: Colors.grey.shade300),
+                                          height: customHeight(130),
+                                          width: customWidth(40),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text('Delete & Add'),
+                                              Icon(
+                                                Icons.add,
+                                                color: Colors.black,
+                                                size: customHeight(50),
+                                              ),
+                                            ],
+                                          ),
+                                        )),
+                                  ),
+                                  QualityQuestionEditController
+                                              .selectedimagesin64bytesfromurl
+                                              .length >
+                                          0
+                                      ? ListView.builder(
+                                          shrinkWrap: true,
+                                          itemCount:
+                                              QualityQuestionEditController
+                                                  .selectedimagesin64bytesfromurl
+                                                  .length,
+                                          scrollDirection: Axis.horizontal,
+                                          itemBuilder: (context, index) {
+                                            return Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Stack(
+                                                children: [
+                                                  SizedBox(
+                                                      height: customHeight(140),
+                                                      child: Image.memory(
+                                                          QualityQuestionEditController
+                                                                  .selectedimagesin64bytesfromurl[
+                                                              index] as Uint8List)),
+                                                  GestureDetector(
+                                                    onTap: () {
+                                                      setState(() {
+                                                        QualityQuestionEditController
+                                                            .selectedimagesin64bytesfromurl
+                                                            .removeAt(index);
+                                                      });
+                                                    },
+                                                    child: Container(
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        20),
+                                                            color: Colors.grey
+                                                                .withOpacity(
+                                                                    .5)),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(2.0),
+                                                          child: Icon(
+                                                            Icons.close,
+                                                            color: Colors.red,
+                                                          ),
+                                                        )),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        )
+                                      : Text('No Image Selected')
+                                ],
+                              ),
+                            ),
+                            customVerticalGap(20),
+                            Text(
+                              'Video Upload',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
 
-                                 },child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.grey.shade300),height: customHeight(130),width: customWidth(40),child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                   children: [
+                            Container(
+                              height: customHeight(150),
+                              width: double.infinity,
+                              color: Colors.white,
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 8.0, right: 8),
+                                    child: GestureDetector(
+                                        onTap: () {
+                                          _selectvideoFile(true);
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              color: Colors.grey.shade300),
+                                          height: customHeight(130),
+                                          width: customWidth(40),
+                                          child: Icon(
+                                            Icons.add,
+                                            color: Colors.black,
+                                            size: customHeight(50),
+                                          ),
+                                        )),
+                                  ),
+                                  QualityQuestionEditController
+                                              .base64StringVDO.length >
+                                          0
+                                      ? ListView.builder(
+                                          shrinkWrap: true,
+                                          itemCount:
+                                              QualityQuestionEditController
+                                                  .base64StringVDO.length,
+                                          scrollDirection: Axis.horizontal,
+                                          itemBuilder: (context, index) {
+                                            return Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Stack(
+                                                children: [
+                                                  SizedBox(
+                                                      height: customHeight(140),
+                                                      child: Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Text(
+                                                              'Video ${index + 1}'),
+                                                        ],
+                                                      )),
+                                                  //  GestureDetector(
+                                                  //   onTap: (){
+                                                  //     setState(() {
+                                                  //              base64StringVDO.removeAt(index);
 
-                                    Text('Delete & Add'),
-                                     Icon(Icons.add,color: Colors.black,size: customHeight(50),),
-                                   ],
-                                 ),)),
-                               ),
-                           QualityQuestionEditController.selectedimagesin64bytesfromurl.length>0?    ListView.builder(
-                                  shrinkWrap: true,
-              itemCount: QualityQuestionEditController.selectedimagesin64bytesfromurl.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Stack(
-                    children: [
-                      
-                     
-                      SizedBox(height: customHeight(140),child: Image.memory(QualityQuestionEditController.selectedimagesin64bytesfromurl[index] as Uint8List)),
-                      //  GestureDetector(
-                      //   onTap: (){
-                      //     setState(() {
-                      //              QualityQuestionEditController.selectedimagesin64bytesfromurl.removeAt(index);
-                            
-                      //     });
-                       
-                      //   },
-                      //    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.grey.withOpacity(.5)),child: Padding(
-                      //      padding: const EdgeInsets.all(2.0),
-                      //      child: Icon(Icons.close,color: Colors.red,),
-                      //    )),
-                      //  ),
-                    ],
-                  ),
-                );
-              },
-            ):Text('No Image Selected')
-                              ],
-                            ),),
-                             customVerticalGap(20),Text('Video Upload',style: TextStyle(fontWeight: FontWeight.bold),),
+                                                  //     });
 
-                            Container(height: customHeight(150),width: double.infinity,color: Colors.white,child: Row(
-                              children: [
-                               Padding(
-                                 padding: const EdgeInsets.only(left:8.0,right: 8),
-                                 child: GestureDetector(onTap: (){
-                                     _selectvideoFile(true);
-
-                                 },child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.grey.shade300),height: customHeight(130),width: customWidth(40),child: Icon(Icons.add,color: Colors.black,size: customHeight(50),),)),
-                               ),
-                            QualityQuestionEditController.base64StringVDO.length>0?    ListView.builder(
-                                  shrinkWrap: true,
-              itemCount: QualityQuestionEditController.base64StringVDO.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Stack(
-                    children: [
-                      
-                     
-                      SizedBox(height: customHeight(140),child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('Video ${index+1}'),
-                        ],
-                      )),
-                      //  GestureDetector(
-                      //   onTap: (){
-                      //     setState(() {
-                      //              base64StringVDO.removeAt(index);
-                            
-                      //     });
-                       
-                      //   },
-                      //    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.grey.withOpacity(.5)),child: Padding(
-                      //      padding: const EdgeInsets.all(2.0),
-                      //      child: Icon(Icons.close,color: Colors.red,),
-                      //    )),
-                      //  ),
-                    ],
-                  ),
-                );
-              },
-            ):Text('No Video Selected')
-                              ],
-                            ),),
+                                                  //   },
+                                                  //    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.grey.withOpacity(.5)),child: Padding(
+                                                  //      padding: const EdgeInsets.all(2.0),
+                                                  //      child: Icon(Icons.close,color: Colors.red,),
+                                                  //    )),
+                                                  //  ),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        )
+                                      : Text('No Video Selected')
+                                ],
+                              ),
+                            ),
                             customVerticalGap(20),
 
                             Row(
@@ -1291,57 +1445,70 @@ String screenName='';
                                   ),
                                 ),
                                 InkWell(
-                                  onTap: () {  if(selectedimagesin64bytes.isNotEmpty){
-            QualityQuestionEditController.base64StringVDO=base64StringVDO;
-          }
-          else{
-            QualityQuestionEditController.base64StringVDO.clear();
+                                  onTap: () {
+                                    if (selectedimagesin64bytes.isNotEmpty) {
+                                      QualityQuestionEditController
+                                          .base64StringVDO = base64StringVDO;
+                                    } else {
+                                      QualityQuestionEditController
+                                          .base64StringVDO
+                                          .clear();
+                                    }
+                                    if (selectedimagesin64bytes.isNotEmpty) {
+                                      QualityQuestionEditController
+                                              .selectedimagesin64bytes =
+                                          selectedimagesin64bytes;
+                                    } else {
+                                      QualityQuestionEditController
+                                          .selectedimagesin64bytes
+                                          .clear();
+                                    }
+                                    if (base64StringVDO.isNotEmpty) {
+                                      controller
+                                          .putEditQuestionDetails(
+                                              vdo: base64StringVDO.first,
+                                              screenName: screenName)
+                                          .then((value) {
+                                        Get.back();
+                                        Get.back();
 
-          }
-           if(selectedimagesin64bytes.isNotEmpty){
-            QualityQuestionEditController.selectedimagesin64bytes=selectedimagesin64bytes;
-          }
-          else{
-            QualityQuestionEditController.selectedimagesin64bytes.clear();
-
-          }
-          if(base64StringVDO.isNotEmpty){
-            controller.putEditQuestionDetails(vdo:  base64StringVDO.first,screenName: screenName).then((value) {
-                              
-                                      Get.back();
-                                       Get.back();
-                                      
-                                      QualityQuestionEditController.productId=null;
-                                    }).then((value) {
-                                      setState(() {
-                                        screenName=='Quality'?
-                                          Get.find<HomeScreenController>().setHomeScreen('Products'):Get.find<HomeScreenController>().setHomeScreen('ASSEMBLY PLAN');
-                                        
+                                        QualityQuestionEditController
+                                            .productId = null;
+                                      }).then((value) {
+                                        setState(() {
+                                          screenName == 'Quality'
+                                              ? Get.find<HomeScreenController>()
+                                                  .setHomeScreen('Products')
+                                              : Get.find<HomeScreenController>()
+                                                  .setHomeScreen(
+                                                      'ASSEMBLY PLAN');
+                                        });
                                       });
-                                      
-                                    });
+                                    } else {
+                                      controller
+                                          .putEditQuestionDetails(
+                                              vdo: '', screenName: screenName)
+                                          .then((value) {
+                                        Get.back();
+                                        Get.back();
 
-          }else{
-            controller.putEditQuestionDetails(vdo: '',screenName: screenName).then((value) {
-                              
-                                      Get.back();
-                                       Get.back();
-                                      
-                                      QualityQuestionEditController.productId=null;
-                                    }).then((value) {
-                                      setState(() {
-                                            screenName=='Quality'?
-                                          Get.find<HomeScreenController>().setHomeScreen('Products'):Get.find<HomeScreenController>().setHomeScreen('ASSEMBLY PLAN');
-                                        
+                                        QualityQuestionEditController
+                                            .productId = null;
+                                      }).then((value) {
+                                        setState(() {
+                                          screenName == 'Quality'
+                                              ? Get.find<HomeScreenController>()
+                                                  .setHomeScreen('Products')
+                                              : Get.find<HomeScreenController>()
+                                                  .setHomeScreen(
+                                                      'ASSEMBLY PLAN');
+                                        });
                                       });
-                                      
-                                    });
-          }
-                                    
-                                    showSnackBar(message: 'Question Details Updated');
-                                  
-                                  
-                                 },
+                                    }
+
+                                    showSnackBar(
+                                        message: 'Question Details Updated');
+                                  },
                                   child: Container(
                                     alignment: Alignment.center,
                                     width: customWidth(50),
