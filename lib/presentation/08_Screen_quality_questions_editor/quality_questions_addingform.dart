@@ -113,7 +113,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
         setState(() {
           pickedImagesInBytes.add(element.bytes as Uint8List);
           QualityQuestionEditController.selectedimagesin64bytesfromurl
-              .add(element.bytes as String);
+              .add(element.bytes as Uint8List);
           selectedimages.add(element.name);
           selectedimagesin64bytes.add(base64.encode(element.bytes!));
           //selectedImageInBytes = fileResult.files.first.bytes;

@@ -81,7 +81,7 @@ class QualityQuestionEditController extends GetxController {
       TextEditingController();
 
   static List<String> selectedimagesin64bytes = [];
-  static List<String> selectedimagesin64bytesfromurl = [];
+  static List<Uint8List> selectedimagesin64bytesfromurl = [];
   static List<String> selectedimagesinbase64listfromurl = [];
 
   static List<String> base64StringVDO = [];
@@ -96,7 +96,7 @@ class QualityQuestionEditController extends GetxController {
       final response = await http
           .get(Uri.parse('http://65.1.86.132' + selectedimagesin64bytes[i]));
       if (response.statusCode == 200) {
-        selectedimagesin64bytesfromurl.add(base64.encode(response.bodyBytes));
+        selectedimagesin64bytesfromurl.add(response.bodyBytes);
         selectedimagesinbase64listfromurl
             .add(base64.encode(response.bodyBytes));
         // print('000---------1111${selectedimagesin64bytesfromurl}');
