@@ -105,7 +105,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
   _selectedimages(bool imageFrom) async {
     FilePickerResult? fileResult = await FilePicker.platform
         .pickFiles(allowMultiple: true, type: FileType.image);
-    QualityQuestionEditController.selectedimagesin64bytesfromurl.clear();
+    // QualityQuestionEditController.selectedimagesin64bytesfromurl.clear();
 
     if (fileResult != null) {
       selctFile = fileResult.files.first.name;
@@ -114,8 +114,16 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
           pickedImagesInBytes.add(element.bytes as Uint8List);
           QualityQuestionEditController.selectedimagesin64bytesfromurl
               .add(element.bytes as Uint8List);
+
           selectedimages.add(element.name);
-          selectedimagesin64bytes.add(base64.encode(element.bytes!));
+          if (QualityQuestionEditController
+              .selectedimagesinbase64listfromurl.isNotEmpty) {
+            QualityQuestionEditController.selectedimagesinbase64listfromurl
+                .add(base64.encode(element.bytes!));
+          } else {
+            selectedimagesin64bytes.add(base64.encode(element.bytes!));
+          }
+
           //selectedImageInBytes = fileResult.files.first.bytes;
           imageCounts += 1;
           if (selectedimagesin64bytes.isNotEmpty) {
@@ -124,6 +132,8 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
             // QualityQuestionEditController.selectedimagesin64bytesfromurl=selectedimagesin64bytes;
           } else {
             QualityQuestionEditController.selectedimagesin64bytes.clear();
+            // QualityQuestionEditController.selectedimagesinbase64listfromurl
+            //     .clear();
           }
         });
       });
@@ -1305,6 +1315,9 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                                         QualityQuestionEditController
                                                             .selectedimagesin64bytesfromurl
                                                             .removeAt(index);
+                                                        QualityQuestionEditController
+                                                            .selectedimagesinbase64listfromurl //bytes list removing
+                                                            .removeAt(index);
                                                       });
                                                     },
                                                     child: Container(
@@ -1458,11 +1471,19 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                       QualityQuestionEditController
                                               .selectedimagesin64bytes =
                                           selectedimagesin64bytes;
+                                    } else if (QualityQuestionEditController
+                                        .selectedimagesinbase64listfromurl
+                                        .isNotEmpty) {
+                                      QualityQuestionEditController
+                                              .selectedimagesin64bytes =
+                                          QualityQuestionEditController
+                                              .selectedimagesinbase64listfromurl;
                                     } else {
                                       QualityQuestionEditController
                                           .selectedimagesin64bytes
                                           .clear();
                                     }
+
                                     if (base64StringVDO.isNotEmpty) {
                                       controller
                                           .putEditQuestionDetails(

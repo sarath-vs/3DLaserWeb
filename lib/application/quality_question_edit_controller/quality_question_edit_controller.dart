@@ -88,7 +88,7 @@ class QualityQuestionEditController extends GetxController {
 
   Future<void> networkImageToBase64() async {
     selectedimagesin64bytesfromurl.clear();
-
+    selectedimagesinbase64listfromurl.clear();
     for (int i = 0; i < selectedimagesin64bytes.length; i++) {
       // print('=====$i');
       //  http.Response response = await http.get(Uri.parse('http://65.1.86.132'+selectedimagesin64bytes[i]) );
@@ -199,7 +199,7 @@ class QualityQuestionEditController extends GetxController {
       resp.data!.toolsUsed!.forEach((element) {
         tools.add(element.toolId!);
       });
-
+      // selectedimagesin64bytes = selectedimagesinbase64listfromurl;
       customLog(resp);
       await networkImageToBase64();
 
