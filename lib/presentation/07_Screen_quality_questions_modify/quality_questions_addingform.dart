@@ -1182,6 +1182,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                         onTap: (){
                           setState(() {
                                    pickedImagesInBytes.removeAt(index);
+                                   selectedimagesin64bytes.removeAt(index);
                             
                           });
                        
