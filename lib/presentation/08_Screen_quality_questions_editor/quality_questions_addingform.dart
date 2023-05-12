@@ -1290,60 +1290,62 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                               .selectedimagesin64bytesfromurl
                                               .length >
                                           0
-                                      ? ListView.builder(
-                                          shrinkWrap: true,
-                                          itemCount:
-                                              QualityQuestionEditController
-                                                  .selectedimagesin64bytesfromurl
-                                                  .length,
-                                          scrollDirection: Axis.horizontal,
-                                          itemBuilder: (context, index) {
-                                            return Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Stack(
-                                                children: [
-                                                  SizedBox(
-                                                      height: customHeight(140),
-                                                      child: Image.memory(
+                                      ? Expanded(
+                                        child: ListView.builder(
+                                            shrinkWrap: true,
+                                            itemCount:
+                                                QualityQuestionEditController
+                                                    .selectedimagesin64bytesfromurl
+                                                    .length,
+                                            scrollDirection: Axis.horizontal,
+                                            itemBuilder: (context, index) {
+                                              return Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Stack(
+                                                  children: [
+                                                    SizedBox(
+                                                        height: customHeight(140),
+                                                        child: Image.memory(
+                                                            QualityQuestionEditController
+                                                                    .selectedimagesin64bytesfromurl[
+                                                                index] as Uint8List)),
+                                                    GestureDetector(
+                                                      onTap: () {
+                                                        setState(() {
                                                           QualityQuestionEditController
-                                                                  .selectedimagesin64bytesfromurl[
-                                                              index] as Uint8List)),
-                                                  GestureDetector(
-                                                    onTap: () {
-                                                      setState(() {
-                                                        QualityQuestionEditController
-                                                            .selectedimagesin64bytesfromurl
-                                                            .removeAt(index);
-                                                        QualityQuestionEditController
-                                                            .selectedimagesinbase64listfromurl //bytes list removing
-                                                            .removeAt(index);
-                                                      });
-                                                    },
-                                                    child: Container(
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20),
-                                                            color: Colors.grey
-                                                                .withOpacity(
-                                                                    .5)),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(2.0),
-                                                          child: Icon(
-                                                            Icons.close,
-                                                            color: Colors.red,
-                                                          ),
-                                                        )),
-                                                  ),
-                                                ],
-                                              ),
-                                            );
-                                          },
-                                        )
+                                                              .selectedimagesin64bytesfromurl
+                                                              .removeAt(index);
+                                                          QualityQuestionEditController
+                                                              .selectedimagesinbase64listfromurl //bytes list removing
+                                                              .removeAt(index);
+                                                        });
+                                                      },
+                                                      child: Container(
+                                                          decoration: BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20),
+                                                              color: Colors.grey
+                                                                  .withOpacity(
+                                                                      .5)),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(2.0),
+                                                            child: Icon(
+                                                              Icons.close,
+                                                              color: Colors.red,
+                                                            ),
+                                                          )),
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                      )
                                       : Text('No Image Selected')
                                 ],
                               ),

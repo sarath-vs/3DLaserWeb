@@ -1157,7 +1157,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                             //   ImagePickerWidget(),
                             customVerticalGap(20),Text('Image Upload',style: TextStyle(fontWeight: FontWeight.bold),),
 
-                            Container(height: customHeight(150),width: double.infinity,color: Colors.white,child: Row(
+                            Container(height: customHeight(150),color: Colors.white,child: Row(
                               children: [
                                Padding(
                                  padding: const EdgeInsets.only(left:8.0,right: 8),
@@ -1166,37 +1166,40 @@ class _QualityquestionformState extends State<Qualityquestionform> {
 
                                  },child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.grey.shade300),height: customHeight(130),width: customWidth(40),child: Icon(Icons.add,color: Colors.black,size: customHeight(50),),)),
                                ),
-                            pickedImagesInBytes.length>0?    ListView.builder(
-                                  shrinkWrap: true,
-              itemCount: pickedImagesInBytes.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Stack(
-                    children: [
-                      
-                     
-                      SizedBox(height: customHeight(140),child: Image.memory(pickedImagesInBytes[index])),
-                       GestureDetector(
-                        onTap: (){
-                          setState(() {
-                                   pickedImagesInBytes.removeAt(index);
-                                   selectedimagesin64bytes.removeAt(index);
-                            
-                          });
-                       
-                        },
-                         child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.grey.withOpacity(.5)),child: Padding(
-                           padding: const EdgeInsets.all(2.0),
-                           child: Icon(Icons.close,color: Colors.red,),
-                         )),
-                       ),
-                    ],
-                  ),
-                );
-              },
-            ):Text('No Image Selected')
+                            pickedImagesInBytes.length>0?    Expanded(
+                              child: ListView.builder(
+                                    shrinkWrap: true,
+                                          itemCount: pickedImagesInBytes.length,
+                                      physics: AlwaysScrollableScrollPhysics(),
+                                          scrollDirection: Axis.horizontal,
+                                          itemBuilder: (context, index) {
+                                            return Padding(
+                                              padding: const EdgeInsets.all(2.0),
+                                              child: Stack(
+                                                children: [
+                                                  
+                                                 
+                                                  SizedBox(height: customHeight(140),child: Image.memory(pickedImagesInBytes[index])),
+                                                   GestureDetector(
+                                                    // onTap: (){
+                                                    //   setState(() {
+                                                    //            pickedImagesInBytes.removeAt(index);
+                                                    //            selectedimagesin64bytes.removeAt(index);
+                              
+                                                    //   });
+                                                   
+                                                    // },
+                                                     child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.grey.withOpacity(.5)),child: Padding(
+                                                       padding: const EdgeInsets.all(2.0),
+                                                       child: Icon(Icons.close,color: Colors.red,),
+                                                     )),
+                                                   ),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        ),
+                            ):Text('No Image Selected')
                               ],
                             ),),
                               customVerticalGap(20),Text('Video Upload',style: TextStyle(fontWeight: FontWeight.bold),),
