@@ -85,7 +85,7 @@ class Categories extends StatelessWidget {
                                             .setHomeScreen('Qualityquestions');
                                       },
                                       tileColor: Colors.green.shade100,
-                                      leading: Text('${index + 1}'),
+                                     // leading: Text('${index + 1}'),
                                       title: Row(
                                         children: [
                                           Text(
@@ -266,7 +266,7 @@ class Categories extends StatelessWidget {
                                   itemCount:
                                       controller.qualityProductList.length);
                             } else {
-                              return Text('No Data');
+                              return Text('');
                             }
                           })),
                 ),

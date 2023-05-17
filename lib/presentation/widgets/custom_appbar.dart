@@ -69,49 +69,49 @@ Widget CustomAppBar(BuildContext context, bool showArrow, String screenName) {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: DropdownButton<Language>(
-                  underline: const SizedBox(),
-                  hint: Text(
-                    translation(context).language,
-                    style: TextStyle(
-                        fontSize: customFontSize(3), color: Colors.white),
-                  ),
-                  icon: const Icon(
-                    Icons.language,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                  onChanged: (Language? language) async {
-                    // setState(() async {
-                    Locale locale = await setLocale(language!.languageCode);
-                    // ignore: use_build_context_synchronously
-                    MyApp.setLocale(context, locale);
-                    // });
-                  },
-                  items: Language.languageList()
-                      .map<DropdownMenuItem<Language>>(
-                        (e) => DropdownMenuItem<Language>(
-                          value: e,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: <Widget>[
-                              Text(
-                                e.flag,
-                                style: TextStyle(fontSize: customFontSize(4)),
-                              ),
-                              Text(
-                                e.name,
-                                style: TextStyle(fontSize: customFontSize(3)),
-                              )
-                            ],
-                          ),
-                        ),
-                      )
-                      .toList(),
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: DropdownButton<Language>(
+              //     underline: const SizedBox(),
+              //     hint: Text(
+              //       translation(context).language,
+              //       style: TextStyle(
+              //           fontSize: customFontSize(3), color: Colors.white),
+              //     ),
+              //     icon: const Icon(
+              //       Icons.language,
+              //       color: Colors.white,
+              //       size: 20,
+              //     ),
+              //     onChanged: (Language? language) async {
+              //       // setState(() async {
+              //       Locale locale = await setLocale(language!.languageCode);
+              //       // ignore: use_build_context_synchronously
+              //       MyApp.setLocale(context, locale);
+              //       // });
+              //     },
+              //     items: Language.languageList()
+              //         .map<DropdownMenuItem<Language>>(
+              //           (e) => DropdownMenuItem<Language>(
+              //             value: e,
+              //             child: Row(
+              //               mainAxisAlignment: MainAxisAlignment.spaceAround,
+              //               children: <Widget>[
+              //                 Text(
+              //                   e.flag,
+              //                   style: TextStyle(fontSize: customFontSize(4)),
+              //                 ),
+              //                 Text(
+              //                   e.name,
+              //                   style: TextStyle(fontSize: customFontSize(3)),
+              //                 )
+              //               ],
+              //             ),
+              //           ),
+              //         )
+              //         .toList(),
+              //   ),
+              // ),
               customHorizontalGap(10),
               GestureDetector(
                 onTap: () {

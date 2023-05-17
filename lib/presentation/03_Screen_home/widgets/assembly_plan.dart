@@ -89,7 +89,7 @@ class AssemblyPlanScreen extends StatelessWidget {
                                           .setHomeScreen('ASSEMBLY QUESTION');
                                     },
                                     tileColor: Colors.blue.shade100,
-                                    leading: Text('${index + 1}'),
+                                    // leading: Text('${index + 1}'),
                                     title: Row(
                                       children: [
                                         Text(
@@ -327,7 +327,7 @@ class AssemblyPlanScreen extends StatelessWidget {
                                                 .setHomeScreen('FINAL ASSEMBLY QUESTIONS');
                                           },
                                           tileColor: Colors.red.shade100,
-                                          leading: Text('${index + 1}'),
+                                        //  leading: Text('${index + 1}'),
                                           title: Row(
                                             children: [
                                               Text(
