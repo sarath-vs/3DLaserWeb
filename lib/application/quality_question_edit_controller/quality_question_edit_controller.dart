@@ -82,9 +82,15 @@ class QualityQuestionEditController extends GetxController {
 
   static List<String> selectedimagesin64bytes = [];
   static List<Uint8List> selectedimagesin64bytesfromurl = [];
+
   static List<String> selectedimagesinbase64listfromurl = [];
 
   static List<String> base64StringVDO = [];
+  static List<String> covert64video = [];
+  static List<Uint8List> selectedunillist64video = [];
+  // static List<String> selectedvideosurl = [];
+  // static List<Uint8List> thumbnailvideoselectednw = [];
+  // Uint8List? singlethumbnailvideo;
 
   Future<void> networkImageToBase64() async {
     selectedimagesin64bytesfromurl.clear();
@@ -100,9 +106,32 @@ class QualityQuestionEditController extends GetxController {
         selectedimagesinbase64listfromurl
             .add(base64.encode(response.bodyBytes));
         // print('000---------1111${selectedimagesin64bytesfromurl}');
-        print('000---------1111${selectedimagesinbase64listfromurl}');
+        // print('000---------1111${selectedimagesinbase64listfromurl}');
       } else {
         throw Exception('Failed to load image');
+      }
+    }
+  }
+
+  Future<void> networkVideoToBase64() async {
+    selectedunillist64video.clear();
+    covert64video.clear();
+    // selectedvideosurl.clear();
+    for (int i = 0; i < base64StringVDO.length; i++) {
+      // print('=====$i');
+      //  http.Response response = await http.get(Uri.parse('http://65.1.86.132'+selectedimagesin64bytes[i]) );
+      // selectedvideosurl.add('http://65.1.86.132${base64StringVDO[i]}');
+
+      final response =
+          await http.get(Uri.parse('http://65.1.86.132' + base64StringVDO[i]));
+
+      if (response.statusCode == 200) {
+        selectedunillist64video.add(response.bodyBytes);
+        covert64video.add(base64.encode(response.bodyBytes));
+        // print('000---------1111---video-----$covert64video');
+        // print('000---------1111${selectedimagesinbase64listfromurl}');
+      } else {
+        throw Exception('Failed to load video');
       }
     }
   }
@@ -201,21 +230,28 @@ class QualityQuestionEditController extends GetxController {
       });
       // selectedimagesin64bytes = selectedimagesinbase64listfromurl;
       customLog(resp);
+      await networkVideoToBase64();
       await networkImageToBase64();
+      // await networkvideothumbnail();
 
-      print('-------${selectedimagesin64bytesfromurl.first}');
+      // print('-------${selectedimagesin64bytesfromurl.first}');
+      print(
+          "----video--------------${base64StringVDO.first}-------------------------*********");
       update([qualityQuestionDetailID]);
     });
   }
 
   Future<void> putEditQuestionDetails(
-      {required String vdo, required String screenName}) async {
+      {
+      // required String vdo,
+      required String screenName}) async {
     final dataToSend = {
       "description_english": discriptionEnglishController.text,
       "description_czech": discriptionCzechController.text,
       "description_german": discriptionGermanController.text,
       "image_base_64": selectedimagesin64bytes,
-      "video_base_64": [vdo],
+      "video_base_64": base64StringVDO,
+      // [vdo],
       "question_english": questionEnglishController.text,
       "question_czech": questionCzechController.text,
       "question_german": questionGermanController.text,

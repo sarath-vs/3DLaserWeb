@@ -56,11 +56,11 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
 
   String selctFile = '';
 
-  Uint8List? selectedvideoInBytes;
+  List<Uint8List> selectedvideoInBytes = [];
   List<Uint8List> pickedImagesInBytes = [];
   List<String> selectedimages = [];
   List<String> selectedimagesin64bytes = [];
-  String selectedvideo = "";
+  List<String> selectedvideo = [];
   var filePath = '';
   String? selectfilepath;
   List<String> base64StringVDO = [];
@@ -69,34 +69,47 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
   _selectvideoFile(bool imageFrom) async {
     FilePickerResult? fileResult = await FilePicker.platform
         .pickFiles(allowMultiple: false, type: FileType.video);
-    QualityQuestionEditController.base64StringVDO.clear();
+    // QualityQuestionEditController.base64StringVDO.clear();
     if (fileResult != null) {
+      print("*********************filesize***************");
+      print(fileResult.files.first.size);
+      print("*********************filesize***************");
+
       if (fileResult.files.first.size <=
           5851340) //size checking file this is for 5 mb
       {
         selctFile = fileResult.files.first.name;
         selectfilepath = fileResult.files.first.identifier;
+        fileResult.files.forEach((element) {
+          setState(() {
+            selectedvideo.add(element.name);
 
-        setState(() {
-          selectedvideo = selctFile;
+            selectedvideoInBytes.add(element.bytes as Uint8List);
+            QualityQuestionEditController.selectedunillist64video
+                .add(element.bytes as Uint8List);
 
-          selectedvideoInBytes = fileResult.files.first.bytes;
-          base64StringVDO.add(base64.encode(selectedvideoInBytes!));
-          QualityQuestionEditController.base64StringVDO
-              .add(base64.encode(selectedvideoInBytes!));
-          // imageCounts += 1;
-          // if(selectedimagesin64bytes.isNotEmpty){
-          //   QualityQuestionEditController.base64StringVDO=base64StringVDO;
-          // }
-          // else{
-          //   QualityQuestionEditController.base64StringVDO.clear();
+            // base64StringVDO.add(base64.encode(element.bytes!));
 
-          // }
+            if (QualityQuestionEditController.covert64video.isNotEmpty) {
+              QualityQuestionEditController.covert64video
+                  .add(base64.encode(element.bytes!));
+            } else {
+              base64StringVDO.add(base64.encode(element.bytes!));
+            }
+
+            if (base64StringVDO.isNotEmpty) {
+              QualityQuestionEditController.base64StringVDO = base64StringVDO;
+            } else {
+              QualityQuestionEditController.base64StringVDO.clear();
+            }
+          });
         });
+
         print("*********" +
             base64StringVDO.first +
             "**********"); //this is video byte string
       } else {
+        showSnackBar(message: 'please provide less than 5 mb video ');
         print("5mb less video provide");
       }
     }
@@ -1291,7 +1304,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                               .length >
                                           0
                                       ? Expanded(
-                                        child: ListView.builder(
+                                          child: ListView.builder(
                                             shrinkWrap: true,
                                             itemCount:
                                                 QualityQuestionEditController
@@ -1305,11 +1318,13 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                                 child: Stack(
                                                   children: [
                                                     SizedBox(
-                                                        height: customHeight(140),
+                                                        height:
+                                                            customHeight(140),
                                                         child: Image.memory(
                                                             QualityQuestionEditController
-                                                                    .selectedimagesin64bytesfromurl[
-                                                                index] as Uint8List)),
+                                                                        .selectedimagesin64bytesfromurl[
+                                                                    index]
+                                                                as Uint8List)),
                                                     GestureDetector(
                                                       onTap: () {
                                                         setState(() {
@@ -1345,7 +1360,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                               );
                                             },
                                           ),
-                                      )
+                                        )
                                       : Text('No Image Selected')
                                 ],
                               ),
@@ -1384,13 +1399,14 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                         )),
                                   ),
                                   QualityQuestionEditController
-                                              .base64StringVDO.length >
+                                              .selectedunillist64video.length >
                                           0
                                       ? ListView.builder(
                                           shrinkWrap: true,
                                           itemCount:
                                               QualityQuestionEditController
-                                                  .base64StringVDO.length,
+                                                  .selectedunillist64video
+                                                  .length,
                                           scrollDirection: Axis.horizontal,
                                           itemBuilder: (context, index) {
                                             return Padding(
@@ -1407,21 +1423,45 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                                         children: [
                                                           Text(
                                                               'Video ${index + 1}'),
+                                                          // Image.memory(
+                                                          //     QualityQuestionEditController
+                                                          //                 .selectedunillist64video[
+                                                          //             index]
+                                                          //         as Uint8List)
                                                         ],
                                                       )),
-                                                  //  GestureDetector(
-                                                  //   onTap: (){
-                                                  //     setState(() {
-                                                  //              base64StringVDO.removeAt(index);
-
-                                                  //     });
-
-                                                  //   },
-                                                  //    child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.grey.withOpacity(.5)),child: Padding(
-                                                  //      padding: const EdgeInsets.all(2.0),
-                                                  //      child: Icon(Icons.close,color: Colors.red,),
-                                                  //    )),
-                                                  //  ),
+                                                  GestureDetector(
+                                                    onTap: () {
+                                                      setState(() {
+                                                        // base64StringVDO
+                                                        //     .removeAt(index);
+                                                        QualityQuestionEditController
+                                                            .selectedunillist64video
+                                                            .removeAt(index);
+                                                        QualityQuestionEditController
+                                                            .covert64video //bytes list removing
+                                                            .removeAt(index);
+                                                      });
+                                                    },
+                                                    child: Container(
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        20),
+                                                            color: Colors.grey
+                                                                .withOpacity(
+                                                                    .5)),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(2.0),
+                                                          child: Icon(
+                                                            Icons.close,
+                                                            color: Colors.red,
+                                                          ),
+                                                        )),
+                                                  ),
                                                 ],
                                               ),
                                             );
@@ -1461,9 +1501,15 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    if (selectedimagesin64bytes.isNotEmpty) {
+                                    if (base64StringVDO.isNotEmpty) {
                                       QualityQuestionEditController
                                           .base64StringVDO = base64StringVDO;
+                                    } else if (QualityQuestionEditController
+                                        .covert64video.isNotEmpty) {
+                                      QualityQuestionEditController
+                                              .base64StringVDO =
+                                          QualityQuestionEditController
+                                              .covert64video;
                                     } else {
                                       QualityQuestionEditController
                                           .base64StringVDO
@@ -1485,49 +1531,71 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                           .selectedimagesin64bytes
                                           .clear();
                                     }
+                                    controller
+                                        .putEditQuestionDetails(
+                                            // vdo: base64StringVDO.first,
 
-                                    if (base64StringVDO.isNotEmpty) {
-                                      controller
-                                          .putEditQuestionDetails(
-                                              vdo: base64StringVDO.first,
-                                              screenName: screenName)
-                                          .then((value) {
-                                        Get.back();
-                                        Get.back();
+                                            screenName: screenName)
+                                        .then((value) {
+                                      Get.back();
+                                      Get.back();
 
-                                        QualityQuestionEditController
-                                            .productId = null;
-                                      }).then((value) {
-                                        setState(() {
-                                          screenName == 'Quality'
-                                              ? Get.find<HomeScreenController>()
-                                                  .setHomeScreen('Products')
-                                              : Get.find<HomeScreenController>()
-                                                  .setHomeScreen(
-                                                      'ASSEMBLY PLAN');
-                                        });
+                                      QualityQuestionEditController.productId =
+                                          null;
+                                    }).then((value) {
+                                      setState(() {
+                                        screenName == 'Quality'
+                                            ? Get.find<HomeScreenController>()
+                                                .setHomeScreen('Products')
+                                            : Get.find<HomeScreenController>()
+                                                .setHomeScreen('ASSEMBLY PLAN');
                                       });
-                                    } else {
-                                      controller
-                                          .putEditQuestionDetails(
-                                              vdo: '', screenName: screenName)
-                                          .then((value) {
-                                        Get.back();
-                                        Get.back();
+                                    });
 
-                                        QualityQuestionEditController
-                                            .productId = null;
-                                      }).then((value) {
-                                        setState(() {
-                                          screenName == 'Quality'
-                                              ? Get.find<HomeScreenController>()
-                                                  .setHomeScreen('Products')
-                                              : Get.find<HomeScreenController>()
-                                                  .setHomeScreen(
-                                                      'ASSEMBLY PLAN');
-                                        });
-                                      });
-                                    }
+                                    // if (base64StringVDO.isNotEmpty) {
+                                    //   controller
+                                    //       .putEditQuestionDetails(
+                                    //           // vdo: base64StringVDO.first,
+
+                                    //           screenName: screenName)
+                                    //       .then((value) {
+                                    //     Get.back();
+                                    //     Get.back();
+
+                                    //     QualityQuestionEditController
+                                    //         .productId = null;
+                                    //   }).then((value) {
+                                    //     setState(() {
+                                    //       screenName == 'Quality'
+                                    //           ? Get.find<HomeScreenController>()
+                                    //               .setHomeScreen('Products')
+                                    //           : Get.find<HomeScreenController>()
+                                    //               .setHomeScreen(
+                                    //                   'ASSEMBLY PLAN');
+                                    //     });
+                                    //   });
+                                    // } else {
+                                    //   controller
+                                    //       .putEditQuestionDetails(
+                                    //           // vdo: '',
+                                    //            screenName: screenName)
+                                    //       .then((value) {
+                                    //     Get.back();
+                                    //     Get.back();
+
+                                    //     QualityQuestionEditController
+                                    //         .productId = null;
+                                    //   }).then((value) {
+                                    //     setState(() {
+                                    //       screenName == 'Quality'
+                                    //           ? Get.find<HomeScreenController>()
+                                    //               .setHomeScreen('Products')
+                                    //           : Get.find<HomeScreenController>()
+                                    //               .setHomeScreen(
+                                    //                   'ASSEMBLY PLAN');
+                                    //     });
+                                    //   });
+                                    // }
 
                                     showSnackBar(
                                         message: 'Question Details Updated');

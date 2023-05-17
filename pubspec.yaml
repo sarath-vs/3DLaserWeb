@@ -41,6 +41,7 @@ dependencies:
   path_provider: ^2.0.13
   data_table_2: ^2.4.1
 
+
  
 
  
@@ -65,6 +66,7 @@ flutter:
     - assets/icons/
     - assets/Door_images/
     - assets/videos/
+    - assets/
 
 
   #   - images/a_dot_ham.jpeg
