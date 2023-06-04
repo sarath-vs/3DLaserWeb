@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:html';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -177,6 +178,8 @@ class QualityQuestionEditController extends GetxController {
         },
       );
     }, (GetQuestionDetailsModel resp) async {
+      // String vitenmqp = questionGerman ?? "";
+
       yesno = resp.data!.fieldInfoObject!.yn ?? false;
       qrScanner = resp.data!.fieldInfoObject!.qr_Scanner ?? false;
       yesnoManditory = resp.data!.fieldInfoObject!.ynMN ?? false;
@@ -213,23 +216,55 @@ class QualityQuestionEditController extends GetxController {
       discriptionEnglish = resp.data!.descriptionEnglish.toString();
       discriptionCzech = resp.data!.descriptionCzech.toString();
       discriptionGerman = resp.data!.descriptionGerman.toString();
+      //  discriptionGerman = utf8.decode(resp.data!.descriptionGerman).toString();
       selectedimagesin64bytes = resp.data!.images!;
 
       base64StringVDO = resp.data!.videos!;
       tools.clear();
       questionEnglishController.text = resp.data!.questionEnglish ?? "N/A";
-      questionCzechController.text = resp.data!.questionCzech ?? "N/A";
-      questionGermanController.text = resp.data!.questionGerman ?? "N/A";
+      // questionCzechController.text = resp.data!.questionCzech ?? "N/A";
+
+      if (resp.data!.questionGerman != null) {
+        List<int> list = json.decode(resp.data!.questionGerman!).cast<int>();
+        var decogermanqp = utf8.decode(list);
+        questionGermanController.text = decogermanqp;
+      } else {
+        questionGermanController.text = "N/A";
+      }
+      if (resp.data!.questionCzech != null) {
+        List<int> list = json.decode(resp.data!.questionCzech!).cast<int>();
+        var decoczechqp = utf8.decode(list);
+        questionCzechController.text = decoczechqp;
+      } else {
+        questionCzechController.text = "N/A";
+      }
+      if (resp.data!.descriptionGerman != null) {
+        List<int> list = json.decode(resp.data!.descriptionGerman!).cast<int>();
+        var decogermandiscr = utf8.decode(list);
+        discriptionGermanController.text = decogermandiscr;
+      } else {
+        discriptionGermanController.text = "N/A";
+      }
+      if (resp.data!.descriptionCzech != null) {
+        List<int> list = json.decode(resp.data!.descriptionCzech!).cast<int>();
+        var decoczechdiscr = utf8.decode(list);
+        discriptionCzechController.text = decoczechdiscr;
+      } else {
+        discriptionCzechController.text = "N/A";
+      }
 
       discriptionEnglishController.text =
           resp.data!.descriptionEnglish ?? "N/A";
-      discriptionCzechController.text = resp.data!.descriptionCzech ?? "N/A";
-      discriptionGermanController.text = resp.data!.descriptionGerman ?? "N/A";
+      // discriptionCzechController.text = resp.data!.descriptionCzech ?? "N/A";
+      // discriptionGermanController.text = resp.data!.descriptionGerman ?? "N/A";
       resp.data!.toolsUsed!.forEach((element) {
         tools.add(element.toolId!);
       });
       // selectedimagesin64bytes = selectedimagesinbase64listfromurl;
       customLog(resp);
+
+      // print(decovi.toString());
+
       await networkVideoToBase64();
       await networkImageToBase64();
       // await networkvideothumbnail();
@@ -245,21 +280,32 @@ class QualityQuestionEditController extends GetxController {
       {
       // required String vdo,
       required String screenName}) async {
+    var germanqp = (utf8.encode(questionGermanController.text)).toString();
+    var czechqp = (utf8.encode(questionCzechController.text)).toString();
+    var germandiscription =
+        (utf8.encode(discriptionGermanController.text)).toString();
+    var czechdiscription =
+        (utf8.encode(discriptionCzechController.text)).toString();
+
     final dataToSend = {
       "description_english": discriptionEnglishController.text,
-      "description_czech": discriptionCzechController.text,
-      "description_german": discriptionGermanController.text,
+      "description_czech": czechdiscription,
+      "description_german": germandiscription,
+      // utf8.encode(discriptionGermanController.text),
       "image_base_64": selectedimagesin64bytes,
       "video_base_64": base64StringVDO,
       // [vdo],
       "question_english": questionEnglishController.text,
-      "question_czech": questionCzechController.text,
-      "question_german": questionGermanController.text,
+      "question_czech": czechqp,
+      "question_german": germanqp,
       "time_limit": 0,
       "field_info_object": answerField,
       "category": productId,
       "tools_used": tools
     };
+
+    // String decodedgerqp=utf8.decode()
+
     showCircularProgressDialog(msg: 'Loading');
     final result = await _qualityProductFacade.putQuestionEdit(
         id: questionID, dataToSend: dataToSend, screenName: screenName);

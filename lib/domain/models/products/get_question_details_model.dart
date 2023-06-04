@@ -7,7 +7,9 @@ class GetQuestionDetailsModel {
 
   GetQuestionDetailsModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    data = json['data'] != null ? new QuestionDetailResult.fromJson(json['data']) : null;
+    data = json['data'] != null
+        ? new QuestionDetailResult.fromJson(json['data'])
+        : null;
     message = json['message'];
   }
 
@@ -189,14 +191,14 @@ class FieldInfoObject {
     rangeTo = json['rangeTo'];
     rangeFrom = json['rangeFrom'];
     dropDownData = json['dropDownData'];
-     qr_Scanner = json['qr_Scanner'];
+    qr_Scanner = json['qr_Scanner'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['dd'] = this.dd;
     data['rg'] = this.rg;
-     data['qr_Scanner'] = this.qr_Scanner;
+    data['qr_Scanner'] = this.qr_Scanner;
     data['tf'] = this.tf;
     data['yn'] = this.yn;
     data['img'] = this.img;

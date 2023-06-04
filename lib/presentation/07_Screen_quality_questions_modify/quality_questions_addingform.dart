@@ -68,25 +68,25 @@ class _QualityquestionformState extends State<Qualityquestionform> {
 
   int imageCounts = 0;
   _selectvideoFile(bool imageFrom) async {
-    FilePickerResult? fileResult =
-        await FilePicker.platform.pickFiles(allowMultiple: false, type: FileType.video);
+    FilePickerResult? fileResult = await FilePicker.platform
+        .pickFiles(allowMultiple: false, type: FileType.video);
 
     if (fileResult != null) {
       if (fileResult.files.first.size <=
           5851340) //size checking file this is for 5 mb
       {
-       // selctFile = fileResult.files.first.name;
-       // selectfilepath = fileResult.files.first.identifier;
+        // selctFile = fileResult.files.first.name;
+        // selectfilepath = fileResult.files.first.identifier;
 
         fileResult.files.forEach((element) {
-        setState(() {
-          base64StringVDO.add( base64.encode(element.bytes!));
-          //base64StringVDO.add(element.name);
-         // selectedimagesin64bytes.add(base64.encode(element.bytes!));
-          //selectedImageInBytes = fileResult.files.first.bytes;
-          //imageCounts += 1;
+          setState(() {
+            base64StringVDO.add(base64.encode(element.bytes!));
+            //base64StringVDO.add(element.name);
+            // selectedimagesin64bytes.add(base64.encode(element.bytes!));
+            //selectedImageInBytes = fileResult.files.first.bytes;
+            //imageCounts += 1;
+          });
         });
-      });
 
         // setState(() {
         //   selectedvideo = selctFile;
@@ -193,7 +193,10 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('Question in English', style: AppTheme.h9Style,),
+                                  Text(
+                                    'Question in English',
+                                    style: AppTheme.h9Style,
+                                  ),
                                   TextFormField(
                                     validator: (val) {
                                       return null;
@@ -217,15 +220,20 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                             SizedBox(
                               width: customWidth(400),
                               child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                   Text('Question in Czech', style: AppTheme.h9Style,),
+                                  Text(
+                                    'Question in Czech',
+                                    style: AppTheme.h9Style,
+                                  ),
                                   TextFormField(
                                     validator: (val) {
                                       return null;
                                     },
                                     onChanged: (value) {
-                                      questionCzech = value;
+                                      var czechqp =
+                                          (utf8.encode(value)).toString();
+                                      questionCzech = czechqp;
                                     },
                                     decoration: InputDecoration(
                                       hintText: "Questions Czech (optional)",
@@ -243,15 +251,20 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                             SizedBox(
                               width: customWidth(400),
                               child: Column(
-                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                    Text('Question in Vietnam', style: AppTheme.h9Style,),
+                                  Text(
+                                    'Question in Vietnam',
+                                    style: AppTheme.h9Style,
+                                  ),
                                   TextFormField(
                                     validator: (val) {
                                       return null;
                                     },
                                     onChanged: (value) {
-                                      questionGerman = value;
+                                      var germanqp =
+                                          (utf8.encode(value)).toString();
+                                      questionGerman = germanqp;
                                     },
                                     decoration: InputDecoration(
                                       hintText: "Questions Vietnam (optional)",
@@ -266,29 +279,29 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                 ],
                               ),
                             ),
-                              customVerticalGap(20),
-                            
+                            customVerticalGap(20),
+
                             SizedBox(
                               width: customWidth(400),
                               child: Column(
-                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                              "Description  in English",
-                              style: AppTheme.h9Style,
-                            ),
+                                    "Description  in English",
+                                    style: AppTheme.h9Style,
+                                  ),
                                   TextFormField(
                                     validator: (val) {
                                       return null;
                                     },
-                                    
                                     keyboardType: TextInputType.multiline,
-  maxLines: null,
+                                    maxLines: null,
                                     onChanged: (value) {
                                       discriptionEnglish = value;
                                     },
                                     decoration: InputDecoration(
-                                      hintText: "Questions Description English (optional)",
+                                      hintText:
+                                          "Questions Description English (optional)",
 
                                       // border: OutlineInputBorder(
                                       //     borderRadius: BorderRadius.circular(20)),
@@ -304,23 +317,26 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                             SizedBox(
                               width: customWidth(400),
                               child: Column(
-                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                              "Description  in Czech",
-                              style: AppTheme.h9Style,
-                            ),
+                                    "Description  in Czech",
+                                    style: AppTheme.h9Style,
+                                  ),
                                   TextFormField(
                                     validator: (val) {
                                       return null;
                                     },
                                     keyboardType: TextInputType.multiline,
-  maxLines: null,
+                                    maxLines: null,
                                     onChanged: (value) {
-                                      discriptionCzech = value;
+                                      var czechdis =
+                                          (utf8.encode(value)).toString();
+                                      discriptionCzech = czechdis;
                                     },
                                     decoration: InputDecoration(
-                                      hintText: "Questions Description Czech (optional)",
+                                      hintText:
+                                          "Questions Description Czech (optional)",
 
                                       // border: OutlineInputBorder(
                                       //     borderRadius: BorderRadius.circular(20)),
@@ -335,23 +351,26 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                             SizedBox(
                               width: customWidth(400),
                               child: Column(
-                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                   Text(
-                              "Description in Vietnam",
-                              style: AppTheme.h9Style,
-                            ),
+                                  Text(
+                                    "Description in Vietnam",
+                                    style: AppTheme.h9Style,
+                                  ),
                                   TextFormField(
                                     validator: (val) {
                                       return null;
                                     },
                                     keyboardType: TextInputType.multiline,
-  maxLines: null,
+                                    maxLines: null,
                                     onChanged: (value) {
-                                      discriptionGerman = value;
+                                      var germandis =
+                                          (utf8.encode(value)).toString();
+                                      discriptionGerman = germandis;
                                     },
                                     decoration: InputDecoration(
-                                      hintText: "Questions Description Vietnam (optional)",
+                                      hintText:
+                                          "Questions Description Vietnam (optional)",
 
                                       // border: OutlineInputBorder(
                                       //     borderRadius: BorderRadius.circular(20)),
@@ -367,8 +386,6 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                               
-                              
                                 customHorizontalGap(20),
                                 InkWell(
                                   onTap: () {
@@ -547,7 +564,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                                     //     ? showSnackBar(
                                                     //         message:
                                                     //             'select some items'):
-                                                        Get.back();
+                                                    Get.back();
                                                   },
                                                   child: Text(
                                                     'Confirm',
@@ -762,95 +779,103 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                   flex: 3,
                                   child: Text('Range'),
                                 ),
-                            range==true?    Expanded(
-                                  flex: 3,
-                                  child: Row(
-                                    children: [
-                                      SizedBox(
-                                        width: customWidth(30),
-                                        height: customHeight(30),
-                                        child: TextFormField(
-                                          validator: (val) {
-                                            return null;
-                                          },
-                                          onChanged: (value) {
-                                            rangeFrom = value;
-                                          },
-                                          decoration: InputDecoration(
-                                            hintText: "From",
-                                            // border: OutlineInputBorder(
-                                            //     borderRadius: BorderRadius.circular(20)),
-                                            fillColor: Colors.grey.shade200,
-                                            filled: true,
-                                            floatingLabelStyle:
-                                                AppTheme.h2Style,
-                                          ),
-                                        ),
-                                      ),
-                                      Text(
-                                        " - ",
-                                        style: AppTheme.h6Style,
-                                      ),
-                                      SizedBox(
-                                        width: customWidth(30),
-                                        height: customHeight(30),
-                                        child: TextFormField(
-                                            validator: (val) {},
-                                             decoration: InputDecoration(
-                                            hintText: "To",
-                                            // border: OutlineInputBorder(
-                                            //     borderRadius: BorderRadius.circular(20)),
-                                            fillColor: Colors.grey.shade200,
-                                            filled: true,
-                                            floatingLabelStyle:
-                                                AppTheme.h2Style,
-                                          ),
-                                            
-                                            onChanged: (value) {
-                                              rangeTo = value;
-                                              // double torange =
-                                              //     double.parse(value);
-                                              // double startrange =
-                                              //     double.parse(rangeFrom);
-                                                  Future.delayed(Duration(seconds: 4), (){
-      if (int.parse(rangeFrom) > int.parse(rangeTo)) {
-                                                showDialog(
-                                                  context: context,
-                                                  builder: (context) =>
-                                                      AlertDialog(
-                                                    title: Text('Error'),
-                                                    content: Text(
-                                                        'Starting range must lower than ending range'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () {
-                                                          Navigator.pop(
-                                                              context);
-                                                        },
-                                                        child: Text('OK'),
-                                                      ),
-                                                    ],
+                                range == true
+                                    ? Expanded(
+                                        flex: 3,
+                                        child: Row(
+                                          children: [
+                                            SizedBox(
+                                              width: customWidth(30),
+                                              height: customHeight(30),
+                                              child: TextFormField(
+                                                validator: (val) {
+                                                  return null;
+                                                },
+                                                onChanged: (value) {
+                                                  rangeFrom = value;
+                                                },
+                                                decoration: InputDecoration(
+                                                  hintText: "From",
+                                                  // border: OutlineInputBorder(
+                                                  //     borderRadius: BorderRadius.circular(20)),
+                                                  fillColor:
+                                                      Colors.grey.shade200,
+                                                  filled: true,
+                                                  floatingLabelStyle:
+                                                      AppTheme.h2Style,
+                                                ),
+                                              ),
+                                            ),
+                                            Text(
+                                              " - ",
+                                              style: AppTheme.h6Style,
+                                            ),
+                                            SizedBox(
+                                              width: customWidth(30),
+                                              height: customHeight(30),
+                                              child: TextFormField(
+                                                  validator: (val) {},
+                                                  decoration: InputDecoration(
+                                                    hintText: "To",
+                                                    // border: OutlineInputBorder(
+                                                    //     borderRadius: BorderRadius.circular(20)),
+                                                    fillColor:
+                                                        Colors.grey.shade200,
+                                                    filled: true,
+                                                    floatingLabelStyle:
+                                                        AppTheme.h2Style,
                                                   ),
-                                                );
-                                              }
-});
-                                                  
-                                              
-                                              decoration:
-                                              InputDecoration(
-                                                hintText: "To",
-                                                // border: OutlineInputBorder(
-                                                //     borderRadius: BorderRadius.circular(20)),
-                                                fillColor: Colors.grey.shade200,
-                                                filled: true,
-                                                floatingLabelStyle:
-                                                    AppTheme.h2Style,
-                                              );
-                                            }),
-                                      ),
-                                    ],
-                                  ),
-                                ):Expanded(flex: 3,child: SizedBox()),
+                                                  onChanged: (value) {
+                                                    rangeTo = value;
+                                                    // double torange =
+                                                    //     double.parse(value);
+                                                    // double startrange =
+                                                    //     double.parse(rangeFrom);
+                                                    Future.delayed(
+                                                        Duration(seconds: 4),
+                                                        () {
+                                                      if (int.parse(rangeFrom) >
+                                                          int.parse(rangeTo)) {
+                                                        showDialog(
+                                                          context: context,
+                                                          builder: (context) =>
+                                                              AlertDialog(
+                                                            title:
+                                                                Text('Error'),
+                                                            content: Text(
+                                                                'Starting range must lower than ending range'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () {
+                                                                  Navigator.pop(
+                                                                      context);
+                                                                },
+                                                                child:
+                                                                    Text('OK'),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        );
+                                                      }
+                                                    });
+
+                                                    decoration:
+                                                    InputDecoration(
+                                                      hintText: "To",
+                                                      // border: OutlineInputBorder(
+                                                      //     borderRadius: BorderRadius.circular(20)),
+                                                      fillColor:
+                                                          Colors.grey.shade200,
+                                                      filled: true,
+                                                      floatingLabelStyle:
+                                                          AppTheme.h2Style,
+                                                    );
+                                                  }),
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    : Expanded(flex: 3, child: SizedBox()),
                                 // Expanded(
                                 //   flex: 1,
                                 //   child: Checkbox(
@@ -1028,79 +1053,98 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                   flex: 3,
                                   child: Text('DropDown'),
                                 ),
-                           dropdown==true?     Expanded(
-                                  flex: 3,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                        Text('English', style: AppTheme.h9Style,),
-                                      TextFormField(
-                                        keyboardType: TextInputType.multiline,
-                                        minLines: 1,
-                                        maxLines: 7,
-                                        validator: (val) {
-                                          return null;
-                                        },
-                                        onChanged: (value) {
-                                          dropDownDataEnglish = value;
-                                        },
-                                        decoration: InputDecoration(
-                                          hintText:
-                                              "Add Drop Down Values in English.(eg:one||Two||Three)",
-                                          hintStyle: TextStyle(
-                                              fontSize: customFontSize(4)),
-                                          fillColor: Colors.grey.shade200,
-                                          filled: true,
-                                          floatingLabelStyle: AppTheme.h2Style,
+                                dropdown == true
+                                    ? Expanded(
+                                        flex: 3,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'English',
+                                              style: AppTheme.h9Style,
+                                            ),
+                                            TextFormField(
+                                              keyboardType:
+                                                  TextInputType.multiline,
+                                              minLines: 1,
+                                              maxLines: 7,
+                                              validator: (val) {
+                                                return null;
+                                              },
+                                              onChanged: (value) {
+                                                dropDownDataEnglish = value;
+                                              },
+                                              decoration: InputDecoration(
+                                                hintText:
+                                                    "Add Drop Down Values in English.(eg:one||Two||Three)",
+                                                hintStyle: TextStyle(
+                                                    fontSize:
+                                                        customFontSize(4)),
+                                                fillColor: Colors.grey.shade200,
+                                                filled: true,
+                                                floatingLabelStyle:
+                                                    AppTheme.h2Style,
+                                              ),
+                                            ),
+                                            Text(
+                                              'Czech',
+                                              style: AppTheme.h9Style,
+                                            ),
+                                            TextFormField(
+                                              keyboardType:
+                                                  TextInputType.multiline,
+                                              minLines: 1,
+                                              maxLines: 7,
+                                              validator: (val) {
+                                                return null;
+                                              },
+                                              onChanged: (value) {
+                                                dropDownDataCzech = value;
+                                              },
+                                              decoration: InputDecoration(
+                                                hintText:
+                                                    "Add Drop Down Values in Czech.(eg:one||Two||Three)",
+                                                hintStyle: TextStyle(
+                                                    fontSize:
+                                                        customFontSize(4)),
+                                                fillColor: Colors.grey.shade200,
+                                                filled: true,
+                                                floatingLabelStyle:
+                                                    AppTheme.h2Style,
+                                              ),
+                                            ),
+                                            Text(
+                                              'Vietnam',
+                                              style: AppTheme.h9Style,
+                                            ),
+                                            TextFormField(
+                                              keyboardType:
+                                                  TextInputType.multiline,
+                                              minLines: 1,
+                                              maxLines: 7,
+                                              validator: (val) {
+                                                return null;
+                                              },
+                                              onChanged: (value) {
+                                                dropDownDataViatnam = value;
+                                              },
+                                              decoration: InputDecoration(
+                                                hintText:
+                                                    "Add Drop Down Values in Vietnam.(eg:one||Two||Three)",
+                                                hintStyle: TextStyle(
+                                                    fontSize:
+                                                        customFontSize(4)),
+                                                fillColor: Colors.grey.shade200,
+                                                filled: true,
+                                                floatingLabelStyle:
+                                                    AppTheme.h2Style,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ),
-                                        Text('Czech', style: AppTheme.h9Style,),
-                                      TextFormField(
-                                        keyboardType: TextInputType.multiline,
-                                        minLines: 1,
-                                        maxLines: 7,
-                                        validator: (val) {
-                                          return null;
-                                        },
-                                        onChanged: (value) {
-                                          dropDownDataCzech = value;
-                                        },
-                                        decoration: InputDecoration(
-                                          hintText:
-                                              "Add Drop Down Values in Czech.(eg:one||Two||Three)",
-                                          hintStyle: TextStyle(
-                                              fontSize: customFontSize(4)),
-                                          fillColor: Colors.grey.shade200,
-                                          filled: true,
-                                          floatingLabelStyle: AppTheme.h2Style,
-                                        ),
-                                      ),
-                                        Text('Vietnam', style: AppTheme.h9Style,),
-                                      TextFormField(
-                                        keyboardType: TextInputType.multiline,
-                                        minLines: 1,
-                                        maxLines: 7,
-                                        validator: (val) {
-                                          return null;
-                                        },
-                                        onChanged: (value) {
-                                          dropDownDataViatnam = value;
-                                        },
-                                        decoration: InputDecoration(
-                                          hintText:
-                                              "Add Drop Down Values in Vietnam.(eg:one||Two||Three)",
-                                          hintStyle: TextStyle(
-                                              fontSize: customFontSize(4)),
-                                          fillColor: Colors.grey.shade200,
-                                          filled: true,
-                                          floatingLabelStyle: AppTheme.h2Style,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ):Expanded(flex:3,child: SizedBox()),
-                               
-                               
+                                      )
+                                    : Expanded(flex: 3, child: SizedBox()),
                               ],
                             ),
                             ////////
@@ -1155,96 +1199,180 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                             // // predefinedtype(),
                             // yesornotype(),
                             //   ImagePickerWidget(),
-                            customVerticalGap(20),Text('Image Upload',style: TextStyle(fontWeight: FontWeight.bold),),
+                            customVerticalGap(20),
+                            Text(
+                              'Image Upload',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
 
-                            Container(height: customHeight(150),color: Colors.white,child: Row(
-                              children: [
-                               Padding(
-                                 padding: const EdgeInsets.only(left:8.0,right: 8),
-                                 child: GestureDetector(onTap: (){
-                                    _selectedimages(true);
+                            Container(
+                              height: customHeight(150),
+                              color: Colors.white,
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 8.0, right: 8),
+                                    child: GestureDetector(
+                                        onTap: () {
+                                          _selectedimages(true);
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              color: Colors.grey.shade300),
+                                          height: customHeight(130),
+                                          width: customWidth(40),
+                                          child: Icon(
+                                            Icons.add,
+                                            color: Colors.black,
+                                            size: customHeight(50),
+                                          ),
+                                        )),
+                                  ),
+                                  pickedImagesInBytes.length > 0
+                                      ? Expanded(
+                                          child: ListView.builder(
+                                            shrinkWrap: true,
+                                            itemCount:
+                                                pickedImagesInBytes.length,
+                                            physics:
+                                                AlwaysScrollableScrollPhysics(),
+                                            scrollDirection: Axis.horizontal,
+                                            itemBuilder: (context, index) {
+                                              return Padding(
+                                                padding:
+                                                    const EdgeInsets.all(2.0),
+                                                child: Stack(
+                                                  children: [
+                                                    SizedBox(
+                                                        height:
+                                                            customHeight(140),
+                                                        child: Image.memory(
+                                                            pickedImagesInBytes[
+                                                                index])),
+                                                    GestureDetector(
+                                                      // onTap: (){
+                                                      //   setState(() {
+                                                      //            pickedImagesInBytes.removeAt(index);
+                                                      //            selectedimagesin64bytes.removeAt(index);
 
-                                 },child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.grey.shade300),height: customHeight(130),width: customWidth(40),child: Icon(Icons.add,color: Colors.black,size: customHeight(50),),)),
-                               ),
-                            pickedImagesInBytes.length>0?    Expanded(
-                              child: ListView.builder(
-                                    shrinkWrap: true,
-                                          itemCount: pickedImagesInBytes.length,
-                                      physics: AlwaysScrollableScrollPhysics(),
+                                                      //   });
+
+                                                      // },
+                                                      child: Container(
+                                                          decoration: BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20),
+                                                              color: Colors.grey
+                                                                  .withOpacity(
+                                                                      .5)),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(2.0),
+                                                            child: Icon(
+                                                              Icons.close,
+                                                              color: Colors.red,
+                                                            ),
+                                                          )),
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                        )
+                                      : Text('No Image Selected')
+                                ],
+                              ),
+                            ),
+                            customVerticalGap(20),
+                            Text(
+                              'Video Upload',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+
+                            Container(
+                              height: customHeight(150),
+                              width: double.infinity,
+                              color: Colors.white,
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 8.0, right: 8),
+                                    child: GestureDetector(
+                                        onTap: () {
+                                          _selectvideoFile(true);
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              color: Colors.grey.shade300),
+                                          height: customHeight(130),
+                                          width: customWidth(40),
+                                          child: Icon(
+                                            Icons.add,
+                                            color: Colors.black,
+                                            size: customHeight(50),
+                                          ),
+                                        )),
+                                  ),
+                                  base64StringVDO.length > 0
+                                      ? ListView.builder(
+                                          shrinkWrap: true,
+                                          itemCount: base64StringVDO.length,
                                           scrollDirection: Axis.horizontal,
                                           itemBuilder: (context, index) {
                                             return Padding(
-                                              padding: const EdgeInsets.all(2.0),
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
                                               child: Stack(
                                                 children: [
-                                                  
-                                                 
-                                                  SizedBox(height: customHeight(140),child: Image.memory(pickedImagesInBytes[index])),
-                                                   GestureDetector(
-                                                    // onTap: (){
-                                                    //   setState(() {
-                                                    //            pickedImagesInBytes.removeAt(index);
-                                                    //            selectedimagesin64bytes.removeAt(index);
-                              
-                                                    //   });
-                                                   
-                                                    // },
-                                                     child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.grey.withOpacity(.5)),child: Padding(
-                                                       padding: const EdgeInsets.all(2.0),
-                                                       child: Icon(Icons.close,color: Colors.red,),
-                                                     )),
-                                                   ),
+                                                  SizedBox(
+                                                      height: customHeight(140),
+                                                      child: Text(
+                                                          'Video ${index + 1}')),
+                                                  GestureDetector(
+                                                    onTap: () {
+                                                      setState(() {
+                                                        base64StringVDO
+                                                            .removeAt(index);
+                                                      });
+                                                    },
+                                                    child: Container(
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        20),
+                                                            color: Colors.grey
+                                                                .withOpacity(
+                                                                    .5)),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(2.0),
+                                                          child: Icon(
+                                                            Icons.close,
+                                                            color: Colors.red,
+                                                          ),
+                                                        )),
+                                                  ),
                                                 ],
                                               ),
                                             );
                                           },
-                                        ),
-                            ):Text('No Image Selected')
-                              ],
-                            ),),
-                              customVerticalGap(20),Text('Video Upload',style: TextStyle(fontWeight: FontWeight.bold),),
-
-                            Container(height: customHeight(150),width: double.infinity,color: Colors.white,child: Row(
-                              children: [
-                               Padding(
-                                 padding: const EdgeInsets.only(left:8.0,right: 8),
-                                 child: GestureDetector(onTap: (){
-                                     _selectvideoFile(true);
-
-                                 },child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.grey.shade300),height: customHeight(130),width: customWidth(40),child: Icon(Icons.add,color: Colors.black,size: customHeight(50),),)),
-                               ),
-                            base64StringVDO.length>0?    ListView.builder(
-                                  shrinkWrap: true,
-              itemCount: base64StringVDO.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Stack(
-                    children: [
-                      
-                     
-                      SizedBox(height: customHeight(140),child: Text('Video ${index+1}')),
-                       GestureDetector(
-                        onTap: (){
-                          setState(() {
-                                   base64StringVDO.removeAt(index);
-                            
-                          });
-                       
-                        },
-                         child: Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.grey.withOpacity(.5)),child: Padding(
-                           padding: const EdgeInsets.all(2.0),
-                           child: Icon(Icons.close,color: Colors.red,),
-                         )),
-                       ),
-                    ],
-                  ),
-                );
-              },
-            ):Text('No Video Selected')
-                              ],
-                            ),),
+                                        )
+                                      : Text('No Video Selected')
+                                ],
+                              ),
+                            ),
 
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -1291,27 +1419,28 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                       "vdoMN": vdoManditory,
                                       "rangeFrom": rangeFrom,
                                       "rangeTo": rangeTo,
-                                      "dropDownData": dropDownDataEnglish+'&&'+dropDownDataCzech+'&&'+dropDownDataViatnam
+                                      "dropDownData": dropDownDataEnglish +
+                                          '&&' +
+                                          dropDownDataCzech +
+                                          '&&' +
+                                          dropDownDataViatnam
                                     };
+
                                     final dataToSend = {
-                                       "description_english": discriptionEnglish,
+                                      "description_english": discriptionEnglish,
                                       "description_czech": discriptionCzech,
                                       "description_german": discriptionGerman,
                                       "image_base_64": selectedimagesin64bytes,
                                       "video_base_64": base64StringVDO,
-                                     
                                       "question_english": questionEnglish,
                                       "question_czech": questionCzech,
                                       "question_german": questionGerman,
                                       "time_limit": 0,
-                                       "field_info_object": answerField,
-                                       "category": controller.productId,
+                                      "field_info_object": answerField,
+                                      "category": controller.productId,
                                       "tools_used": selectedID
-                                     
-                        
                                     };
-                                    if (questionEnglish != '' 
-                                       ) {
+                                    if (questionEnglish != '') {
                                       if (range == true) {
                                         if (rangeFrom == '' || rangeTo == '') {
                                           showSnackBar(
@@ -1332,7 +1461,9 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                           });
                                         }
                                       } else if (dropdown == true) {
-                                        if (dropDownDataEnglish == ''||dropDownDataCzech==''||dropDownDataViatnam=='') {
+                                        if (dropDownDataEnglish == '' ||
+                                            dropDownDataCzech == '' ||
+                                            dropDownDataViatnam == '') {
                                           showSnackBar(
                                               message:
                                                   'Please Provide DropDown Data');
