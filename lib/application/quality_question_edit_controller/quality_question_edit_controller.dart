@@ -137,30 +137,30 @@ class QualityQuestionEditController extends GetxController {
     }
   }
 
-  static final answerField = {
-    "yn": yesno,
-    "ynMN": yesnoManditory,
-    "qr_Scanner": qrScanner,
-    "ynn": yesnoNone,
-    "ynnMN": yesnoNoneManditory,
-    "rg": range,
-    "rgMN": rangeManditory,
-    "tf": inputText,
-    "tfMN": inputTextManditory,
-    "dd": dropdown,
-    "ddMN": dropDownManditory,
-    "img": image,
-    "imgMN": imageManditory,
-    "vdo": vdo,
-    "vdoMN": vdoManditory,
-    "rangeFrom": rangeFrom,
-    "rangeTo": rangeTo,
-    "dropDownData": dropDownDataEnglish +
-        '&&' +
-        dropDownDataCzech +
-        '&&' +
-        dropDownDataVietnam
-  };
+  // static final answerField = {
+  //   "yn": yesno,
+  //   "ynMN": yesnoManditory,
+  //   "qr_Scanner": qrScanner,
+  //   "ynn": yesnoNone,
+  //   "ynnMN": yesnoNoneManditory,
+  //   "rg": range,
+  //   "rgMN": rangeManditory,
+  //   "tf": inputText,
+  //   "tfMN": inputTextManditory,
+  //   "dd": dropdown,
+  //   "ddMN": dropDownManditory,
+  //   "img": image,
+  //   "imgMN": imageManditory,
+  //   "vdo": vdo,
+  //   "vdoMN": vdoManditory,
+  //   "rangeFrom": rangeFrom,
+  //   "rangeTo": rangeTo,
+  //   "dropDownData": dropDownDataEnglish +
+  //       '&&' +
+  //       czechdropdownvalue +
+  //       '&&' +
+  //       vietnamdropdownvalue
+  // };
 
   Future<void> getEditQuestionDetails(
       {required String id, required String screenName}) async {
@@ -196,18 +196,58 @@ class QualityQuestionEditController extends GetxController {
       number = false;
       rangeFrom = resp.data!.fieldInfoObject!.rangeFrom ?? "";
       rangeTo = resp.data!.fieldInfoObject!.rangeTo ?? "";
+
       dropDownDataEnglish =
           resp.data!.fieldInfoObject!.dropDownData!.split("&&")[0] ?? "";
-      dropDownDataCzech =
-          resp.data!.fieldInfoObject!.dropDownData!.split("&&")[1] ?? "";
-      dropDownDataVietnam =
-          resp.data!.fieldInfoObject!.dropDownData!.split("&&")[2] ?? "";
+      // if (resp.data!.fieldInfoObject!.dropDownData?.split("&&")[1] != null) {
+      //   List<int> list = json
+      //       .decode(resp.data!.fieldInfoObject!.dropDownData!.split("&&")[1])
+      //       .cast<int>();
+      //   var decoczechdropdown = utf8.decode(list);
+      //   dropDownDataCzech = decoczechdropdown;
+      // } else {
+      //   dropDownDataCzech = "";
+      // }
+      // if (resp.data!.fieldInfoObject!.dropDownData?.split("&&")[2] != null) {
+      //   List<int> list = json
+      //       .decode(resp.data!.fieldInfoObject!.dropDownData!.split("&&")[2])
+      //       .cast<int>();
+      //   var decoczechdropdown = utf8.decode(list);
+      //   dropDownDataVietnam = decoczechdropdown;
+      // } else {
+      //   dropDownDataVietnam = "";
+      // }
+
+      // dropDownDataCzech =
+      //     resp.data!.fieldInfoObject!.dropDownData!.split("&&")[1] ?? "";
+      // dropDownDataVietnam =
+      //     resp.data!.fieldInfoObject!.dropDownData!.split("&&")[2] ?? "";
       dropDownValueEnglishController.text =
           resp.data!.fieldInfoObject!.dropDownData!.split("&&")[0] ?? "";
-      dropDownValueCzechController.text =
-          resp.data!.fieldInfoObject!.dropDownData!.split("&&")[1] ?? "";
-      dropDownValueVietnamController.text =
-          resp.data!.fieldInfoObject!.dropDownData!.split("&&")[2] ?? "";
+      // if (resp.data!.fieldInfoObject!.dropDownData?.split("&&")[1] != null) {
+      //   List<int> list = json
+      //       .decode(resp.data!.fieldInfoObject!.dropDownData!.split("&&")[1])
+      //       .cast<int>();
+      //   var decoczechdropdown = utf8.decode(list);
+      //   dropDownValueCzechController.text = decoczechdropdown;
+      // } else {
+      //   dropDownValueCzechController.text = "";
+      // }
+
+      // dropDownValueCzechController.text =
+      //     resp.data!.fieldInfoObject!.dropDownData?.split("&&")[1] ?? "";
+      // dropDownValueVietnamController.text =
+      //     resp.data!.fieldInfoObject!.dropDownData?.split("&&")[2] ?? "";
+
+      // if (resp.data!.fieldInfoObject!.dropDownData?.split("&&")[2] != null) {
+      //   List<int> list = json
+      //       .decode(resp.data!.fieldInfoObject!.dropDownData!.split("&&")[2])
+      //       .cast<int>();
+      //   var decovitenmdropdown = utf8.decode(list);
+      //   dropDownValueVietnamController.text = decovitenmdropdown;
+      // } else {
+      //   dropDownValueVietnamController.text = "";
+      // }
       productId = resp.data!.category;
       questionID = resp.data!.id.toString();
       questionEnglish = resp.data!.questionEnglish.toString();
@@ -224,6 +264,10 @@ class QualityQuestionEditController extends GetxController {
       questionEnglishController.text = resp.data!.questionEnglish ?? "N/A";
       // questionCzechController.text = resp.data!.questionCzech ?? "N/A";
 
+      await fun(resp);
+
+      discriptionEnglishController.text =
+          resp.data!.descriptionEnglish ?? "N/A";
       if (resp.data!.questionGerman != null) {
         List<int> list = json.decode(resp.data!.questionGerman!).cast<int>();
         var decogermanqp = utf8.decode(list);
@@ -252,9 +296,6 @@ class QualityQuestionEditController extends GetxController {
       } else {
         discriptionCzechController.text = "N/A";
       }
-
-      discriptionEnglishController.text =
-          resp.data!.descriptionEnglish ?? "N/A";
       // discriptionCzechController.text = resp.data!.descriptionCzech ?? "N/A";
       // discriptionGermanController.text = resp.data!.descriptionGerman ?? "N/A";
       resp.data!.toolsUsed!.forEach((element) {
@@ -276,6 +317,43 @@ class QualityQuestionEditController extends GetxController {
     });
   }
 
+  fun(GetQuestionDetailsModel resp) async {
+    String tempdropDownDataCzech =
+        resp.data!.fieldInfoObject!.dropDownData?.split("&&")[1] ?? "";
+    String tempdropDownDataVietnam =
+        resp.data!.fieldInfoObject!.dropDownData?.split("&&")[2] ?? "";
+    if (tempdropDownDataCzech != "") {
+      List<int> list = json.decode(tempdropDownDataCzech).cast<int>();
+      var decoczechdropdown = utf8.decode(list);
+      dropDownDataCzech = decoczechdropdown;
+    } else {
+      dropDownDataCzech = "";
+    }
+    if (tempdropDownDataVietnam != "") {
+      List<int> list = json.decode(tempdropDownDataVietnam).cast<int>();
+      var decoczechdropdown = utf8.decode(list);
+      dropDownDataVietnam = decoczechdropdown;
+    } else {
+      dropDownDataVietnam = "";
+    }
+
+    if (tempdropDownDataCzech != "") {
+      List<int> list = json.decode(tempdropDownDataCzech).cast<int>();
+      var decoczechdropdown = utf8.decode(list);
+      dropDownValueCzechController.text = decoczechdropdown;
+    } else {
+      dropDownValueCzechController.text = "";
+    }
+
+    if (tempdropDownDataVietnam != "") {
+      List<int> list = json.decode(tempdropDownDataVietnam).cast<int>();
+      var decovitenmdropdown = utf8.decode(list);
+      dropDownValueVietnamController.text = decovitenmdropdown;
+    } else {
+      dropDownValueVietnamController.text = "";
+    }
+  }
+
   Future<void> putEditQuestionDetails(
       {
       // required String vdo,
@@ -286,6 +364,39 @@ class QualityQuestionEditController extends GetxController {
         (utf8.encode(discriptionGermanController.text)).toString();
     var czechdiscription =
         (utf8.encode(discriptionCzechController.text)).toString();
+
+    String czechdropdownvalue = (utf8.encode(dropDownDataCzech)).toString();
+    String vietnamdropdownvalue = (utf8.encode(dropDownDataVietnam)).toString();
+
+    final answerField = {
+      "yn": yesno,
+      "ynMN": yesnoManditory,
+      "qr_Scanner": qrScanner,
+      "ynn": yesnoNone,
+      "ynnMN": yesnoNoneManditory,
+      "rg": range,
+      "rgMN": rangeManditory,
+      "tf": inputText,
+      "tfMN": inputTextManditory,
+      "dd": dropdown,
+      "ddMN": dropDownManditory,
+      "img": image,
+      "imgMN": imageManditory,
+      "vdo": vdo,
+      "vdoMN": vdoManditory,
+      "rangeFrom": rangeFrom,
+      "rangeTo": rangeTo,
+      "dropDownData": dropDownDataEnglish +
+          '&&' +
+          dropDownDataCzech
+          //  +
+          +
+          czechdropdownvalue +
+          '&&'
+          // dropDownDataVietnam
+          +
+          vietnamdropdownvalue
+    };
 
     final dataToSend = {
       "description_english": discriptionEnglishController.text,

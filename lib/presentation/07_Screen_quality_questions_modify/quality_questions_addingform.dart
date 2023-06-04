@@ -1100,7 +1100,13 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                                 return null;
                                               },
                                               onChanged: (value) {
-                                                dropDownDataCzech = value;
+                                                // dropDownDataCzech = value;
+
+                                                var czechdropdown =
+                                                    (utf8.encode(value))
+                                                        .toString();
+                                                dropDownDataCzech =
+                                                    czechdropdown;
                                               },
                                               decoration: InputDecoration(
                                                 hintText:
@@ -1127,7 +1133,12 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                                 return null;
                                               },
                                               onChanged: (value) {
-                                                dropDownDataViatnam = value;
+                                                // dropDownDataViatnam = value;
+                                                var viatnamdropdown =
+                                                    (utf8.encode(value))
+                                                        .toString();
+                                                dropDownDataViatnam =
+                                                    viatnamdropdown;
                                               },
                                               decoration: InputDecoration(
                                                 hintText:
