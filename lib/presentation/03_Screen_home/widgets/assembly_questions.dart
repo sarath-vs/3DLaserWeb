@@ -23,7 +23,7 @@ class AssemblyQuestionListScreen extends StatelessWidget {
           // if (controller.screen == 'DashBoard')
           return Column(
             children: [
-               CustomAppBar(context, false, "Assembly Questions"),
+              CustomAppBar(context, false, "Assembly Questions"),
               customVerticalGap(5),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: customWidth(20)),
@@ -69,17 +69,12 @@ class AssemblyQuestionListScreen extends StatelessWidget {
                                   shrinkWrap: true,
                                   itemBuilder: (context, index) {
                                     return ListTile(
-                                      
                                       tileColor: Colors.blue.shade300,
                                       leading: Text('${index + 1}'),
-                                      title: Row(
-                                        children: [
-                                          Text(
-                                            '${controller.assemblyQuestionList[index].questionEnglish} ',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ],
+                                      title: Text(
+                                        '${controller.assemblyQuestionList[index].questionEnglish} ',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       trailing: Wrap(
                                         spacing: 12,
@@ -88,15 +83,28 @@ class AssemblyQuestionListScreen extends StatelessWidget {
                                             padding: const EdgeInsets.all(8.0),
                                             child: InkWell(
                                               onTap: () {
-                                                Get.find<QualityQuestionEditController>().getEditQuestionDetails(id:controller.assemblyQuestionList[index].id.toString(),screenName: 'Assembly').then((value) {
-                                                  Navigator.pushNamed(context,arguments: {
-                                           'id': controller.assemblyQuestionList[index].id, 'screenName':'Assembly' },QualityquestionEdit.routeName);
+                                                Get.find<
+                                                        QualityQuestionEditController>()
+                                                    .getEditQuestionDetails(
+                                                        id: controller
+                                                            .assemblyQuestionList[
+                                                                index]
+                                                            .id
+                                                            .toString(),
+                                                        screenName: 'Assembly')
+                                                    .then((value) {
+                                                  Navigator.pushNamed(
+                                                      context,
+                                                      arguments: {
+                                                        'id': controller
+                                                            .assemblyQuestionList[
+                                                                index]
+                                                            .id,
+                                                        'screenName': 'Assembly'
+                                                      },
+                                                      QualityquestionEdit
+                                                          .routeName);
                                                 });
-                                                
-            
-           
-        
-                                            
                                               },
                                               child: Container(
                                                 alignment: Alignment.center,
@@ -148,15 +156,15 @@ class AssemblyQuestionListScreen extends StatelessWidget {
                                                                           index]
                                                                       .id!)
                                                               .then((value) {
-                                                            controller
-                                                                .getAssemblyQuestions(
-                                                                    id: controller
-                                                                        .productId);
+                                                            controller.getAssemblyQuestions(
+                                                                id: controller
+                                                                    .productId);
                                                           });
 
                                                           Get.back();
                                                         },
-                                                        child: const Text('Yes'),
+                                                        child:
+                                                            const Text('Yes'),
                                                       ),
                                                     ],
                                                   );
@@ -164,7 +172,8 @@ class AssemblyQuestionListScreen extends StatelessWidget {
                                               );
                                             },
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding:
+                                                  const EdgeInsets.all(10.0),
                                               child: Icon(
                                                 Icons.delete,
                                                 color: Colors.red,

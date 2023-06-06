@@ -68,12 +68,13 @@ class FinalAssemblyPlanScreen extends StatelessWidget {
                                   shrinkWrap: true,
                                   itemBuilder: (context, index) {
                                     return ListTile(
-                                     onTap: () {
-                                       Get.find<FinalAssemblyController>()
-                                            .getAssemblyQuestions(id: controller
+                                      onTap: () {
+                                        Get.find<FinalAssemblyController>()
+                                            .getAssemblyQuestions(
+                                                id: controller
                                                     .assemblyProductList[index]
                                                     .id!);
-                                     
+
                                         Get.find<FinalAssemblyController>()
                                                 .productId =
                                             controller
@@ -82,7 +83,8 @@ class FinalAssemblyPlanScreen extends StatelessWidget {
                                         Get.find<HomeScreenController>().appBarName(
                                             '${controller.assemblyProductList[index].name}   ');
                                         Get.find<HomeScreenController>()
-                                            .setHomeScreen('FINAL ASSEMBLY QUESTIONS');
+                                            .setHomeScreen(
+                                                'FINAL ASSEMBLY QUESTIONS');
                                       },
                                       tileColor: Colors.red.shade100,
                                       leading: Text('${index + 1}'),
@@ -111,9 +113,10 @@ class FinalAssemblyPlanScreen extends StatelessWidget {
                                                     .routeName,
                                                 arguments: {
                                                   'id': controller
-                                                      .assemblyProductList[index]
+                                                      .assemblyProductList[
+                                                          index]
                                                       .id!,
-                                                    'screenName':'FinalAssembly'
+                                                  'screenName': 'FinalAssembly'
                                                 },
                                               );
                                             },
@@ -169,33 +172,29 @@ class FinalAssemblyPlanScreen extends StatelessWidget {
                                                         .assemblyProductList[
                                                             index]
                                                         .time_limit!,
-                                                         'genQR': controller
+                                                    'genQR': controller
                                                         .assemblyProductList[
                                                             index]
                                                         .qrRequired!,
-                                                         'finalAssembly': controller
+                                                    'finalAssembly': controller
                                                         .assemblyProductList[
                                                             index]
                                                         .isFinal!,
-
-                                                        
-
-                                                        
-
-                                                           'ipAddress':controller
+                                                    'ipAddress': controller
                                                         .assemblyProductList[
-                                                            index].ipAddress,
-      'portNumber':controller
+                                                            index]
+                                                        .ipAddress,
+                                                    'portNumber': controller
                                                         .assemblyProductList[
-                                                            index].port,
-   'printerData':controller
-                                                        .assemblyProductList[
-                                                            index].productObj!.zebraData??"N/A",
-
-                                                            
+                                                            index]
+                                                        .port,
+                                                    'printerData': controller
+                                                            .assemblyProductList[
+                                                                index]
+                                                            .productObj!
+                                                            .zebraData ??
+                                                        "N/A",
                                                   },
-
-                                                    
                                                 );
                                               },
                                               child: Container(

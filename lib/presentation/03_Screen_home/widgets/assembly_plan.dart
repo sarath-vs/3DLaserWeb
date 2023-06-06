@@ -22,7 +22,7 @@ class AssemblyPlanScreen extends StatelessWidget {
         builder: (controller) {
           WidgetsBinding.instance.addPostFrameCallback((duration) {
             Get.find<AssemblyProductController>().getAssemblyProducts();
-              Get.find<FinalAssemblyController>().getAssemblyProducts();
+            Get.find<FinalAssemblyController>().getAssemblyProducts();
           });
           // if (controller.screen == 'DashBoard')
           return SingleChildScrollView(
@@ -72,17 +72,18 @@ class AssemblyPlanScreen extends StatelessWidget {
                                 shrinkWrap: true,
                                 itemBuilder: (context, index) {
                                   return ListTile(
-                                   onTap: () {
-                                     Get.find<AssemblyProductController>()
-                                          .getAssemblyQuestions(id: controller
+                                    onTap: () {
+                                      Get.find<AssemblyProductController>()
+                                          .getAssemblyQuestions(
+                                              id: controller
                                                   .assemblyProductList[index]
                                                   .id!);
-                                   
+
                                       Get.find<AssemblyProductController>()
                                               .productId =
                                           controller
                                               .assemblyProductList[index].id!;
-                        
+
                                       Get.find<HomeScreenController>().appBarName(
                                           '${controller.assemblyProductList[index].name}   ');
                                       Get.find<HomeScreenController>()
@@ -111,29 +112,25 @@ class AssemblyPlanScreen extends StatelessWidget {
                                           onTap: () {
                                             Navigator.pushNamed(
                                               Get.context!,
-                                              ScreenCompletedProducts
-                                                  .routeName,
+                                              ScreenCompletedProducts.routeName,
                                               arguments: {
                                                 'id': controller
                                                     .assemblyProductList[index]
                                                     .id!,
-                                               
-                                                'screenName':'Assembly'
+                                                'screenName': 'Assembly'
                                               },
                                             );
                                           },
                                           child: Padding(
-                                            padding:
-                                                const EdgeInsets.all(8.0),
+                                            padding: const EdgeInsets.all(8.0),
                                             child: Container(
                                               alignment: Alignment.center,
                                               width: customWidth(40),
                                               height: customHeight(25),
                                               decoration: BoxDecoration(
                                                 color: Colors.black,
-                                                borderRadius:
-                                                    BorderRadius.all(
-                                                        Radius.circular(5)),
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(5)),
                                                 border: Border.all(
                                                     width: 1,
                                                     color: LightColor
@@ -142,8 +139,7 @@ class AssemblyPlanScreen extends StatelessWidget {
                                               child: Text(
                                                 "Completed Works",
                                                 style: TextStyle(
-                                                    fontSize:
-                                                        customFontSize(4),
+                                                    fontSize: customFontSize(4),
                                                     color: Colors.white),
                                               ),
                                             ),
@@ -155,8 +151,7 @@ class AssemblyPlanScreen extends StatelessWidget {
                                             onTap: () {
                                               Navigator.pushNamed(
                                                 Get.context!,
-                                                AssemblyProductEditor
-                                                    .routeName,
+                                                AssemblyProductEditor.routeName,
                                                 arguments: {
                                                   'id': controller
                                                       .assemblyProductList[
@@ -174,33 +169,29 @@ class AssemblyPlanScreen extends StatelessWidget {
                                                       .assemblyProductList[
                                                           index]
                                                       .time_limit!,
-                                                       'genQR': controller
+                                                  'genQR': controller
                                                       .assemblyProductList[
                                                           index]
                                                       .qrRequired!,
-                                                       'finalAssembly': controller
+                                                  'finalAssembly': controller
                                                       .assemblyProductList[
                                                           index]
                                                       .isFinal!,
-                        
-                                                      
-                        
-                                                      
-                        
-                                                         'ipAddress':controller
+                                                  'ipAddress': controller
                                                       .assemblyProductList[
-                                                          index].ipAddress,
-                'portNumber':controller
+                                                          index]
+                                                      .ipAddress,
+                                                  'portNumber': controller
                                                       .assemblyProductList[
-                                                          index].port,
-                           'printerData':controller
-                                                      .assemblyProductList[
-                                                          index].productObj!.zebraData??"N/A",
-                        
-                                                          
+                                                          index]
+                                                      .port,
+                                                  'printerData': controller
+                                                          .assemblyProductList[
+                                                              index]
+                                                          .productObj!
+                                                          .zebraData ??
+                                                      "N/A",
                                                 },
-                        
-                                                  
                                               );
                                             },
                                             child: Container(
@@ -209,9 +200,8 @@ class AssemblyPlanScreen extends StatelessWidget {
                                               height: customHeight(25),
                                               decoration: BoxDecoration(
                                                 color: LightColor.orange,
-                                                borderRadius:
-                                                    BorderRadius.all(
-                                                        Radius.circular(5)),
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(5)),
                                                 border: Border.all(
                                                     width: 1,
                                                     color: LightColor
@@ -220,8 +210,7 @@ class AssemblyPlanScreen extends StatelessWidget {
                                               child: Text(
                                                 "EDIT",
                                                 style: TextStyle(
-                                                    fontSize:
-                                                        customFontSize(3),
+                                                    fontSize: customFontSize(3),
                                                     color: Colors.white),
                                               ),
                                             ),
@@ -230,8 +219,7 @@ class AssemblyPlanScreen extends StatelessWidget {
                                         GestureDetector(
                                           onTap: () {
                                             int id = controller
-                                                .assemblyProductList[index]
-                                                .id!;
+                                                .assemblyProductList[index].id!;
                                             showDialog(
                                               context: context,
                                               barrierDismissible: false,
@@ -257,8 +245,7 @@ class AssemblyPlanScreen extends StatelessWidget {
                                                                     .getAssemblyProducts());
                                                         Get.back();
                                                       },
-                                                      child:
-                                                          const Text('Yes'),
+                                                      child: const Text('Yes'),
                                                     ),
                                                   ],
                                                 );
@@ -266,8 +253,7 @@ class AssemblyPlanScreen extends StatelessWidget {
                                             );
                                           },
                                           child: Padding(
-                                            padding:
-                                                const EdgeInsets.all(8.0),
+                                            padding: const EdgeInsets.all(8.0),
                                             child: Icon(
                                               Icons.delete,
                                               color: Colors.red,
@@ -292,242 +278,230 @@ class AssemblyPlanScreen extends StatelessWidget {
                 ),
                 ////////
                 ///
-                  Padding(
-                    padding: const EdgeInsets.only(bottom:80.0),
-                    child: Container(
-                    // color: Colors.yellow,
-                                   
-                    child:  Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: GetBuilder<FinalAssemblyController>(
-                              id: Get.find<FinalAssemblyController>()
-                                  .finalAssemblyProductID,
-                              builder: (controller) {
-                                if (controller.assemblyProductList.isNotEmpty) {
-                                  return ListView.separated(
-                                      //scrollDirection: Axis.vertical,
-                                      //physics: NeverScrollableScrollPhysics(),
-                                      shrinkWrap: true,
-                                      itemBuilder: (context, index) {
-                                        return ListTile(
-                                         onTap: () {
-                                           Get.find<FinalAssemblyController>()
-                                                .getAssemblyQuestions(id: controller
-                                                        .assemblyProductList[index]
-                                                        .id!);
-                                         
-                                            Get.find<FinalAssemblyController>()
-                                                    .productId =
-                                                controller
-                                                    .assemblyProductList[index].id!;
-                    
-                                            Get.find<HomeScreenController>().appBarName(
-                                                '${controller.assemblyProductList[index].name}   ');
-                                            Get.find<HomeScreenController>()
-                                                .setHomeScreen('FINAL ASSEMBLY QUESTIONS');
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 80.0),
+                  child: Container(
+                      // color: Colors.yellow,
+
+                      child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GetBuilder<FinalAssemblyController>(
+                        id: Get.find<FinalAssemblyController>()
+                            .finalAssemblyProductID,
+                        builder: (controller) {
+                          if (controller.assemblyProductList.isNotEmpty) {
+                            return ListView.separated(
+                                //scrollDirection: Axis.vertical,
+                                //physics: NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemBuilder: (context, index) {
+                                  return ListTile(
+                                    onTap: () {
+                                      Get.find<FinalAssemblyController>()
+                                          .getAssemblyQuestions(
+                                              id: controller
+                                                  .assemblyProductList[index]
+                                                  .id!);
+
+                                      Get.find<FinalAssemblyController>()
+                                              .productId =
+                                          controller
+                                              .assemblyProductList[index].id!;
+
+                                      Get.find<HomeScreenController>().appBarName(
+                                          '${controller.assemblyProductList[index].name}   ');
+                                      Get.find<HomeScreenController>()
+                                          .setHomeScreen(
+                                              'FINAL ASSEMBLY QUESTIONS');
+                                    },
+                                    tileColor: Colors.red.shade100,
+                                    //  leading: Text('${index + 1}'),
+                                    title: Row(
+                                      children: [
+                                        Text(
+                                          '${controller.assemblyProductList[index].name} ',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        // Text(
+                                        //   '(${index + 5} Questions)',
+                                        //   style: TextStyle(
+                                        //       color: Colors.grey[600]),
+                                        // )
+                                      ],
+                                    ),
+                                    trailing: Wrap(
+                                      spacing: 12,
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            Navigator.pushNamed(
+                                              Get.context!,
+                                              ScreenCompletedProducts.routeName,
+                                              arguments: {
+                                                'id': controller
+                                                    .assemblyProductList[index]
+                                                    .id!,
+                                                'screenName': 'FinalAssembly'
+                                              },
+                                            );
                                           },
-                                          tileColor: Colors.red.shade100,
-                                        //  leading: Text('${index + 1}'),
-                                          title: Row(
-                                            children: [
-                                              Text(
-                                                '${controller.assemblyProductList[index].name} ',
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Container(
+                                              alignment: Alignment.center,
+                                              width: customWidth(40),
+                                              height: customHeight(25),
+                                              decoration: BoxDecoration(
+                                                color: Colors.black,
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(5)),
+                                                border: Border.all(
+                                                    width: 1,
+                                                    color: LightColor
+                                                        .primaryColor),
+                                              ),
+                                              child: Text(
+                                                "Completed Works",
                                                 style: TextStyle(
-                                                    fontWeight: FontWeight.bold),
+                                                    fontSize: customFontSize(4),
+                                                    color: Colors.white),
                                               ),
-                                              // Text(
-                                              //   '(${index + 5} Questions)',
-                                              //   style: TextStyle(
-                                              //       color: Colors.grey[600]),
-                                              // )
-                                            ],
+                                            ),
                                           ),
-                                          trailing: Wrap(
-                                            spacing: 12,
-                                            children: [
-                                              GestureDetector(
-                                                onTap: () {
-                                                  Navigator.pushNamed(
-                                                    Get.context!,
-                                                    ScreenCompletedProducts
-                                                        .routeName,
-                                                    arguments: {
-                                                      'id': controller
-                                                          .assemblyProductList[index]
-                                                          .id!,
-                                                        'screenName':'FinalAssembly'
-                                                    },
-                                                  );
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: InkWell(
+                                            onTap: () {
+                                              Navigator.pushNamed(
+                                                Get.context!,
+                                                FinalAssemblyProductEditor
+                                                    .routeName,
+                                                arguments: {
+                                                  'id': controller
+                                                      .assemblyProductList[
+                                                          index]
+                                                      .id!,
+                                                  'productName': controller
+                                                      .assemblyProductList[
+                                                          index]
+                                                      .name!,
+                                                  'description': controller
+                                                      .assemblyProductList[
+                                                          index]
+                                                      .description!,
+                                                  'time_limit': controller
+                                                      .assemblyProductList[
+                                                          index]
+                                                      .time_limit!,
+                                                  'genQR': controller
+                                                      .assemblyProductList[
+                                                          index]
+                                                      .qrRequired!,
+                                                  'finalAssembly': controller
+                                                      .assemblyProductList[
+                                                          index]
+                                                      .isFinal!,
+                                                  'ipAddress': controller
+                                                      .assemblyProductList[
+                                                          index]
+                                                      .ipAddress,
+                                                  'portNumber': controller
+                                                      .assemblyProductList[
+                                                          index]
+                                                      .port,
+                                                  'printerData': controller
+                                                          .assemblyProductList[
+                                                              index]
+                                                          .productObj!
+                                                          .zebraData ??
+                                                      "N/A",
                                                 },
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
-                                                  child: Container(
-                                                    alignment: Alignment.center,
-                                                    width: customWidth(40),
-                                                    height: customHeight(25),
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.black,
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(5)),
-                                                      border: Border.all(
-                                                          width: 1,
-                                                          color: LightColor
-                                                              .primaryColor),
-                                                    ),
-                                                    child: Text(
-                                                      "Completed Works",
-                                                      style: TextStyle(
-                                                          fontSize:
-                                                              customFontSize(4),
-                                                          color: Colors.white),
-                                                    ),
-                                                  ),
-                                                ),
+                                              );
+                                            },
+                                            child: Container(
+                                              alignment: Alignment.center,
+                                              width: customWidth(20),
+                                              height: customHeight(25),
+                                              decoration: BoxDecoration(
+                                                color: LightColor.orange,
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(5)),
+                                                border: Border.all(
+                                                    width: 1,
+                                                    color: LightColor
+                                                        .primaryColor),
                                               ),
-                                              Padding(
-                                                padding: const EdgeInsets.all(8.0),
-                                                child: InkWell(
-                                                  onTap: () {
-                                                    Navigator.pushNamed(
-                                                      Get.context!,
-                                                      FinalAssemblyProductEditor
-                                                          .routeName,
-                                                      arguments: {
-                                                        'id': controller
-                                                            .assemblyProductList[
-                                                                index]
-                                                            .id!,
-                                                        'productName': controller
-                                                            .assemblyProductList[
-                                                                index]
-                                                            .name!,
-                                                        'description': controller
-                                                            .assemblyProductList[
-                                                                index]
-                                                            .description!,
-                                                        'time_limit': controller
-                                                            .assemblyProductList[
-                                                                index]
-                                                            .time_limit!,
-                                                             'genQR': controller
-                                                            .assemblyProductList[
-                                                                index]
-                                                            .qrRequired!,
-                                                             'finalAssembly': controller
-                                                            .assemblyProductList[
-                                                                index]
-                                                            .isFinal!,
-                    
-                                                            
-                    
-                                                            
-                    
-                                                               'ipAddress':controller
-                                                            .assemblyProductList[
-                                                                index].ipAddress,
-                          'portNumber':controller
-                                                            .assemblyProductList[
-                                                                index].port,
-                       'printerData':controller
-                                                            .assemblyProductList[
-                                                                index].productObj!.zebraData??"N/A",
-                    
-                                                                
+                                              child: Text(
+                                                "EDIT",
+                                                style: TextStyle(
+                                                    fontSize: customFontSize(3),
+                                                    color: Colors.white),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            int id = controller
+                                                .assemblyProductList[index].id!;
+                                            showDialog(
+                                              context: context,
+                                              barrierDismissible: false,
+                                              builder: (context) {
+                                                return AlertDialog(
+                                                  title: Text('Alert'),
+                                                  content: Text(
+                                                      'Are you sure you want to delete'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () {
+                                                        Get.back();
                                                       },
-                    
-                                                        
-                                                    );
-                                                  },
-                                                  child: Container(
-                                                    alignment: Alignment.center,
-                                                    width: customWidth(20),
-                                                    height: customHeight(25),
-                                                    decoration: BoxDecoration(
-                                                      color: LightColor.orange,
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(5)),
-                                                      border: Border.all(
-                                                          width: 1,
-                                                          color: LightColor
-                                                              .primaryColor),
+                                                      child: const Text('No'),
                                                     ),
-                                                    child: Text(
-                                                      "EDIT",
-                                                      style: TextStyle(
-                                                          fontSize:
-                                                              customFontSize(3),
-                                                          color: Colors.white),
+                                                    TextButton(
+                                                      onPressed: () {
+                                                        controller
+                                                            .deleteAssemblyProduct(
+                                                                id: id)
+                                                            .then((value) =>
+                                                                controller
+                                                                    .getAssemblyProducts());
+                                                        Get.back();
+                                                      },
+                                                      child: const Text('Yes'),
                                                     ),
-                                                  ),
-                                                ),
-                                              ),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  int id = controller
-                                                      .assemblyProductList[index]
-                                                      .id!;
-                                                  showDialog(
-                                                    context: context,
-                                                    barrierDismissible: false,
-                                                    builder: (context) {
-                                                      return AlertDialog(
-                                                        title: Text('Alert'),
-                                                        content: Text(
-                                                            'Are you sure you want to delete'),
-                                                        actions: [
-                                                          TextButton(
-                                                            onPressed: () {
-                                                              Get.back();
-                                                            },
-                                                            child: const Text('No'),
-                                                          ),
-                                                          TextButton(
-                                                            onPressed: () {
-                                                              controller
-                                                                  .deleteAssemblyProduct(
-                                                                      id: id)
-                                                                  .then((value) =>
-                                                                      controller
-                                                                          .getAssemblyProducts());
-                                                              Get.back();
-                                                            },
-                                                            child:
-                                                                const Text('Yes'),
-                                                          ),
-                                                        ],
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
-                                                  child: Icon(
-                                                    Icons.delete,
-                                                    color: Colors.red,
-                                                    size: customHeight(25),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          },
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Icon(
+                                              Icons.delete,
+                                              color: Colors.red,
+                                              size: customHeight(25),
+                                            ),
                                           ),
-                                        );
-                                      },
-                                      separatorBuilder: (context, index) {
-                                        return customVerticalGap(10);
-                                      },
-                                      itemCount:
-                                          controller.assemblyProductList.length);
-                                } else {
-                                  return Text('No Data');
-                                }
-                              }),
-                    )
-                                  ),
-                  ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                                separatorBuilder: (context, index) {
+                                  return customVerticalGap(10);
+                                },
+                                itemCount:
+                                    controller.assemblyProductList.length);
+                          } else {
+                            return Text('No Data');
+                          }
+                        }),
+                  )),
+                ),
               ],
             ),
           );

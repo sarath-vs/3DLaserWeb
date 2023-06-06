@@ -24,7 +24,7 @@ class FinalAssemblyQuestionListScreen extends StatelessWidget {
           // if (controller.screen == 'DashBoard')
           return Column(
             children: [
-               CustomAppBar(context, false, "Final Assembly Questions"),
+              CustomAppBar(context, false, "Final Assembly Questions"),
               customVerticalGap(5),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: customWidth(20)),
@@ -70,17 +70,12 @@ class FinalAssemblyQuestionListScreen extends StatelessWidget {
                                   shrinkWrap: true,
                                   itemBuilder: (context, index) {
                                     return ListTile(
-                                      
                                       tileColor: Colors.red.shade300,
                                       leading: Text('${index + 1}'),
-                                      title: Row(
-                                        children: [
-                                          Text(
-                                            '${controller.assemblyQuestionList[index].questionEnglish} ',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ],
+                                      title: Text(
+                                        '${controller.assemblyQuestionList[index].questionEnglish} ',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       trailing: Wrap(
                                         spacing: 12,
@@ -89,15 +84,30 @@ class FinalAssemblyQuestionListScreen extends StatelessWidget {
                                             padding: const EdgeInsets.all(8.0),
                                             child: InkWell(
                                               onTap: () {
-                                                Get.find<QualityQuestionEditController>().getEditQuestionDetails(id:controller.assemblyQuestionList[index].id.toString(),screenName: 'Final Assembly').then((value) {
-                                                  Navigator.pushNamed(context,arguments: {
-                                           'id': controller.assemblyQuestionList[index].id, 'screenName':'Final Assembly' },QualityquestionEdit.routeName);
+                                                Get.find<
+                                                        QualityQuestionEditController>()
+                                                    .getEditQuestionDetails(
+                                                        id: controller
+                                                            .assemblyQuestionList[
+                                                                index]
+                                                            .id
+                                                            .toString(),
+                                                        screenName:
+                                                            'Final Assembly')
+                                                    .then((value) {
+                                                  Navigator.pushNamed(
+                                                      context,
+                                                      arguments: {
+                                                        'id': controller
+                                                            .assemblyQuestionList[
+                                                                index]
+                                                            .id,
+                                                        'screenName':
+                                                            'Final Assembly'
+                                                      },
+                                                      QualityquestionEdit
+                                                          .routeName);
                                                 });
-                                                
-            
-           
-        
-                                            
                                               },
                                               child: Container(
                                                 alignment: Alignment.center,
@@ -149,15 +159,15 @@ class FinalAssemblyQuestionListScreen extends StatelessWidget {
                                                                           index]
                                                                       .id!)
                                                               .then((value) {
-                                                            controller
-                                                                .getAssemblyQuestions(
-                                                                    id: controller
-                                                                        .productId);
+                                                            controller.getAssemblyQuestions(
+                                                                id: controller
+                                                                    .productId);
                                                           });
 
                                                           Get.back();
                                                         },
-                                                        child: const Text('Yes'),
+                                                        child:
+                                                            const Text('Yes'),
                                                       ),
                                                     ],
                                                   );
@@ -165,7 +175,8 @@ class FinalAssemblyQuestionListScreen extends StatelessWidget {
                                               );
                                             },
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding:
+                                                  const EdgeInsets.all(10.0),
                                               child: Icon(
                                                 Icons.delete,
                                                 color: Colors.red,

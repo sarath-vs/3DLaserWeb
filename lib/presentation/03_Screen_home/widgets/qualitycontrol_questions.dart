@@ -24,7 +24,7 @@ class QualityQuestionScreen extends StatelessWidget {
           // if (controller.screen == 'DashBoard')
           return Column(
             children: [
-               CustomAppBar(context, false, "Quality Questions"),
+              CustomAppBar(context, false, "Quality Questions"),
               customVerticalGap(5),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: customWidth(20)),
@@ -70,17 +70,12 @@ class QualityQuestionScreen extends StatelessWidget {
                                   shrinkWrap: true,
                                   itemBuilder: (context, index) {
                                     return ListTile(
-                                      
                                       tileColor: Colors.green.shade300,
                                       leading: Text('${index + 1}'),
-                                      title: Row(
-                                        children: [
-                                          Text(
-                                            '${controller.qualityQuestionList[index].questionEnglish} ',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ],
+                                      title: Text(
+                                        '${controller.qualityQuestionList[index].questionEnglish} ',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       trailing: Wrap(
                                         spacing: 12,
@@ -89,15 +84,28 @@ class QualityQuestionScreen extends StatelessWidget {
                                             padding: const EdgeInsets.all(8.0),
                                             child: InkWell(
                                               onTap: () {
-                                                Get.find<QualityQuestionEditController>().getEditQuestionDetails(id:controller.qualityQuestionList[index].id.toString(),screenName: 'Quality').then((value) {
-                                                  Navigator.pushNamed(context,arguments: {
-                                           'id': controller.qualityQuestionList[index].id, 'screenName':'Quality' },QualityquestionEdit.routeName);
+                                                Get.find<
+                                                        QualityQuestionEditController>()
+                                                    .getEditQuestionDetails(
+                                                        id: controller
+                                                            .qualityQuestionList[
+                                                                index]
+                                                            .id
+                                                            .toString(),
+                                                        screenName: 'Quality')
+                                                    .then((value) {
+                                                  Navigator.pushNamed(
+                                                      context,
+                                                      arguments: {
+                                                        'id': controller
+                                                            .qualityQuestionList[
+                                                                index]
+                                                            .id,
+                                                        'screenName': 'Quality'
+                                                      },
+                                                      QualityquestionEdit
+                                                          .routeName);
                                                 });
-                                                
-            
-           
-        
-                                            
                                               },
                                               child: Container(
                                                 alignment: Alignment.center,
@@ -149,15 +157,15 @@ class QualityQuestionScreen extends StatelessWidget {
                                                                           index]
                                                                       .id!)
                                                               .then((value) {
-                                                            controller
-                                                                .getQualityQuestions(
-                                                                    id: controller
-                                                                        .productId);
+                                                            controller.getQualityQuestions(
+                                                                id: controller
+                                                                    .productId);
                                                           });
 
                                                           Get.back();
                                                         },
-                                                        child: const Text('Yes'),
+                                                        child:
+                                                            const Text('Yes'),
                                                       ),
                                                     ],
                                                   );
@@ -165,7 +173,8 @@ class QualityQuestionScreen extends StatelessWidget {
                                               );
                                             },
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding:
+                                                  const EdgeInsets.all(10.0),
                                               child: Icon(
                                                 Icons.delete,
                                                 color: Colors.red,
