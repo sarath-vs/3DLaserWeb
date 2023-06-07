@@ -192,7 +192,10 @@ class _FinalAssemblyQuestionAddScreenState
                                       return null;
                                     },
                                     onChanged: (value) {
-                                      questionEnglish = value;
+                                      var englishqp =
+                                          (utf8.encode(value)).toString();
+                                      questionEnglish = englishqp;
+                                      // questionEnglish = value;
                                     },
                                     decoration: InputDecoration(
                                       hintText: "Questions English (optional)",
@@ -287,7 +290,11 @@ class _FinalAssemblyQuestionAddScreenState
                                     keyboardType: TextInputType.multiline,
                                     maxLines: null,
                                     onChanged: (value) {
-                                      discriptionEnglish = value;
+                                      // discriptionEnglish = value;
+
+                                      var englishdis =
+                                          (utf8.encode(value)).toString();
+                                      discriptionEnglish = englishdis;
                                     },
                                     decoration: InputDecoration(
                                       hintText:
@@ -1098,7 +1105,13 @@ class _FinalAssemblyQuestionAddScreenState
                                                 return null;
                                               },
                                               onChanged: (value) {
-                                                dropDownDataEnglish = value;
+                                                // dropDownDataEnglish = value;
+
+                                                var englishdropdown =
+                                                    (utf8.encode(value))
+                                                        .toString();
+                                                dropDownDataEnglish =
+                                                    englishdropdown;
                                               },
                                               decoration: InputDecoration(
                                                 hintText:

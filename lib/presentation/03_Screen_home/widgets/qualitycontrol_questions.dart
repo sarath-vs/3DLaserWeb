@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
@@ -69,11 +71,19 @@ class QualityQuestionScreen extends StatelessWidget {
                                   //physics: NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
                                   itemBuilder: (context, index) {
+                                    String tempenglishqp = controller
+                                        .qualityQuestionList[index]
+                                        .questionEnglish
+                                        .toString();
+                                    List<int> tempengliqplist =
+                                        json.decode(tempenglishqp).cast<int>();
+                                    var decoenglishqp =
+                                        utf8.decode(tempengliqplist);
                                     return ListTile(
                                       tileColor: Colors.green.shade300,
                                       leading: Text('${index + 1}'),
                                       title: Text(
-                                        '${controller.qualityQuestionList[index].questionEnglish} ',
+                                        decoenglishqp,
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),

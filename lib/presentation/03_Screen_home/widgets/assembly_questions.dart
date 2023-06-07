@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../application/assembly_controller/assembly_controller.dart';
@@ -68,11 +70,19 @@ class AssemblyQuestionListScreen extends StatelessWidget {
                                   //physics: NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
                                   itemBuilder: (context, index) {
+                                    String tempenglishqp = controller
+                                        .assemblyQuestionList[index]
+                                        .questionEnglish
+                                        .toString();
+                                    List<int> tempengliqplist =
+                                        json.decode(tempenglishqp).cast<int>();
+                                    var decoenglishqp =
+                                        utf8.decode(tempengliqplist);
                                     return ListTile(
                                       tileColor: Colors.blue.shade300,
                                       leading: Text('${index + 1}'),
                                       title: Text(
-                                        '${controller.assemblyQuestionList[index].questionEnglish} ',
+                                        decoenglishqp,
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),

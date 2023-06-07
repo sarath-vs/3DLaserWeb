@@ -202,7 +202,9 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                       return null;
                                     },
                                     onChanged: (value) {
-                                      questionEnglish = value;
+                                      var englishqp =
+                                          (utf8.encode(value)).toString();
+                                      questionEnglish = englishqp;
                                     },
                                     decoration: InputDecoration(
                                       hintText: "Questions English (optional)",
@@ -297,7 +299,11 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                     keyboardType: TextInputType.multiline,
                                     maxLines: null,
                                     onChanged: (value) {
-                                      discriptionEnglish = value;
+                                      var englishdis =
+                                          (utf8.encode(value)).toString();
+                                      discriptionEnglish = englishdis;
+
+                                      // discriptionEnglish = value;
                                     },
                                     decoration: InputDecoration(
                                       hintText:
@@ -1073,7 +1079,11 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                                 return null;
                                               },
                                               onChanged: (value) {
-                                                dropDownDataEnglish = value;
+                                                var englishdropdown =
+                                                    (utf8.encode(value))
+                                                        .toString();
+                                                dropDownDataEnglish =
+                                                    englishdropdown;
                                               },
                                               decoration: InputDecoration(
                                                 hintText:
