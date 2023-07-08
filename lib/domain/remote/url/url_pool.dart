@@ -31,7 +31,7 @@ class URLPool {
   String get saveTools =>
       'http://qualitynew.lasertec.eu/backend/admin-dashboard/tools/';
   String get deleteTools =>
-      'http://qualitynew.lasertec.eu/backend/admin-dashboard/tools';
+      'http://qualitynew.lasertec.eu/backend/admin-dashboard/tools/';
 
   String get getQualityProducts =>
       'http://qualitynew.lasertec.eu/backend/admin-dashboard/category/';
