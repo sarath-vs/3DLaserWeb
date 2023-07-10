@@ -27,31 +27,38 @@ class QualityProductController extends GetxController {
 
   String get qualityProductID => 'qualityProductID';
   String get qualityQuestionID => 'qualityQuestionID';
-
+  static String zplprinterdata = '''^XA
+^LH0,0
+^FO20,20^BQR,2,5
+^FD
+Product:[productname],ID:[ID],SerialNumber:[*Don't change here*],Timestamp:[**Don't change here**]
+^FS
+^XZ''';
+  final TextEditingController zplprinterdataController =
+      TextEditingController();
   List<QualityProductResult> qualityProductList = [];
-  final List<QualityProductResult> _qualityProductListFilter =
-      [];
+  final List<QualityProductResult> _qualityProductListFilter = [];
   List<QuestionResult> qualityQuestionList = [];
-    
 
   String name = '';
+
   int productId = 0;
 
   Future<void> searchDirectory(String query) async {
-    if (query.isEmpty ||
-        query == '' ) {
+    if (query.isEmpty || query == '') {
       qualityProductList.clear();
       qualityProductList.addAll(_qualityProductListFilter);
     } else {
       final searchResult = _qualityProductListFilter.where((data) =>
           data.name!.toLowerCase().contains(query.toLowerCase()) ||
-          data.id.toString().contains(query) );
+          data.id.toString().contains(query));
 
       qualityProductList.clear();
       qualityProductList = searchResult.toList();
     }
     update([qualityProductID]);
   }
+
   Future<void> getQualityProducts() async {
     showCircularProgressDialog(msg: 'Loading');
     final result = await _qualityProductFacade.getQualityProduct();
@@ -76,10 +83,24 @@ class QualityProductController extends GetxController {
   }
 
   Future<void> saveQualityQuestions(
-      {required String name, required String discription,required String time,required String ip,required String port, required String printerData}) async {
+      {required String name,
+      required String discription,
+      required String time,
+      required String ip,
+      required String port,
+      required String printerData}) async {
+    // if (zplprinterdataController.text.isEmpty) {
+    //   zplprinterdataController.text = zplprinterdata;
+    // }
+
     showCircularProgressDialog(msg: 'Saving');
     final result = await _qualityProductFacade.saveQualityProduct(
-        name: name, description: discription,time: time, ip: ip, port: port, printerData: printerData);
+        name: name,
+        description: discription,
+        time: time,
+        ip: ip,
+        port: port,
+        printerData: printerData);
     Navigator.of(navigatorKey.currentContext!).pop();
     result.fold((NetworkExceptions exp) {
       return showSingleButtonAlertDialog(
@@ -212,10 +233,23 @@ class QualityProductController extends GetxController {
     });
   }
 
-    Future<void> putQualityProducts({required int id, required String name, required String description,required String time,required String ip,required String port, required String printerData}
-      ) async {
+  Future<void> putQualityProducts(
+      {required int id,
+      required String name,
+      required String description,
+      required String time,
+      required String ip,
+      required String port,
+      required String printerData}) async {
     showCircularProgressDialog(msg: 'Loading');
-    final result = await _qualityProductFacade.putQualityProduct(id: id, name: name, description: description, time: time, ip: ip, port: port, printerData: printerData);
+    final result = await _qualityProductFacade.putQualityProduct(
+        id: id,
+        name: name,
+        description: description,
+        time: time,
+        ip: ip,
+        port: port,
+        printerData: printerData);
     Navigator.of(navigatorKey.currentContext!).pop();
     result.fold((NetworkExceptions exp) {
       return showSingleButtonAlertDialog(
@@ -235,8 +269,4 @@ class QualityProductController extends GetxController {
       update([qualityQuestionID]);
     });
   }
-
-  
-
-   
 }
