@@ -128,8 +128,10 @@ Widget CustomAppBar(BuildContext context, bool showArrow, String screenName) {
                           var width = MediaQuery.of(context).size.width;
 
                           return SizedBox(
-                            height: height - 700,
-                            width: width - 900,
+                            // height: height - 700,
+                            // width: width - 900,
+                            height: 100,
+                            width: 500,
                             child: Center(
                                 child: Text(
                               'Logout ?',
