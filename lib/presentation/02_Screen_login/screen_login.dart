@@ -23,8 +23,14 @@ class ScreenLogin extends StatefulWidget {
 
 String? userName = kDebugMode ? 'admin@admin.com' : '';
 String? password = kDebugMode ? 'admin' : '';
+bool _passwordVisible = false;
 
 class _ScreenLoginState extends State<ScreenLogin> {
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   bool _passwordVisible = false;
+  // }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -59,7 +65,8 @@ class _ScreenLoginState extends State<ScreenLogin> {
                         underline: const SizedBox(),
                         hint: Text(
                           translation(context).language,
-                          style: TextStyle(fontSize: customFontSize(5), color: Colors.white),
+                          style: TextStyle(
+                              fontSize: customFontSize(5), color: Colors.white),
                         ),
                         icon: const Icon(
                           Icons.language,
@@ -68,7 +75,8 @@ class _ScreenLoginState extends State<ScreenLogin> {
                         ),
                         onChanged: (Language? language) async {
                           setState(() async {
-                            Locale locale = await setLocale(language!.languageCode);
+                            Locale locale =
+                                await setLocale(language!.languageCode);
                             // ignore: use_build_context_synchronously
                             MyApp.setLocale(context, locale);
                           });
@@ -78,15 +86,18 @@ class _ScreenLoginState extends State<ScreenLogin> {
                               (e) => DropdownMenuItem<Language>(
                                 value: e,
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
                                   children: <Widget>[
                                     Text(
                                       e.flag,
-                                      style: TextStyle(fontSize: customFontSize(10)),
+                                      style: TextStyle(
+                                          fontSize: customFontSize(10)),
                                     ),
                                     Text(
                                       e.name,
-                                      style: TextStyle(fontSize: customFontSize(6)),
+                                      style: TextStyle(
+                                          fontSize: customFontSize(6)),
                                     )
                                   ],
                                 ),
@@ -121,7 +132,8 @@ class _ScreenLoginState extends State<ScreenLogin> {
                                       SizedBox(
                                         width: customWidth(110),
                                         child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Text(
                                               'Login',
@@ -144,7 +156,8 @@ class _ScreenLoginState extends State<ScreenLogin> {
                                       TextFormField(
                                         validator: (val) {
                                           if (val != null && val.isEmpty) {
-                                            return translation(context).localeName;
+                                            return translation(context)
+                                                .localeName;
                                           }
                                           return null;
                                         },
@@ -162,9 +175,11 @@ class _ScreenLoginState extends State<ScreenLogin> {
                                       ),
                                       customVerticalGap(20),
                                       TextFormField(
+                                        obscureText: !_passwordVisible,
                                         validator: (val) {
                                           if (val != null && val.isEmpty) {
-                                            return translation(context).localeName;
+                                            return translation(context)
+                                                .localeName;
                                           }
                                           return null;
                                         },
@@ -172,27 +187,47 @@ class _ScreenLoginState extends State<ScreenLogin> {
                                           password = value;
                                         },
                                         decoration: InputDecoration(
-                                          border: const OutlineInputBorder(),
-                                          fillColor: Colors.grey.shade200,
-                                          filled: true,
-                                          floatingLabelStyle: AppTheme.h2Style,
-                                          labelText: translation(context).password,
-                                          labelStyle: AppTheme.h2Style,
-                                          hintText: translation(context).password,
-                                          hintStyle: AppTheme.h2Style,
-                                        ),
+                                            border: const OutlineInputBorder(),
+                                            fillColor: Colors.grey.shade200,
+                                            filled: true,
+                                            floatingLabelStyle:
+                                                AppTheme.h2Style,
+                                            labelText:
+                                                translation(context).password,
+                                            labelStyle: AppTheme.h2Style,
+                                            hintText:
+                                                translation(context).password,
+                                            hintStyle: AppTheme.h2Style,
+                                            suffixIcon: IconButton(
+                                              icon: Icon(
+                                                // Based on passwordVisible state choose the icon
+                                                _passwordVisible
+                                                    ? Icons.visibility
+                                                    : Icons.visibility_off,
+                                                color: Theme.of(context)
+                                                    .primaryColorDark,
+                                              ),
+                                              onPressed: () {
+                                                setState(() {
+                                                  _passwordVisible =
+                                                      !_passwordVisible;
+                                                });
+                                              },
+                                            )),
                                       ),
                                       customVerticalGap(30),
                                       TextButton(
                                         style: TextButton.styleFrom(
-                                          backgroundColor: const Color.fromARGB(255, 76, 34, 138),
+                                          backgroundColor: const Color.fromARGB(
+                                              255, 76, 34, 138),
                                           textStyle: TextStyle(
                                               color: Colors.black,
                                               fontSize: customFontSize(10),
                                               fontStyle: FontStyle.italic),
                                         ),
                                         onPressed: () {
-                                          Get.find<AuthController>().login(userName!, password!);
+                                          Get.find<AuthController>()
+                                              .login(userName!, password!);
                                           // if (userName == 'admin@admin.com' &&
                                           //     password == 'admin') {
                                           //   Navigator.pushNamed(
@@ -208,7 +243,8 @@ class _ScreenLoginState extends State<ScreenLogin> {
                                           child: Text(
                                             'LOGIN',
                                             style: TextStyle(
-                                                color: const Color.fromARGB(255, 255, 255, 255),
+                                                color: const Color.fromARGB(
+                                                    255, 255, 255, 255),
                                                 fontSize: customFontSize(6),
                                                 fontWeight: FontWeight.bold),
                                           ),
@@ -272,7 +308,9 @@ class _ScreenLoginState extends State<ScreenLogin> {
                 child: Text(
                   'Powered by   3DLASER TEC PVT LTD',
                   style: TextStyle(
-                      color: Colors.grey, fontWeight: FontWeight.bold, fontSize: customFontSize(4)),
+                      color: Colors.grey,
+                      fontWeight: FontWeight.bold,
+                      fontSize: customFontSize(4)),
                 ),
               )
             ],

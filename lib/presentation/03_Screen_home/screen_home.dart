@@ -48,31 +48,35 @@ class _ScreenHomeState extends State<ScreenHome> {
             if (controller.screen == 'Products' ||
                 controller.screen == 'Employees' ||
                 controller.screen == 'Tools' ||
-                controller.screen == 'Qualityquestions'||controller.screen == 'ASSEMBLY PLAN'||controller.screen == 'ASSEMBLY QUESTION'||controller.screen=='FINAL ASSEMBLY'||controller.screen=='FINAL ASSEMBLY QUESTIONS')
+                controller.screen == 'Qualityquestions' ||
+                controller.screen == 'ASSEMBLY PLAN' ||
+                controller.screen == 'ASSEMBLY QUESTION' ||
+                controller.screen == 'FINAL ASSEMBLY' ||
+                controller.screen == 'FINAL ASSEMBLY QUESTIONS')
               return FloatingActionButton(
                 onPressed: () {
                   if (controller.screen == 'Products') {
-                    Navigator.pushNamed(context, Qualitycontrolproperties.routeName);
+                    Navigator.pushNamed(
+                        context, Qualitycontrolproperties.routeName);
                   } else if (controller.screen == 'Employees') {
                     Navigator.pushNamed(context, EmployeeDetailsAdd.routeName);
                   } else if (controller.screen == 'Tools') {
                     Navigator.pushNamed(context, ScreenToolsADD.routeName);
                   } else if (controller.screen == 'Qualityquestions') {
                     Navigator.pushNamed(context, Qualityquestionform.routeName);
+                  } else if (controller.screen == 'ASSEMBLY PLAN') {
+                    Navigator.pushNamed(
+                        context, AssemblyPlanAddScreen.routeName);
+                  } else if (controller.screen == 'ASSEMBLY QUESTION') {
+                    Navigator.pushNamed(
+                        context, AssemblyQuestionAddScreen.routeName);
+                  } else if (controller.screen == 'FINAL ASSEMBLY') {
+                    Navigator.pushNamed(
+                        context, FinalAssemblyPlanAddScreen.routeName);
+                  } else if (controller.screen == 'FINAL ASSEMBLY QUESTIONS') {
+                    Navigator.pushNamed(
+                        context, FinalAssemblyQuestionAddScreen.routeName);
                   }
-                  else if (controller.screen == 'ASSEMBLY PLAN') {
-                    Navigator.pushNamed(context, AssemblyPlanAddScreen.routeName);
-                  }
-                   else if (controller.screen == 'ASSEMBLY QUESTION') {
-                    Navigator.pushNamed(context, AssemblyQuestionAddScreen.routeName);
-                  }
-                   else if (controller.screen == 'FINAL ASSEMBLY') {
-                    Navigator.pushNamed(context, FinalAssemblyPlanAddScreen.routeName);
-                  }
-                    else if (controller.screen == 'FINAL ASSEMBLY QUESTIONS') {
-                    Navigator.pushNamed(context, FinalAssemblyQuestionAddScreen.routeName);
-                  }
-                  
                 },
                 child: Icon(Icons.add),
               );
@@ -104,24 +108,24 @@ class _ScreenHomeState extends State<ScreenHome> {
                         builder: (controller) {
                           if (controller.screen == 'Products')
                             return Categories();
-                          else if (controller.screen == 'DashBoard')
-                            return DashBoard();
+                          // else if (controller.screen == 'DashBoard')
+                          //   return DashBoard();
                           else if (controller.screen == 'Tools')
                             return WorkingTools();
-                          else if (controller.screen == 'Employees')
-                            return Employees();
+                          // else if (controller.screen == 'Employees')
+                          //   return Employees();
                           else if (controller.screen == 'ASSEMBLY PLAN')
                             return AssemblyPlanScreen();
-                             else if (controller.screen == 'Qualityquestions')
+                          else if (controller.screen == 'Qualityquestions')
                             return QualityQuestionScreen();
-                             else if (controller.screen == 'ASSEMBLY QUESTION')
+                          else if (controller.screen == 'ASSEMBLY QUESTION')
                             return AssemblyQuestionListScreen();
-                             else if (controller.screen == 'FINAL ASSEMBLY')
+                          else if (controller.screen == 'FINAL ASSEMBLY')
                             return FinalAssemblyPlanScreen();
-                             else if (controller.screen == 'FINAL ASSEMBLY QUESTIONS') {
-                  return FinalAssemblyQuestionListScreen();
-                  }
-                          else
+                          else if (controller.screen ==
+                              'FINAL ASSEMBLY QUESTIONS') {
+                            return FinalAssemblyQuestionListScreen();
+                          } else
                             return AssemblyPlanScreen();
                         }),
                   );

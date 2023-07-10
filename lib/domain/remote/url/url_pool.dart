@@ -7,9 +7,9 @@ import 'package:injectable/injectable.dart';
 @singleton
 class URLPool {
 // test
-//http://65.1.86.132
+  final _baseUrl = 'http://65.1.86.132/accounts';
 //local czech
-  final _baseUrl = 'http://qualitynew.lasertec.eu/backend/accounts';
+  // final _baseUrl = 'http://qualitynew.lasertec.eu/backend/accounts';
 
   final _login = '/login/';
   final _refresh = '/refreshtoken/';
@@ -26,43 +26,39 @@ class URLPool {
   // String get saveAnswer => 'http://qualitynew.lasertec.eu/backend/questions/answer/';
   // String get getDigitalMannualList => 'http://qualitynew.lasertec.eu/backend/digital-manual/';
   // String get getDigitalMannualDetail => 'http://qualitynew.lasertec.eu/backend/digital-manual/';
-  String get getToolsList =>
-      'http://qualitynew.lasertec.eu/backend/admin-dashboard/tools/';
-  String get saveTools =>
-      'http://qualitynew.lasertec.eu/backend/admin-dashboard/tools/';
-  String get deleteTools =>
-      'http://qualitynew.lasertec.eu/backend/admin-dashboard/tools/';
+  String get getToolsList => 'http://65.1.86.132/admin-dashboard/tools/';
+  String get saveTools => 'http://65.1.86.132/admin-dashboard/tools/';
+  String get deleteTools => 'http://65.1.86.132/admin-dashboard/tools/';
 
   String get getQualityProducts =>
-      'http://qualitynew.lasertec.eu/backend/admin-dashboard/category/';
+      'http://65.1.86.132/admin-dashboard/category/';
   String get saveQualityProducts =>
       'http://qualitynew.lasertec.eu/backend/admin-dashboard/category/';
   String get deleteQualityProducts =>
-      'http://qualitynew.lasertec.eu/backend/admin-dashboard/category';
+      'http://65.1.86.132/admin-dashboard/category';
   String get getQualityQuestions =>
-      'http://qualitynew.lasertec.eu/backend/admin-dashboard/question/';
+      'http://65.1.86.132/admin-dashboard/question/';
   String get deleteQualityQuestions =>
-      'http://qualitynew.lasertec.eu/backend/admin-dashboard/question/';
+      'http://65.1.86.132/admin-dashboard/question/';
   // String get editQualityQuestions =>
   //     'http://qualitynew.lasertec.eu/backend/admin-dashboard/question/';
   String get postQualityQuestions =>
-      'http://qualitynew.lasertec.eu/backend/admin-dashboard/question/';
+      'http://65.1.86.132/admin-dashboard/question/';
 
   String get editQualityQuestions =>
-      'http://qualitynew.lasertec.eu/backend/admin-dashboard/question/';
+      'http://65.1.86.132/admin-dashboard/question/';
   String get getAnsweredProduct =>
-      'http://qualitynew.lasertec.eu/backend/admin-dashboard/answers/';
+      'http://65.1.86.132/admin-dashboard/answers/';
 
   String get assemblyDetails =>
-      'http://qualitynew.lasertec.eu/backend/admin-dashboard/assembly/category/';
+      'http://65.1.86.132/admin-dashboard/assembly/category/';
   String get assemplyCompletedList =>
-      'http://qualitynew.lasertec.eu/backend/admin-dashboard/assembly/products/';
+      'http://65.1.86.132/admin-dashboard/assembly/products/';
   String get assemblyQuestionDetails =>
-      'http://qualitynew.lasertec.eu/backend/admin-dashboard/assembly/question/';
+      'http://65.1.86.132/admin-dashboard/assembly/question/';
   String get finalAssemblyProductList =>
-      'http://qualitynew.lasertec.eu/backend/final-admin/category/';
-  String get finalAssembly =>
-      'http://qualitynew.lasertec.eu/backend/final-admin/category/';
+      'http://65.1.86.132/final-admin/category/';
+  String get finalAssembly => 'http://65.1.86.132/final-admin/category/';
   String get finalAssemblyQuestion =>
-      'http://qualitynew.lasertec.eu/backend/final-admin/question/';
+      'http://65.1.86.132/final-admin/question/';
 }

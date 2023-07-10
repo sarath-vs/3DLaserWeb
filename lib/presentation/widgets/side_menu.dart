@@ -23,16 +23,16 @@ class SideMenu extends StatelessWidget {
             ),
           ),
           customVerticalGap(50),
-          DrawerListTile(
-            title: "DashBoard",
-            icon: Icon(
-              Icons.dashboard,
-              color: Colors.grey,
-            ),
-            press: () {
-              Get.find<HomeScreenController>().setHomeScreen('DashBoard');
-            },
-          ),
+          // DrawerListTile(
+          //   title: "DashBoard",
+          //   icon: Icon(
+          //     Icons.dashboard,
+          //     color: Colors.grey,
+          //   ),
+          //   press: () {
+          //     Get.find<HomeScreenController>().setHomeScreen('DashBoard');
+          //   },
+          // ),
           // DrawerListTile(
           //   title: "Control Panel",
           //   icon: Icon(
@@ -43,16 +43,16 @@ class SideMenu extends StatelessWidget {
           //     Get.find<HomeScreenController>().setHomeScreen('Control Panel');
           //   },
           // ),
-          DrawerListTile(
-            title: "Employees",
-            icon: Icon(
-              Icons.emoji_people,
-              color: Colors.grey,
-            ),
-            press: () {
-              Get.find<HomeScreenController>().setHomeScreen('Employees');
-            },
-          ),
+          // DrawerListTile(
+          //   title: "Employees",
+          //   icon: Icon(
+          //     Icons.emoji_people,
+          //     color: Colors.grey,
+          //   ),
+          //   press: () {
+          //     Get.find<HomeScreenController>().setHomeScreen('Employees');
+          //   },
+          // ),
           DrawerListTile(
             title: " Quality Plan",
             icon: Icon(
@@ -60,7 +60,7 @@ class SideMenu extends StatelessWidget {
               color: Colors.grey,
             ),
             press: () {
-              Get.find<HomeScreenController>().setHomeScreen('Products');
+              Get.find<HomeScreenController>().setHomeScreen('QUALITY PLAN');
             },
           ),
           DrawerListTile(

@@ -10,7 +10,8 @@ class HomeScreenController extends GetxController {
   HomeScreenController(this._employeeDataManager);
 
   String get screenHomeWidget => 'screenHomeWidget';
-  String screen = 'DashBoard';
+  // String screen = 'DashBoard';
+  String screen = 'QUALITY PLAN';
   String appBar = '';
   String qualityProductName = '';
   String qualityProductDisc = '';
