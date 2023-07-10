@@ -45,7 +45,7 @@ class _ScreenHomeState extends State<ScreenHome> {
       floatingActionButton: GetBuilder<HomeScreenController>(
           id: Get.find<HomeScreenController>().screenHomeWidget,
           builder: (controller) {
-            if (controller.screen == 'Products' ||
+            if (controller.screen == 'Quality Plan' ||
                 controller.screen == 'Employees' ||
                 controller.screen == 'Tools' ||
                 controller.screen == 'Qualityquestions' ||
@@ -55,7 +55,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                 controller.screen == 'FINAL ASSEMBLY QUESTIONS')
               return FloatingActionButton(
                 onPressed: () {
-                  if (controller.screen == 'Products') {
+                  if (controller.screen == 'Quality Plan') {
                     Navigator.pushNamed(
                         context, Qualitycontrolproperties.routeName);
                   } else if (controller.screen == 'Employees') {
@@ -106,14 +106,14 @@ class _ScreenHomeState extends State<ScreenHome> {
                     child: GetBuilder<HomeScreenController>(
                         id: Get.find<HomeScreenController>().screenHomeWidget,
                         builder: (controller) {
-                          if (controller.screen == 'Products')
+                          if (controller.screen == 'Quality Plan')
                             return Categories();
-                          // else if (controller.screen == 'DashBoard')
-                          //   return DashBoard();
+                          else if (controller.screen == 'DashBoard')
+                            return DashBoard();
                           else if (controller.screen == 'Tools')
                             return WorkingTools();
-                          // else if (controller.screen == 'Employees')
-                          //   return Employees();
+                          else if (controller.screen == 'Employees')
+                            return Employees();
                           else if (controller.screen == 'ASSEMBLY PLAN')
                             return AssemblyPlanScreen();
                           else if (controller.screen == 'Qualityquestions')

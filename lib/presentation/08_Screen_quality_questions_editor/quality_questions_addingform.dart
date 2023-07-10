@@ -1546,7 +1546,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                       setState(() {
                                         screenName == 'Quality'
                                             ? Get.find<HomeScreenController>()
-                                                .setHomeScreen('Products')
+                                                .setHomeScreen('Quality Plan')
                                             : Get.find<HomeScreenController>()
                                                 .setHomeScreen('ASSEMBLY PLAN');
                                       });
@@ -1568,7 +1568,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                     //     setState(() {
                                     //       screenName == 'Quality'
                                     //           ? Get.find<HomeScreenController>()
-                                    //               .setHomeScreen('Products')
+                                    //               .setHomeScreen('Quality Plan')
                                     //           : Get.find<HomeScreenController>()
                                     //               .setHomeScreen(
                                     //                   'ASSEMBLY PLAN');
@@ -1589,7 +1589,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                     //     setState(() {
                                     //       screenName == 'Quality'
                                     //           ? Get.find<HomeScreenController>()
-                                    //               .setHomeScreen('Products')
+                                    //               .setHomeScreen('Quality Plan')
                                     //           : Get.find<HomeScreenController>()
                                     //               .setHomeScreen(
                                     //                   'ASSEMBLY PLAN');

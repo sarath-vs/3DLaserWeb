@@ -54,13 +54,13 @@ class SideMenu extends StatelessWidget {
           //   },
           // ),
           DrawerListTile(
-            title: " Quality Plan",
+            title: "Quality Plan",
             icon: Icon(
               Icons.category,
               color: Colors.grey,
             ),
             press: () {
-              Get.find<HomeScreenController>().setHomeScreen('QUALITY PLAN');
+              Get.find<HomeScreenController>().setHomeScreen('Quality Plan');
             },
           ),
           DrawerListTile(
