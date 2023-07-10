@@ -7,9 +7,9 @@ import 'package:injectable/injectable.dart';
 @singleton
 class URLPool {
 // test
-//http://65.1.86.132
+  final _baseUrl = 'http://65.1.86.132/accounts';
 //local czech
-  final _baseUrl = 'http://qualitynew.lasertec.eu/backend/accounts';
+  // final _baseUrl = 'http://qualitynew.lasertec.eu/backend/accounts';
 
   final _login = '/login/';
   final _refresh = '/refreshtoken/';
@@ -26,12 +26,9 @@ class URLPool {
   // String get saveAnswer => 'http://qualitynew.lasertec.eu/backend/questions/answer/';
   // String get getDigitalMannualList => 'http://qualitynew.lasertec.eu/backend/digital-manual/';
   // String get getDigitalMannualDetail => 'http://qualitynew.lasertec.eu/backend/digital-manual/';
-  String get getToolsList =>
-      'http://qualitynew.lasertec.eu/backend/admin-dashboard/tools/';
-  String get saveTools =>
-      'http://qualitynew.lasertec.eu/backend/admin-dashboard/tools/';
-  String get deleteTools =>
-      'http://qualitynew.lasertec.eu/backend/admin-dashboard/tools/';
+  String get getToolsList => 'http://65.1.86.132/admin-dashboard/tools/';
+  String get saveTools => 'http://65.1.86.132/admin-dashboard/tools/';
+  String get deleteTools => 'http://65.1.86.132/admin-dashboard/tools/';
 
   String get getQualityProducts =>
       'http://65.1.86.132/admin-dashboard/category/';
