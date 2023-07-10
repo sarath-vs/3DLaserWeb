@@ -22,37 +22,36 @@ class FinalAssemblyProductEditor extends StatefulWidget {
 
 String productName = '';
 String description = '';
-String timeLimit ='';
+String timeLimit = '';
 String ipAddress = '';
 String portNumber = '';
 String printerData = '';
 bool? generateQr;
 bool? finalAssembly;
-int id=0;
-int min =0;
-int sec =0;
+int id = 0;
+int min = 0;
+int sec = 0;
 
-class _FinalAssemblyProductEditorState extends State<FinalAssemblyProductEditor> {
+class _FinalAssemblyProductEditorState
+    extends State<FinalAssemblyProductEditor> {
   @override
   Widget build(BuildContext context) {
-     final arguments = ModalRoute.of(context)!.settings.arguments as Map;
+    final arguments = ModalRoute.of(context)!.settings.arguments as Map;
 
-     id = arguments['id'];
-     productName=arguments['productName'];
-      description=arguments['description'];
-       timeLimit=arguments['time_limit'];
-       ipAddress=arguments['ipAddress'];
-       portNumber=arguments['portNumber'];
-       printerData=arguments['printerData'];
-       if(generateQr==null||finalAssembly==null){
-            generateQr=arguments['genQR'];
-       finalAssembly=arguments['finalAssembly'];
+    id = arguments['id'];
+    productName = arguments['productName'];
+    description = arguments['description'];
+    timeLimit = arguments['time_limit'];
+    ipAddress = arguments['ipAddress'];
+    portNumber = arguments['portNumber'];
+    printerData = arguments['printerData'];
+    if (generateQr == null || finalAssembly == null) {
+      generateQr = arguments['genQR'];
+      finalAssembly = arguments['finalAssembly'];
+    }
 
-       }
-   
-
-        sec = int.parse(timeLimit) % 60;
-          min = (int.parse(timeLimit) / 60).floor();
+    sec = int.parse(timeLimit) % 60;
+    min = (int.parse(timeLimit) / 60).floor();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -105,7 +104,9 @@ class _FinalAssemblyProductEditorState extends State<FinalAssemblyProductEditor>
                           // controller.priintAnswerField();
                         },
                         decoration: InputDecoration(
-                          hintText:productName==''? "Property Name*":productName,
+                          hintText: productName == ''
+                              ? "Property Name*"
+                              : productName,
 
                           // border: OutlineInputBorder(
                           //     borderRadius: BorderRadius.circular(20)),
@@ -119,7 +120,7 @@ class _FinalAssemblyProductEditorState extends State<FinalAssemblyProductEditor>
                       "Maximum Time To Complete",
                       style: AppTheme.h6Style,
                     ),
-                  Row(
+                    Row(
                       children: [
                         SizedBox(
                           width: customWidth(30),
@@ -130,10 +131,10 @@ class _FinalAssemblyProductEditorState extends State<FinalAssemblyProductEditor>
                             onChanged: (value) {
                               min = int.parse(value);
                             },
-                             initialValue: min.toString(),
-                              inputFormatters: <TextInputFormatter>[
+                            initialValue: min.toString(),
+                            inputFormatters: <TextInputFormatter>[
                               FilteringTextInputFormatter.digitsOnly
-                             ],
+                            ],
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               hintText: "Minutes",
@@ -146,32 +147,30 @@ class _FinalAssemblyProductEditorState extends State<FinalAssemblyProductEditor>
                           ),
                         ),
                         customHorizontalGap(10),
-                      SizedBox(
-                      width: customWidth(30),
-                      child: TextFormField(
-                        validator: (val) {
-                          
-                          return null;
-                          
-                        },
-                         initialValue: sec.toString(),
-                        inputFormatters: <TextInputFormatter>[
-                        FilteringTextInputFormatter.digitsOnly
-                        ],
-                        keyboardType: TextInputType.number,
-                        onChanged: (value) {
-                          sec = int.parse(value);
-                        },
-                        decoration: InputDecoration(
-                          hintText: "Seconds",
-                          // border: OutlineInputBorder(
-                          //     borderRadius: BorderRadius.circular(20)),
-                          fillColor: Colors.grey.shade200,
-                          filled: true,
-                          floatingLabelStyle: AppTheme.h2Style,
+                        SizedBox(
+                          width: customWidth(30),
+                          child: TextFormField(
+                            validator: (val) {
+                              return null;
+                            },
+                            initialValue: sec.toString(),
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                            keyboardType: TextInputType.number,
+                            onChanged: (value) {
+                              sec = int.parse(value);
+                            },
+                            decoration: InputDecoration(
+                              hintText: "Seconds",
+                              // border: OutlineInputBorder(
+                              //     borderRadius: BorderRadius.circular(20)),
+                              fillColor: Colors.grey.shade200,
+                              filled: true,
+                              floatingLabelStyle: AppTheme.h2Style,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
                       ],
                     ),
                     Text(
@@ -192,47 +191,48 @@ class _FinalAssemblyProductEditorState extends State<FinalAssemblyProductEditor>
                           description = value;
                         },
                         decoration: InputDecoration(
-                          hintText: description==""?"Descripiton":description,
+                          hintText:
+                              description == "" ? "Descripiton" : description,
                           fillColor: Colors.grey.shade200,
                           filled: true,
                           floatingLabelStyle: AppTheme.h2Style,
                         ),
                       ),
                     ),
-    //                 Row(children: [Text('Final Assembly :'),Checkbox(
-    //                                 value: finalAssembly,
-    //                                 checkColor:
-    //                                     Colors.white, // color of tick Mark
-    //                                 activeColor: LightColor.primaryColor,
-    //                                 onChanged: (bool? value) {
-    //                                   setState(() {
-    //                                     if(finalAssembly!=null){
-    // finalAssembly=!finalAssembly!;
-    //                                     }
-                                  
-    //                                   });
-    //                                 },
-    //                               ),],),
-    //                                Row(children: [Text('Generate QR      :'),Checkbox(
-    //                                 value: generateQr,
-    //                                 checkColor:
-    //                                     Colors.white, // color of tick Mark
-    //                                 activeColor: LightColor.primaryColor,
-    //                                 onChanged: (bool? value) {
-    //                                   setState(() {
-                                  
-    //                                    if(generateQr!=null){
-    //   generateQr=!generateQr!;
-    //                                     }
-    //                                   });
-    //                                 },
-    //                               ),],),
-                      Text(
+                    //                 Row(children: [Text('Final Assembly :'),Checkbox(
+                    //                                 value: finalAssembly,
+                    //                                 checkColor:
+                    //                                     Colors.white, // color of tick Mark
+                    //                                 activeColor: LightColor.primaryColor,
+                    //                                 onChanged: (bool? value) {
+                    //                                   setState(() {
+                    //                                     if(finalAssembly!=null){
+                    // finalAssembly=!finalAssembly!;
+                    //                                     }
+
+                    //                                   });
+                    //                                 },
+                    //                               ),],),
+                    //                                Row(children: [Text('Generate QR      :'),Checkbox(
+                    //                                 value: generateQr,
+                    //                                 checkColor:
+                    //                                     Colors.white, // color of tick Mark
+                    //                                 activeColor: LightColor.primaryColor,
+                    //                                 onChanged: (bool? value) {
+                    //                                   setState(() {
+
+                    //                                    if(generateQr!=null){
+                    //   generateQr=!generateQr!;
+                    //                                     }
+                    //                                   });
+                    //                                 },
+                    //                               ),],),
+                    Text(
                       "IP Address",
                       style: AppTheme.h6Style,
                     ),
                     SizedBox(
-                    width: customWidth(80),
+                      width: customWidth(80),
                       child: TextFormField(
                         initialValue: ipAddress,
                         keyboardType: TextInputType.multiline,
@@ -245,24 +245,24 @@ class _FinalAssemblyProductEditorState extends State<FinalAssemblyProductEditor>
                           ipAddress = value;
                         },
                         decoration: InputDecoration(
-                          hintText:ipAddress==''? " Enter IP Address Here*":ipAddress,
-                         
+                          hintText: ipAddress == ''
+                              ? " Enter IP Address Here*"
+                              : ipAddress,
                           fillColor: Colors.grey.shade200,
                           filled: true,
                           floatingLabelStyle: AppTheme.h2Style,
                         ),
                       ),
                     ),
-                      Text(
+                    Text(
                       "PORT Number",
                       style: AppTheme.h6Style,
                     ),
                     SizedBox(
-                    width: customWidth(80),
+                      width: customWidth(80),
                       child: TextFormField(
                         initialValue: portNumber,
                         keyboardType: TextInputType.multiline,
-                  
                         minLines: 1,
                         maxLines: 7,
                         validator: (val) {
@@ -272,47 +272,45 @@ class _FinalAssemblyProductEditorState extends State<FinalAssemblyProductEditor>
                           portNumber = value;
                         },
                         decoration: InputDecoration(
-                           hintText:portNumber==''? " Enter PORT Number Here*":portNumber,
-                         
+                          hintText: portNumber == ''
+                              ? " Enter PORT Number Here*"
+                              : portNumber,
                           fillColor: Colors.grey.shade200,
                           filled: true,
                           floatingLabelStyle: AppTheme.h2Style,
                         ),
                       ),
                     ),
-                      
-                       Text(
+
+                    Text(
                       "Zebra Printer Data",
                       style: AppTheme.h6Style,
                     ),
                     SizedBox(
-                   height: customHeight(200),
+                      height: customHeight(200),
                       child: TextFormField(
-                              initialValue:printerData,
-                        
+                        initialValue: printerData,
                         keyboardType: TextInputType.multiline,
-                        
-                       
                         maxLines: 30,
-                       
                         onChanged: (value) {
                           printerData = value;
                           print(value);
                         },
                         decoration: InputDecoration(
-                          hintText:printerData==''? " Enter ZPL Here*":printerData,
-                          
+                          hintText: printerData == ''
+                              ? " Enter ZPL Here*"
+                              : printerData,
                           fillColor: Colors.grey.shade200,
                           filled: true,
                           floatingLabelStyle: AppTheme.h2Style,
                         ),
                       ),
                     ),
-                    Center(
-                      child: SizedBox(
-                          width: customWidth(150),
-                          child: const ImageUploadEidget()),
-                    ),
+                    // Center(
+                    //   child: SizedBox(
+                    //       width: customWidth(150),
+                    //       child: const ImageUploadEidget()),
+                    // ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -344,10 +342,15 @@ class _FinalAssemblyProductEditorState extends State<FinalAssemblyProductEditor>
                               showSnackBar(message: 'Fill input fields');
                             } else {
                               Get.find<FinalAssemblyController>()
-                                  .putAssemblyProducts(id: id, name: productName, description: description,time: '${min*60+sec}',ip: ipAddress, port: portNumber, printerData: printerData)
+                                  .putAssemblyProducts(
+                                      id: id,
+                                      name: productName,
+                                      description: description,
+                                      time: '${min * 60 + sec}',
+                                      ip: ipAddress,
+                                      port: portNumber,
+                                      printerData: printerData)
                                   .then((value) {
-                             
-
                                 showSnackBar(message: 'Item saved');
                               });
                             }
