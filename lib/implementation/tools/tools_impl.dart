@@ -79,7 +79,7 @@ class ToolsListImpl implements ToolsFacade {
     String? access = await _employeeDataManager.getRefresh();
 
     final result =
-        await Postman.sendDeleteRequest(_url.deleteTools + '/$id/', access!);
+        await Postman.sendDeleteRequest(_url.deleteTools + '$id/', access!);
     if (result.statusCode == 204) {
       // final data = SaveQualtyProductModel.fromJson(
       //     jsonDecode(result.body) as Map<String, dynamic>);
