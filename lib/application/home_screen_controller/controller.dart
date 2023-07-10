@@ -11,7 +11,7 @@ class HomeScreenController extends GetxController {
 
   String get screenHomeWidget => 'screenHomeWidget';
   // String screen = 'DashBoard';
-  String screen = 'QUALITY PLAN';
+  String screen = 'Quality Plan';
   String appBar = '';
   String qualityProductName = '';
   String qualityProductDisc = '';
