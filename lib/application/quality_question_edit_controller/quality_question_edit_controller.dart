@@ -112,6 +112,7 @@ class QualityQuestionEditController extends GetxController {
         throw Exception('Failed to load image');
       }
     }
+    update([qualityQuestionDetailID]);
   }
 
   Future<void> networkVideoToBase64() async {
@@ -135,6 +136,7 @@ class QualityQuestionEditController extends GetxController {
         throw Exception('Failed to load video');
       }
     }
+    update([qualityQuestionDetailID]);
   }
 
   // static final answerField = {

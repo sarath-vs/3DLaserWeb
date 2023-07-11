@@ -194,6 +194,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
             id: Get.find<QualityQuestionEditController>()
                 .qualityQuestionDetailID,
             builder: (controller) {
+              // controller.networkImageToBase64();
               return SafeArea(
                   child: ListView(
                 children: [
