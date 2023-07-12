@@ -240,7 +240,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                   return null;
                                 },
                                 decoration: InputDecoration(
-                                  hintText: '(English)',
+                                  hintText: '(English*)',
                                   fillColor: Colors.grey.shade200,
                                   filled: true,
                                   floatingLabelStyle: AppTheme.h2Style,
@@ -266,7 +266,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                     //   QualityQuestionEditController.questionCzech = value;
                                     // },
                                     decoration: InputDecoration(
-                                      hintText: '(Czech)',
+                                      hintText: '(Czech*)',
 
                                       // border: OutlineInputBorder(
                                       //     borderRadius: BorderRadius.circular(20)),
@@ -297,7 +297,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                     //    QualityQuestionEditController.questionGerman = value;
                                     // },
                                     decoration: InputDecoration(
-                                      hintText: '(Vietnam)',
+                                      hintText: '(Vietnam*)',
 
                                       // border: OutlineInputBorder(
                                       //     borderRadius: BorderRadius.circular(20)),
@@ -332,7 +332,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                     //   QualityQuestionEditController.discriptionEnglish = value;
                                     // },
                                     decoration: InputDecoration(
-                                      hintText: '(English)',
+                                      hintText: '(English*)',
 
                                       // border: OutlineInputBorder(
                                       //     borderRadius: BorderRadius.circular(20)),
@@ -363,7 +363,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                     keyboardType: TextInputType.multiline,
                                     maxLines: null,
                                     decoration: InputDecoration(
-                                      hintText: '(Czech)',
+                                      hintText: '(Czech*)',
 
                                       // border: OutlineInputBorder(
                                       //     borderRadius: BorderRadius.circular(20)),
@@ -393,7 +393,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                     keyboardType: TextInputType.multiline,
                                     maxLines: null,
                                     decoration: InputDecoration(
-                                      hintText: '(Vietnam)',
+                                      hintText: '(Vietnam*)',
 
                                       // border: OutlineInputBorder(
                                       //     borderRadius: BorderRadius.circular(20)),
@@ -1502,104 +1502,128 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    if (base64StringVDO.isNotEmpty) {
-                                      QualityQuestionEditController
-                                          .base64StringVDO = base64StringVDO;
-                                    } else if (QualityQuestionEditController
-                                        .covert64video.isNotEmpty) {
-                                      QualityQuestionEditController
-                                              .base64StringVDO =
-                                          QualityQuestionEditController
-                                              .covert64video;
-                                    } else {
-                                      QualityQuestionEditController
-                                          .base64StringVDO
-                                          .clear();
-                                    }
-                                    if (selectedimagesin64bytes.isNotEmpty) {
-                                      QualityQuestionEditController
-                                              .selectedimagesin64bytes =
-                                          selectedimagesin64bytes;
-                                    } else if (QualityQuestionEditController
-                                        .selectedimagesinbase64listfromurl
-                                        .isNotEmpty) {
-                                      QualityQuestionEditController
-                                              .selectedimagesin64bytes =
-                                          QualityQuestionEditController
-                                              .selectedimagesinbase64listfromurl;
-                                    } else {
-                                      QualityQuestionEditController
-                                          .selectedimagesin64bytes
-                                          .clear();
-                                    }
-                                    controller
-                                        .putEditQuestionDetails(
-                                            // vdo: base64StringVDO.first,
+                                    if (controller.questionEnglishController
+                                                .text !=
+                                            "" &&
+                                        controller
+                                                .questionGermanController.text !=
+                                            "" &&
+                                        controller
+                                                .questionCzechController.text !=
+                                            "" &&
+                                        controller
+                                                .discriptionCzechController.text !=
+                                            "" &&
+                                        controller.discriptionEnglishController
+                                                .text !=
+                                            "" &&
+                                        controller.discriptionGermanController
+                                                .text !=
+                                            "") {
+                                      if (base64StringVDO.isNotEmpty) {
+                                        QualityQuestionEditController
+                                            .base64StringVDO = base64StringVDO;
+                                      } else if (QualityQuestionEditController
+                                          .covert64video.isNotEmpty) {
+                                        QualityQuestionEditController
+                                                .base64StringVDO =
+                                            QualityQuestionEditController
+                                                .covert64video;
+                                      } else {
+                                        QualityQuestionEditController
+                                            .base64StringVDO
+                                            .clear();
+                                      }
+                                      if (selectedimagesin64bytes.isNotEmpty) {
+                                        QualityQuestionEditController
+                                                .selectedimagesin64bytes =
+                                            selectedimagesin64bytes;
+                                      } else if (QualityQuestionEditController
+                                          .selectedimagesinbase64listfromurl
+                                          .isNotEmpty) {
+                                        QualityQuestionEditController
+                                                .selectedimagesin64bytes =
+                                            QualityQuestionEditController
+                                                .selectedimagesinbase64listfromurl;
+                                      } else {
+                                        QualityQuestionEditController
+                                            .selectedimagesin64bytes
+                                            .clear();
+                                      }
+                                      controller
+                                          .putEditQuestionDetails(
+                                              // vdo: base64StringVDO.first,
 
-                                            screenName: screenName)
-                                        .then((value) {
-                                      Get.back();
-                                      Get.back();
+                                              screenName: screenName)
+                                          .then((value) {
+                                        Get.back();
+                                        Get.back();
 
-                                      QualityQuestionEditController.productId =
-                                          null;
-                                    }).then((value) {
-                                      setState(() {
-                                        screenName == 'Quality'
-                                            ? Get.find<HomeScreenController>()
-                                                .setHomeScreen('Quality Plan')
-                                            : Get.find<HomeScreenController>()
-                                                .setHomeScreen('ASSEMBLY PLAN');
+                                        QualityQuestionEditController
+                                            .productId = null;
+                                      }).then((value) {
+                                        setState(() {
+                                          screenName == 'Quality'
+                                              ? Get.find<HomeScreenController>()
+                                                  .setHomeScreen('Quality Plan')
+                                              : Get.find<HomeScreenController>()
+                                                  .setHomeScreen(
+                                                      'ASSEMBLY PLAN');
+                                        });
                                       });
-                                    });
 
-                                    // if (base64StringVDO.isNotEmpty) {
-                                    //   controller
-                                    //       .putEditQuestionDetails(
-                                    //           // vdo: base64StringVDO.first,
+                                      // if (base64StringVDO.isNotEmpty) {
+                                      //   controller
+                                      //       .putEditQuestionDetails(
+                                      //           // vdo: base64StringVDO.first,
 
-                                    //           screenName: screenName)
-                                    //       .then((value) {
-                                    //     Get.back();
-                                    //     Get.back();
+                                      //           screenName: screenName)
+                                      //       .then((value) {
+                                      //     Get.back();
+                                      //     Get.back();
 
-                                    //     QualityQuestionEditController
-                                    //         .productId = null;
-                                    //   }).then((value) {
-                                    //     setState(() {
-                                    //       screenName == 'Quality'
-                                    //           ? Get.find<HomeScreenController>()
-                                    //               .setHomeScreen('Quality Plan')
-                                    //           : Get.find<HomeScreenController>()
-                                    //               .setHomeScreen(
-                                    //                   'ASSEMBLY PLAN');
-                                    //     });
-                                    //   });
-                                    // } else {
-                                    //   controller
-                                    //       .putEditQuestionDetails(
-                                    //           // vdo: '',
-                                    //            screenName: screenName)
-                                    //       .then((value) {
-                                    //     Get.back();
-                                    //     Get.back();
+                                      //     QualityQuestionEditController
+                                      //         .productId = null;
+                                      //   }).then((value) {
+                                      //     setState(() {
+                                      //       screenName == 'Quality'
+                                      //           ? Get.find<HomeScreenController>()
+                                      //               .setHomeScreen('Quality Plan')
+                                      //           : Get.find<HomeScreenController>()
+                                      //               .setHomeScreen(
+                                      //                   'ASSEMBLY PLAN');
+                                      //     });
+                                      //   });
+                                      // } else {
+                                      //   controller
+                                      //       .putEditQuestionDetails(
+                                      //           // vdo: '',
+                                      //            screenName: screenName)
+                                      //       .then((value) {
+                                      //     Get.back();
+                                      //     Get.back();
 
-                                    //     QualityQuestionEditController
-                                    //         .productId = null;
-                                    //   }).then((value) {
-                                    //     setState(() {
-                                    //       screenName == 'Quality'
-                                    //           ? Get.find<HomeScreenController>()
-                                    //               .setHomeScreen('Quality Plan')
-                                    //           : Get.find<HomeScreenController>()
-                                    //               .setHomeScreen(
-                                    //                   'ASSEMBLY PLAN');
-                                    //     });
-                                    //   });
-                                    // }
-
-                                    showSnackBar(
-                                        message: 'Question Details Updated');
+                                      //     QualityQuestionEditController
+                                      //         .productId = null;
+                                      //   }).then((value) {
+                                      //     setState(() {
+                                      //       screenName == 'Quality'
+                                      //           ? Get.find<HomeScreenController>()
+                                      //               .setHomeScreen('Quality Plan')
+                                      //           : Get.find<HomeScreenController>()
+                                      //               .setHomeScreen(
+                                      //                   'ASSEMBLY PLAN');
+                                      //     });
+                                      //   });
+                                      // }
+                                      // showSnackBar(
+                                      //     message:
+                                      //         'Question edited successfully');
+                                    } else {
+                                      showSnackBar(
+                                          message:
+                                              'Please Provid Required Fields');
+                                    }
                                   },
                                   child: Container(
                                     alignment: Alignment.center,

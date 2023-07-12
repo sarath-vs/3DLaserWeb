@@ -212,7 +212,7 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                                       // questionEnglish = value;
                                     },
                                     decoration: InputDecoration(
-                                      hintText: "Questions English (optional)",
+                                      hintText: "Questions English *",
 
                                       // border: OutlineInputBorder(
                                       //     borderRadius: BorderRadius.circular(20)),
@@ -244,7 +244,7 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                                       questionCzech = czechqp;
                                     },
                                     decoration: InputDecoration(
-                                      hintText: "Questions Czech (optional)",
+                                      hintText: "Questions Czech *",
 
                                       // border: OutlineInputBorder(
                                       //     borderRadius: BorderRadius.circular(20)),
@@ -276,7 +276,7 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                                       questionGerman = germanqp;
                                     },
                                     decoration: InputDecoration(
-                                      hintText: "Questions Vietnam (optional)",
+                                      hintText: "Questions Vietnam *",
 
                                       // border: OutlineInputBorder(
                                       //     borderRadius: BorderRadius.circular(20)),
@@ -312,7 +312,7 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                                     },
                                     decoration: InputDecoration(
                                       hintText:
-                                          "Questions Description English (optional)",
+                                          "Questions Description English *",
 
                                       // border: OutlineInputBorder(
                                       //     borderRadius: BorderRadius.circular(20)),
@@ -347,8 +347,7 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                                       discriptionCzech = czechdis;
                                     },
                                     decoration: InputDecoration(
-                                      hintText:
-                                          "Questions Description Czech (optional)",
+                                      hintText: "Questions Description Czech *",
 
                                       // border: OutlineInputBorder(
                                       //     borderRadius: BorderRadius.circular(20)),
@@ -383,7 +382,7 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                                     },
                                     decoration: InputDecoration(
                                       hintText:
-                                          "Questions Description Vietnam (optional)",
+                                          "Questions Description Vietnam *",
 
                                       // border: OutlineInputBorder(
                                       //     borderRadius: BorderRadius.circular(20)),
@@ -1462,61 +1461,78 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                                       "category": controller.productId,
                                       "tools_used": selectedID
                                     };
-                                    if (questionEnglish != '') {
-                                      if (range == true) {
-                                        if (rangeFrom == '' || rangeTo == '') {
-                                          showSnackBar(
-                                              message:
-                                                  'Please Provide Range Data');
-                                        } else {
-                                          ////
-                                          controller
-                                              .postQualityQuestions(
-                                                  dataToSend: dataToSend)
-                                              .then((value) {
+                                    if (questionEnglish != null &&
+                                        questionCzech != null &&
+                                        questionGerman != null &&
+                                        discriptionEnglish != null &&
+                                        discriptionCzech != null &&
+                                        discriptionGerman != null) {
+                                      if (questionEnglish != "[]" &&
+                                          questionCzech != "[]" &&
+                                          questionGerman != "[]" &&
+                                          discriptionEnglish != "[]" &&
+                                          discriptionCzech != "[]" &&
+                                          discriptionGerman != "[]") {
+                                        if (range == true) {
+                                          if (rangeFrom == '' ||
+                                              rangeTo == '') {
+                                            showSnackBar(
+                                                message:
+                                                    'Please Provide Range Data');
+                                          } else {
+                                            ////
                                             controller
-                                                .getAssemblyQuestions(
-                                                    id: controller.productId)
+                                                .postQualityQuestions(
+                                                    dataToSend: dataToSend)
                                                 .then((value) {
-                                              Get.back();
+                                              controller
+                                                  .getAssemblyQuestions(
+                                                      id: controller.productId)
+                                                  .then((value) {
+                                                Get.back();
+                                              });
                                             });
-                                          });
-                                        }
-                                      } else if (dropdown == true) {
-                                        if (dropDownDataEnglish == '' ||
-                                            dropDownDataCzech == '' ||
-                                            dropDownDataViatnam == '') {
-                                          showSnackBar(
-                                              message:
-                                                  'Please Provide DropDown Data');
-                                        } else {
-                                          ///
-                                          controller
-                                              .postQualityQuestions(
-                                                  dataToSend: dataToSend)
-                                              .then((value) {
+                                          }
+                                        } else if (dropdown == true) {
+                                          if (dropDownDataEnglish == '' ||
+                                              dropDownDataCzech == '' ||
+                                              dropDownDataViatnam == '') {
+                                            showSnackBar(
+                                                message:
+                                                    'Please Provide DropDown Data');
+                                          } else {
+                                            ///
                                             controller
-                                                .getAssemblyQuestions(
-                                                    id: controller.productId)
+                                                .postQualityQuestions(
+                                                    dataToSend: dataToSend)
                                                 .then((value) {
-                                              Get.back();
+                                              controller
+                                                  .getAssemblyQuestions(
+                                                      id: controller.productId)
+                                                  .then((value) {
+                                                Get.back();
+                                              });
                                             });
-                                          });
 
 ////
+                                          }
+                                        } else {
+                                          controller
+                                              .postQualityQuestions(
+                                                  dataToSend: dataToSend)
+                                              .then((value) {
+                                            controller
+                                                .getAssemblyQuestions(
+                                                    id: controller.productId)
+                                                .then((value) {
+                                              Get.back();
+                                            });
+                                          });
                                         }
                                       } else {
-                                        controller
-                                            .postQualityQuestions(
-                                                dataToSend: dataToSend)
-                                            .then((value) {
-                                          controller
-                                              .getAssemblyQuestions(
-                                                  id: controller.productId)
-                                              .then((value) {
-                                            Get.back();
-                                          });
-                                        });
+                                        showSnackBar(
+                                            message:
+                                                'Please Provid Required Fields');
                                       }
                                     } else {
                                       showSnackBar(
