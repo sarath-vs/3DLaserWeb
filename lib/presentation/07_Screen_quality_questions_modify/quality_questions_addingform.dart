@@ -73,7 +73,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
 
     if (fileResult != null) {
       if (fileResult.files.first.size <=
-          5851340) //size checking file this is for 5 mb
+          58513400) //size checking file this is for 5 mb
       {
         // selctFile = fileResult.files.first.name;
         // selectfilepath = fileResult.files.first.identifier;
