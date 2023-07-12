@@ -9,6 +9,7 @@ import '../../domain/responsive/dimensions.dart';
 import '../06_tools/widget/image_uploading_widget.dart';
 import '../theme/color.dart';
 import '../theme/theme.dart';
+
 class FinalAssemblyPlanAddScreen extends StatefulWidget {
   static const routeName = 'FinalAssemblyPlanAddScreen';
   const FinalAssemblyPlanAddScreen({super.key});
@@ -23,17 +24,16 @@ String disc = '';
 String ipAddress = '';
 String portNumber = '';
 String printerData = '';
-bool finalAssembly =false;
-bool generateQr=false;
-int min =0;
-int sec =0;
+bool finalAssembly = false;
+bool generateQr = false;
+int min = 0;
+int sec = 0;
 
-class _FinalAssemblyPlanAddScreenState extends State<FinalAssemblyPlanAddScreen> {
+class _FinalAssemblyPlanAddScreenState
+    extends State<FinalAssemblyPlanAddScreen> {
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((duration) {
-      
-    });
+    WidgetsBinding.instance.addPostFrameCallback((duration) {});
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -45,7 +45,7 @@ class _FinalAssemblyPlanAddScreenState extends State<FinalAssemblyPlanAddScreen>
       // drawer: SideMenu(),
       body: SafeArea(
           child: ListView(
-      shrinkWrap: true,
+        shrinkWrap: true,
         children: [
           // CustomAppBar(context, false, controller.screen),
 
@@ -110,9 +110,9 @@ class _FinalAssemblyPlanAddScreenState extends State<FinalAssemblyPlanAddScreen>
                             onChanged: (value) {
                               min = int.parse(value);
                             },
-                              inputFormatters: <TextInputFormatter>[
+                            inputFormatters: <TextInputFormatter>[
                               FilteringTextInputFormatter.digitsOnly
-                             ],
+                            ],
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               hintText: "Minutes",
@@ -125,34 +125,32 @@ class _FinalAssemblyPlanAddScreenState extends State<FinalAssemblyPlanAddScreen>
                           ),
                         ),
                         customHorizontalGap(10),
-                      SizedBox(
-                      width: customWidth(30),
-                      child: TextFormField(
-                        validator: (val) {
-                          
-                          return null;
-                          
-                        },
-                        inputFormatters: <TextInputFormatter>[
-                        FilteringTextInputFormatter.digitsOnly
-                        ],
-                        keyboardType: TextInputType.number,
-                        onChanged: (value) {
-                          sec = int.parse(value);
-                        },
-                        decoration: InputDecoration(
-                          hintText: "Seconds",
-                          // border: OutlineInputBorder(
-                          //     borderRadius: BorderRadius.circular(20)),
-                          fillColor: Colors.grey.shade200,
-                          filled: true,
-                          floatingLabelStyle: AppTheme.h2Style,
+                        SizedBox(
+                          width: customWidth(30),
+                          child: TextFormField(
+                            validator: (val) {
+                              return null;
+                            },
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                            keyboardType: TextInputType.number,
+                            onChanged: (value) {
+                              sec = int.parse(value);
+                            },
+                            decoration: InputDecoration(
+                              hintText: "Seconds",
+                              // border: OutlineInputBorder(
+                              //     borderRadius: BorderRadius.circular(20)),
+                              fillColor: Colors.grey.shade200,
+                              filled: true,
+                              floatingLabelStyle: AppTheme.h2Style,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
                       ],
                     ),
-                    
+
                     Text(
                       "Descripiton",
                       style: AppTheme.h6Style,
@@ -177,34 +175,34 @@ class _FinalAssemblyPlanAddScreenState extends State<FinalAssemblyPlanAddScreen>
                         ),
                       ),
                     ),
-                        // Row(children: [Text('Final Assembly :'),Checkbox(
-                        //             value: finalAssembly,
-                        //             checkColor:
-                        //                 Colors.white, // color of tick Mark
-                        //             activeColor: LightColor.primaryColor,
-                        //             onChanged: (bool? value) {
-                        //               setState(() {
-                        //               finalAssembly=!finalAssembly;
-                        //               });
-                        //             },
-                        //           ),],),
-                        //            Row(children: [Text('Generate QR      :'),Checkbox(
-                        //             value: generateQr,
-                        //             checkColor:
-                        //                 Colors.white, // color of tick Mark
-                        //             activeColor: LightColor.primaryColor,
-                        //             onChanged: (bool? value) {
-                        //               setState(() {
-                        //               generateQr=!generateQr;
-                        //               });
-                        //             },
-                        //           ),],),
-                     Text(
+                    // Row(children: [Text('Final Assembly :'),Checkbox(
+                    //             value: finalAssembly,
+                    //             checkColor:
+                    //                 Colors.white, // color of tick Mark
+                    //             activeColor: LightColor.primaryColor,
+                    //             onChanged: (bool? value) {
+                    //               setState(() {
+                    //               finalAssembly=!finalAssembly;
+                    //               });
+                    //             },
+                    //           ),],),
+                    //            Row(children: [Text('Generate QR      :'),Checkbox(
+                    //             value: generateQr,
+                    //             checkColor:
+                    //                 Colors.white, // color of tick Mark
+                    //             activeColor: LightColor.primaryColor,
+                    //             onChanged: (bool? value) {
+                    //               setState(() {
+                    //               generateQr=!generateQr;
+                    //               });
+                    //             },
+                    //           ),],),
+                    Text(
                       "IP Address",
                       style: AppTheme.h6Style,
                     ),
                     SizedBox(
-                    width: customWidth(80),
+                      width: customWidth(80),
                       child: TextFormField(
                         keyboardType: TextInputType.multiline,
                         minLines: 1,
@@ -223,12 +221,12 @@ class _FinalAssemblyPlanAddScreenState extends State<FinalAssemblyPlanAddScreen>
                         ),
                       ),
                     ),
-                      Text(
+                    Text(
                       "PORT Number",
                       style: AppTheme.h6Style,
                     ),
                     SizedBox(
-                    width: customWidth(80),
+                      width: customWidth(80),
                       child: TextFormField(
                         keyboardType: TextInputType.multiline,
                         minLines: 1,
@@ -247,15 +245,15 @@ class _FinalAssemblyPlanAddScreenState extends State<FinalAssemblyPlanAddScreen>
                         ),
                       ),
                     ),
-                      
-                       Text(
+
+                    Text(
                       "Zebra Printer Data",
                       style: AppTheme.h6Style,
                     ),
                     SizedBox(
-                   height: customHeight(200),
+                      height: customHeight(200),
                       child: TextFormField(
-                         initialValue:'''^XA
+                        initialValue: '''^XA
 ^LH0,0
 ^FO20,20^BQR,2,5
 ^FD
@@ -263,9 +261,7 @@ Product:[productname],ID:[ID],SerialNumber:[*Don't change here*],Timestamp:[**Do
 ^FS
 ^XZ''',
                         keyboardType: TextInputType.multiline,
-                       
                         maxLines: 30,
-                       
                         onChanged: (value) {
                           printerData = value;
                         },
@@ -277,11 +273,11 @@ Product:[productname],ID:[ID],SerialNumber:[*Don't change here*],Timestamp:[**Do
                         ),
                       ),
                     ),
-                    Center(
-                      child: SizedBox(
-                          width: customWidth(150),
-                          child: const ImageUploadEidget()),
-                    ),
+                    // Center(
+                    //   child: SizedBox(
+                    //       width: customWidth(150),
+                    //       child: const ImageUploadEidget()),
+                    // ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -314,7 +310,14 @@ Product:[productname],ID:[ID],SerialNumber:[*Don't change here*],Timestamp:[**Do
                             } else {
                               Get.find<FinalAssemblyController>()
                                   .saveAssemblyProduct(
-                                      name: name, discription: disc,time: '${min*60+sec}', ip: ipAddress, port: portNumber, printerData: printerData,genQr: generateQr,finalAssembly: finalAssembly)
+                                      name: name,
+                                      discription: disc,
+                                      time: '${min * 60 + sec}',
+                                      ip: ipAddress,
+                                      port: portNumber,
+                                      printerData: printerData,
+                                      genQr: generateQr,
+                                      finalAssembly: finalAssembly)
                                   .then((value) {
                                 Get.find<FinalAssemblyController>()
                                     .getAssemblyProducts();
