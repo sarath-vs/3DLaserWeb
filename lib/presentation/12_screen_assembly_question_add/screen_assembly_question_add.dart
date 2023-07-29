@@ -398,219 +398,225 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                InkWell(
-                                  onTap: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (_) => AlertDialog(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(20.0))),
-                                        content: Builder(
-                                          builder: (context) {
-                                            // Get available height and width of the build area of this widget. Make a choice depending on the size.
-                                            var height = MediaQuery.of(context)
-                                                .size
-                                                .height;
-                                            var width = MediaQuery.of(context)
-                                                .size
-                                                .width;
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: LightColor.orange,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5)),
+                                    border: Border.all(
+                                        width: 1,
+                                        color: LightColor.primaryColor),
+                                  ),
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    child: InkWell(
+                                      onTap: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (_) => AlertDialog(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20.0))),
+                                            content: Builder(
+                                              builder: (context) {
+                                                // Get available height and width of the build area of this widget. Make a choice depending on the size.
+                                                var height =
+                                                    MediaQuery.of(context)
+                                                        .size
+                                                        .height;
+                                                var width =
+                                                    MediaQuery.of(context)
+                                                        .size
+                                                        .width;
 
-                                            return SizedBox(
-                                              height: height - 300,
-                                              width: width - 500,
-                                              child: Center(
-                                                child: GetBuilder<
-                                                        ToolsController>(
-                                                    id: Get.find<
-                                                            ToolsController>()
-                                                        .toolListWidgetID,
-                                                    builder: (controller) {
-                                                      return ListView.separated(
-                                                          //scrollDirection: Axis.vertical,
-                                                          //physics: NeverScrollableScrollPhysics(),
-                                                          shrinkWrap: true,
-                                                          itemBuilder:
-                                                              (context, index) {
-                                                            return ListTile(
-                                                              onTap: () {
-                                                                // Navigator.pushNamed(
-                                                                //     context, ScreenToolsADD.routeName);
-                                                              },
-                                                              tileColor: Colors
-                                                                  .blue
-                                                                  .withOpacity(
-                                                                      .3),
-                                                              leading: Text(
-                                                                  '${index + 1}'),
-                                                              title: Row(
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  Expanded(
-                                                                    flex: 3,
-                                                                    child: SizedBox(
-                                                                        width: customWidth(40),
-                                                                        height: customHeight(100),
-                                                                        child: Image.network(
-                                                                          '${controller.toolsList[index].image}',
-                                                                          fit: BoxFit
-                                                                              .contain,
-                                                                        )),
-                                                                  ),
-                                                                  customHorizontalGap(
-                                                                      10),
-                                                                  Expanded(
-                                                                    flex: 6,
-                                                                    child:
-                                                                        Column(
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .center,
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .start,
-                                                                      children: [
-                                                                        customVerticalGap(
-                                                                            10),
-                                                                        Text(
-                                                                          '${controller.toolsList[index].name}',
-                                                                          style:
-                                                                              TextStyle(fontWeight: FontWeight.bold),
-                                                                        ),
-                                                                        Text(
-                                                                            '${controller.toolsList[index].description}'),
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                  Expanded(
-                                                                    flex: 1,
-                                                                    child: Row(
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .end,
-                                                                      children: [
-                                                                        Checkbox(
-                                                                          value:
-                                                                              _checkedItems[index],
-                                                                          checkColor:
-                                                                              Colors.white, // color of tick Mark
-                                                                          activeColor:
-                                                                              LightColor.primaryColor,
-                                                                          onChanged:
-                                                                              (bool? value) {
-                                                                            // print(_checkedItems);
-                                                                            // print(selectedID);
-
-                                                                            setState(() {
-                                                                              _checkedItems[index] = !_checkedItems[index];
-                                                                              print(_checkedItems);
-                                                                            });
-                                                                          },
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                              // trailing: Icon(Icons.more_vert),
-                                                            );
-                                                          },
-                                                          separatorBuilder:
-                                                              (context, index) {
-                                                            return customVerticalGap(
-                                                                10);
-                                                          },
-                                                          itemCount: controller
-                                                              .toolsList
-                                                              .length);
-                                                    }),
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                        actions: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                bottom: 50),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceAround,
-                                              children: [
-                                                TextButton(
-                                                  onPressed: () {
-                                                    Get.back();
-                                                  },
-                                                  child: Text(
-                                                    'Cancel',
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize:
-                                                            customFontSize(6)),
-                                                  ),
-                                                ),
-                                                TextButton(
-                                                  onPressed: () {
-                                                    // selectedID.clear();
-
-                                                    for (int i = 0;
-                                                        i <
-                                                            _checkedItems
-                                                                .length;
-                                                        i++) {
-                                                      if (_checkedItems[i]) {
-                                                        int k = Get.find<
+                                                return SizedBox(
+                                                  height: height - 300,
+                                                  width: width - 500,
+                                                  child: Center(
+                                                    child: GetBuilder<
+                                                            ToolsController>(
+                                                        id: Get.find<
                                                                 ToolsController>()
-                                                            .toolsList[i]
-                                                            .id!;
-                                                        selectedID.add(k);
-                                                      }
-                                                    }
+                                                            .toolListWidgetID,
+                                                        builder: (controller) {
+                                                          return ListView
+                                                              .separated(
+                                                                  //scrollDirection: Axis.vertical,
+                                                                  //physics: NeverScrollableScrollPhysics(),
+                                                                  shrinkWrap:
+                                                                      true,
+                                                                  itemBuilder:
+                                                                      (context,
+                                                                          index) {
+                                                                    return ListTile(
+                                                                      onTap:
+                                                                          () {
+                                                                        // Navigator.pushNamed(
+                                                                        //     context, ScreenToolsADD.routeName);
+                                                                      },
+                                                                      tileColor: Colors
+                                                                          .blue
+                                                                          .withOpacity(
+                                                                              .3),
+                                                                      leading: Text(
+                                                                          '${index + 1}'),
+                                                                      title:
+                                                                          Row(
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.start,
+                                                                        children: [
+                                                                          Expanded(
+                                                                            flex:
+                                                                                3,
+                                                                            child: SizedBox(
+                                                                                width: customWidth(40),
+                                                                                height: customHeight(100),
+                                                                                child: Image.network(
+                                                                                  '${controller.toolsList[index].image}',
+                                                                                  fit: BoxFit.contain,
+                                                                                )),
+                                                                          ),
+                                                                          customHorizontalGap(
+                                                                              10),
+                                                                          Expanded(
+                                                                            flex:
+                                                                                6,
+                                                                            child:
+                                                                                Column(
+                                                                              mainAxisAlignment: MainAxisAlignment.center,
+                                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                                              children: [
+                                                                                customVerticalGap(10),
+                                                                                Text(
+                                                                                  '${controller.toolsList[index].name}',
+                                                                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                                                                ),
+                                                                                Text('${controller.toolsList[index].description}'),
+                                                                              ],
+                                                                            ),
+                                                                          ),
+                                                                          Expanded(
+                                                                            flex:
+                                                                                1,
+                                                                            child:
+                                                                                Row(
+                                                                              mainAxisAlignment: MainAxisAlignment.end,
+                                                                              children: [
+                                                                                Checkbox(
+                                                                                  value: _checkedItems[index],
+                                                                                  checkColor: Colors.white, // color of tick Mark
+                                                                                  activeColor: LightColor.primaryColor,
+                                                                                  onChanged: (bool? value) {
+                                                                                    // print(_checkedItems);
+                                                                                    // print(selectedID);
 
-                                                    print(selectedID);
-                                                    // selectedID.length == 0
-                                                    //     ? showSnackBar(
-                                                    //         message:
-                                                    //             'select some items'):
-                                                    Get.back();
-                                                  },
-                                                  child: Text(
-                                                    'Confirm',
-                                                    style: TextStyle(
-                                                        color: Colors.red,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize:
-                                                            customFontSize(6)),
+                                                                                    setState(() {
+                                                                                      _checkedItems[index] = !_checkedItems[index];
+                                                                                      print(_checkedItems);
+                                                                                    });
+                                                                                  },
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                      // trailing: Icon(Icons.more_vert),
+                                                                    );
+                                                                  },
+                                                                  separatorBuilder:
+                                                                      (context,
+                                                                          index) {
+                                                                    return customVerticalGap(
+                                                                        10);
+                                                                  },
+                                                                  itemCount: controller
+                                                                      .toolsList
+                                                                      .length);
+                                                        }),
                                                   ),
-                                                ),
-                                              ],
+                                                );
+                                              },
                                             ),
+                                            actions: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    bottom: 50),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceAround,
+                                                  children: [
+                                                    TextButton(
+                                                      onPressed: () {
+                                                        Get.back();
+                                                      },
+                                                      child: Text(
+                                                        'Cancel',
+                                                        style: TextStyle(
+                                                            color: Colors.black,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize:
+                                                                customFontSize(
+                                                                    6)),
+                                                      ),
+                                                    ),
+                                                    TextButton(
+                                                      onPressed: () {
+                                                        // selectedID.clear();
+
+                                                        for (int i = 0;
+                                                            i <
+                                                                _checkedItems
+                                                                    .length;
+                                                            i++) {
+                                                          if (_checkedItems[
+                                                              i]) {
+                                                            int k = Get.find<
+                                                                    ToolsController>()
+                                                                .toolsList[i]
+                                                                .id!;
+                                                            selectedID.add(k);
+                                                          }
+                                                        }
+
+                                                        print(selectedID);
+                                                        // selectedID.length == 0
+                                                        //     ? showSnackBar(
+                                                        //         message:
+                                                        //             'select some items'):
+                                                        Get.back();
+                                                      },
+                                                      child: Text(
+                                                        'Confirm',
+                                                        style: TextStyle(
+                                                            color: Colors.red,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize:
+                                                                customFontSize(
+                                                                    6)),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ],
+                                        );
+                                      },
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width: customWidth(35),
+                                        height: customHeight(30),
+                                        child: Text(
+                                          "Select Tools",
+                                          style: TextStyle(
+                                              fontSize: customFontSize(3),
+                                              color: Colors.white),
+                                        ),
                                       ),
-                                    );
-                                  },
-                                  child: Container(
-                                    alignment: Alignment.center,
-                                    width: customWidth(35),
-                                    height: customHeight(30),
-                                    decoration: BoxDecoration(
-                                      color: LightColor.orange,
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(5)),
-                                      border: Border.all(
-                                          width: 1,
-                                          color: LightColor.primaryColor),
-                                    ),
-                                    child: Text(
-                                      "Select Tools",
-                                      style: TextStyle(
-                                          fontSize: customFontSize(3),
-                                          color: Colors.white),
                                     ),
                                   ),
                                 ),
@@ -1242,23 +1248,28 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                                   Padding(
                                     padding: const EdgeInsets.only(
                                         left: 8.0, right: 8),
-                                    child: GestureDetector(
-                                        onTap: () {
-                                          _selectedimages(true);
-                                        },
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              color: Colors.grey.shade300),
-                                          height: customHeight(130),
-                                          width: customWidth(40),
-                                          child: Icon(
-                                            Icons.add,
-                                            color: Colors.black,
-                                            size: customHeight(50),
-                                          ),
-                                        )),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          color: Colors.grey.shade300),
+                                      child: Material(
+                                        color: Colors.transparent,
+                                        child: InkWell(
+                                            onTap: () {
+                                              _selectedimages(true);
+                                            },
+                                            child: Container(
+                                              height: customHeight(130),
+                                              width: customWidth(40),
+                                              child: Icon(
+                                                Icons.add,
+                                                color: Colors.black,
+                                                size: customHeight(50),
+                                              ),
+                                            )),
+                                      ),
+                                    ),
                                   ),
                                   pickedImagesInBytes.length > 0
                                       ? ListView.builder(
@@ -1276,31 +1287,34 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                                                       child: Image.memory(
                                                           pickedImagesInBytes[
                                                               index])),
-                                                  GestureDetector(
-                                                    onTap: () {
-                                                      setState(() {
-                                                        pickedImagesInBytes
-                                                            .removeAt(index);
-                                                      });
-                                                    },
-                                                    child: Container(
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20),
-                                                            color: Colors.grey
-                                                                .withOpacity(
-                                                                    .5)),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(2.0),
-                                                          child: Icon(
-                                                            Icons.close,
-                                                            color: Colors.red,
-                                                          ),
-                                                        )),
+                                                  Material(
+                                                    color: Colors.transparent,
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        setState(() {
+                                                          pickedImagesInBytes
+                                                              .removeAt(index);
+                                                        });
+                                                      },
+                                                      child: Container(
+                                                          decoration: BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20),
+                                                              color: Colors.grey
+                                                                  .withOpacity(
+                                                                      .5)),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(2.0),
+                                                            child: Icon(
+                                                              Icons.close,
+                                                              color: Colors.red,
+                                                            ),
+                                                          )),
+                                                    ),
                                                   ),
                                                 ],
                                               ),
@@ -1326,23 +1340,28 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                                   Padding(
                                     padding: const EdgeInsets.only(
                                         left: 8.0, right: 8),
-                                    child: GestureDetector(
-                                        onTap: () {
-                                          _selectvideoFile(true);
-                                        },
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              color: Colors.grey.shade300),
-                                          height: customHeight(130),
-                                          width: customWidth(40),
-                                          child: Icon(
-                                            Icons.add,
-                                            color: Colors.black,
-                                            size: customHeight(50),
-                                          ),
-                                        )),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          color: Colors.grey.shade300),
+                                      child: Material(
+                                        color: Colors.transparent,
+                                        child: InkWell(
+                                            onTap: () {
+                                              _selectvideoFile(true);
+                                            },
+                                            child: Container(
+                                              height: customHeight(130),
+                                              width: customWidth(40),
+                                              child: Icon(
+                                                Icons.add,
+                                                color: Colors.black,
+                                                size: customHeight(50),
+                                              ),
+                                            )),
+                                      ),
+                                    ),
                                   ),
                                   base64StringVDO.length > 0
                                       ? ListView.builder(
@@ -1359,31 +1378,34 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                                                       height: customHeight(140),
                                                       child: Text(
                                                           'Video ${index + 1}')),
-                                                  GestureDetector(
-                                                    onTap: () {
-                                                      setState(() {
-                                                        base64StringVDO
-                                                            .removeAt(index);
-                                                      });
-                                                    },
-                                                    child: Container(
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20),
-                                                            color: Colors.grey
-                                                                .withOpacity(
-                                                                    .5)),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(2.0),
-                                                          child: Icon(
-                                                            Icons.close,
-                                                            color: Colors.red,
-                                                          ),
-                                                        )),
+                                                  Material(
+                                                    color: Colors.transparent,
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        setState(() {
+                                                          base64StringVDO
+                                                              .removeAt(index);
+                                                        });
+                                                      },
+                                                      child: Container(
+                                                          decoration: BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20),
+                                                              color: Colors.grey
+                                                                  .withOpacity(
+                                                                      .5)),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(2.0),
+                                                            child: Icon(
+                                                              Icons.close,
+                                                              color: Colors.red,
+                                                            ),
+                                                          )),
+                                                    ),
                                                   ),
                                                 ],
                                               ),
@@ -1400,164 +1422,180 @@ class _AssemblyQuestionAddScreenState extends State<AssemblyQuestionAddScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                InkWell(
-                                  onTap: () {
-                                    Get.back();
-                                  },
-                                  child: Container(
-                                    alignment: Alignment.center,
-                                    width: customWidth(50),
-                                    height: customHeight(40),
-                                    decoration: BoxDecoration(
-                                      // color: LightColor.primaryColor,
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(50)),
-                                      border: Border.all(
-                                          width: 1,
-                                          color: LightColor.primaryColor),
-                                    ),
-                                    child: Text(
-                                      "Cancels",
-                                      style: AppTheme.h3Style,
+                                Container(
+                                  decoration: BoxDecoration(
+                                    // color: LightColor.primaryColor,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50)),
+                                    border: Border.all(
+                                        width: 1,
+                                        color: LightColor.primaryColor),
+                                  ),
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    child: InkWell(
+                                      onTap: () {
+                                        Get.back();
+                                      },
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width: customWidth(50),
+                                        height: customHeight(40),
+                                        child: Text(
+                                          "Cancels",
+                                          style: AppTheme.h3Style,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
-                                InkWell(
-                                  onTap: () {
-                                    final answerField = {
-                                      "yn": yesno,
-                                      "ynMN": yesnoManditory,
-                                      "ynn": yesnoNone,
-                                      "ynnMN": yesnoNoneManditory,
-                                      "rg": range,
-                                      "rgMN": rangeManditory,
-                                      "tf": inputText,
-                                      "tfMN": inputTextManditory,
-                                      "dd": dropdown,
-                                      "ddMN": dropDownManditory,
-                                      "img": image,
-                                      "imgMN": imageManditory,
-                                      "vdo": vdo,
-                                      "vdoMN": vdoManditory,
-                                      "rangeFrom": rangeFrom,
-                                      "rangeTo": rangeTo,
-                                      "dropDownData": dropDownDataEnglish +
-                                          '&&' +
-                                          dropDownDataCzech +
-                                          '&&' +
-                                          dropDownDataViatnam
-                                    };
-                                    final dataToSend = {
-                                      "description_english": discriptionEnglish,
-                                      "description_czech": discriptionCzech,
-                                      "description_german": discriptionGerman,
-                                      "image_base_64": selectedimagesin64bytes,
-                                      "video_base_64": base64StringVDO,
-                                      "question_english": questionEnglish,
-                                      "question_czech": questionCzech,
-                                      "question_german": questionGerman,
-                                      "time_limit": 0,
-                                      "field_info_object": answerField,
-                                      "category": controller.productId,
-                                      "tools_used": selectedID
-                                    };
-                                    if (questionEnglish != null &&
-                                        questionCzech != null &&
-                                        questionGerman != null &&
-                                        discriptionEnglish != null &&
-                                        discriptionCzech != null &&
-                                        discriptionGerman != null) {
-                                      if (questionEnglish != "[]" &&
-                                          questionCzech != "[]" &&
-                                          questionGerman != "[]" &&
-                                          discriptionEnglish != "[]" &&
-                                          discriptionCzech != "[]" &&
-                                          discriptionGerman != "[]") {
-                                        if (range == true) {
-                                          if (rangeFrom == '' ||
-                                              rangeTo == '') {
-                                            showSnackBar(
-                                                message:
-                                                    'Please Provide Range Data');
-                                          } else {
-                                            ////
-                                            controller
-                                                .postQualityQuestions(
-                                                    dataToSend: dataToSend)
-                                                .then((value) {
-                                              controller
-                                                  .getAssemblyQuestions(
-                                                      id: controller.productId)
-                                                  .then((value) {
-                                                Get.back();
-                                              });
-                                            });
-                                          }
-                                        } else if (dropdown == true) {
-                                          if (dropDownDataEnglish == '' ||
-                                              dropDownDataCzech == '' ||
-                                              dropDownDataViatnam == '') {
-                                            showSnackBar(
-                                                message:
-                                                    'Please Provide DropDown Data');
-                                          } else {
-                                            ///
-                                            controller
-                                                .postQualityQuestions(
-                                                    dataToSend: dataToSend)
-                                                .then((value) {
-                                              controller
-                                                  .getAssemblyQuestions(
-                                                      id: controller.productId)
-                                                  .then((value) {
-                                                Get.back();
-                                              });
-                                            });
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: LightColor.primaryColor,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50)),
+                                    border: Border.all(
+                                        width: 1,
+                                        color: LightColor.primaryColor),
+                                  ),
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    child: InkWell(
+                                      onTap: () {
+                                        final answerField = {
+                                          "yn": yesno,
+                                          "ynMN": yesnoManditory,
+                                          "ynn": yesnoNone,
+                                          "ynnMN": yesnoNoneManditory,
+                                          "rg": range,
+                                          "rgMN": rangeManditory,
+                                          "tf": inputText,
+                                          "tfMN": inputTextManditory,
+                                          "dd": dropdown,
+                                          "ddMN": dropDownManditory,
+                                          "img": image,
+                                          "imgMN": imageManditory,
+                                          "vdo": vdo,
+                                          "vdoMN": vdoManditory,
+                                          "rangeFrom": rangeFrom,
+                                          "rangeTo": rangeTo,
+                                          "dropDownData": dropDownDataEnglish +
+                                              '&&' +
+                                              dropDownDataCzech +
+                                              '&&' +
+                                              dropDownDataViatnam
+                                        };
+                                        final dataToSend = {
+                                          "description_english":
+                                              discriptionEnglish,
+                                          "description_czech": discriptionCzech,
+                                          "description_german":
+                                              discriptionGerman,
+                                          "image_base_64":
+                                              selectedimagesin64bytes,
+                                          "video_base_64": base64StringVDO,
+                                          "question_english": questionEnglish,
+                                          "question_czech": questionCzech,
+                                          "question_german": questionGerman,
+                                          "time_limit": 0,
+                                          "field_info_object": answerField,
+                                          "category": controller.productId,
+                                          "tools_used": selectedID
+                                        };
+                                        if (questionEnglish != null &&
+                                            questionCzech != null &&
+                                            questionGerman != null &&
+                                            discriptionEnglish != null &&
+                                            discriptionCzech != null &&
+                                            discriptionGerman != null) {
+                                          if (questionEnglish != "[]" &&
+                                              questionCzech != "[]" &&
+                                              questionGerman != "[]" &&
+                                              discriptionEnglish != "[]" &&
+                                              discriptionCzech != "[]" &&
+                                              discriptionGerman != "[]") {
+                                            if (range == true) {
+                                              if (rangeFrom == '' ||
+                                                  rangeTo == '') {
+                                                showSnackBar(
+                                                    message:
+                                                        'Please Provide Range Data');
+                                              } else {
+                                                ////
+                                                controller
+                                                    .postQualityQuestions(
+                                                        dataToSend: dataToSend)
+                                                    .then((value) {
+                                                  controller
+                                                      .getAssemblyQuestions(
+                                                          id: controller
+                                                              .productId)
+                                                      .then((value) {
+                                                    Get.back();
+                                                  });
+                                                });
+                                              }
+                                            } else if (dropdown == true) {
+                                              if (dropDownDataEnglish == '' ||
+                                                  dropDownDataCzech == '' ||
+                                                  dropDownDataViatnam == '') {
+                                                showSnackBar(
+                                                    message:
+                                                        'Please Provide DropDown Data');
+                                              } else {
+                                                ///
+                                                controller
+                                                    .postQualityQuestions(
+                                                        dataToSend: dataToSend)
+                                                    .then((value) {
+                                                  controller
+                                                      .getAssemblyQuestions(
+                                                          id: controller
+                                                              .productId)
+                                                      .then((value) {
+                                                    Get.back();
+                                                  });
+                                                });
 
-////
+                                                ////
+                                              }
+                                            } else {
+                                              controller
+                                                  .postQualityQuestions(
+                                                      dataToSend: dataToSend)
+                                                  .then((value) {
+                                                controller
+                                                    .getAssemblyQuestions(
+                                                        id: controller
+                                                            .productId)
+                                                    .then((value) {
+                                                  Get.back();
+                                                });
+                                              });
+                                            }
+                                          } else {
+                                            showSnackBar(
+                                                message:
+                                                    'Please Provid Required Fields');
                                           }
                                         } else {
-                                          controller
-                                              .postQualityQuestions(
-                                                  dataToSend: dataToSend)
-                                              .then((value) {
-                                            controller
-                                                .getAssemblyQuestions(
-                                                    id: controller.productId)
-                                                .then((value) {
-                                              Get.back();
-                                            });
-                                          });
+                                          showSnackBar(
+                                              message:
+                                                  'Please Provid Required Fields');
                                         }
-                                      } else {
-                                        showSnackBar(
-                                            message:
-                                                'Please Provid Required Fields');
-                                      }
-                                    } else {
-                                      showSnackBar(
-                                          message:
-                                              'Please Provid Required Fields');
-                                    }
-                                    print(dataToSend);
-                                  },
-                                  child: Container(
-                                    alignment: Alignment.center,
-                                    width: customWidth(50),
-                                    height: customHeight(40),
-                                    decoration: BoxDecoration(
-                                      color: LightColor.primaryColor,
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(50)),
-                                      border: Border.all(
-                                          width: 1,
-                                          color: LightColor.primaryColor),
-                                    ),
-                                    child: Text(
-                                      "Submit",
-                                      style: TextStyle(
-                                          fontSize: customFontSize(5),
-                                          color: Colors.white),
+                                        print(dataToSend);
+                                      },
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width: customWidth(50),
+                                        height: customHeight(40),
+                                        child: Text(
+                                          "Submit",
+                                          style: TextStyle(
+                                              fontSize: customFontSize(5),
+                                              color: Colors.white),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),

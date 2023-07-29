@@ -287,87 +287,95 @@ Product:[productname],ID:[ID],SerialNumber:[*Don't change here*],Timestamp:[**Do
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        InkWell(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: Container(
-                            alignment: Alignment.center,
-                            width: customWidth(50),
-                            height: customHeight(40),
-                            decoration: BoxDecoration(
-                              // color: LightColor.primaryColor,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(50)),
-                              border: Border.all(
-                                  width: 1, color: LightColor.primaryColor),
-                            ),
-                            child: Text(
-                              "Cancel",
-                              style: AppTheme.h3Style,
+                        Container(
+                          decoration: BoxDecoration(
+                            // color: LightColor.primaryColor,
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                            border: Border.all(
+                                width: 1, color: LightColor.primaryColor),
+                          ),
+                          child: Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              onTap: () {
+                                Get.back();
+                              },
+                              child: Container(
+                                alignment: Alignment.center,
+                                width: customWidth(50),
+                                height: customHeight(40),
+                                child: Text(
+                                  "Cancel",
+                                  style: AppTheme.h3Style,
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                        InkWell(
-                          onTap: () {
-                            if (name == '' || disc == '') {
-                              showSnackBar(message: 'Fill input fields');
-                            } else {
-                              if (finalAssembly == true) {
-                                Get.find<AssemblyProductController>()
-                                    .saveAssemblyProduct(
-                                        name: name,
-                                        discription: disc,
-                                        time: '${min * 60 + sec}',
-                                        ip: ipAddress,
-                                        port: portNumber,
-                                        printerData: printerData,
-                                        genQr: generateQr,
-                                        finalAssembly: true)
-                                    .then((value) {
-                                  Get.find<AssemblyProductController>()
-                                      .getAssemblyProducts();
-                                  Get.back();
+                        Container(
+                          decoration: BoxDecoration(
+                            color: LightColor.primaryColor,
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                            border: Border.all(
+                                width: 1, color: LightColor.primaryColor),
+                          ),
+                          child: Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              onTap: () {
+                                if (name == '' || disc == '') {
+                                  showSnackBar(message: 'Fill input fields');
+                                } else {
+                                  if (finalAssembly == true) {
+                                    Get.find<AssemblyProductController>()
+                                        .saveAssemblyProduct(
+                                            name: name,
+                                            discription: disc,
+                                            time: '${min * 60 + sec}',
+                                            ip: ipAddress,
+                                            port: portNumber,
+                                            printerData: printerData,
+                                            genQr: generateQr,
+                                            finalAssembly: true)
+                                        .then((value) {
+                                      Get.find<AssemblyProductController>()
+                                          .getAssemblyProducts();
+                                      Get.back();
 
-                                  showSnackBar(message: 'Item saved');
-                                });
-                              } else {
-                                Get.find<AssemblyProductController>()
-                                    .saveAssemblyProduct(
-                                        name: name,
-                                        discription: disc,
-                                        time: '${min * 60 + sec}',
-                                        ip: ipAddress,
-                                        port: portNumber,
-                                        printerData: printerData,
-                                        genQr: generateQr,
-                                        finalAssembly: false)
-                                    .then((value) {
-                                  Get.find<AssemblyProductController>()
-                                      .getAssemblyProducts();
-                                  Get.back();
+                                      showSnackBar(message: 'Item saved');
+                                    });
+                                  } else {
+                                    Get.find<AssemblyProductController>()
+                                        .saveAssemblyProduct(
+                                            name: name,
+                                            discription: disc,
+                                            time: '${min * 60 + sec}',
+                                            ip: ipAddress,
+                                            port: portNumber,
+                                            printerData: printerData,
+                                            genQr: generateQr,
+                                            finalAssembly: false)
+                                        .then((value) {
+                                      Get.find<AssemblyProductController>()
+                                          .getAssemblyProducts();
+                                      Get.back();
 
-                                  showSnackBar(message: 'Item saved');
-                                });
-                              }
-                            }
-                          },
-                          child: Container(
-                            alignment: Alignment.center,
-                            width: customWidth(50),
-                            height: customHeight(40),
-                            decoration: BoxDecoration(
-                              color: LightColor.primaryColor,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(50)),
-                              border: Border.all(
-                                  width: 1, color: LightColor.primaryColor),
-                            ),
-                            child: Text(
-                              "Confirm",
-                              style: TextStyle(
-                                  fontSize: customFontSize(5),
-                                  color: Colors.white),
+                                      showSnackBar(message: 'Item saved');
+                                    });
+                                  }
+                                }
+                              },
+                              child: Container(
+                                alignment: Alignment.center,
+                                width: customWidth(50),
+                                height: customHeight(40),
+                                child: Text(
+                                  "Confirm",
+                                  style: TextStyle(
+                                      fontSize: customFontSize(5),
+                                      color: Colors.white),
+                                ),
+                              ),
                             ),
                           ),
                         ),

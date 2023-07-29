@@ -105,7 +105,7 @@ class FinalAssemblyPlanScreen extends StatelessWidget {
                                       trailing: Wrap(
                                         spacing: 12,
                                         children: [
-                                          GestureDetector(
+                                          InkWell(
                                             onTap: () {
                                               Navigator.pushNamed(
                                                 Get.context!,
@@ -149,79 +149,83 @@ class FinalAssemblyPlanScreen extends StatelessWidget {
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.all(8.0),
-                                            child: InkWell(
-                                              onTap: () {
-                                                Navigator.pushNamed(
-                                                  Get.context!,
-                                                  FinalAssemblyProductEditor
-                                                      .routeName,
-                                                  arguments: {
-                                                    'id': controller
-                                                        .assemblyProductList[
-                                                            index]
-                                                        .id!,
-                                                    'productName': controller
-                                                        .assemblyProductList[
-                                                            index]
-                                                        .name!,
-                                                    'description': controller
-                                                        .assemblyProductList[
-                                                            index]
-                                                        .description!,
-                                                    'time_limit': controller
-                                                        .assemblyProductList[
-                                                            index]
-                                                        .time_limit!,
-                                                    'genQR': controller
-                                                        .assemblyProductList[
-                                                            index]
-                                                        .qrRequired!,
-                                                    'finalAssembly': controller
-                                                        .assemblyProductList[
-                                                            index]
-                                                        .isFinal!,
-                                                    'ipAddress': controller
-                                                        .assemblyProductList[
-                                                            index]
-                                                        .ipAddress,
-                                                    'portNumber': controller
-                                                        .assemblyProductList[
-                                                            index]
-                                                        .port,
-                                                    'printerData': controller
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color: LightColor.orange,
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(5)),
+                                                border: Border.all(
+                                                    width: 1,
+                                                    color: LightColor
+                                                        .primaryColor),
+                                              ),
+                                              child: Material(
+                                                color: Colors.transparent,
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    Navigator.pushNamed(
+                                                      Get.context!,
+                                                      FinalAssemblyProductEditor
+                                                          .routeName,
+                                                      arguments: {
+                                                        'id': controller
                                                             .assemblyProductList[
                                                                 index]
-                                                            .productObj!
-                                                            .zebraData ??
-                                                        "N/A",
+                                                            .id!,
+                                                        'productName': controller
+                                                            .assemblyProductList[
+                                                                index]
+                                                            .name!,
+                                                        'description': controller
+                                                            .assemblyProductList[
+                                                                index]
+                                                            .description!,
+                                                        'time_limit': controller
+                                                            .assemblyProductList[
+                                                                index]
+                                                            .time_limit!,
+                                                        'genQR': controller
+                                                            .assemblyProductList[
+                                                                index]
+                                                            .qrRequired!,
+                                                        'finalAssembly': controller
+                                                            .assemblyProductList[
+                                                                index]
+                                                            .isFinal!,
+                                                        'ipAddress': controller
+                                                            .assemblyProductList[
+                                                                index]
+                                                            .ipAddress,
+                                                        'portNumber': controller
+                                                            .assemblyProductList[
+                                                                index]
+                                                            .port,
+                                                        'printerData': controller
+                                                                .assemblyProductList[
+                                                                    index]
+                                                                .productObj!
+                                                                .zebraData ??
+                                                            "N/A",
+                                                      },
+                                                    );
                                                   },
-                                                );
-                                              },
-                                              child: Container(
-                                                alignment: Alignment.center,
-                                                width: customWidth(20),
-                                                height: customHeight(25),
-                                                decoration: BoxDecoration(
-                                                  color: LightColor.orange,
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(5)),
-                                                  border: Border.all(
-                                                      width: 1,
-                                                      color: LightColor
-                                                          .primaryColor),
-                                                ),
-                                                child: Text(
-                                                  "EDIT",
-                                                  style: TextStyle(
-                                                      fontSize:
-                                                          customFontSize(3),
-                                                      color: Colors.white),
+                                                  child: Container(
+                                                    alignment: Alignment.center,
+                                                    width: customWidth(20),
+                                                    height: customHeight(25),
+                                                    child: Text(
+                                                      "EDIT",
+                                                      style: TextStyle(
+                                                          fontSize:
+                                                              customFontSize(3),
+                                                          color: Colors.white),
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
                                             ),
                                           ),
-                                          GestureDetector(
+                                          InkWell(
                                             onTap: () {
                                               int id = controller
                                                   .assemblyProductList[index]

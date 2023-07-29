@@ -85,7 +85,7 @@ class Categories extends StatelessWidget {
                                             .setHomeScreen('Qualityquestions');
                                       },
                                       tileColor: Colors.green.shade100,
-                                     // leading: Text('${index + 1}'),
+                                      // leading: Text('${index + 1}'),
                                       title: Row(
                                         children: [
                                           Text(
@@ -103,7 +103,7 @@ class Categories extends StatelessWidget {
                                       trailing: Wrap(
                                         spacing: 12,
                                         children: [
-                                          GestureDetector(
+                                          InkWell(
                                             onTap: () {
                                               Navigator.pushNamed(
                                                 Get.context!,
@@ -146,69 +146,75 @@ class Categories extends StatelessWidget {
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.all(8.0),
-                                            child: InkWell(
-                                              onTap: () {
-                                                Navigator.pushNamed(
-                                                  Get.context!,
-                                                  QualitycontrolpropertiesEditor
-                                                      .routeName,
-                                                  arguments: {
-                                                    'id': controller
-                                                        .qualityProductList[
-                                                            index]
-                                                        .id!,
-                                                    'productName': controller
-                                                        .qualityProductList[
-                                                            index]
-                                                        .name!,
-                                                    'description': controller
-                                                        .qualityProductList[
-                                                            index]
-                                                        .description!,
-                                                    'time_limit': controller
-                                                        .qualityProductList[
-                                                            index]
-                                                        .time_limit!,
-
-                                                        
-
-                                                           'ipAddress':controller
-                                                        .qualityProductList[
-                                                            index].ipAddress,
-      'portNumber':controller
-                                                        .qualityProductList[
-                                                            index].port,
-   'printerData':controller
-                                                        .qualityProductList[
-                                                            index].productObj!.zebraData??"N/A",
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color: LightColor.orange,
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(5)),
+                                                border: Border.all(
+                                                    width: 1,
+                                                    color: LightColor
+                                                        .primaryColor),
+                                              ),
+                                              child: Material(
+                                                color: Colors.transparent,
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    Navigator.pushNamed(
+                                                      Get.context!,
+                                                      QualitycontrolpropertiesEditor
+                                                          .routeName,
+                                                      arguments: {
+                                                        'id': controller
+                                                            .qualityProductList[
+                                                                index]
+                                                            .id!,
+                                                        'productName': controller
+                                                            .qualityProductList[
+                                                                index]
+                                                            .name!,
+                                                        'description': controller
+                                                            .qualityProductList[
+                                                                index]
+                                                            .description!,
+                                                        'time_limit': controller
+                                                            .qualityProductList[
+                                                                index]
+                                                            .time_limit!,
+                                                        'ipAddress': controller
+                                                            .qualityProductList[
+                                                                index]
+                                                            .ipAddress,
+                                                        'portNumber': controller
+                                                            .qualityProductList[
+                                                                index]
+                                                            .port,
+                                                        'printerData': controller
+                                                                .qualityProductList[
+                                                                    index]
+                                                                .productObj!
+                                                                .zebraData ??
+                                                            "N/A",
+                                                      },
+                                                    );
                                                   },
-                                                );
-                                              },
-                                              child: Container(
-                                                alignment: Alignment.center,
-                                                width: customWidth(20),
-                                                height: customHeight(25),
-                                                decoration: BoxDecoration(
-                                                  color: LightColor.orange,
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(5)),
-                                                  border: Border.all(
-                                                      width: 1,
-                                                      color: LightColor
-                                                          .primaryColor),
-                                                ),
-                                                child: Text(
-                                                  "EDIT",
-                                                  style: TextStyle(
-                                                      fontSize:
-                                                          customFontSize(3),
-                                                      color: Colors.white),
+                                                  child: Container(
+                                                    alignment: Alignment.center,
+                                                    width: customWidth(20),
+                                                    height: customHeight(25),
+                                                    child: Text(
+                                                      "EDIT",
+                                                      style: TextStyle(
+                                                          fontSize:
+                                                              customFontSize(3),
+                                                          color: Colors.white),
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
                                             ),
                                           ),
-                                          GestureDetector(
+                                          InkWell(
                                             onTap: () {
                                               int id = controller
                                                   .qualityProductList[index]

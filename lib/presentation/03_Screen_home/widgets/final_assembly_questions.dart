@@ -92,58 +92,62 @@ class FinalAssemblyQuestionListScreen extends StatelessWidget {
                                         children: [
                                           Padding(
                                             padding: const EdgeInsets.all(8.0),
-                                            child: InkWell(
-                                              onTap: () {
-                                                Get.find<
-                                                        QualityQuestionEditController>()
-                                                    .getEditQuestionDetails(
-                                                        id: controller
-                                                            .assemblyQuestionList[
-                                                                index]
-                                                            .id
-                                                            .toString(),
-                                                        screenName:
-                                                            'Final Assembly')
-                                                    .then((value) {
-                                                  Navigator.pushNamed(
-                                                      context,
-                                                      arguments: {
-                                                        'id': controller
-                                                            .assemblyQuestionList[
-                                                                index]
-                                                            .id,
-                                                        'screenName':
-                                                            'Final Assembly'
-                                                      },
-                                                      QualityquestionEdit
-                                                          .routeName);
-                                                });
-                                              },
-                                              child: Container(
-                                                alignment: Alignment.center,
-                                                width: customWidth(20),
-                                                height: customHeight(25),
-                                                decoration: BoxDecoration(
-                                                  color: LightColor.orange,
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(5)),
-                                                  border: Border.all(
-                                                      width: 1,
-                                                      color: LightColor
-                                                          .primaryColor),
-                                                ),
-                                                child: Text(
-                                                  "EDIT",
-                                                  style: TextStyle(
-                                                      fontSize:
-                                                          customFontSize(3),
-                                                      color: Colors.white),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color: LightColor.orange,
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(5)),
+                                                border: Border.all(
+                                                    width: 1,
+                                                    color: LightColor
+                                                        .primaryColor),
+                                              ),
+                                              child: Material(
+                                                color: Colors.transparent,
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    Get.find<
+                                                            QualityQuestionEditController>()
+                                                        .getEditQuestionDetails(
+                                                            id: controller
+                                                                .assemblyQuestionList[
+                                                                    index]
+                                                                .id
+                                                                .toString(),
+                                                            screenName:
+                                                                'Final Assembly')
+                                                        .then((value) {
+                                                      Navigator.pushNamed(
+                                                          context,
+                                                          arguments: {
+                                                            'id': controller
+                                                                .assemblyQuestionList[
+                                                                    index]
+                                                                .id,
+                                                            'screenName':
+                                                                'Final Assembly'
+                                                          },
+                                                          QualityquestionEdit
+                                                              .routeName);
+                                                    });
+                                                  },
+                                                  child: Container(
+                                                    alignment: Alignment.center,
+                                                    width: customWidth(20),
+                                                    height: customHeight(25),
+                                                    child: Text(
+                                                      "EDIT",
+                                                      style: TextStyle(
+                                                          fontSize:
+                                                              customFontSize(3),
+                                                          color: Colors.white),
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
                                             ),
                                           ),
-                                          GestureDetector(
+                                          InkWell(
                                             onTap: () {
                                               showDialog(
                                                 context: context,

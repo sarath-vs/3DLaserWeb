@@ -75,7 +75,7 @@ class WorkingTools extends StatelessWidget {
                                       )
                                     ],
                                   ),
-                                  trailing: GestureDetector(
+                                  trailing: InkWell(
                                     onTap: () {
                                       int id = controller.toolsList[index].id!;
                                       showDialog(
