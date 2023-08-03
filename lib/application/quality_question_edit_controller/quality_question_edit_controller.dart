@@ -199,58 +199,6 @@ class QualityQuestionEditController extends GetxController {
       rangeFrom = resp.data!.fieldInfoObject!.rangeFrom ?? "";
       rangeTo = resp.data!.fieldInfoObject!.rangeTo ?? "";
 
-      // dropDownDataEnglish =
-      //     resp.data!.fieldInfoObject!.dropDownData!.split("&&")[0] ?? "";
-      // if (resp.data!.fieldInfoObject!.dropDownData?.split("&&")[1] != null) {
-      //   List<int> list = json
-      //       .decode(resp.data!.fieldInfoObject!.dropDownData!.split("&&")[1])
-      //       .cast<int>();
-      //   var decoczechdropdown = utf8.decode(list);
-      //   dropDownDataCzech = decoczechdropdown;
-      // } else {
-      //   dropDownDataCzech = "";
-      // }
-      // if (resp.data!.fieldInfoObject!.dropDownData?.split("&&")[2] != null) {
-      //   List<int> list = json
-      //       .decode(resp.data!.fieldInfoObject!.dropDownData!.split("&&")[2])
-      //       .cast<int>();
-      //   var decoczechdropdown = utf8.decode(list);
-      //   dropDownDataVietnam = decoczechdropdown;
-      // } else {
-      //   dropDownDataVietnam = "";
-      // }
-
-      // dropDownDataCzech =
-      //     resp.data!.fieldInfoObject!.dropDownData!.split("&&")[1] ?? "";
-      // dropDownDataVietnam =
-      //     resp.data!.fieldInfoObject!.dropDownData!.split("&&")[2] ?? "";
-      // dropDownValueEnglishController.text =
-      //     resp.data!.fieldInfoObject!.dropDownData!.split("&&")[0] ?? "";
-      // if (resp.data!.fieldInfoObject!.dropDownData?.split("&&")[1] != null) {
-      //   List<int> list = json
-      //       .decode(resp.data!.fieldInfoObject!.dropDownData!.split("&&")[1])
-      //       .cast<int>();
-      //   var decoczechdropdown = utf8.decode(list);
-      //   dropDownValueCzechController.text = decoczechdropdown;
-      // } else {
-      //   dropDownValueCzechController.text = "";
-      // }
-
-      // dropDownValueCzechController.text =
-      //     resp.data!.fieldInfoObject!.dropDownData?.split("&&")[1] ?? "";
-      // dropDownValueVietnamController.text =
-      //     resp.data!.fieldInfoObject!.dropDownData?.split("&&")[2] ?? "";
-
-      // if (resp.data!.fieldInfoObject!.dropDownData?.split("&&")[2] != null) {
-      //   List<int> list = json
-      //       .decode(resp.data!.fieldInfoObject!.dropDownData!.split("&&")[2])
-      //       .cast<int>();
-      //   var decovitenmdropdown = utf8.decode(list);
-      //   dropDownValueVietnamController.text = decovitenmdropdown;
-      // } else {
-      //   dropDownValueVietnamController.text = "";
-      // }
-
       productId = resp.data!.category;
       questionID = resp.data!.id.toString();
 

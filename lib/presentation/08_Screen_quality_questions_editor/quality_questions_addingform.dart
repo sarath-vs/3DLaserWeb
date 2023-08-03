@@ -173,8 +173,21 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
 
       Get.find<ToolsController>().getTools().then((value) {
         if (_checkedItems.isEmpty) {
-          _checkedItems =
-              List.filled(Get.find<ToolsController>().toolsList.length, false);
+          if (QualityQuestionEditController.tools.isEmpty) {
+            _checkedItems = List.filled(
+                Get.find<ToolsController>().toolsList.length, false);
+          } else {
+            List totaltoolsid = [];
+            var totaltools = Get.find<ToolsController>().toolsList;
+
+            totaltools.forEach((element) {
+              totaltoolsid.add(element.id);
+            });
+            _checkedItems = totaltoolsid
+                .map((a) => QualityQuestionEditController.tools.contains(a))
+                .toList();
+            print(_checkedItems);
+          }
         }
       });
       QualityQuestionEditController.questionID = id.toString();
