@@ -7,58 +7,35 @@ import 'package:injectable/injectable.dart';
 @singleton
 class URLPool {
 // test
-  final _baseUrl = 'http://65.1.86.132/accounts';
+  //  final _baseUrl = 'http://65.1.86.132';
 //local czech
-  // final _baseUrl = 'http://qualitynew.lasertec.eu/backend/accounts';
+  final _baseUrl = 'http://qualitynew.lasertec.eu/backend';
 
-  final _login = '/login/';
-  final _refresh = '/refreshtoken/';
-  final _getProductName = '/name-list/';
-
+  ////// account apis////
+  final _login = '/accounts/login/';
+  final _refresh = '/accounts/refreshtoken/';
+  final _getProductName = '/accounts/name-list/';
 /////////////////////////////////////////////////////////////////////////////////
-
   String get login => _baseUrl + _login;
   String get refreshTocken => _baseUrl + _refresh;
-  // String get getProductname => 'http://qualitynew.lasertec.eu/backend/admin-dashboard/categories/';
-  // String get getProductType => 'http://qualitynew.lasertec.eu/backend/products/sub-categories/';
-  // String get getInitQstnModules => 'http://qualitynew.lasertec.eu/backend/questions/modules/';
-  // String get getQuestions => 'http://qualitynew.lasertec.eu/backend/questions/';
-  // String get saveAnswer => 'http://qualitynew.lasertec.eu/backend/questions/answer/';
-  // String get getDigitalMannualList => 'http://qualitynew.lasertec.eu/backend/digital-manual/';
-  // String get getDigitalMannualDetail => 'http://qualitynew.lasertec.eu/backend/digital-manual/';
-  String get getToolsList => 'http://65.1.86.132/admin-dashboard/tools/';
-  String get saveTools => 'http://65.1.86.132/admin-dashboard/tools/';
-  String get deleteTools => 'http://65.1.86.132/admin-dashboard/tools/';
-
-  String get getQualityProducts =>
-      'http://65.1.86.132/admin-dashboard/category/';
-  String get saveQualityProducts =>
-      'http://65.1.86.132/admin-dashboard/category/';
-  String get deleteQualityProducts =>
-      'http://65.1.86.132/admin-dashboard/category';
-  String get getQualityQuestions =>
-      'http://65.1.86.132/admin-dashboard/question/';
-  String get deleteQualityQuestions =>
-      'http://65.1.86.132/admin-dashboard/question/';
-  // String get editQualityQuestions =>
-  //     'http://65.1.86.132/admin-dashboard/question/';
-  String get postQualityQuestions =>
-      'http://65.1.86.132/admin-dashboard/question/';
-
-  String get editQualityQuestions =>
-      'http://65.1.86.132/admin-dashboard/question/';
-  String get getAnsweredProduct =>
-      'http://65.1.86.132/admin-dashboard/answers/';
-
+  String get getToolsList => _baseUrl + '/admin-dashboard/tools/';
+  String get saveTools => _baseUrl + '/admin-dashboard/tools/';
+  String get deleteTools => _baseUrl + '/admin-dashboard/tools/';
+  String get getQualityProducts => _baseUrl + '/admin-dashboard/category/';
+  String get saveQualityProducts => _baseUrl + '/admin-dashboard/category/';
+  String get deleteQualityProducts => _baseUrl + '/admin-dashboard/category';
+  String get getQualityQuestions => _baseUrl + '/admin-dashboard/question/';
+  String get deleteQualityQuestions => _baseUrl + '/admin-dashboard/question/';
+  String get postQualityQuestions => _baseUrl + '/admin-dashboard/question/';
+  String get editQualityQuestions => _baseUrl + '/admin-dashboard/question/';
+  String get getAnsweredProduct => _baseUrl + '/admin-dashboard/answers/';
   String get assemblyDetails =>
-      'http://65.1.86.132/admin-dashboard/assembly/category/';
+      _baseUrl + '/admin-dashboard/assembly/category/';
   String get assemplyCompletedList =>
-      'http://65.1.86.132/admin-dashboard/assembly/products/';
+      _baseUrl + '/admin-dashboard/assembly/products/';
   String get assemblyQuestionDetails =>
-      'http://65.1.86.132/admin-dashboard/assembly/question/';
-  String get finalAssemblyProductList =>
-      'http://65.1.86.132/final-admin/category/';
-  String get finalAssembly => 'http://65.1.86.132/final-admin/category/';
-  String get finalAssemblyQuestion =>
-      'http://65.1.86.132/final-admin/question/';
+      _baseUrl + '/admin-dashboard/assembly/question/';
+  String get finalAssemblyProductList => _baseUrl + '/final-admin/category/';
+  String get finalAssembly => _baseUrl + '/final-admin/category/';
+  String get finalAssemblyQuestion => _baseUrl + '/final-admin/question/';
 }
