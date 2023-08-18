@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:html';
 import 'dart:io';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -115,6 +116,12 @@ class QualityQuestionEditController extends GetxController {
     update([qualityQuestionDetailID]);
   }
 
+  imageadding(PlatformFile element) {
+    selectedimagesin64bytesfromurl.add(element.bytes as Uint8List);
+    selectedimagesinbase64listfromurl.add(base64.encode(element.bytes!));
+    update([qualityQuestionDetailID]);
+  }
+
   Future<void> networkVideoToBase64() async {
     selectedunillist64video.clear();
     covert64video.clear();
@@ -136,6 +143,12 @@ class QualityQuestionEditController extends GetxController {
         throw Exception('Failed to load video');
       }
     }
+    update([qualityQuestionDetailID]);
+  }
+
+  videoadding(PlatformFile element) {
+    selectedunillist64video.add(element.bytes as Uint8List);
+    covert64video.add(base64.encode(element.bytes!));
     update([qualityQuestionDetailID]);
   }
 
@@ -430,5 +443,21 @@ class QualityQuestionEditController extends GetxController {
     }, (String resp) async {
       update([qualityQuestionDetailID]);
     });
+  }
+
+  imageremove(int index) {
+    selectedimagesin64bytesfromurl.removeAt(index);
+    selectedimagesinbase64listfromurl //bytes list removing
+        .removeAt(index);
+    print("pressed");
+    update([qualityQuestionDetailID]);
+    print("update screen");
+    print(index);
+  }
+
+  videoremover(int index) {
+    selectedunillist64video.removeAt(index);
+    covert64video.removeAt(index); //bytes list removing
+    update([qualityQuestionDetailID]);
   }
 }

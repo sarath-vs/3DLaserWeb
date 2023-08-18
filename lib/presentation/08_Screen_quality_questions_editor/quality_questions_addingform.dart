@@ -81,28 +81,29 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
         selctFile = fileResult.files.first.name;
         selectfilepath = fileResult.files.first.identifier;
         fileResult.files.forEach((element) {
-          setState(() {
-            selectedvideo.add(element.name);
+          Get.find<QualityQuestionEditController>().videoadding(element);
+          // setState(() {
+          //   selectedvideo.add(element.name);
 
-            selectedvideoInBytes.add(element.bytes as Uint8List);
-            QualityQuestionEditController.selectedunillist64video
-                .add(element.bytes as Uint8List);
+          //   selectedvideoInBytes.add(element.bytes as Uint8List);
+          //   QualityQuestionEditController.selectedunillist64video
+          //       .add(element.bytes as Uint8List);
 
-            // base64StringVDO.add(base64.encode(element.bytes!));
+          //   // base64StringVDO.add(base64.encode(element.bytes!));
 
-            if (QualityQuestionEditController.covert64video.isNotEmpty) {
-              QualityQuestionEditController.covert64video
-                  .add(base64.encode(element.bytes!));
-            } else {
-              base64StringVDO.add(base64.encode(element.bytes!));
-            }
+          //   if (QualityQuestionEditController.covert64video.isNotEmpty) {
+          //     QualityQuestionEditController.covert64video
+          //         .add(base64.encode(element.bytes!));
+          //   } else {
+          //     base64StringVDO.add(base64.encode(element.bytes!));
+          //   }
 
-            if (base64StringVDO.isNotEmpty) {
-              QualityQuestionEditController.base64StringVDO = base64StringVDO;
-            } else {
-              QualityQuestionEditController.base64StringVDO.clear();
-            }
-          });
+          //   if (base64StringVDO.isNotEmpty) {
+          //     QualityQuestionEditController.base64StringVDO = base64StringVDO;
+          //   } else {
+          //     QualityQuestionEditController.base64StringVDO.clear();
+          //   }
+          // });
         });
 
         print("*********" +
@@ -123,41 +124,51 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
     if (fileResult != null) {
       selctFile = fileResult.files.first.name;
       fileResult.files.forEach((element) {
-        setState(() {
-          pickedImagesInBytes.add(element.bytes as Uint8List);
-          QualityQuestionEditController.selectedimagesin64bytesfromurl
-              .add(element.bytes as Uint8List);
+        Get.find<QualityQuestionEditController>().imageadding(element);
+        // setState(() {
+        //   pickedImagesInBytes.add(element.bytes as Uint8List);
+        //   QualityQuestionEditController.selectedimagesin64bytesfromurl
+        //       .add(element.bytes as Uint8List);
 
-          selectedimages.add(element.name);
-          if (QualityQuestionEditController
-              .selectedimagesinbase64listfromurl.isNotEmpty) {
-            QualityQuestionEditController.selectedimagesinbase64listfromurl
-                .add(base64.encode(element.bytes!));
-          } else {
-            selectedimagesin64bytes.add(base64.encode(element.bytes!));
-          }
+        //   selectedimages.add(element.name);
+        //   if (QualityQuestionEditController
+        //       .selectedimagesinbase64listfromurl.isNotEmpty) {
+        //     QualityQuestionEditController.selectedimagesinbase64listfromurl
+        //         .add(base64.encode(element.bytes!));
+        //   } else {
+        //     selectedimagesin64bytes.add(base64.encode(element.bytes!));
+        //   }
 
-          //selectedImageInBytes = fileResult.files.first.bytes;
-          imageCounts += 1;
-          if (selectedimagesin64bytes.isNotEmpty) {
-            QualityQuestionEditController.selectedimagesin64bytes =
-                selectedimagesin64bytes;
-            // QualityQuestionEditController.selectedimagesin64bytesfromurl=selectedimagesin64bytes;
-          } else {
-            QualityQuestionEditController.selectedimagesin64bytes.clear();
-            // QualityQuestionEditController.selectedimagesinbase64listfromurl
-            //     .clear();
-          }
-        });
+        //   //selectedImageInBytes = fileResult.files.first.bytes;
+        //   imageCounts += 1;
+        //   if (selectedimagesin64bytes.isNotEmpty) {
+        //     QualityQuestionEditController.selectedimagesin64bytes =
+        //         selectedimagesin64bytes;
+        //     // print("*******************");
+        //     // print("********************" +
+        //     //     selectedimagesin64bytes.length.toString() +
+        //     //     "***************");
+        //     // selectedimagesin64bytes.clear();
+        //     // QualityQuestionEditController.selectedimagesin64bytesfromurl=selectedimagesin64bytes;
+        //   } else {
+        //     QualityQuestionEditController.selectedimagesin64bytes.clear();
+        //     // QualityQuestionEditController.selectedimagesinbase64listfromurl
+        //     //     .clear();
+        //   }
+        // });
       });
     }
     print("***********" +
         selectedimages.toString() +
         "**************"); // List of selected images names
+    // print("***********" +
+    //     selectedimagesin64bytes.toString() +
+    //     "**************"); //List of selected images 64bytes form
+    print("**************length of controller imasge");
     print("***********" +
-        selectedimagesin64bytes.toString() +
-        "**************"); //List of selected images 64bytes form
-
+        QualityQuestionEditController.selectedimagesin64bytes.length
+            .toString() +
+        "**************");
     // print(pickedImagesInBytes);
   }
 
@@ -422,131 +433,6 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                // customHorizontalGap(50),
-                                // Column(
-                                //   children: [
-                                //     Container(
-                                //         alignment: Alignment.center,
-                                //         width: customWidth(35),
-                                //         height: customHeight(20),
-                                //         decoration: BoxDecoration(
-                                //           color: LightColor.grey2,
-                                //           borderRadius: BorderRadius.all(
-                                //               Radius.circular(5)),
-                                //           border: Border.all(
-                                //               width: 1,
-                                //               color: LightColor.black),
-                                //         ),
-                                //         child: (selectedvideo == "")
-                                //             ?  Text(
-                                //              QualityQuestionEditController.base64StringVDO.length.toString()+'Files',
-                                //                 style: TextStyle(
-                                //                     color: LightColor.grey),
-                                //               )
-                                //             : Text(
-                                //                 selectedvideo,
-                                //                 style: TextStyle(
-                                //                     color: LightColor.grey),
-                                //               )),
-                                //     customVerticalGap(10),
-                                //     InkWell(
-                                //       onTap: () async {
-                                //         _selectvideoFile(true);
-                                //         // var picked =
-                                //         //     await FilePicker.platform.pickFiles(
-                                //         //   withReadStream: true,
-                                //         // );
-                                //         // if (picked != null) {
-                                //         //   setState(() {
-                                //         //     objFile = picked.files.single;
-                                //         //   });
-                                //         // }
-                                //       },
-                                //       child: Container(
-                                //         alignment: Alignment.center,
-                                //         width: customWidth(35),
-                                //         height: customHeight(30),
-                                //         decoration: BoxDecoration(
-                                //           color: LightColor.orange,
-                                //           borderRadius: BorderRadius.all(
-                                //               Radius.circular(5)),
-                                //           border: Border.all(
-                                //               width: 1,
-                                //               color: LightColor.primaryColor),
-                                //         ),
-                                //         child: Text(
-                                //          QualityQuestionEditController.base64StringVDO.length<=0 ?  "Upload Video":"Delete and update Video",
-                                //           style: TextStyle(
-                                //               fontSize: customFontSize(3),
-                                //               color: Colors.white),
-                                //         ),
-                                //       ),
-                                //     ),
-                                //   ],
-                                // ),
-                                // customHorizontalGap(20),
-                                // Column(
-                                //   children: [
-                                //     Container(
-                                //         alignment: Alignment.center,
-                                //         width: customWidth(45),
-                                //         height: customHeight(20),
-                                //         decoration: BoxDecoration(
-                                //           color: LightColor.grey2,
-                                //           borderRadius: BorderRadius.all(
-                                //               Radius.circular(5)),
-                                //           border: Border.all(
-                                //               width: 1,
-                                //               color: LightColor.black),
-                                //         ),
-                                //         child:
-                                //             (selectedimages.toString() == "[]")
-                                //                 ?  Text(
-                                //                     QualityQuestionEditController.selectedimagesin64bytes.length.toString() + 'Files',
-                                //                     style: TextStyle(
-                                //                         color: LightColor.grey),
-                                //                   )
-                                //                 : Text(
-                                //                     selectedimages.toString(),
-                                //                     style: TextStyle(
-                                //                         color: LightColor.grey),
-                                //                   )),
-                                //     customVerticalGap(10),
-                                //     InkWell(
-                                //       onTap: () async {
-                                //         _selectedimages(true);
-                                //         // var picked =
-                                //         //     await FilePicker.platform.pickFiles(
-                                //         //   withReadStream: true,
-                                //         // );
-                                //         // if (picked != null) {
-                                //         //   setState(() {
-                                //         //     objFile = picked.files.single;
-                                //         //   });
-                                //         // }
-                                //       },
-                                //       child: Container(
-                                //         alignment: Alignment.center,
-                                //         width: customWidth(35),
-                                //         height: customHeight(30),
-                                //         decoration: BoxDecoration(
-                                //           color: LightColor.orange,
-                                //           borderRadius: BorderRadius.all(
-                                //               Radius.circular(5)),
-                                //           border: Border.all(
-                                //               width: 1,
-                                //               color: LightColor.primaryColor),
-                                //         ),
-                                //         child: Text(
-                                //         QualityQuestionEditController.selectedimagesin64bytes.length<=0 ?  "Upload Image":"Delete and update Image",
-                                //           style: TextStyle(
-                                //               fontSize: customFontSize(3),
-                                //               color: Colors.white),
-                                //         ),
-                                //       ),
-                                //     ),
-                                //   ],
-                                // ),
                                 customHorizontalGap(20),
                                 Container(
                                   decoration: BoxDecoration(
@@ -1043,7 +929,7 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                                         );
                                                       }
                                                     });
-                                                    decoration:
+                                                    // decoration:
                                                     InputDecoration(
                                                       hintText: "To",
                                                       // border: OutlineInputBorder(
@@ -1326,9 +1212,8 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                     ),
                                   ),
                                   QualityQuestionEditController
-                                              .selectedimagesin64bytesfromurl
-                                              .length >
-                                          0
+                                          .selectedimagesin64bytesfromurl
+                                          .isNotEmpty
                                       ? Expanded(
                                           child: ListView.builder(
                                             shrinkWrap: true,
@@ -1355,16 +1240,26 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                                       color: Colors.transparent,
                                                       child: InkWell(
                                                         onTap: () {
-                                                          setState(() {
-                                                            QualityQuestionEditController
-                                                                .selectedimagesin64bytesfromurl
-                                                                .removeAt(
-                                                                    index);
-                                                            QualityQuestionEditController
-                                                                .selectedimagesinbase64listfromurl //bytes list removing
-                                                                .removeAt(
-                                                                    index);
-                                                          });
+                                                          controller
+                                                              .imageremove(
+                                                                  index);
+                                                          // setState(() {
+                                                          //   // QualityQuestionEditController
+                                                          //   //     .selectedimagesin64bytesfromurl
+                                                          //   //     .removeAt(
+                                                          //   //         index);
+                                                          //   // QualityQuestionEditController
+                                                          //   //     .selectedimagesinbase64listfromurl //bytes list removing
+                                                          //   //     .removeAt(
+                                                          //   //         index);
+
+                                                          //   pickedImagesInBytes
+                                                          //       .removeAt(
+                                                          //           index);
+                                                          //   selectedimagesin64bytes
+                                                          //       .removeAt(
+                                                          //           index);
+                                                          // });
                                                         },
                                                         child: Container(
                                                             decoration: BoxDecoration(
@@ -1472,16 +1367,18 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                                     color: Colors.transparent,
                                                     child: InkWell(
                                                       onTap: () {
-                                                        setState(() {
-                                                          // base64StringVDO
-                                                          //     .removeAt(index);
-                                                          QualityQuestionEditController
-                                                              .selectedunillist64video
-                                                              .removeAt(index);
-                                                          QualityQuestionEditController
-                                                              .covert64video //bytes list removing
-                                                              .removeAt(index);
-                                                        });
+                                                        controller.videoremover(
+                                                            index);
+                                                        // setState(() {
+                                                        //   // base64StringVDO
+                                                        //   //     .removeAt(index);
+                                                        //   QualityQuestionEditController
+                                                        //       .selectedunillist64video
+                                                        //       .removeAt(index);
+                                                        //   QualityQuestionEditController
+                                                        //       .covert64video //bytes list removing
+                                                        //       .removeAt(index);
+                                                        // });
                                                       },
                                                       child: Container(
                                                           decoration: BoxDecoration(

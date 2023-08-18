@@ -7,9 +7,9 @@ import 'package:injectable/injectable.dart';
 @singleton
 class URLPool {
 // test
-  //  final _baseUrl = 'http://65.1.86.132';
+  final _baseUrl = 'http://65.1.86.132';
 //local czech
-  final _baseUrl = 'http://qualitynew.lasertec.eu/backend';
+  // final _baseUrl = 'http://qualitynew.lasertec.eu/backend';
 
   ////// account apis////
   final _login = '/accounts/login/';
