@@ -7,7 +7,7 @@ import 'package:injectable/injectable.dart';
 @singleton
 class URLPool {
 // test
-  final _baseUrl = 'http://65.1.86.132';
+  final _baseUrl = 'https://pro-classic-mako.ngrok-free.app';
 //local czech
   // final _baseUrl = 'http://qualitynew.lasertec.eu/backend';
 
