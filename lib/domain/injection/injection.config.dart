@@ -4,64 +4,54 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
+// ignore_for_file: unnecessary_lambdas
+// ignore_for_file: lines_longer_than_80_chars
+// coverage:ignore-file
+
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:connectivity_plus/connectivity_plus.dart' as _i3;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
-import 'package:laser_tech_app/application/ansswered_product_controller/answered_product_controller.dart'
-    as _i25;
-import 'package:laser_tech_app/application/assembly_controller/assembly_controller.dart'
-    as _i26;
-import 'package:laser_tech_app/application/auth_controller/auth_controller.dart'
-    as _i27;
-import 'package:laser_tech_app/application/final_assembly_controller/final_assembly_controller.dart'
-    as _i22;
-import 'package:laser_tech_app/application/home_screen_controller/controller.dart'
-    as _i10;
-import 'package:laser_tech_app/application/quality_products_controller/quality_product_controller.dart'
-    as _i23;
-import 'package:laser_tech_app/application/quality_question_edit_controller/quality_question_edit_controller.dart'
-    as _i13;
-import 'package:laser_tech_app/application/tools_controller/tools_controller.dart'
-    as _i24;
-import 'package:laser_tech_app/domain/employee_data/employee_data_manager.dart'
-    as _i7;
-import 'package:laser_tech_app/domain/models/answered_product_list/answered_product_facade.dart'
-    as _i16;
-import 'package:laser_tech_app/domain/models/assembly_product/assembly_facade.dart'
-    as _i18;
-import 'package:laser_tech_app/domain/models/final_assembly_product/final_facade.dart'
-    as _i8;
-import 'package:laser_tech_app/domain/models/login/login_facade.dart' as _i20;
-import 'package:laser_tech_app/domain/models/products/quality_product_facade.dart'
-    as _i11;
-import 'package:laser_tech_app/domain/models/tools_model/tools_facade.dart'
-    as _i14;
-import 'package:laser_tech_app/domain/remote/connectivity/internet_connectivity.dart'
-    as _i4;
-import 'package:laser_tech_app/domain/remote/url/url_pool.dart' as _i6;
-import 'package:laser_tech_app/implementation/answered_product_list_impl/answered_product_impl.dart'
-    as _i17;
-import 'package:laser_tech_app/implementation/assembly_product_impl.dart/assembly_product_impl.dart'
-    as _i19;
-import 'package:laser_tech_app/implementation/auth/auth_impl.dart' as _i21;
-import 'package:laser_tech_app/implementation/final_assembly_impl/final_assembly_impl.dart'
-    as _i9;
-import 'package:laser_tech_app/implementation/quality_product_impl/quality_product_impl.dart'
-    as _i12;
-import 'package:laser_tech_app/implementation/tools/tools_impl.dart' as _i15;
 import 'package:shared_preferences/shared_preferences.dart' as _i5;
 
+import '../../application/ansswered_product_controller/answered_product_controller.dart'
+    as _i25;
+import '../../application/assembly_controller/assembly_controller.dart' as _i26;
+import '../../application/auth_controller/auth_controller.dart' as _i27;
+import '../../application/final_assembly_controller/final_assembly_controller.dart'
+    as _i22;
+import '../../application/home_screen_controller/controller.dart' as _i10;
+import '../../application/quality_products_controller/quality_product_controller.dart'
+    as _i23;
+import '../../application/quality_question_edit_controller/quality_question_edit_controller.dart'
+    as _i13;
+import '../../application/tools_controller/tools_controller.dart' as _i24;
+import '../../implementation/answered_product_list_impl/answered_product_impl.dart'
+    as _i17;
+import '../../implementation/assembly_product_impl.dart/assembly_product_impl.dart'
+    as _i19;
+import '../../implementation/auth/auth_impl.dart' as _i21;
+import '../../implementation/final_assembly_impl/final_assembly_impl.dart'
+    as _i9;
+import '../../implementation/quality_product_impl/quality_product_impl.dart'
+    as _i12;
+import '../../implementation/tools/tools_impl.dart' as _i15;
+import '../employee_data/employee_data_manager.dart' as _i7;
+import '../models/answered_product_list/answered_product_facade.dart' as _i16;
+import '../models/assembly_product/assembly_facade.dart' as _i18;
+import '../models/final_assembly_product/final_facade.dart' as _i8;
+import '../models/login/login_facade.dart' as _i20;
+import '../models/products/quality_product_facade.dart' as _i11;
+import '../models/tools_model/tools_facade.dart' as _i14;
 import '../modules/modules.dart' as _i28;
-import '../remote/connectivity/internet_connectivity.dart' as _i29;
+import '../remote/connectivity/internet_connectivity.dart' as _i4;
+import '../remote/url/url_pool.dart' as _i6;
 
 const String _prod = 'prod';
 const String _dev = 'dev';
 
-// ignore_for_file: unnecessary_lambdas
-// ignore_for_file: lines_longer_than_80_chars
 extension GetItInjectableX on _i1.GetIt {
-  // initializes the registration of main-scope dependencies inside of GetIt
+// initializes the registration of main-scope dependencies inside of GetIt
   Future<_i1.GetIt> init({
     String? environment,
     _i2.EnvironmentFilter? environmentFilter,
@@ -152,6 +142,6 @@ extension GetItInjectableX on _i1.GetIt {
   }
 }
 
-class _$Modules extends _i28.Modules {}
+class _$ConnectivityModule extends _i4.ConnectivityModule {}
 
-class _$ConnectivityModule extends _i29.ConnectivityModule {}
+class _$Modules extends _i28.Modules {}

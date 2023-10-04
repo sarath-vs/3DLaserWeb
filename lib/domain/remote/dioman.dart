@@ -6,6 +6,7 @@ class Postman {
   static Future<Map<String, String>> getCustomheader() async {
     final header = {
       'Content-type': 'application/json',
+      'ngrok-skip-browser-warning': 'false',
     };
 
     return header;
@@ -20,6 +21,7 @@ class Postman {
       Uri.parse(url),
       headers: {
         'Authorization': '$access',
+        'ngrok-skip-browser-warning': 'false',
       },
     );
   }
@@ -39,7 +41,11 @@ class Postman {
     customLog('URL POST -> $url\nBODY -> $body');
     return http.post(
       Uri.parse(url),
-      headers: {'Authorization': access, 'Content-Type': 'application/json'},
+      headers: {
+        'Authorization': access,
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': 'false',
+      },
       body: jsonEncode(body),
     );
   }
@@ -49,7 +55,11 @@ class Postman {
     customLog('URL PUT -> $url\nBODY -> $body');
     return http.put(
       Uri.parse(url),
-      headers: {'Authorization': access, 'Content-Type': 'application/json'},
+      headers: {
+        'Authorization': access,
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': 'false',
+      },
       body: jsonEncode(body),
     );
   }
@@ -63,6 +73,7 @@ class Postman {
       Uri.parse(url),
       headers: {
         'Authorization': '$access',
+        'ngrok-skip-browser-warning': 'false',
       },
     );
   }
