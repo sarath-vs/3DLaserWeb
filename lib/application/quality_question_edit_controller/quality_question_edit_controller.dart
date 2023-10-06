@@ -10,12 +10,13 @@ import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
 import 'package:laser_tech_app/domain/log/custom_log.dart';
 import 'package:laser_tech_app/domain/models/products/get_question_details_model.dart';
+import 'package:laser_tech_app/domain/remote/url/url_pool.dart';
 import 'package:path_provider/path_provider.dart';
 import '../../domain/employee_data/employee_data_manager.dart';
 import '../../domain/models/products/quality_product_facade.dart';
 import '../../domain/remote/exceptions/network_exceptions.dart';
 import '../../main.dart';
-import 'dart:ui' as ui;
+
 import 'package:http/http.dart' as http;
 import '../../presentation/widgets/circular_progress_dialog.dart';
 import '../../presentation/widgets/single_button_alert_dialog.dart';
@@ -101,8 +102,8 @@ class QualityQuestionEditController extends GetxController {
       // print('=====$i');
       //  http.Response response = await http.get(Uri.parse('http://65.1.86.132'+selectedimagesin64bytes[i]) );
 
-      final response = await http
-          .get(Uri.parse('http://65.1.86.132' + selectedimagesin64bytes[i]));
+      final response =
+          await http.get(Uri.parse(baseUrl + selectedimagesin64bytes[i]));
       if (response.statusCode == 200) {
         selectedimagesin64bytesfromurl.add(response.bodyBytes);
         selectedimagesinbase64listfromurl
@@ -131,8 +132,7 @@ class QualityQuestionEditController extends GetxController {
       //  http.Response response = await http.get(Uri.parse('http://65.1.86.132'+selectedimagesin64bytes[i]) );
       // selectedvideosurl.add('http://65.1.86.132${base64StringVDO[i]}');
 
-      final response =
-          await http.get(Uri.parse('http://65.1.86.132' + base64StringVDO[i]));
+      final response = await http.get(Uri.parse(baseUrl + base64StringVDO[i]));
 
       if (response.statusCode == 200) {
         selectedunillist64video.add(response.bodyBytes);

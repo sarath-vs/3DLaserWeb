@@ -1233,9 +1233,8 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                                             customHeight(140),
                                                         child: Image.memory(
                                                             QualityQuestionEditController
-                                                                        .selectedimagesin64bytesfromurl[
-                                                                    index]
-                                                                as Uint8List)),
+                                                                    .selectedimagesin64bytesfromurl[
+                                                                index])),
                                                     Material(
                                                       color: Colors.transparent,
                                                       child: InkWell(

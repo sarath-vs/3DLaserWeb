@@ -5,6 +5,11 @@ import 'package:injectable/injectable.dart';
 @prod
 @dev
 @singleton
+// test
+const String baseUrl = 'https://pro-classic-mako.ngrok-free.app';
+
+//local czech
+// const String _baseUrl = 'http://qualitynew.lasertec.eu/backend';
 class URLPool {
 // test
   final _baseUrl = 'https://pro-classic-mako.ngrok-free.app';
