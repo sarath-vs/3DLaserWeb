@@ -65,7 +65,8 @@ class _QualityquestionformState extends State<Qualityquestionform> {
   var filePath = '';
   String? selectfilepath;
   List<String> base64StringVDO = [];
-
+  List<String> dropdownoptions = [];
+  List<List> totaldropdownoptions = [];
   int imageCounts = 0;
   _selectvideoFile(bool imageFrom) async {
     FilePickerResult? fileResult = await FilePicker.platform
@@ -1068,108 +1069,338 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                     ? Expanded(
                                         flex: 3,
                                         child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Text(
-                                              'English',
-                                              style: AppTheme.h9Style,
-                                            ),
-                                            TextFormField(
-                                              keyboardType:
-                                                  TextInputType.multiline,
-                                              minLines: 1,
-                                              maxLines: 7,
-                                              validator: (val) {
-                                                return null;
-                                              },
-                                              onChanged: (value) {
-                                                var englishdropdown =
-                                                    (utf8.encode(value))
-                                                        .toString();
-                                                dropDownDataEnglish =
-                                                    englishdropdown;
-                                              },
-                                              decoration: InputDecoration(
-                                                hintText:
-                                                    "Add Drop Down Values in English.(eg:one||Two||Three)",
-                                                hintStyle: TextStyle(
-                                                    fontSize:
-                                                        customFontSize(4)),
-                                                fillColor: Colors.grey.shade200,
-                                                filled: true,
-                                                floatingLabelStyle:
-                                                    AppTheme.h2Style,
-                                              ),
-                                            ),
-                                            Text(
-                                              'Czech',
-                                              style: AppTheme.h9Style,
-                                            ),
-                                            TextFormField(
-                                              keyboardType:
-                                                  TextInputType.multiline,
-                                              minLines: 1,
-                                              maxLines: 7,
-                                              validator: (val) {
-                                                return null;
-                                              },
-                                              onChanged: (value) {
-                                                // dropDownDataCzech = value;
+                                            // ListView.builder(
+                                            //   physics:
+                                            //       NeverScrollableScrollPhysics(),
+                                            //   shrinkWrap: true,
+                                            //   itemCount:
+                                            //       controller.cards.length,
+                                            //   itemBuilder:
+                                            //       (BuildContext context,
+                                            //           int index) {
+                                            //     return Column(
+                                            //       mainAxisAlignment:
+                                            //           MainAxisAlignment.start,
+                                            //       crossAxisAlignment:
+                                            //           CrossAxisAlignment.start,
+                                            //       children: [
+                                            //         customVerticalGap(10),
+                                            //         Text(
+                                            //           'Option ' +
+                                            //               (1 + index)
+                                            //                   .toString(),
+                                            //           style: AppTheme.h9Style,
+                                            //         ),
+                                            //         customVerticalGap(20),
+                                            //         controller.cards[index],
+                                            //         IconButton(
+                                            //             onPressed: () {
+                                            //               controller
+                                            //                   .removecards(
+                                            //                       index);
+                                            //             },
+                                            //             icon: Icon(Icons
+                                            //                 .playlist_remove_outlined))
+                                            //       ],
+                                            //     );
+                                            //   },
+                                            // ),
+                                            TextButton(
+                                                style: TextButton.styleFrom(
+                                                  side: BorderSide(
+                                                      color: LightColor
+                                                          .primaryColor),
+                                                ),
+                                                onPressed: () {
+                                                  showDialog(
+                                                    context: context,
+                                                    builder: (_) => AlertDialog(
+                                                      shape: RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius.circular(
+                                                                      20.0))),
+                                                      content: Builder(
+                                                        builder: (context) {
+                                                          // Get available height and width of the build area of this widget. Make a choice depending on the size.
+                                                          var height =
+                                                              MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height;
+                                                          var width =
+                                                              MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width;
 
-                                                var czechdropdown =
-                                                    (utf8.encode(value))
-                                                        .toString();
-                                                dropDownDataCzech =
-                                                    czechdropdown;
-                                              },
-                                              decoration: InputDecoration(
-                                                hintText:
-                                                    "Add Drop Down Values in Czech.(eg:one||Two||Three)",
-                                                hintStyle: TextStyle(
-                                                    fontSize:
-                                                        customFontSize(4)),
-                                                fillColor: Colors.grey.shade200,
-                                                filled: true,
-                                                floatingLabelStyle:
-                                                    AppTheme.h2Style,
-                                              ),
-                                            ),
-                                            Text(
-                                              'Vietnam',
-                                              style: AppTheme.h9Style,
-                                            ),
-                                            TextFormField(
-                                              keyboardType:
-                                                  TextInputType.multiline,
-                                              minLines: 1,
-                                              maxLines: 7,
-                                              validator: (val) {
-                                                return null;
-                                              },
-                                              onChanged: (value) {
-                                                // dropDownDataViatnam = value;
-                                                var viatnamdropdown =
-                                                    (utf8.encode(value))
-                                                        .toString();
-                                                dropDownDataViatnam =
-                                                    viatnamdropdown;
-                                              },
-                                              decoration: InputDecoration(
-                                                hintText:
-                                                    "Add Drop Down Values in Vietnam.(eg:one||Two||Three)",
-                                                hintStyle: TextStyle(
-                                                    fontSize:
-                                                        customFontSize(4)),
-                                                fillColor: Colors.grey.shade200,
-                                                filled: true,
-                                                floatingLabelStyle:
-                                                    AppTheme.h2Style,
-                                              ),
-                                            ),
+                                                          return SizedBox(
+                                                            height:
+                                                                height - 300,
+                                                            width: width - 500,
+                                                            child: Center(
+                                                              child: GetBuilder<
+                                                                      QualityProductController>(
+                                                                  id: Get.find<
+                                                                          QualityProductController>()
+                                                                      .qualityProductID,
+                                                                  builder:
+                                                                      (controller) {
+                                                                    return controller.cards.length >
+                                                                            0
+                                                                        ? ListView(
+                                                                            children: [
+                                                                              ListView.separated(
+                                                                                  physics: NeverScrollableScrollPhysics(),
+                                                                                  shrinkWrap: true,
+                                                                                  itemCount: controller.cards.length,
+                                                                                  itemBuilder: (BuildContext context, int index) {
+                                                                                    return Column(
+                                                                                      mainAxisAlignment: MainAxisAlignment.start,
+                                                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                      children: [
+                                                                                        customVerticalGap(10),
+                                                                                        Text(
+                                                                                          'Option ' + (1 + index).toString(),
+                                                                                          style: AppTheme.h9Style,
+                                                                                        ),
+                                                                                        customVerticalGap(20),
+                                                                                        controller.cards[index],
+                                                                                        IconButton(
+                                                                                            onPressed: () {
+                                                                                              totaldropdownoptions.removeAt(index);
+                                                                                              controller.removecards(index);
+                                                                                            },
+                                                                                            icon: Icon(Icons.playlist_remove_outlined))
+                                                                                      ],
+                                                                                    );
+                                                                                  },
+                                                                                  separatorBuilder: (context, index) => SizedBox(
+                                                                                        height: customHeight(10),
+                                                                                      )),
+                                                                              Align(
+                                                                                alignment: Alignment.bottomRight,
+                                                                                child: TextButton(
+                                                                                    style: TextButton.styleFrom(
+                                                                                      side: BorderSide(color: LightColor.primaryColor),
+                                                                                    ),
+                                                                                    onPressed: () {
+                                                                                      dropdownoptions.add(dropDownDataEnglish);
+                                                                                      dropdownoptions.add(dropDownDataCzech);
+                                                                                      dropdownoptions.add(dropDownDataViatnam);
+                                                                                      totaldropdownoptions.add(dropdownoptions);
+                                                                                      controller.addcards(CreateWidget());
+                                                                                      dropdownoptions = [];
+                                                                                    },
+                                                                                    child: Text("ADD")),
+                                                                              )
+                                                                            ],
+                                                                          )
+                                                                        : TextButton(
+                                                                            style: TextButton
+                                                                                .styleFrom(
+                                                                              side: BorderSide(color: LightColor.primaryColor),
+                                                                            ),
+                                                                            onPressed:
+                                                                                () {
+                                                                              controller.addcards(CreateWidget());
+                                                                            },
+                                                                            child:
+                                                                                Text("ADD"));
+                                                                  }),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ),
+                                                      actions: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                                  bottom: 50),
+                                                          child: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceAround,
+                                                            children: [
+                                                              TextButton(
+                                                                onPressed: () {
+                                                                  print(
+                                                                      dropdownoptions);
+
+                                                                  print(
+                                                                      "***********************");
+                                                                  print(
+                                                                      totaldropdownoptions);
+                                                                },
+                                                                child: Text(
+                                                                  'Cancel',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontSize:
+                                                                          customFontSize(
+                                                                              6)),
+                                                                ),
+                                                              ),
+                                                              TextButton(
+                                                                onPressed: () {
+                                                                  dropdownoptions
+                                                                      .add(
+                                                                          dropDownDataEnglish);
+                                                                  dropdownoptions
+                                                                      .add(
+                                                                          dropDownDataCzech);
+                                                                  dropdownoptions
+                                                                      .add(
+                                                                          dropDownDataViatnam);
+                                                                  totaldropdownoptions
+                                                                      .add(
+                                                                          dropdownoptions);
+                                                                  dropdownoptions =
+                                                                      [];
+
+                                                                  // Get.back();
+                                                                },
+                                                                child: Text(
+                                                                  'Confirm',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .red,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontSize:
+                                                                          customFontSize(
+                                                                              6)),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  );
+                                                  // controller
+                                                  //     .addcards(CreateWidget());
+                                                },
+                                                child: Text("ADD/REMOVE"))
                                           ],
                                         ),
                                       )
+                                    // Expanded(
+                                    //     flex: 3,
+                                    //     child: Column(
+                                    //       crossAxisAlignment:
+                                    //           CrossAxisAlignment.start,
+                                    //       children: [
+                                    //         Text(
+                                    //           'English',
+                                    //           style: AppTheme.h9Style,
+                                    //         ),
+                                    //         TextFormField(
+                                    //           keyboardType:
+                                    //               TextInputType.multiline,
+                                    //           minLines: 1,
+                                    //           maxLines: 7,
+                                    //           validator: (val) {
+                                    //             return null;
+                                    //           },
+                                    //           onChanged: (value) {
+                                    //             var englishdropdown =
+                                    //                 (utf8.encode(value))
+                                    //                     .toString();
+                                    //             dropDownDataEnglish =
+                                    //                 englishdropdown;
+                                    //           },
+                                    //           decoration: InputDecoration(
+                                    //             hintText:
+                                    //                 "Add Drop Down Values in English.(eg:one||Two||Three)",
+                                    //             hintStyle: TextStyle(
+                                    //                 fontSize:
+                                    //                     customFontSize(4)),
+                                    //             fillColor: Colors.grey.shade200,
+                                    //             filled: true,
+                                    //             floatingLabelStyle:
+                                    //                 AppTheme.h2Style,
+                                    //           ),
+                                    //         ),
+                                    //         Text(
+                                    //           'Czech',
+                                    //           style: AppTheme.h9Style,
+                                    //         ),
+                                    //         TextFormField(
+                                    //           keyboardType:
+                                    //               TextInputType.multiline,
+                                    //           minLines: 1,
+                                    //           maxLines: 7,
+                                    //           validator: (val) {
+                                    //             return null;
+                                    //           },
+                                    //           onChanged: (value) {
+                                    //             // dropDownDataCzech = value;
+
+                                    //             var czechdropdown =
+                                    //                 (utf8.encode(value))
+                                    //                     .toString();
+                                    //             dropDownDataCzech =
+                                    //                 czechdropdown;
+                                    //           },
+                                    //           decoration: InputDecoration(
+                                    //             hintText:
+                                    //                 "Add Drop Down Values in Czech.(eg:one||Two||Three)",
+                                    //             hintStyle: TextStyle(
+                                    //                 fontSize:
+                                    //                     customFontSize(4)),
+                                    //             fillColor: Colors.grey.shade200,
+                                    //             filled: true,
+                                    //             floatingLabelStyle:
+                                    //                 AppTheme.h2Style,
+                                    //           ),
+                                    //         ),
+                                    //         Text(
+                                    //           'Vietnam',
+                                    //           style: AppTheme.h9Style,
+                                    //         ),
+                                    //         TextFormField(
+                                    //           keyboardType:
+                                    //               TextInputType.multiline,
+                                    //           minLines: 1,
+                                    //           maxLines: 7,
+                                    //           validator: (val) {
+                                    //             return null;
+                                    //           },
+                                    //           onChanged: (value) {
+                                    //             // dropDownDataViatnam = value;
+                                    //             var viatnamdropdown =
+                                    //                 (utf8.encode(value))
+                                    //                     .toString();
+                                    //             dropDownDataViatnam =
+                                    //                 viatnamdropdown;
+                                    //           },
+                                    //           decoration: InputDecoration(
+                                    //             hintText:
+                                    //                 "Add Drop Down Values in Vietnam.(eg:one||Two||Three)",
+                                    //             hintStyle: TextStyle(
+                                    //                 fontSize:
+                                    //                     customFontSize(4)),
+                                    //             fillColor: Colors.grey.shade200,
+                                    //             filled: true,
+                                    //             floatingLabelStyle:
+                                    //                 AppTheme.h2Style,
+                                    //           ),
+                                    //         ),
+                                    //       ],
+                                    //     ),
+                                    //   )
                                     : Expanded(flex: 3, child: SizedBox()),
                               ],
                             ),
@@ -1613,5 +1844,85 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                 ],
               ));
             }));
+  }
+
+  Widget CreateWidget() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'English',
+          style: AppTheme.h9Style,
+        ),
+        TextFormField(
+          keyboardType: TextInputType.multiline,
+          minLines: 1,
+          maxLines: 7,
+          validator: (val) {
+            return null;
+          },
+          onChanged: (value) {
+            var englishdropdown = (utf8.encode(value)).toString();
+            dropDownDataEnglish = englishdropdown;
+          },
+          decoration: InputDecoration(
+            hintText: "Add Drop Down Values in English.",
+            hintStyle: TextStyle(fontSize: customFontSize(4)),
+            fillColor: Colors.grey.shade200,
+            filled: true,
+            floatingLabelStyle: AppTheme.h2Style,
+          ),
+        ),
+        Text(
+          'Czech',
+          style: AppTheme.h9Style,
+        ),
+        TextFormField(
+          keyboardType: TextInputType.multiline,
+          minLines: 1,
+          maxLines: 7,
+          validator: (val) {
+            return null;
+          },
+          onChanged: (value) {
+            // dropDownDataCzech = value;
+
+            var czechdropdown = (utf8.encode(value)).toString();
+            dropDownDataCzech = czechdropdown;
+          },
+          decoration: InputDecoration(
+            hintText: "Add Drop Down Values in Czech.",
+            hintStyle: TextStyle(fontSize: customFontSize(4)),
+            fillColor: Colors.grey.shade200,
+            filled: true,
+            floatingLabelStyle: AppTheme.h2Style,
+          ),
+        ),
+        Text(
+          'Vietnam',
+          style: AppTheme.h9Style,
+        ),
+        TextFormField(
+          keyboardType: TextInputType.multiline,
+          minLines: 1,
+          maxLines: 7,
+          validator: (val) {
+            return null;
+          },
+          onChanged: (value) {
+            // dropDownDataViatnam = value;
+            var viatnamdropdown = (utf8.encode(value)).toString();
+            dropDownDataViatnam = viatnamdropdown;
+          },
+          decoration: InputDecoration(
+            hintText: "Add Drop Down Values in Vietnam.",
+            hintStyle: TextStyle(fontSize: customFontSize(4)),
+            fillColor: Colors.grey.shade200,
+            filled: true,
+            floatingLabelStyle: AppTheme.h2Style,
+          ),
+        ),
+      ],
+    );
   }
 }

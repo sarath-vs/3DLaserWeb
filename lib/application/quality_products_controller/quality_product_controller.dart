@@ -43,6 +43,16 @@ Product:[productname],ID:[ID],SerialNumber:[*Don't change here*],Timestamp:[**Do
   String name = '';
 
   int productId = 0;
+  var cards = <Widget>[];
+  addcards(Widget value) {
+    cards.add(value);
+    update([qualityProductID]);
+  }
+
+  removecards(int index) {
+    cards.removeAt(index);
+    update([qualityProductID]);
+  }
 
   Future<void> searchDirectory(String query) async {
     if (query.isEmpty || query == '') {
