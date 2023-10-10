@@ -11,6 +11,7 @@ import 'package:injectable/injectable.dart';
 import 'package:laser_tech_app/domain/log/custom_log.dart';
 import 'package:laser_tech_app/domain/models/products/get_question_details_model.dart';
 import 'package:laser_tech_app/domain/remote/url/url_pool.dart';
+import 'package:laser_tech_app/presentation/widgets/dropdownoption.dart';
 import 'package:path_provider/path_provider.dart';
 import '../../domain/employee_data/employee_data_manager.dart';
 import '../../domain/models/products/quality_product_facade.dart';
@@ -94,7 +95,49 @@ class QualityQuestionEditController extends GetxController {
   // static List<String> selectedvideosurl = [];
   // static List<Uint8List> thumbnailvideoselectednw = [];
   // Uint8List? singlethumbnailvideo;
+// /////////////////////////////////////////////////////////////////////////////////////////
+  List<Map<String, String>> dropdownvaluesList = [];
+  final RxList<Dropdownoption> formFields = <Dropdownoption>[].obs;
+  void addFormFields() {
+    formFields.add(Dropdownoption());
+  }
 
+  void removeFormField(int index) {
+    if (index >= 0 && index < formFields.length) {
+      formFields.removeAt(index);
+    }
+  }
+
+  List<Map<String, String>> getFormValues() {
+    // final List<Map<String, String>> valuesList = [];
+
+    for (final field in formFields) {
+      var englishdropdown = (utf8.encode(field.engController.text)).toString();
+      var czechdropdown = (utf8.encode(field.czechController.text)).toString();
+      var viatnamdropdown =
+          (utf8.encode(field.vitenmController.text)).toString();
+      final Map<String, String> values = {
+        'english': englishdropdown,
+        'czech': czechdropdown,
+        'vietnm': viatnamdropdown,
+      };
+      dropdownvaluesList.add(values);
+    }
+
+    return dropdownvaluesList;
+  }
+
+  bool validateForm() {
+    bool isValid = true;
+    for (final field in formFields) {
+      if (!field.formKey.currentState!.validate()) {
+        isValid = false;
+      }
+    }
+    return isValid;
+  }
+
+////////////////////////////////////////////////////////////////////////////
   Future<void> networkImageToBase64() async {
     selectedimagesin64bytesfromurl.clear();
     selectedimagesinbase64listfromurl.clear();
@@ -229,8 +272,9 @@ class QualityQuestionEditController extends GetxController {
       tools.clear();
       // questionEnglishController.text = resp.data!.questionEnglish ?? "N/A";
       // questionCzechController.text = resp.data!.questionCzech ?? "N/A";
-
+// /////////////////////////////////////////////
       await fun(resp);
+      // /////////////////////////////////////////////
 
       // discriptionEnglishController.text =
       //     resp.data!.descriptionEnglish ?? "N/A";
@@ -303,60 +347,87 @@ class QualityQuestionEditController extends GetxController {
   }
 
   fun(GetQuestionDetailsModel resp) async {
-    String tempdropDownDataEnglish =
-        resp.data!.fieldInfoObject!.dropDownData?.split("&&")[0] ?? "";
+    if (resp.data!.fieldInfoObject!.dropDownData != null) {
+      String? tempdropDownData = resp.data!.fieldInfoObject!.dropDownData;
+      // Remove the enclosing square brackets and split the string by '}, ' to separate the map representations
+      List<String> mapStrings = tempdropDownData!
+          .substring(1, tempdropDownData.length - 1)
+          .split('}, ');
 
-    String tempdropDownDataCzech =
-        resp.data!.fieldInfoObject!.dropDownData?.split("&&")[1] ?? "";
-    String tempdropDownDataVietnam =
-        resp.data!.fieldInfoObject!.dropDownData?.split("&&")[2] ?? "";
+      // Initialize an empty list to store the parsed maps
 
-    if (tempdropDownDataEnglish != "") {
-      List<int> list = json.decode(tempdropDownDataEnglish).cast<int>();
-      var decoenglishdropdown = utf8.decode(list);
-      dropDownDataEnglish = decoenglishdropdown;
-    } else {
-      dropDownDataEnglish = "";
+      // Iterate through the map representations and parse them into actual maps
+      for (String mapString in mapStrings) {
+        Map<String, String> map = {};
+        // Split each map representation by ', ' to separate key-value pairs
+        List<String> keyValuePairs = mapString.split(', ');
+        for (String keyValuePair in keyValuePairs) {
+          // Split each key-value pair by ': ' to separate keys from values
+          List<String> keyValue = keyValuePair.split(': ');
+          // Trim any extra spaces and remove curly braces
+          String key = keyValue[0].trim().replaceAll('{', '');
+          String value = keyValue[1].trim().replaceAll('}', '');
+          map[key] = value;
+        }
+        dropdownvaluesList.add(map);
+      }
     }
 
-    if (tempdropDownDataCzech != "") {
-      List<int> list = json.decode(tempdropDownDataCzech).cast<int>();
-      var decoczechdropdown = utf8.decode(list);
-      dropDownDataCzech = decoczechdropdown;
-    } else {
-      dropDownDataCzech = "";
-    }
-    if (tempdropDownDataVietnam != "") {
-      List<int> list = json.decode(tempdropDownDataVietnam).cast<int>();
-      var decoczechdropdown = utf8.decode(list);
-      dropDownDataVietnam = decoczechdropdown;
-    } else {
-      dropDownDataVietnam = "";
-    }
+    print("***************************************");
+    print(dropdownvaluesList);
+    print("***************************************");
 
-    if (tempdropDownDataEnglish != "") {
-      List<int> list = json.decode(tempdropDownDataEnglish).cast<int>();
-      var decoenglishdropdown = utf8.decode(list);
-      dropDownValueEnglishController.text = decoenglishdropdown;
-    } else {
-      dropDownValueEnglishController.text = "";
-    }
+    // String tempdropDownDataCzech =
+    //     resp.data!.fieldInfoObject!.dropDownData?.split("&&")[1] ?? "";
+    // String tempdropDownDataVietnam =
+    //     resp.data!.fieldInfoObject!.dropDownData?.split("&&")[2] ?? "";
 
-    if (tempdropDownDataCzech != "") {
-      List<int> list = json.decode(tempdropDownDataCzech).cast<int>();
-      var decoczechdropdown = utf8.decode(list);
-      dropDownValueCzechController.text = decoczechdropdown;
-    } else {
-      dropDownValueCzechController.text = "";
-    }
+    // if (tempdropDownDataEnglish != "") {
+    //   List<int> list = json.decode(tempdropDownDataEnglish).cast<int>();
+    //   var decoenglishdropdown = utf8.decode(list);
+    //   dropDownDataEnglish = decoenglishdropdown;
+    // } else {
+    //   dropDownDataEnglish = "";
+    // }
 
-    if (tempdropDownDataVietnam != "") {
-      List<int> list = json.decode(tempdropDownDataVietnam).cast<int>();
-      var decovitenmdropdown = utf8.decode(list);
-      dropDownValueVietnamController.text = decovitenmdropdown;
-    } else {
-      dropDownValueVietnamController.text = "";
-    }
+    // if (tempdropDownDataCzech != "") {
+    //   List<int> list = json.decode(tempdropDownDataCzech).cast<int>();
+    //   var decoczechdropdown = utf8.decode(list);
+    //   dropDownDataCzech = decoczechdropdown;
+    // } else {
+    //   dropDownDataCzech = "";
+    // }
+    // if (tempdropDownDataVietnam != "") {
+    //   List<int> list = json.decode(tempdropDownDataVietnam).cast<int>();
+    //   var decoczechdropdown = utf8.decode(list);
+    //   dropDownDataVietnam = decoczechdropdown;
+    // } else {
+    //   dropDownDataVietnam = "";
+    // }
+
+    // if (tempdropDownDataEnglish != "") {
+    //   List<int> list = json.decode(tempdropDownDataEnglish).cast<int>();
+    //   var decoenglishdropdown = utf8.decode(list);
+    //   dropDownValueEnglishController.text = decoenglishdropdown;
+    // } else {
+    //   dropDownValueEnglishController.text = "";
+    // }
+
+    // if (tempdropDownDataCzech != "") {
+    //   List<int> list = json.decode(tempdropDownDataCzech).cast<int>();
+    //   var decoczechdropdown = utf8.decode(list);
+    //   dropDownValueCzechController.text = decoczechdropdown;
+    // } else {
+    //   dropDownValueCzechController.text = "";
+    // }
+
+    // if (tempdropDownDataVietnam != "") {
+    //   List<int> list = json.decode(tempdropDownDataVietnam).cast<int>();
+    //   var decovitenmdropdown = utf8.decode(list);
+    //   dropDownValueVietnamController.text = decovitenmdropdown;
+    // } else {
+    //   dropDownValueVietnamController.text = "";
+    // }
   }
 
   Future<void> putEditQuestionDetails(

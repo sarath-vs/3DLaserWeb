@@ -37,9 +37,9 @@ class _QualityquestionformState extends State<Qualityquestionform> {
   bool vdoManditory = false;
   String rangeFrom = '';
   String rangeTo = '';
-  String dropDownDataEnglish = '';
-  String dropDownDataCzech = '';
-  String dropDownDataViatnam = '';
+  String dropDownData = '';
+  // String dropDownDataCzech = '';
+  // String dropDownDataViatnam = '';
   List<int> selectedID = [];
   String? questionEnglish;
   String? questionCzech;
@@ -65,8 +65,8 @@ class _QualityquestionformState extends State<Qualityquestionform> {
   var filePath = '';
   String? selectfilepath;
   List<String> base64StringVDO = [];
-  List<String> dropdownoptions = [];
-  List<List> totaldropdownoptions = [];
+  List<Map<String, String>> valuesLists = [];
+
   int imageCounts = 0;
   _selectvideoFile(bool imageFrom) async {
     FilePickerResult? fileResult = await FilePicker.platform
@@ -174,21 +174,6 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Row(
-                            //   mainAxisAlignment: MainAxisAlignment.start,
-                            //   children: [
-                            //     Text(
-                            //       "Title",
-                            //       style: AppTheme.h9Style,
-                            //     ),
-                            //     // Icon(
-                            //     //   Icons.delete,
-                            //     //   color: Colors.red,
-                            //     //   size: customHeight(20),
-                            //     // )
-                            //   ],
-                            // ),
-
                             SizedBox(
                               width: customWidth(400),
                               child: Column(
@@ -658,18 +643,6 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                         fontSize: customFontSize(4),
                                       ),
                                     )),
-                                // Expanded(
-                                //     flex: 1,
-                                //     child: Text(
-                                //       'Manditory',
-                                //       textAlign: TextAlign.center,
-                                //       style: TextStyle(
-                                //         fontWeight: FontWeight.bold,
-                                //         fontSize: customFontSize(
-                                //           4,
-                                //         ),
-                                //       ),
-                                //     )),
                               ],
                             ),
                             ////////
@@ -699,75 +672,13 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                   child: Text('Yes/No'),
                                 ),
                                 Expanded(flex: 3, child: Text('Yes or No')),
-                                // Expanded(
-                                //   flex: 1,
-                                //   child: Checkbox(
-                                //     value: yesnoManditory,
-                                //     checkColor:
-                                //         Colors.white, // color of tick Mark
-                                //     activeColor: LightColor.primaryColor,
-                                //     onChanged: (bool? value) {
-                                //       setState(() {
-                                //         if (yesno) {
-                                //           yesnoManditory = !yesnoManditory;
-                                //         }
-                                //       });
-                                //     },
-                                //   ),
-                                // ),
                               ],
                             ),
                             ////////
                             ///////
                             //////
                             ///Answer Yes/No/None
-                            // Row(
-                            //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            //   children: [
-                            //     Expanded(
-                            //       flex: 1,
-                            //       child: Checkbox(
-                            //         value: yesnoNone,
-                            //         checkColor:
-                            //             Colors.white, // color of tick Mark
-                            //         activeColor: LightColor.primaryColor,
-                            //         onChanged: (bool? value) {
-                            //           setState(() {
-                            //             yesnoNone = !yesnoNone;
-                            //             yesnoNoneManditory = false;
-                            //           });
-                            //         },
-                            //       ),
-                            //     ),
-                            //     Expanded(
-                            //       flex: 3,
-                            //       child: Text('None'),
-                            //     ),
-                            //     Expanded(
-                            //         flex: 3,
-                            //         child: Text('Yes, No or None can be used')),
-                            //     // Expanded(
-                            //     //   flex: 1,
-                            //     //   child: Checkbox(
-                            //     //     value: yesnoNoneManditory,
-                            //     //     checkColor:
-                            //     //         Colors.white, // color of tick Mark
-                            //     //     activeColor: LightColor.primaryColor,
-                            //     //     onChanged: (bool? value) {
-                            //     //       setState(() {
-                            //     //         if (yesnoNone) {
-                            //     //           yesnoNoneManditory =
-                            //     //               !yesnoNoneManditory;
-                            //     //         }
-                            //     //       });
-                            //     //     },
-                            //     //   ),
-                            //     // ),
-                            //   ],
-                            // ),
-                            ////////
-                            ///////
-                            //////
+
                             ///Answer Range
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -888,22 +799,6 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                         ),
                                       )
                                     : Expanded(flex: 3, child: SizedBox()),
-                                // Expanded(
-                                //   flex: 1,
-                                //   child: Checkbox(
-                                //     value: rangeManditory,
-                                //     checkColor:
-                                //         Colors.white, // color of tick Mark
-                                //     activeColor: LightColor.primaryColor,
-                                //     onChanged: (bool? value) {
-                                //       setState(() {
-                                //         if (range) {
-                                //           rangeManditory = !rangeManditory;
-                                //         }
-                                //       });
-                                //     },
-                                //   ),
-                                // ),
                               ],
                             ),
                             ////////
@@ -935,110 +830,12 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                 Expanded(
                                     flex: 3,
                                     child: Text('Accept Text or Number')),
-                                // Expanded(
-                                //   flex: 1,
-                                //   child: Checkbox(
-                                //     value: inputTextManditory,
-                                //     checkColor:
-                                //         Colors.white, // color of tick Mark
-                                //     activeColor: LightColor.primaryColor,
-                                //     onChanged: (bool? value) {
-                                //       setState(() {
-                                //         if (inputText) {
-                                //           inputTextManditory =
-                                //               !inputTextManditory;
-                                //         }
-                                //       });
-                                //     },
-                                //   ),
-                                // ),
                               ],
                             ), ////////
                             ///////
                             //////
                             ///Answer Number
-                            // Row(
-                            //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            //   children: [
-                            //     Expanded(
-                            //       flex: 1,
-                            //       child: Checkbox(
-                            //         value: number,
-                            //         checkColor: Colors.white, // color of tick Mark
-                            //         activeColor: LightColor.primaryColor,
-                            //         onChanged: (bool? value) {
-                            //           setState(() {
-                            //             number = !number;
-                            //             numberManditory = false;
-                            //           });
-                            //         },
-                            //       ),
-                            //     ),
-                            //     Expanded(
-                            //       flex: 3,
-                            //       child: Text('Number Field'),
-                            //     ),
-                            //     Row(
-                            //       // crossAxisAlignment: CrossAxisAlignment.start,
-                            //       // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            //       children: [
-                            //         SizedBox(
-                            //           width: customWidth(10),
-                            //           height: customHeight(30),
-                            //           child: TextFormField(
-                            //             validator: (val) {
-                            //               return null;
-                            //             },
-                            //             onChanged: (value) {
-                            //               // password = value;
-                            //             },
-                            //             decoration: InputDecoration(
-                            //               hintText: "answer",
-                            //               // border: OutlineInputBorder(
-                            //               //     borderRadius: BorderRadius.circular(20)),
-                            //               fillColor: Colors.grey.shade200,
-                            //               filled: true,
-                            //               floatingLabelStyle: AppTheme.h2Style,
-                            //             ),
-                            //           ),
-                            //         ),
-                            //         Text('OR'),
-                            //         Text('Any'),
-                            //         Padding(
-                            //           padding: const EdgeInsets.only(right: 50),
-                            //           child: Checkbox(
-                            //             value: numberManditory,
-                            //             checkColor: Colors.white, // color of tick Mark
-                            //             activeColor: LightColor.primaryColor,
-                            //             onChanged: (bool? value) {
-                            //               setState(() {
-                            //                 if (number) {
-                            //                   numberManditory = !numberManditory;
-                            //                 }
-                            //               });
-                            //             },
-                            //           ),
-                            //         ),
-                            //       ],
-                            //     ),
-                            //     Expanded(flex: 3, child: Text('Accept Only Numbers')),
-                            //     Expanded(
-                            //       flex: 1,
-                            //       child: Checkbox(
-                            //         value: numberManditory,
-                            //         checkColor: Colors.white, // color of tick Mark
-                            //         activeColor: LightColor.primaryColor,
-                            //         onChanged: (bool? value) {
-                            //           setState(() {
-                            //             if (number) {
-                            //               numberManditory = !numberManditory;
-                            //             }
-                            //           });
-                            //         },
-                            //       ),
-                            //     ),
-                            //   ],
-                            // ),
+
                             ////////
                             ///////
                             //////
@@ -1074,42 +871,6 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            // ListView.builder(
-                                            //   physics:
-                                            //       NeverScrollableScrollPhysics(),
-                                            //   shrinkWrap: true,
-                                            //   itemCount:
-                                            //       controller.cards.length,
-                                            //   itemBuilder:
-                                            //       (BuildContext context,
-                                            //           int index) {
-                                            //     return Column(
-                                            //       mainAxisAlignment:
-                                            //           MainAxisAlignment.start,
-                                            //       crossAxisAlignment:
-                                            //           CrossAxisAlignment.start,
-                                            //       children: [
-                                            //         customVerticalGap(10),
-                                            //         Text(
-                                            //           'Option ' +
-                                            //               (1 + index)
-                                            //                   .toString(),
-                                            //           style: AppTheme.h9Style,
-                                            //         ),
-                                            //         customVerticalGap(20),
-                                            //         controller.cards[index],
-                                            //         IconButton(
-                                            //             onPressed: () {
-                                            //               controller
-                                            //                   .removecards(
-                                            //                       index);
-                                            //             },
-                                            //             icon: Icon(Icons
-                                            //                 .playlist_remove_outlined))
-                                            //       ],
-                                            //     );
-                                            //   },
-                                            // ),
                                             TextButton(
                                                 style: TextButton.styleFrom(
                                                   side: BorderSide(
@@ -1118,6 +879,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                                 ),
                                                 onPressed: () {
                                                   showDialog(
+                                                    barrierDismissible: false,
                                                     context: context,
                                                     builder: (_) => AlertDialog(
                                                       shape: RoundedRectangleBorder(
@@ -1151,67 +913,45 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                                                       .qualityProductID,
                                                                   builder:
                                                                       (controller) {
-                                                                    return controller.cards.length >
-                                                                            0
-                                                                        ? ListView(
-                                                                            children: [
-                                                                              ListView.separated(
-                                                                                  physics: NeverScrollableScrollPhysics(),
-                                                                                  shrinkWrap: true,
-                                                                                  itemCount: controller.cards.length,
-                                                                                  itemBuilder: (BuildContext context, int index) {
-                                                                                    return Column(
-                                                                                      mainAxisAlignment: MainAxisAlignment.start,
-                                                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                      children: [
-                                                                                        customVerticalGap(10),
-                                                                                        Text(
-                                                                                          'Option ' + (1 + index).toString(),
-                                                                                          style: AppTheme.h9Style,
-                                                                                        ),
-                                                                                        customVerticalGap(20),
-                                                                                        controller.cards[index],
-                                                                                        IconButton(
-                                                                                            onPressed: () {
-                                                                                              totaldropdownoptions.removeAt(index);
-                                                                                              controller.removecards(index);
-                                                                                            },
-                                                                                            icon: Icon(Icons.playlist_remove_outlined))
-                                                                                      ],
-                                                                                    );
-                                                                                  },
-                                                                                  separatorBuilder: (context, index) => SizedBox(
-                                                                                        height: customHeight(10),
-                                                                                      )),
-                                                                              Align(
-                                                                                alignment: Alignment.bottomRight,
-                                                                                child: TextButton(
-                                                                                    style: TextButton.styleFrom(
-                                                                                      side: BorderSide(color: LightColor.primaryColor),
-                                                                                    ),
-                                                                                    onPressed: () {
-                                                                                      dropdownoptions.add(dropDownDataEnglish);
-                                                                                      dropdownoptions.add(dropDownDataCzech);
-                                                                                      dropdownoptions.add(dropDownDataViatnam);
-                                                                                      totaldropdownoptions.add(dropdownoptions);
-                                                                                      controller.addcards(CreateWidget());
-                                                                                      dropdownoptions = [];
-                                                                                    },
-                                                                                    child: Text("ADD")),
-                                                                              )
-                                                                            ],
-                                                                          )
-                                                                        : TextButton(
-                                                                            style: TextButton
-                                                                                .styleFrom(
-                                                                              side: BorderSide(color: LightColor.primaryColor),
+                                                                    return SingleChildScrollView(
+                                                                      child:
+                                                                          Center(
+                                                                        child:
+                                                                            Column(
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.center,
+                                                                          children: <Widget>[
+                                                                            Obx(
+                                                                              () => Column(children: [
+                                                                                for (int index = 0; index < controller.formFields.length; index++)
+                                                                                  Column(
+                                                                                    mainAxisAlignment: MainAxisAlignment.start,
+                                                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                    children: [
+                                                                                      Text('Form' + (index + 1).toString()),
+                                                                                      customVerticalGap(10),
+                                                                                      controller.formFields[index],
+                                                                                      customVerticalGap(10),
+                                                                                      IconButton(
+                                                                                          onPressed: () {
+                                                                                            controller.removeFormField(index);
+                                                                                          },
+                                                                                          icon: Icon(Icons.playlist_remove_outlined))
+                                                                                    ],
+                                                                                  ),
+                                                                              ]),
                                                                             ),
-                                                                            onPressed:
-                                                                                () {
-                                                                              controller.addcards(CreateWidget());
-                                                                            },
-                                                                            child:
-                                                                                Text("ADD"));
+                                                                            SizedBox(height: 10),
+                                                                            ElevatedButton(
+                                                                              onPressed: () {
+                                                                                controller.addFormFields();
+                                                                              },
+                                                                              child: Text('Add Fields'),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                      ),
+                                                                    );
                                                                   }),
                                                             ),
                                                           );
@@ -1230,45 +970,33 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                                             children: [
                                                               TextButton(
                                                                 onPressed: () {
-                                                                  print(
-                                                                      dropdownoptions);
+                                                                  if (controller
+                                                                      .validateForm()) {
+                                                                    valuesLists =
+                                                                        controller
+                                                                            .getFormValues();
 
-                                                                  print(
-                                                                      "***********************");
-                                                                  print(
-                                                                      totaldropdownoptions);
-                                                                },
-                                                                child: Text(
-                                                                  'Cancel',
-                                                                  style: TextStyle(
-                                                                      color: Colors
-                                                                          .black,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      fontSize:
-                                                                          customFontSize(
-                                                                              6)),
-                                                                ),
-                                                              ),
-                                                              TextButton(
-                                                                onPressed: () {
-                                                                  dropdownoptions
-                                                                      .add(
-                                                                          dropDownDataEnglish);
-                                                                  dropdownoptions
-                                                                      .add(
-                                                                          dropDownDataCzech);
-                                                                  dropdownoptions
-                                                                      .add(
-                                                                          dropDownDataViatnam);
-                                                                  totaldropdownoptions
-                                                                      .add(
-                                                                          dropdownoptions);
-                                                                  dropdownoptions =
-                                                                      [];
+                                                                    for (final values
+                                                                        in valuesLists) {
+                                                                      print(
+                                                                          'Form Values: $values');
+                                                                    }
+                                                                    print(
+                                                                        "*******************");
+                                                                    dropDownData =
+                                                                        valuesLists
+                                                                            .toString();
+                                                                    print(valuesLists
+                                                                        .toString());
+                                                                    print(
+                                                                        "+++++++++++++++++++++++++++++++++++");
 
-                                                                  // Get.back();
+                                                                    Get.back();
+                                                                  } else {
+                                                                    Get.snackbar(
+                                                                        'Validation Error',
+                                                                        'Please fill out all fields.');
+                                                                  }
                                                                 },
                                                                 child: Text(
                                                                   'Confirm',
@@ -1289,118 +1017,11 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                                       ],
                                                     ),
                                                   );
-                                                  // controller
-                                                  //     .addcards(CreateWidget());
                                                 },
                                                 child: Text("ADD/REMOVE"))
                                           ],
                                         ),
                                       )
-                                    // Expanded(
-                                    //     flex: 3,
-                                    //     child: Column(
-                                    //       crossAxisAlignment:
-                                    //           CrossAxisAlignment.start,
-                                    //       children: [
-                                    //         Text(
-                                    //           'English',
-                                    //           style: AppTheme.h9Style,
-                                    //         ),
-                                    //         TextFormField(
-                                    //           keyboardType:
-                                    //               TextInputType.multiline,
-                                    //           minLines: 1,
-                                    //           maxLines: 7,
-                                    //           validator: (val) {
-                                    //             return null;
-                                    //           },
-                                    //           onChanged: (value) {
-                                    //             var englishdropdown =
-                                    //                 (utf8.encode(value))
-                                    //                     .toString();
-                                    //             dropDownDataEnglish =
-                                    //                 englishdropdown;
-                                    //           },
-                                    //           decoration: InputDecoration(
-                                    //             hintText:
-                                    //                 "Add Drop Down Values in English.(eg:one||Two||Three)",
-                                    //             hintStyle: TextStyle(
-                                    //                 fontSize:
-                                    //                     customFontSize(4)),
-                                    //             fillColor: Colors.grey.shade200,
-                                    //             filled: true,
-                                    //             floatingLabelStyle:
-                                    //                 AppTheme.h2Style,
-                                    //           ),
-                                    //         ),
-                                    //         Text(
-                                    //           'Czech',
-                                    //           style: AppTheme.h9Style,
-                                    //         ),
-                                    //         TextFormField(
-                                    //           keyboardType:
-                                    //               TextInputType.multiline,
-                                    //           minLines: 1,
-                                    //           maxLines: 7,
-                                    //           validator: (val) {
-                                    //             return null;
-                                    //           },
-                                    //           onChanged: (value) {
-                                    //             // dropDownDataCzech = value;
-
-                                    //             var czechdropdown =
-                                    //                 (utf8.encode(value))
-                                    //                     .toString();
-                                    //             dropDownDataCzech =
-                                    //                 czechdropdown;
-                                    //           },
-                                    //           decoration: InputDecoration(
-                                    //             hintText:
-                                    //                 "Add Drop Down Values in Czech.(eg:one||Two||Three)",
-                                    //             hintStyle: TextStyle(
-                                    //                 fontSize:
-                                    //                     customFontSize(4)),
-                                    //             fillColor: Colors.grey.shade200,
-                                    //             filled: true,
-                                    //             floatingLabelStyle:
-                                    //                 AppTheme.h2Style,
-                                    //           ),
-                                    //         ),
-                                    //         Text(
-                                    //           'Vietnam',
-                                    //           style: AppTheme.h9Style,
-                                    //         ),
-                                    //         TextFormField(
-                                    //           keyboardType:
-                                    //               TextInputType.multiline,
-                                    //           minLines: 1,
-                                    //           maxLines: 7,
-                                    //           validator: (val) {
-                                    //             return null;
-                                    //           },
-                                    //           onChanged: (value) {
-                                    //             // dropDownDataViatnam = value;
-                                    //             var viatnamdropdown =
-                                    //                 (utf8.encode(value))
-                                    //                     .toString();
-                                    //             dropDownDataViatnam =
-                                    //                 viatnamdropdown;
-                                    //           },
-                                    //           decoration: InputDecoration(
-                                    //             hintText:
-                                    //                 "Add Drop Down Values in Vietnam.(eg:one||Two||Three)",
-                                    //             hintStyle: TextStyle(
-                                    //                 fontSize:
-                                    //                     customFontSize(4)),
-                                    //             fillColor: Colors.grey.shade200,
-                                    //             filled: true,
-                                    //             floatingLabelStyle:
-                                    //                 AppTheme.h2Style,
-                                    //           ),
-                                    //         ),
-                                    //       ],
-                                    //     ),
-                                    //   )
                                     : Expanded(flex: 3, child: SizedBox()),
                               ],
                             ),
@@ -1433,29 +1054,9 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                 Expanded(
                                     flex: 3,
                                     child: Text('Image file can be uploaded')),
-                                // Expanded(
-                                //   flex: 1,
-                                //   child: Checkbox(
-                                //     value: imageManditory,
-                                //     checkColor:
-                                //         Colors.white, // color of tick Mark
-                                //     activeColor: LightColor.primaryColor,
-                                //     onChanged: (bool? value) {
-                                //       setState(() {
-                                //         if (image) {
-                                //           imageManditory = !imageManditory;
-                                //         }
-                                //       });
-                                //     },
-                                //   ),
-                                // ),
                               ],
                             ),
 
-                            // // Numerictype(),
-                            // // predefinedtype(),
-                            // yesornotype(),
-                            //   ImagePickerWidget(),
                             customVerticalGap(20),
                             Text(
                               'Image Upload',
@@ -1712,11 +1313,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                           "vdoMN": vdoManditory,
                                           "rangeFrom": rangeFrom,
                                           "rangeTo": rangeTo,
-                                          "dropDownData": dropDownDataEnglish +
-                                              '&&' +
-                                              dropDownDataCzech +
-                                              '&&' +
-                                              dropDownDataViatnam
+                                          "dropDownData": dropDownData
                                         };
 
                                         final dataToSend = {
@@ -1770,9 +1367,7 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                                                 });
                                               }
                                             } else if (dropdown == true) {
-                                              if (dropDownDataEnglish == '' ||
-                                                  dropDownDataCzech == '' ||
-                                                  dropDownDataViatnam == '') {
+                                              if (dropDownData == '') {
                                                 showSnackBar(
                                                     message:
                                                         'Please Provide DropDown Data');
@@ -1844,85 +1439,5 @@ class _QualityquestionformState extends State<Qualityquestionform> {
                 ],
               ));
             }));
-  }
-
-  Widget CreateWidget() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'English',
-          style: AppTheme.h9Style,
-        ),
-        TextFormField(
-          keyboardType: TextInputType.multiline,
-          minLines: 1,
-          maxLines: 7,
-          validator: (val) {
-            return null;
-          },
-          onChanged: (value) {
-            var englishdropdown = (utf8.encode(value)).toString();
-            dropDownDataEnglish = englishdropdown;
-          },
-          decoration: InputDecoration(
-            hintText: "Add Drop Down Values in English.",
-            hintStyle: TextStyle(fontSize: customFontSize(4)),
-            fillColor: Colors.grey.shade200,
-            filled: true,
-            floatingLabelStyle: AppTheme.h2Style,
-          ),
-        ),
-        Text(
-          'Czech',
-          style: AppTheme.h9Style,
-        ),
-        TextFormField(
-          keyboardType: TextInputType.multiline,
-          minLines: 1,
-          maxLines: 7,
-          validator: (val) {
-            return null;
-          },
-          onChanged: (value) {
-            // dropDownDataCzech = value;
-
-            var czechdropdown = (utf8.encode(value)).toString();
-            dropDownDataCzech = czechdropdown;
-          },
-          decoration: InputDecoration(
-            hintText: "Add Drop Down Values in Czech.",
-            hintStyle: TextStyle(fontSize: customFontSize(4)),
-            fillColor: Colors.grey.shade200,
-            filled: true,
-            floatingLabelStyle: AppTheme.h2Style,
-          ),
-        ),
-        Text(
-          'Vietnam',
-          style: AppTheme.h9Style,
-        ),
-        TextFormField(
-          keyboardType: TextInputType.multiline,
-          minLines: 1,
-          maxLines: 7,
-          validator: (val) {
-            return null;
-          },
-          onChanged: (value) {
-            // dropDownDataViatnam = value;
-            var viatnamdropdown = (utf8.encode(value)).toString();
-            dropDownDataViatnam = viatnamdropdown;
-          },
-          decoration: InputDecoration(
-            hintText: "Add Drop Down Values in Vietnam.",
-            hintStyle: TextStyle(fontSize: customFontSize(4)),
-            fillColor: Colors.grey.shade200,
-            filled: true,
-            floatingLabelStyle: AppTheme.h2Style,
-          ),
-        ),
-      ],
-    );
   }
 }

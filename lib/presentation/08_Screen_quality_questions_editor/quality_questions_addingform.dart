@@ -1050,112 +1050,275 @@ class _QualityquestionEditState extends State<QualityquestionEdit> {
                                     ? Expanded(
                                         flex: 3,
                                         child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Text(
-                                              'English',
-                                              style: AppTheme.h9Style,
-                                            ),
-                                            TextFormField(
-                                              controller: controller
-                                                  .dropDownValueEnglishController,
-                                              keyboardType:
-                                                  TextInputType.multiline,
-                                              minLines: 1,
-                                              maxLines: 7,
-                                              validator: (val) {
-                                                return null;
-                                              },
-                                              onChanged: (value) {
-                                                QualityQuestionEditController
-                                                        .dropDownDataEnglish =
-                                                    controller
-                                                        .dropDownValueEnglishController
-                                                        .text;
-                                              },
-                                              decoration: InputDecoration(
-                                                // hintText:
-                                                //     QualityQuestionEditController.dropDownData==""?"Add Drop Down Values seperate by ||.(eg:one||Two||Three)":QualityQuestionEditController.dropDownData,
-                                                hintStyle: TextStyle(
-                                                    fontSize:
-                                                        customFontSize(4)),
-                                                fillColor: Colors.grey.shade200,
-                                                filled: true,
-                                                floatingLabelStyle:
-                                                    AppTheme.h2Style,
-                                              ),
-                                            ),
-                                            Text(
-                                              'Czech',
-                                              style: AppTheme.h9Style,
-                                            ),
-                                            TextFormField(
-                                              controller: controller
-                                                  .dropDownValueCzechController,
-                                              keyboardType:
-                                                  TextInputType.multiline,
-                                              minLines: 1,
-                                              maxLines: 7,
-                                              validator: (val) {
-                                                return null;
-                                              },
-                                              onChanged: (value) {
-                                                QualityQuestionEditController
-                                                        .dropDownDataCzech =
-                                                    controller
-                                                        .dropDownValueCzechController
-                                                        .text;
-                                              },
-                                              decoration: InputDecoration(
-                                                // hintText:
-                                                //     QualityQuestionEditController.dropDownData==""?"Add Drop Down Values seperate by ||.(eg:one||Two||Three)":QualityQuestionEditController.dropDownData,
-                                                hintStyle: TextStyle(
-                                                    fontSize:
-                                                        customFontSize(4)),
-                                                fillColor: Colors.grey.shade200,
-                                                filled: true,
-                                                floatingLabelStyle:
-                                                    AppTheme.h2Style,
-                                              ),
-                                            ),
-                                            Text(
-                                              'Vietnam',
-                                              style: AppTheme.h9Style,
-                                            ),
-                                            TextFormField(
-                                              controller: controller
-                                                  .dropDownValueVietnamController,
-                                              keyboardType:
-                                                  TextInputType.multiline,
-                                              minLines: 1,
-                                              maxLines: 7,
-                                              validator: (val) {
-                                                return null;
-                                              },
-                                              onChanged: (value) {
-                                                QualityQuestionEditController
-                                                        .dropDownDataVietnam =
-                                                    controller
-                                                        .dropDownValueVietnamController
-                                                        .text;
-                                              },
-                                              decoration: InputDecoration(
-                                                // hintText:
-                                                //     QualityQuestionEditController.dropDownData==""?"Add Drop Down Values seperate by ||.(eg:one||Two||Three)":QualityQuestionEditController.dropDownData,
-                                                hintStyle: TextStyle(
-                                                    fontSize:
-                                                        customFontSize(4)),
-                                                fillColor: Colors.grey.shade200,
-                                                filled: true,
-                                                floatingLabelStyle:
-                                                    AppTheme.h2Style,
-                                              ),
-                                            ),
+                                            TextButton(
+                                                style: TextButton.styleFrom(
+                                                  side: BorderSide(
+                                                      color: LightColor
+                                                          .primaryColor),
+                                                ),
+                                                onPressed: () {
+                                                  showDialog(
+                                                    // barrierDismissible: false,
+                                                    context: context,
+                                                    builder: (_) => AlertDialog(
+                                                      shape: RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius.circular(
+                                                                      20.0))),
+                                                      content: Builder(
+                                                        builder: (context) {
+                                                          // Get available height and width of the build area of this widget. Make a choice depending on the size.
+                                                          var height =
+                                                              MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height;
+                                                          var width =
+                                                              MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width;
+
+                                                          return SizedBox(
+                                                            height:
+                                                                height - 300,
+                                                            width: width - 500,
+                                                            child: Center(
+                                                              child: GetBuilder<
+                                                                      QualityQuestionEditController>(
+                                                                  id: Get.find<
+                                                                          QualityQuestionEditController>()
+                                                                      .qualityQuestionDetailID,
+                                                                  builder:
+                                                                      (controller) {
+                                                                    return SingleChildScrollView(
+                                                                      child:
+                                                                          Center(
+                                                                        child:
+                                                                            Column(
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.center,
+                                                                          children: <Widget>[
+                                                                            Obx(
+                                                                              () => Column(children: [
+                                                                                for (int index = 0; index < controller.formFields.length; index++)
+                                                                                  Column(
+                                                                                    mainAxisAlignment: MainAxisAlignment.start,
+                                                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                    children: [
+                                                                                      Text('Form' + (index + 1).toString()),
+                                                                                      customVerticalGap(10),
+                                                                                      // controller.formFields[index],
+                                                                                      customVerticalGap(10),
+                                                                                      IconButton(
+                                                                                          onPressed: () {
+                                                                                            // controller.removeFormField(index);
+                                                                                          },
+                                                                                          icon: Icon(Icons.playlist_remove_outlined))
+                                                                                    ],
+                                                                                  ),
+                                                                              ]),
+                                                                            ),
+                                                                            SizedBox(height: 10),
+                                                                            ElevatedButton(
+                                                                              onPressed: () {
+                                                                                // controller.addFormFields();
+                                                                              },
+                                                                              child: Text('Add Fields'),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                      ),
+                                                                    );
+                                                                  }),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ),
+                                                      actions: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                                  bottom: 50),
+                                                          child: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceAround,
+                                                            children: [
+                                                              TextButton(
+                                                                onPressed: () {
+                                                                  print(controller
+                                                                      .dropdownvaluesList);
+
+                                                                  // if (controller
+                                                                  //     .validateForm()) {
+                                                                  //   valuesLists =
+                                                                  //       controller
+                                                                  //           .getFormValues();
+
+                                                                  //   for (final values
+                                                                  //       in valuesLists) {
+                                                                  //     print(
+                                                                  //         'Form Values: $values');
+                                                                  //   }
+                                                                  //   print(
+                                                                  //       "*******************");
+                                                                  //   dropDownData =
+                                                                  //       valuesLists
+                                                                  //           .toString();
+                                                                  //   print(valuesLists
+                                                                  //       .toString());
+                                                                  //   print(
+                                                                  //       "+++++++++++++++++++++++++++++++++++");
+
+                                                                  //   Get.back();
+                                                                  // } else {
+                                                                  //   Get.snackbar(
+                                                                  //       'Validation Error',
+                                                                  //       'Please fill out all fields.');
+                                                                  // }
+                                                                },
+                                                                child: Text(
+                                                                  'Confirm',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .red,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontSize:
+                                                                          customFontSize(
+                                                                              6)),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  );
+                                                },
+                                                child: Text("ADD/REMOVE"))
                                           ],
                                         ),
                                       )
                                     : Expanded(flex: 3, child: SizedBox()),
+                                //     ? Expanded(
+                                //         flex: 3,
+                                //         child: Column(
+                                //           crossAxisAlignment:
+                                //               CrossAxisAlignment.start,
+                                //           children: [
+                                //             Text(
+                                //               'English',
+                                //               style: AppTheme.h9Style,
+                                //             ),
+                                //             TextFormField(
+                                //               controller: controller
+                                //                   .dropDownValueEnglishController,
+                                //               keyboardType:
+                                //                   TextInputType.multiline,
+                                //               minLines: 1,
+                                //               maxLines: 7,
+                                //               validator: (val) {
+                                //                 return null;
+                                //               },
+                                //               onChanged: (value) {
+                                //                 QualityQuestionEditController
+                                //                         .dropDownDataEnglish =
+                                //                     controller
+                                //                         .dropDownValueEnglishController
+                                //                         .text;
+                                //               },
+                                //               decoration: InputDecoration(
+                                //                 // hintText:
+                                //                 //     QualityQuestionEditController.dropDownData==""?"Add Drop Down Values seperate by ||.(eg:one||Two||Three)":QualityQuestionEditController.dropDownData,
+                                //                 hintStyle: TextStyle(
+                                //                     fontSize:
+                                //                         customFontSize(4)),
+                                //                 fillColor: Colors.grey.shade200,
+                                //                 filled: true,
+                                //                 floatingLabelStyle:
+                                //                     AppTheme.h2Style,
+                                //               ),
+                                //             ),
+                                //             Text(
+                                //               'Czech',
+                                //               style: AppTheme.h9Style,
+                                //             ),
+                                //             TextFormField(
+                                //               controller: controller
+                                //                   .dropDownValueCzechController,
+                                //               keyboardType:
+                                //                   TextInputType.multiline,
+                                //               minLines: 1,
+                                //               maxLines: 7,
+                                //               validator: (val) {
+                                //                 return null;
+                                //               },
+                                //               onChanged: (value) {
+                                //                 QualityQuestionEditController
+                                //                         .dropDownDataCzech =
+                                //                     controller
+                                //                         .dropDownValueCzechController
+                                //                         .text;
+                                //               },
+                                //               decoration: InputDecoration(
+                                //                 // hintText:
+                                //                 //     QualityQuestionEditController.dropDownData==""?"Add Drop Down Values seperate by ||.(eg:one||Two||Three)":QualityQuestionEditController.dropDownData,
+                                //                 hintStyle: TextStyle(
+                                //                     fontSize:
+                                //                         customFontSize(4)),
+                                //                 fillColor: Colors.grey.shade200,
+                                //                 filled: true,
+                                //                 floatingLabelStyle:
+                                //                     AppTheme.h2Style,
+                                //               ),
+                                //             ),
+                                //             Text(
+                                //               'Vietnam',
+                                //               style: AppTheme.h9Style,
+                                //             ),
+                                //             TextFormField(
+                                //               controller: controller
+                                //                   .dropDownValueVietnamController,
+                                //               keyboardType:
+                                //                   TextInputType.multiline,
+                                //               minLines: 1,
+                                //               maxLines: 7,
+                                //               validator: (val) {
+                                //                 return null;
+                                //               },
+                                //               onChanged: (value) {
+                                //                 QualityQuestionEditController
+                                //                         .dropDownDataVietnam =
+                                //                     controller
+                                //                         .dropDownValueVietnamController
+                                //                         .text;
+                                //               },
+                                //               decoration: InputDecoration(
+                                //                 // hintText:
+                                //                 //     QualityQuestionEditController.dropDownData==""?"Add Drop Down Values seperate by ||.(eg:one||Two||Three)":QualityQuestionEditController.dropDownData,
+                                //                 hintStyle: TextStyle(
+                                //                     fontSize:
+                                //                         customFontSize(4)),
+                                //                 fillColor: Colors.grey.shade200,
+                                //                 filled: true,
+                                //                 floatingLabelStyle:
+                                //                     AppTheme.h2Style,
+                                //               ),
+                                //             ),
+                                //           ],
+                                //         ),
+                                //       )
+                                //     : Expanded(flex: 3, child: SizedBox()),
                               ],
                             ),
                             ////////

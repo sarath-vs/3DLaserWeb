@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
@@ -6,6 +8,7 @@ import 'package:laser_tech_app/domain/models/products/get_question_details_model
 import 'package:laser_tech_app/domain/models/products/questionModel.dart';
 import 'package:laser_tech_app/domain/models/products/save_quality_product_model.dart';
 import 'package:laser_tech_app/presentation/03_Screen_home/widgets/qualitycontrol_questions.dart';
+import 'package:laser_tech_app/presentation/widgets/dropdownoption.dart';
 
 import '../../domain/employee_data/employee_data_manager.dart';
 
@@ -43,16 +46,56 @@ Product:[productname],ID:[ID],SerialNumber:[*Don't change here*],Timestamp:[**Do
   String name = '';
 
   int productId = 0;
-  var cards = <Widget>[];
-  addcards(Widget value) {
-    cards.add(value);
-    update([qualityProductID]);
+
+  final RxList<Dropdownoption> formFields = <Dropdownoption>[].obs;
+  void addFormFields() {
+    formFields.add(Dropdownoption());
   }
 
-  removecards(int index) {
-    cards.removeAt(index);
-    update([qualityProductID]);
+  void removeFormField(int index) {
+    if (index >= 0 && index < formFields.length) {
+      formFields.removeAt(index);
+    }
   }
+
+  List<Map<String, String>> getFormValues() {
+    final List<Map<String, String>> valuesList = [];
+
+    for (final field in formFields) {
+      var englishdropdown = (utf8.encode(field.engController.text)).toString();
+      var czechdropdown = (utf8.encode(field.czechController.text)).toString();
+      var viatnamdropdown =
+          (utf8.encode(field.vitenmController.text)).toString();
+      final Map<String, String> values = {
+        'english': englishdropdown,
+        'czech': czechdropdown,
+        'vietnm': viatnamdropdown,
+      };
+      valuesList.add(values);
+    }
+
+    return valuesList;
+  }
+
+  bool validateForm() {
+    bool isValid = true;
+    for (final field in formFields) {
+      if (!field.formKey.currentState!.validate()) {
+        isValid = false;
+      }
+    }
+    return isValid;
+  }
+  // var cards = <Widget>[];
+  // addcards(Widget value) {
+  //   cards.add(value);
+  //   update([qualityProductID]);
+  // }
+
+  // removecards(int index) {
+  //   cards.removeAt(index);
+  //   update([qualityProductID]);
+  // }
 
   Future<void> searchDirectory(String query) async {
     if (query.isEmpty || query == '') {
